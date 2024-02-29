@@ -9,8 +9,5 @@ public class FormypetApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FormypetApplication.class, args);
 	}
-	
-	
-	
 
 }
