@@ -18,4 +18,16 @@ public class Controller {
 		String forwardPath = "confirmation";
 		return forwardPath;
 	}
+	
+	@GetMapping("/blog")
+	public String blog() {
+		String forwardPath = "blog";
+		return forwardPath;
+	}
+	
+	@GetMapping("/board_list")
+	public String boardList() {
+		String forwardPath = "board_list";
+		return forwardPath;
+	}
 }
