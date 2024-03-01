@@ -12,4 +12,10 @@ public class Controller {
 		String forwardPath = "index";
 		return forwardPath;
 	}
+	
+	@GetMapping("/confirmation")
+	public String confirmation() {
+		String forwardPath = "confirmation";
+		return forwardPath;
+	}
 }
