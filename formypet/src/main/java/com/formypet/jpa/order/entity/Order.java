@@ -1,5 +1,5 @@
 package com.formypet.jpa.order.entity;
 
-public class Admin {
+public class Order {
 
 }

@@ -1,5 +1,5 @@
 package com.formypet.jpa.order.dao;
 
-public interface AdminDao {
+public interface OrderDao {
 
 }
