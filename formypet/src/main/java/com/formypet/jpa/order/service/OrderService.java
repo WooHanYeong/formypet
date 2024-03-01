@@ -1,5 +1,5 @@
 package com.formypet.jpa.order.service;
 
-public class AdminServiceImpl {
+public interface OrderService {
 
 }
