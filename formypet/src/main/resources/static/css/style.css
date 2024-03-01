@@ -45,7 +45,7 @@ input:focus {
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   /* line 24, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
   .section_padding {
-    padding: 100px 0px;
+    padding: 50px 0px;
   }
 }
 
@@ -7417,6 +7417,15 @@ h6 {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+/* line 1, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_breadcrumb.scss */
+.breadcrumb_bg_cart {
+  background-image: url("../img/cartbanner.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 /* line 5, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_breadcrumb.scss */
 .breadcrumb {
