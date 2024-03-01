@@ -12,4 +12,14 @@ public class UserController {
 		String forwardPath = "user_login_form";
 		return forwardPath;
 	}
+	@GetMapping("/user_create_account_form")
+	public String user_create_account_form() {
+		String forwardPath = "user_create_account_form";
+		return forwardPath;
+	}
+	@GetMapping("/user_find_account_form")
+	public String user_find_account_form() {
+		String forwardPath = "user_find_account_form";
+		return forwardPath;
+	}
 }
