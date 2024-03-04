@@ -1,4 +1,4 @@
-package com.formypet.jpa.handler;
+package com.formypet.jpa.user.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
