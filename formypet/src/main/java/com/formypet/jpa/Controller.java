@@ -3,7 +3,6 @@ package com.formypet.jpa;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.formypet.jpa.user.dto.SessionUser;
 
 import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpServlet;
@@ -18,14 +17,6 @@ public class Controller {
 
 	@GetMapping("/index")
 	public String index(HttpServletRequest request ,org.springframework.ui.Model model) {
-		
-		HttpSession httpSession =request.getSession();
-		
-		SessionUser user = (SessionUser) httpSession.getAttribute("user");
-		
-		if (user != null) {
-			model.addAttribute("userName", user.getName());
-		}
 		return "index";
 	}
 
@@ -46,4 +37,6 @@ public class Controller {
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
+	
+	
 }

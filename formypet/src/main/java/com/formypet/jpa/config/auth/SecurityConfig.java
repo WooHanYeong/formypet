@@ -2,51 +2,61 @@ package com.formypet.jpa.config.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer.UserInfoEndpointConfig;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.logout.LogoutHandler;
-import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
-import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
-import com.formypet.jpa.user.dto.Role;
-import com.formypet.jpa.user.handler.CustomLogoutHandler;
+import com.formypet.jpa.oauth2.CustomClientRegistrationRepo;
+import com.formypet.jpa.oauth2.CustomOAuth2AuthorizedClientService;
 import com.formypet.jpa.user.service.CustomOAuth2UserService;
 
-import lombok.RequiredArgsConstructor;
-
 @Configuration
-@RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
 
-	private final CustomOAuth2UserService customOAuth2UserService;
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final CustomClientRegistrationRepo customClientRegistrationRepo;
+    private final CustomOAuth2AuthorizedClientService customOAuth2AuthorizedClientService;
+    private final JdbcTemplate jdbcTemplate;
 
-	@Bean
-	public BCryptPasswordEncoder encoder() {
-		return new BCryptPasswordEncoder();
-	}
+    public SecurityConfig(CustomOAuth2UserService customOAuth2UserService, CustomClientRegistrationRepo customClientRegistrationRepo, CustomOAuth2AuthorizedClientService customOAuth2AuthorizedClientService, JdbcTemplate jdbcTemplate) {
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http, HandlerMappingIntrospector introspector)
-			throws Exception {
 
-		http
-				.csrf(AbstractHttpConfigurer::disable)
-				.sessionManagement((sessionmanagment) 
-						-> sessionmanagment.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.formLogin(AbstractHttpConfigurer::disable)
-				.httpBasic(AbstractHttpConfigurer::disable)
-				.authorizeHttpRequests((authorizeRequest) 
-						-> authorizeRequest.requestMatchers(new MvcRequestMatcher(introspector, "api/user")).permitAll())
-				.oauth2Login(oauth2Login
-						-> oauth2Login.userInfoEndpoint(UserInfoEndpointConfig 
-								->UserInfoEndpointConfig.userService(customOAuth2UserService)));
+    	
+        this.customOAuth2UserService = customOAuth2UserService;
+        this.customClientRegistrationRepo = customClientRegistrationRepo;
+        this.customOAuth2AuthorizedClientService = customOAuth2AuthorizedClientService;
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
-		return http.build();
-	}
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+    	
+        http
+                .csrf((csrf) -> csrf.disable());
+
+        http
+                .formLogin((login) -> login.disable());
+
+        http
+                .httpBasic((basic) -> basic.disable());
+
+        http
+                .oauth2Login((oauth2) -> oauth2
+                        .loginPage("/login")
+                        .clientRegistrationRepository(customClientRegistrationRepo.clientRegistrationRepository())
+                        .authorizedClientService(customOAuth2AuthorizedClientService.oAuth2AuthorizedClientService(jdbcTemplate, customClientRegistrationRepo.clientRegistrationRepository()))
+                        .userInfoEndpoint((userInfoEndpointConfig) ->
+                                userInfoEndpointConfig.userService(customOAuth2UserService)));
+
+        http
+                .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers("/", "/login/**", "/oauth2/**").permitAll()
+                        .anyRequest().authenticated());
+
+        return http.build();
+    }
 }
