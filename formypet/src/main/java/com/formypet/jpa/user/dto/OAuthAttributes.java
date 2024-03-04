@@ -8,41 +8,53 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 public class OAuthAttributes {
 
     private Map<String, Object> attributes;
     private String nameAttributeKey;
     private String name;
     private String email;
-    private String picture;
 
-    @Builder
-    public OAuthAttributes(Map<String, Object> attributes,
-                           String nameAttributeKey, String name,
-                           String email, String picture) {
-        this.attributes = attributes;
-        this.nameAttributeKey = nameAttributeKey;
-        this.name = name;
-        this.email = email;
-        this.picture = picture;
-    }
 
-    // OAuth2User에서 반환하는 사용자 정보는 Map
-    // 따라서 값 하나하나를 변환해야 한다.
     public static OAuthAttributes of(String registrationId,
                                      String userNameAttributeName,
                                      Map<String, Object> attributes) {
+    	if("naver".equals(registrationId)) {
+    		return ofNaver("id",attributes);
+    	}else if("kakao".equals(registrationId)){
+    		return ofKakao("id",attributes);
+    	}
   
         return ofGoogle(userNameAttributeName, attributes);
     }
 
-    // 구글 생성자
-    private static OAuthAttributes ofGoogle(String usernameAttributeName,
-                                            Map<String, Object> attributes) {
+    private static OAuthAttributes ofKakao(String usernameAttributeName, Map<String, Object> attributes) {
+		Map<String,Object> response = (Map<String,Object>) attributes.get("kakao_account");
+		Map<String,Object> account = (Map<String,Object>) attributes.get("profile");
+		return OAuthAttributes.builder()
+                .name((String) account.get("nickname"))
+                .email((String) response.get("email"))
+                .attributes(response)
+                .nameAttributeKey(usernameAttributeName)
+                .build();
+	}
+
+	private static OAuthAttributes ofNaver(String usernameAttributeName, Map<String, Object> attributes) {
+		Map<String,Object> response = (Map<String,Object>) attributes.get("response");
+		 return OAuthAttributes.builder()
+	                .name((String) response.get("name"))
+	                .email((String) response.get("email"))
+	                .attributes(response)
+	                .nameAttributeKey(usernameAttributeName)
+	                .build();
+	}
+
+	// 구글 생성자
+    private static OAuthAttributes ofGoogle(String usernameAttributeName, Map<String, Object> attributes) {
         return OAuthAttributes.builder()
                 .name((String) attributes.get("name"))
                 .email((String) attributes.get("email"))
-                .picture((String) attributes.get("picture"))
                 .attributes(attributes)
                 .nameAttributeKey(usernameAttributeName)
                 .build();
@@ -53,7 +65,6 @@ public class OAuthAttributes {
         return User.builder()
                 .name(name)
                 .email(email)
-                .picture(picture)
                 .role(Role.USER)
                 .build();
     }

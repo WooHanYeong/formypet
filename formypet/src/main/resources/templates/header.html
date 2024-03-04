@@ -66,10 +66,10 @@
 								</li>
 								
 								<li class="nav-item" th:if="!${userName}">
-									<a class="nav-link" href="user_login_form">방문객님</a>
+									<a class="nav-link" href="#">방문객님</a>
 								</li>
 								<li class="nav-item" th:if="${userName}">
-									<a class="nav-link" href="user_login_form" th:text="${userName} + 님">방문객님</a>
+									<a class="nav-link" href="#" th:text="${userName} + 님">방문객님</a>
 								</li>
 								
 								

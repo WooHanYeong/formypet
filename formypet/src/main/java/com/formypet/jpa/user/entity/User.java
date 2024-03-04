@@ -22,7 +22,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "userinfo")
 public class User {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
@@ -33,23 +34,23 @@ public class User {
     private String email;
 
     @Column
-    private String picture;
+    private String password;
 
     @Enumerated(EnumType.STRING) // Enum 타입은 문자열 형태로 저장해야 함
     @NotNull
     private Role role;
 
     @Builder
-    public User(String name, String email, String picture, Role role) {
+    public User(Long id, String name, String email, String picture, Role role) {
+    	this.id =id;
         this.name = name;
         this.email = email;
-        this.picture = picture;
+        this.password=password;
         this.role = role;
     }
 
-    public User update(String name, String picture) {
+    public User update(String name) {
         this.name = name;
-        this.picture = picture;
 
         return this;
     }
