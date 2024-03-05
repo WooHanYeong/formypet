@@ -32,11 +32,5 @@ public class Controller {
 		return forwardPath;
 	}
 
-	@GetMapping("/board_list")
-	public String boardList() {
-		String forwardPath = "board_list";
-		return forwardPath;
-	}
-	
 	
 }
