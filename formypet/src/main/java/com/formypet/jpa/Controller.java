@@ -19,9 +19,9 @@ public class Controller {
 	private UserService userService;
 
 	@GetMapping("/index")
-	public String index(HttpSession session,org.springframework.ui.Model model) throws Exception {
-	    
-	    return "index";
+	public String index() throws Exception {
+		String forwardPath ="index";
+	    return forwardPath;
 	}
 
 	@GetMapping("/confirmation")
