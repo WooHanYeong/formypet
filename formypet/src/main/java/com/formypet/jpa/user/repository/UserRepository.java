@@ -6,5 +6,4 @@ import com.formypet.jpa.user.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    UserEntity findByUsername(String username);
 }
