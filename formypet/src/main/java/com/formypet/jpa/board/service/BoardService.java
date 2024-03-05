@@ -1,15 +1,16 @@
 package com.formypet.jpa.board.service;
 
 
+import com.formypet.jpa.board.dto.BoardDto;
 import com.formypet.jpa.board.entity.Board;
 
 public interface BoardService {
 	
-	public void createBoard(Board board);
+	public Board createBoard(Board board);
 	
 	public void deleteBoard(Long boardId);
 	
-	public void updateBoard(Long boardId,Board board);
+	public void updateBoard(Long boardId,BoardDto boardDto);
 	
 	
 }

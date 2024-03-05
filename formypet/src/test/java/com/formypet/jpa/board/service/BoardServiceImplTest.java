@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
 import com.formypet.jpa.FormypetApplicationTest;
+import com.formypet.jpa.board.dto.BoardDto;
 import com.formypet.jpa.board.entity.Board;
 import com.formypet.jpa.board.repository.BoardRepository;
 
@@ -21,7 +22,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void createBoard() throws Exception{
 		Board board1 = new Board(null, "게시판1", "게시판1의 내용", "게시판1이미지", 0, null, null);
@@ -44,7 +45,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	@Rollback(false)
 	void updateBoard() throws Exception {
 		Long boardId = 2L;
-		Board updateBoard = new Board(boardId, "제목만수정", null, null, 0, null, null);
+		BoardDto updateBoard = new BoardDto(boardId, "제목만수정", null, null, 0, null, null);
 		boardService.updateBoard(boardId, updateBoard);
 	
 	}

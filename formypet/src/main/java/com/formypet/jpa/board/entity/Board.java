@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.formypet.jpa.board.dto.BoardDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,5 +37,15 @@ public class Board {
 	private LocalDateTime createdDateTime;
 	@UpdateTimestamp
 	private LocalDateTime updateTime;
+	
+	public static Board toEntity(BoardDto dto) {
+		return Board.builder()
+					.boardId(dto.getBoardId())
+					.boardTitle(dto.getBoardTitle())
+					.boardContent(dto.getBoardContent())
+					.boardImage(dto.getBoardImage())
+					.boardReadCount(dto.getBoardReadCount())
+					.build();
+	}
 	
 }
