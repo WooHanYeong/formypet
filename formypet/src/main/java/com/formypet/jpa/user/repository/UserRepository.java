@@ -1,12 +1,9 @@
 package com.formypet.jpa.user.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.formypet.jpa.user.entity.User;
+import com.formypet.jpa.user.entity.UserEntity;
 
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-	Optional<User> findByEmail(String email);
 }
