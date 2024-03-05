@@ -1,12 +1,13 @@
 package com.formypet.jpa;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.formypet.jpa.user.dto.UserDto;
+import com.formypet.jpa.user.entity.User;
+import com.formypet.jpa.user.service.UserService;
 
-import ch.qos.logback.core.model.Model;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @org.springframework.stereotype.Controller
@@ -14,10 +15,13 @@ import jakarta.servlet.http.HttpSession;
 public class Controller {
 
 	private HttpSession httpSession;
+	
+	private UserService userService;
 
 	@GetMapping("/index")
-	public String index(HttpServletRequest request ,org.springframework.ui.Model model) {
-		return "index";
+	public String index(HttpSession session,org.springframework.ui.Model model) throws Exception {
+	    
+	    return "index";
 	}
 
 	@GetMapping("/confirmation")
@@ -30,6 +34,15 @@ public class Controller {
 	public String blog() {
 		String forwardPath = "blog";
 		return forwardPath;
+	}
+	@GetMapping("/header")
+	public String header(HttpSession session, Model model) throws Exception{
+		User loginUser = (User) session.getAttribute("loginUser");
+		if (loginUser != null) {
+	        UserDto user = userService.findUser(loginUser.getUserId());
+	        model.addAttribute("loginUser", user);
+	    }
+		return "header";
 	}
 
 	

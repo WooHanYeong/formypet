@@ -3,7 +3,9 @@ package com.formypet.jpa.user.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,6 +64,21 @@ public class UserRestController {
 		} else {
 			// 로그인 실패 시 UNAUTHORIZED 상태 반환
 			return new ResponseEntity<UserLoginDto>(HttpStatus.UNAUTHORIZED);
+		}
+	}
+	
+	@Operation(summary = "회원업데이트[성공]")
+	@PutMapping(value = "/update/{userId}", produces = "application/json;charset=UTF-8")
+	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId,
+			@RequestBody UserDto userUpdateDto, HttpSession session) {
+		try {
+			session.getAttribute("sUserId");
+
+			UserDto updatedUser = userService.updateUser(userUpdateDto);
+
+			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	

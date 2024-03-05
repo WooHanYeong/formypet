@@ -58,16 +58,16 @@
 								Please Sign in now</h3>
 							<form class="row contact_form" action="#" method="post" novalidate="novalidate">
 								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="name" name="name" value=""
+									<input type="text" class="form-control" id="userId" name="name" value=""
 										placeholder="UserId">
 								</div>
 								<div class="col-md-12 form-group p_star">
-									<input type="password" class="form-control" id="password" name="password" value=""
+									<input type="password" class="form-control" id="userPassword" name="password" value=""
 										placeholder="Password">
 								</div>
 
 								<div class="col-md-12 form-group">
-									<button type="submit" value="submit" class="btn_3">
+									<button type="button" value="로그인" class="btn_3" onclick="loginAction()">
 										log in
 									</button>
 									<a class="lost_pass" href="user_find_account_form">forget information?</a>
@@ -113,7 +113,53 @@
 		</div>
 	</footer>
 	<!--::footer_part end::-->
+	
+		<script th:inline="javascript">
+		function loginAction() {
+			var formData = {
+				userId: document.getElementById("userId").value,
+				userPassword: document.getElementById("userPassword").value
+			};
+			console.log(userId);
+			console.log(userPassword);
+			// 각 필드의 유효성 검사
+			if (!formData.userId) {
+				alert('아이디를 입력하세요.');
+				return;
+			}
+			if (!formData.userPassword) {
+				alert('비밀번호를 입력하세요.');
+				return;
+			}
+			
+			// Send form data to the server
+			fetch('/api/user/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(formData)
+			})
+				.then(response => {
+					if (response.status === 200) {
+						alert('로그인이 성공적으로 완료되었습니다.');
+						window.location.href = "index"; // 로그인 성공 시 리디렉션할 페이지
 
+					} else if (response.status === 401) {
+						alert('비밀번호가 틀렸습니다.');
+					} else if (response.status === 500) {
+						alert('아이디 및 비밀번호가 틀렸습니다');
+					} else {
+						alert('없는 아이디입니다.');
+					}
+				})
+				.catch(error => {
+					console.error('에러:', error);
+				});
+		}
+	</script>
+	
+	
 	<!-- jquery plugins here-->
 	<!-- jquery -->
 	<script src="js/jquery-1.12.1.min.js"></script>

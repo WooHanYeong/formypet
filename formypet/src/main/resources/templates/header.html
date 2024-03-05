@@ -62,17 +62,24 @@
                                 </li>-->
 
 								<li class="nav-item">
-									<a class="nav-link" href="user_login_form">Login</a>
+									<a class="nav-link" href="user_login_form"
+										th:if="${session.loginUser == null}">Login</a>
 								</li>
-								
-								<li class="nav-item" th:if="!${userName}">
+								<li class="nav-item">
+									<a class="nav-link" onclick="logout()"
+										th:unless="${session.loginUser == null}">Logout</a>
+								</li>
+
+								<li class="nav-item" th:if="${session.loginUser == null}">
 									<a class="nav-link" href="#">방문객님</a>
 								</li>
-								<li class="nav-item" th:if="${userName}">
-									<a class="nav-link" href="#" th:text="${userName} + 님">방문객님</a>
+								<li class="nav-item" th:unless="${session.loginUser == null}">
+									<a class="nav-link" href="#"
+										th:text="${session.loginUser.userName + '  님'}">로그인유저네임</a>
 								</li>
-								
-								
+
+
+
 							</ul>
 						</div>
 					</nav>
@@ -89,3 +96,12 @@
 			</div>
 		</div>
 	</header>
+	
+	
+	<script th:inline="javascript">
+		function logout() {
+			if (confirm("로그아웃 하시겠습니까?")) {
+				window.location.href = "/user_logout_action"; // 로그아웃 액션 경로로 이동
+			}
+		}
+	</script>
