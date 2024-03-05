@@ -17,14 +17,13 @@ import lombok.ToString;
 @Builder
 @ToString
 public class BoardDto {
-	private Long boardId;
 	private String boardTitle;
 	private String boardContent;
 	private String boardImage;
 	private int boardReadCount;
 	
 	@CreationTimestamp
-	private LocalDateTime creDateTime;
+	private LocalDateTime createdDateTime;
 	@UpdateTimestamp
 	private LocalDateTime updateTime;
 	
