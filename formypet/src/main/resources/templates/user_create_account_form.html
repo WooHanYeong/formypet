@@ -137,10 +137,92 @@
 				userPassword: document.getElementById("password").value,
 				userPasswordCheck: document.getElementById("passwordcheck").value,
 				userName: document.getElementById("name").value,
-				userAddress: document.getElementById("address").value,
 				userBirthDate: document.getElementById("birthdate").value,
+				userAddress: document.getElementById("address").value,
 
 			}
+			//not null check and 유효성
+			if (!formData.userId) {
+				alert('아이디를 입력하세요.');
+				return;
+			}
+			if (!isValidUserId(formData.userId)) {
+				alert('아이디는 영문자, 숫자만 사용 가능하며, 4자 이상 15자 이하여야 합니다.');
+				return;
+			}
+			if (!formData.userPassword) {
+				alert('비밀번호를 입력하세요.');
+				return;
+			}
+			if (!formData.userPasswordCheck) {
+				alert('비밀번호체크를 입력하세요.');
+				return;
+			}
+			if (!arePasswordsMatching(formData.userPassword, formData.userPasswordCheck)) {
+				alert('비밀번호가 일치하지 않습니다.');
+				return;
+			}
+
+			if (!formData.userName) {
+				alert('이름을 입력하세요.');
+				return;
+			}
+			if (!formData.userBirthDate) {
+				alert('생년월일을 입력하세요.');
+				return;
+			}
+			if (!isValidBirthday(formData.userBirthDate)) {
+				alert('생년월일은 유효한 8자리 숫자로 이루어져야 합니다');
+				return;
+			}
+			if (!formData.userAddress) {
+				alert('주소를 입력하세요.');
+				return;
+			}
+			// 아이디 유효성 검사 함수
+			function isValidUserId(userId) {
+				var regex = /^[a-zA-Z0-9]{4,15}$/;
+				return regex.test(userId);
+			}
+			function arePasswordsMatching(userPassword, userPasswordCheck) {
+				return userPassword === userPasswordCheck;
+			}
+			//생년월일
+			function isValidBirthday(birthday) {
+				// 생년월일은 8자리 숫자로 구성되어야 함
+				if (!/^\d{8}$/.test(birthday)) {
+					return false;
+				}
+
+				// 유효한 날짜인지 검사
+				var year = parseInt(birthday.substring(0, 4));
+				var month = parseInt(birthday.substring(4, 6));
+				var day = parseInt(birthday.substring(6, 8));
+
+				// 월은 1부터 12까지만 가능
+				if (month < 1 || month > 12) {
+					return false;
+				}
+
+				// 일자 검사
+				var daysInMonth = new Date(year, month, 0).getDate();
+				if (day < 1 || day > daysInMonth) {
+					return false;
+				}
+
+				// 현재 날짜보다 이후인지 검사 (생년월일은 미래일 수 없음)
+				var currentDate = new Date();
+				var inputDate = new Date(year, month - 1, day); // JavaScript의 월은 0부터 시작하므로 month - 1
+				if (inputDate > currentDate) {
+					return false;
+				}
+
+				// 모든 조건을 만족하면 유효한 생년월일로 간주
+				return true;
+			}
+
+
+			//api to server
 			fetch('/api/user/join', {
 				method: 'POST',
 				headers: {
