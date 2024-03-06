@@ -13,8 +13,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "UserEntity")
-@Table(name = "UserEntity")
+@Entity(name = "userentity")
+@Table(name = "userentity")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

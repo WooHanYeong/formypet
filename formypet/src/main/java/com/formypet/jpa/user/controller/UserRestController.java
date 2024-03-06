@@ -3,11 +3,13 @@ package com.formypet.jpa.user.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.formypet.jpa.Exception.ExistedUserException;
@@ -26,11 +28,11 @@ public class UserRestController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private UserDao userDao;
-	
-	@Operation(summary ="회원가입[성공]")
+
+	@Operation(summary = "회원가입[성공]")
 	@PostMapping(value = "/join")
 	public ResponseEntity<?> user_write_action(@RequestBody UserDto userDto) throws Exception {
 		try {
@@ -49,8 +51,8 @@ public class UserRestController {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	@Operation(summary = "로그인 성공")
+
+	@Operation(summary = "로그인[성공]")
 	@PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<UserLoginDto> user_login_action(@RequestBody UserLoginDto userLogindto, HttpSession session)
 			throws Exception {
@@ -58,7 +60,7 @@ public class UserRestController {
 
 		if (loginUser != null) {
 			// 로그인 성공 시 사용자 정보를 세션에 저장
-	        session.setAttribute("loginUser", loginUser); // 사용자 객체를 세션에 저장
+			session.setAttribute("loginUser", loginUser); // 사용자 객체를 세션에 저장
 
 			return new ResponseEntity<UserLoginDto>(userLogindto, HttpStatus.OK);
 		} else {
@@ -66,7 +68,7 @@ public class UserRestController {
 			return new ResponseEntity<UserLoginDto>(HttpStatus.UNAUTHORIZED);
 		}
 	}
-	
+
 	@Operation(summary = "회원업데이트[성공]")
 	@PutMapping(value = "/update/{userId}", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> user_modify_action(@PathVariable(name = "userId") String userId,
@@ -81,6 +83,31 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
+
+	// 아이디, 전화번호로 비밀번호 찾기 API
+	@Operation(summary = "아이디찾기[성공]")
+	@GetMapping("/find/id")
+	public ResponseEntity<String> findUserIdByUserNameAndBirthDate(@RequestParam(name = "userName") String userName,
+			@RequestParam(name = "userBirthDate") String userBirthDate) {
+		try {
+			String foundUserPw = userService.findUserIdByUserNameAndBirthDate(userName, userBirthDate);
+			return new ResponseEntity<>(foundUserPw, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 	
-	
+	// 아이디, 전화번호로 비밀번호 찾기 API
+	@Operation(summary = "비밀번호찾기[성공]")
+	@GetMapping("/find/password")
+	public ResponseEntity<String> findUserPasswordByUserIdNameAndBirthDate(@RequestParam(name = "userId") String userId,
+			@RequestParam(name = "userName") String userName ,@RequestParam(name = "userBirthDate") String userBirthDate) {
+		try {
+			String foundUserPw = userService.findUserPasswordByUserIdNameAndBirthDate(userId,userName, userBirthDate);
+			return new ResponseEntity<>(foundUserPw, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
 }

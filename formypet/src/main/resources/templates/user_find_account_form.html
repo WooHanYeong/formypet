@@ -50,11 +50,12 @@
 										placeholder="Name">
 								</div>
 								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="name" name="name" value=""
+									<input type="text" class="form-control" id="birthdate" name="name" value=""
 										placeholder="Birth Date (8 letters)">
 								</div>
 								<div class="col-md-12 form-group">
-									<button type="submit" value="submit" class="btn_3">
+									<button type="button" id="findId" value="submit" class="btn_3"
+										onclick="findIdAction()">
 										Find Id
 									</button>
 								</div>
@@ -74,7 +75,8 @@
 								</div>
 
 								<div class="col-md-12 form-group">
-									<button type="submit" value="submit" class="btn_3">
+									<button type="button" id="findPassword" value="submit" class="btn_3"
+										onclick="findPassWordAction()">
 										Find PassWord
 									</button>
 								</div>
@@ -130,6 +132,93 @@
 		</div>
 	</footer>
 	<!--::footer_part end::-->
+
+	<script>
+		
+		//아이디찾기
+		function findIdAction() {
+			let userName = document.getElementById("name").value;
+			let userBirthDate = document.getElementById("birthdate").value;
+
+			if (!userName) {
+				alert('이름을 입력하세요.');
+				return;
+			}
+			if (!userBirthDate) {
+				alert('생년월일을 입력하세요.');
+				return;
+			}
+			if (!isValidBirthday(userBirthDate)) {
+				alert('생년월일은 유효한 8자리 숫자로 이루어져야 합니다');
+				return;
+			}
+
+			fetch('/api/user/find/id?userName=' + userName + '&userBirthDate=' + userBirthDate, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+				.then(response => {
+					if (response.status === 200) {
+						return response.text();
+					} else {
+						return Promise.reject('회원님의 아이디를 찾을 수 없습니다.');
+					}
+				})
+				.then(data => {
+					// 성공적으로 아이디를 찾은 경우
+					alert('회원님의 아이디는: ' + data + '입니다');
+				})
+				.catch(error => {
+					// 아이디를 찾지 못한 경우 또는 다른 오류 발생 시
+					alert(error);
+				});
+		}
+	
+		//비밀번호찾기
+		function findPassWordAction() {
+
+		}
+		
+		
+		//생년월일 유효성체크 function
+		function isValidBirthday(birthday) {
+			// 생년월일은 8자리 숫자로 구성되어야 함
+			if (!/^\d{8}$/.test(birthday)) {
+				return false;
+			}
+
+			// 유효한 날짜인지 검사
+			var year = parseInt(birthday.substring(0, 4));
+			var month = parseInt(birthday.substring(4, 6));
+			var day = parseInt(birthday.substring(6, 8));
+
+			// 월은 1부터 12까지만 가능
+			if (month < 1 || month > 12) {
+				return false;
+			}
+
+			// 일자 검사
+			var daysInMonth = new Date(year, month, 0).getDate();
+			if (day < 1 || day > daysInMonth) {
+				return false;
+			}
+
+			// 현재 날짜보다 이후인지 검사 (생년월일은 미래일 수 없음)
+			var currentDate = new Date();
+			var inputDate = new Date(year, month - 1, day); // JavaScript의 월은 0부터 시작하므로 month - 1
+			if (inputDate > currentDate) {
+				return false;
+			}
+
+			// 모든 조건을 만족하면 유효한 생년월일로 간주
+			return true;
+		}
+
+
+
+	</script>
 
 	<!-- jquery plugins here-->
 	<!-- jquery -->
