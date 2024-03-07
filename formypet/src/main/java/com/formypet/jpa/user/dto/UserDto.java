@@ -23,6 +23,8 @@ public class UserDto {
 
     private String userAddress;
     
+    private String userAddressDetail;
+    
     private String userBirthDate;
     
     public static UserDto toDto(User entity) {
@@ -31,6 +33,7 @@ public class UserDto {
     				  .userPassword(entity.getUserPassword())
     				  .userName(entity.getUserName())
     				  .userAddress(entity.getUserAddress())
+    				  .userAddressDetail(entity.getUserAddressDeatil())
     				  .userBirthDate(entity.getUserBirthDate())
     				  .build();
     }
