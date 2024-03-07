@@ -74,7 +74,7 @@
 									<a class="nav-link" href="#">방문객님</a>
 								</li>
 								<li class="nav-item" th:unless="${session.loginUser == null}">
-									<a class="nav-link" href="#"
+									<a class="nav-link" href="user_mypage_form"
 										th:text="${session.loginUser.userName + '  님'}">로그인유저네임</a>
 								</li>
 

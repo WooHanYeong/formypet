@@ -33,7 +33,7 @@ public class User {
 
     private String userAddress;
     
-    private String userAddressDeatil;
+    private String userAddressDetail;
     
     private String userBirthDate;
     
@@ -51,7 +51,7 @@ public class User {
     					 .userPassword(dto.getUserPassword())
     					 .userName(dto.getUserName())
     					 .userAddress(dto.getUserAddress())
-    					 .userAddressDeatil(dto.getUserAddressDetail())
+    					 .userAddressDetail(dto.getUserAddressDetail())
     					 .userBirthDate(dto.getUserBirthDate())
     					 .build();
     

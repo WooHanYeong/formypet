@@ -3,6 +3,7 @@ package com.formypet.jpa.user.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -108,6 +109,18 @@ public class UserRestController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	//회원탈퇴
+	@Operation(summary = "회원탈퇴") 
+	@DeleteMapping("/delete/{userId}")
+	public ResponseEntity<String> user_delete_action(@PathVariable(name = "userId") String userId, HttpSession session)
+			throws Exception {
+		User loginUser = (User) session.getAttribute("loginUser");
+		String loginUserId = loginUser.getUserId();
+		userService.deleteUser(loginUserId);
+		session.invalidate();
+
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

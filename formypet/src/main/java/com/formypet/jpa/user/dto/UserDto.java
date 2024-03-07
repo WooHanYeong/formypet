@@ -33,7 +33,7 @@ public class UserDto {
     				  .userPassword(entity.getUserPassword())
     				  .userName(entity.getUserName())
     				  .userAddress(entity.getUserAddress())
-    				  .userAddressDetail(entity.getUserAddressDeatil())
+    				  .userAddressDetail(entity.getUserAddressDetail())
     				  .userBirthDate(entity.getUserBirthDate())
     				  .build();
     }

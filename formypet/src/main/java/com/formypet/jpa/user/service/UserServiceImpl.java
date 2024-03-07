@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 		user.setUserPassword(userDto.getUserPassword());
 		user.setUserName(userDto.getUserName());
 		user.setUserAddress(userDto.getUserAddress());
-		user.setUserAddressDeatil(userDto.getUserAddressDetail());
+		user.setUserAddressDetail(userDto.getUserAddressDetail());
 		user.setUserBirthDate(userDto.getUserBirthDate());
 
 		User updateUser = userDao.updateUser(user);
