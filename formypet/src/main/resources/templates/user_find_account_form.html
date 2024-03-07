@@ -62,15 +62,15 @@
 
 								<h3 style="margin-top: 50px;">비밀번호 찾기 </h3>
 								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="userid" name="userid" value=""
+									<input type="text" class="form-control" id="id2" name="userid" value=""
 										placeholder="UserId">
 								</div>
 								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="name" name="name" value=""
+									<input type="text" class="form-control" id="name2" name="name" value=""
 										placeholder="Name">
 								</div>
 								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="name" name="name" value=""
+									<input type="text" class="form-control" id="birthdate2" name="name" value=""
 										placeholder="Birth Date (8 letters)">
 								</div>
 
@@ -134,7 +134,7 @@
 	<!--::footer_part end::-->
 
 	<script>
-		
+
 		//아이디찾기
 		function findIdAction() {
 			let userName = document.getElementById("name").value;
@@ -175,13 +175,54 @@
 					alert(error);
 				});
 		}
-	
+
 		//비밀번호찾기
 		function findPassWordAction() {
+			let userId = document.getElementById("id2").value;
+			let userName = document.getElementById("name2").value;
+			let userBirthDate = document.getElementById("birthdate2").value;
+
+			if (!userId) {
+				alert('아이디를 입력하세요.');
+				return;
+			}
+			if (!userName) {
+				alert('이름을 입력하세요.');
+				return;
+			}
+			if (!userBirthDate) {
+				alert('생년월일을 입력하세요.');
+				return;
+			}
+			if (!isValidBirthday(userBirthDate)) {
+				alert('생년월일은 유효한 8자리 숫자로 이루어져야 합니다');
+				return;
+			}
+			fetch('/api/user/find/password?userId='+ userId + '&userName=' + userName + '&userBirthDate=' + userBirthDate, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+				.then(response => {
+					if (response.status === 200) {
+						return response.text();
+					} else {
+						return Promise.reject('회원님의 아이디를 찾을 수 없습니다.');
+					}
+				})
+				.then(data => {
+					// 성공적으로 아이디를 찾은 경우
+					alert('회원님의 비밀번호는: ' + data + '입니다');
+				})
+				.catch(error => {
+					// 아이디를 찾지 못한 경우 또는 다른 오류 발생 시
+					alert(error);
+				});
 
 		}
-		
-		
+
+
 		//생년월일 유효성체크 function
 		function isValidBirthday(birthday) {
 			// 생년월일은 8자리 숫자로 구성되어야 함
