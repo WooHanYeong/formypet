@@ -47,33 +47,30 @@
 								Please Check Your Information</h3>
 							<form class="row contact_form" action="#" method="post" novalidate="novalidate">
 								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="id" name="name" value=""
-										th:placeholder="${'아이디    :    ' + session.loginUser.userId}">
+									<input type="text" class="form-control" id="id" name="id" value=""
+										th:placeholder="${'아이디    :    ' + session.loginUser.userId}" readonly>
 								</div>
 
-								<div class="col-md-12 form-group p_star" style="display: none;">
-									<span id="modalId" th:text="${session.loginUser.userId}"></span>
-								</div>
-								<div class="col-md-12 form-group p_star" style="display: none;">
-									<span id="modalPassWord" th:text="${session.loginUser.userPassword}"></span>
+								<div class="col-md-12 form-group p_star">
+									<input type="text" class="form-control" id="name" name="name" value=""
+										th:placeholder="${'이 름       :    ' + session.loginUser.userName}" readonly>
 								</div>
 
+								<div class="col-md-12 form-group p_star">
+									<input type="text" class="form-control" id="birthdate" name="birthdate" value=""
+										th:placeholder="${'생년월일 (8 letters)    :    ' + session.loginUser.userBirthDate}"
+										readonly>
+								</div>
 
 								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="id" name="name" value=""
-										th:placeholder="${'이 름       :    ' + session.loginUser.userName}">
+									<input type="text" class="form-control" id="address" name="address" value=""
+										th:placeholder="${'주소  :    ' + session.loginUser.userAddress}" readonly>
 								</div>
+
 								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="id" name="name" value=""
-										th:placeholder="${'생년월일 (8 letters)    :    ' + session.loginUser.userBirthDate}">
-								</div>
-								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="id" name="name" value=""
-										th:placeholder="${'주소  :    ' + session.loginUser.userAddress}">
-								</div>
-								<div class="col-md-12 form-group p_star">
-									<input type="text" class="form-control" id="id" name="name" value=""
-										th:placeholder="${'상세주소  :    ' + session.loginUser.userAddressDetail}">
+									<input type="text" class="form-control" id="addressdetail" name="addressdetail"
+										value="" th:placeholder="${'상세주소  :    ' + session.loginUser.userAddressDetail}"
+										readonly>
 								</div>
 
 								<div class="col-md-12 form-group" style="margin-top: 30px;">
@@ -82,7 +79,90 @@
 									</button>
 								</div>
 
+								<style>
+									.modal-body {
+										display: flex;
+										align-items: center;
+										margin-bottom: 10px;
+										/* 각 모달 바디 아래 여백 추가 */
+									}
 
+									.modal-body label {
+										flex: 1;
+										/* 라벨 요소를 가로로 확장하여 일관된 너비를 유지 */
+										margin-right: 10px;
+										/* 라벨과 인풋 요소 사이의 간격 조절 */
+										text-align: right;
+										/* 라벨을 오른쪽에 정렬 */
+									}
+
+									.modal-body input {
+										flex: 2;
+										/* 인풋 요소를 라벨의 두 배의 너비로 확장 */
+									}
+								</style>
+
+								<!-- 회원수정moal-->
+								<div class="modal fade" id="withdrawalModal2" tabindex="-1" role="dialog"
+									aria-labelledby="withdrawalModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="withdrawalModalLabel">회원 수정을 원하십니까?</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<label class="text-center" for="password">현재 비밀번호:</label>
+												<input type="password" id="checkpassword2">
+											</div>
+											<div class="modal-body">
+												<label class="text-center" for="password">변경할 이름:</label>
+												<input type="text" id="updateuserName"
+													th:value="${session.loginUser.userName}">
+											</div>
+											<div class="modal-body">
+												<label class="text-center" for="password">변경할 생년월일:</label>
+												<input type="text" id="updateuserBirthDate"
+													th:value="${session.loginUser.userBirthDate}">
+											</div>
+											<div class="modal-body">
+												<label class="text-center" for="password">변경할 비밀번호:</label>
+												<input type="password" id="updateuserPassword" placeholder="*****">
+											</div>
+											<div class="modal-body">
+												<label class="text-center" for="password">변경할 주 소:</label>
+												<input type="text" id="updateuserAddress"
+													th:value="${session.loginUser.userAddress}">
+											</div>
+											<div class="modal-body">
+												<label class="text-center" for="password">변경할 상세주소:</label>
+												<input type="text" id="updateuserAddressDetail"
+													th:value="${session.loginUser.userAddressDetail}">
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">닫기</button>
+												<button type="button" class="btn btn-primary"
+													onclick="confirmWithdrawal2()">회원수정</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<!-- 모델데이터 전송 /모델 html -->
+								<div class="col-md-12 form-group p_star" style="display: none;">
+									<span id="modalId" th:text="${session.loginUser.userId}"></span>
+								</div>
+								<div class="col-md-12 form-group p_star" style="display: none;">
+									<span id="modalPassWord" th:text="${session.loginUser.userPassword}"></span>
+								</div>
+
+
+								<!--회원탈퇴moal-->
 								<div class="modal fade" id="withdrawalModal" tabindex="-1" role="dialog"
 									aria-labelledby="withdrawalModalLabel" aria-hidden="true">
 									<div class="modal-dialog" role="document">
@@ -96,7 +176,7 @@
 											</div>
 											<div class="modal-body">
 												<label for="password">비밀번호를 입력하세요:</label>
-												<input type="password" id="checkpassword" placeholder="비밀번호">
+												<input type="password" id="checkpassword" placeholder=" 현재 비밀번호">
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary"
@@ -121,7 +201,7 @@
 							<p>
 								혹시 수정이 필요하신가요?!</p>
 
-							<a href="user_login_form" class="btn_3">회원정보수정</a>
+							<a href="#" class="btn_3" onclick="openWithdrawalModal2()">회원정보수정</a>
 						</div>
 					</div>
 				</div>
@@ -163,7 +243,7 @@
 	<!--::footer_part end::-->
 
 	<script>
-		//모달 열기
+		//탈퇴모달 열기
 		function openWithdrawalModal() {
 			$('#withdrawalModal').modal('show'); // 모달을 보이도록 함
 
@@ -173,9 +253,6 @@
 		function confirmWithdrawal() {
 			var userId = document.getElementById('modalId').textContent;
 			var userPassword = document.getElementById('modalPassWord').textContent;
-
-			console.log("사용자 아이디:", userId);
-			console.log("비번:" + userPassword);
 
 			var enteredPassword = document.getElementById("checkpassword").value;
 			console.log("모달입력값:" + enteredPassword);
@@ -215,6 +292,55 @@
 			$('#withdrawalModal').modal('hide');
 			window.location.href = "user_login_form";
 		}
+
+		//수정모달 열기
+		function openWithdrawalModal2() {
+			$('#withdrawalModal2').modal('show'); // 모달을 보이도록 함
+
+		}
+		//회원수정api
+
+		function confirmWithdrawal2() {
+			var userId = document.getElementById('modalId').textContent;
+			var userPassword = document.getElementById('modalPassWord').textContent;
+			var enteredPassword2 = document.getElementById("checkpassword2").value;
+
+
+			var userData = {
+				userId: document.getElementById('modalId').textContent,
+				userName: document.getElementById("updateuserName").value,
+				userPassword: document.getElementById("updateuserPassword").value,
+				userAddress: document.getElementById("updateuserAddress").value,
+				userAddressDetail: document.getElementById("updateuserAddressDetail").value,
+				userBirthDate: document.getElementById("updateuserBirthDate").value,
+
+			};
+
+			if (!enteredPassword2) {
+				alert("현재 비밀번호를 입력하세요.");
+				return;
+			}
+			if (userPassword === enteredPassword2) {
+				fetch(`/api/user/update/${userId}`, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(userData)
+				})
+					.then(response => response.json())
+				alert("회원정보 수정이 완료되었습니다. 재로그인해주세요!");
+				window.location.href = "user_logout_action";
+			} else {
+				alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
+			}
+
+		}
+		function closeWithdrawalModal2() {
+			$('#withdrawalModal').modal('hide');
+			window.location.href = "user_mypage_form";
+		}
+
 
 	</script>
 

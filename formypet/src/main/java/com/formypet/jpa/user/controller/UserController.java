@@ -14,38 +14,40 @@ import jakarta.servlet.http.HttpSession;
 @org.springframework.stereotype.Controller
 @RequestMapping("/")
 public class UserController {
-	
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@GetMapping("/user_login_form")
 	public String user_login_form() {
 		String forwardPath = "user_login_form";
 		return forwardPath;
 	}
+
 	@GetMapping("/user_create_account_form")
 	public String user_create_account_form() {
 		String forwardPath = "user_create_account_form";
 		return forwardPath;
 	}
+
 	@GetMapping("/user_find_account_form")
 	public String user_find_account_form() {
 		String forwardPath = "user_find_account_form";
 		return forwardPath;
 	}
+
 	@GetMapping("/user_mypage_form")
-	public String user_mypage_form(HttpSession session, Model model) throws Exception{
+	public String user_mypage_form(HttpSession session, Model model) throws Exception {
 		User loginUser = (User) session.getAttribute("loginUser");
 
 		if (loginUser != null) {
-	        UserDto user = userService.findUser(loginUser.getUserId());
-	        model.addAttribute("loginUser", user);
-	    }
+			UserDto user = userService.findUser(loginUser.getUserId());
+			model.addAttribute("loginUser", user);
+		}
 		return "user_mypage_form";
 	}
-	
-	//로그아웃action
+
+	// 로그아웃action
 	@GetMapping("/user_logout_action")
 	public String user_action(HttpSession session) {
 		session.invalidate();
