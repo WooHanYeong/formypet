@@ -39,3 +39,27 @@ a:link {
 a:visited {
   color: #000000;
 }
+
+.write-button {
+  display: flex;
+  margin-left: 50%;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.write-bt {
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: rgb(128, 128, 128);
+  color: #fff;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+.write-bt:hover {
+  background-color: #0056b3;
+}

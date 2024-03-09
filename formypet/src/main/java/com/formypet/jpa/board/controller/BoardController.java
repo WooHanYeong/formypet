@@ -11,4 +11,10 @@ public class BoardController {
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
+	
+	@GetMapping("/board_detail")
+	public String boardDetail() {
+		String forwardPath = "board_detail";
+		return forwardPath;
+	}
 }
