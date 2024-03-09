@@ -23,11 +23,6 @@ public class Controller {
 		String forwardPath ="index";
 	    return forwardPath;
 	}
-	@GetMapping("/dash")
-	public String dash() throws Exception {
-		String forwardPath ="dash";
-		return forwardPath;
-	}
 
 	@GetMapping("/confirmation")
 	public String confirmation() {
