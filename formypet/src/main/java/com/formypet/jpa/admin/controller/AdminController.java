@@ -22,5 +22,10 @@ public class AdminController {
 		String forwardPath ="admin_userinfo";
 		return forwardPath;
 	}
+	@GetMapping("/admin_create_product")
+	public String admin_create_product() throws Exception {
+		String forwardPath ="admin_create_product";
+		return forwardPath;
+	}
 	
 }
