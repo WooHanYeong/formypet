@@ -13,14 +13,14 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
-	
+
 	@Override
 	public Board createBoard(Board board) {
-		Board saveBoard = boardRepository.save(board);
-		return saveBoard;
+		return boardRepository.save(board);
+		
 	}
 
 	@Override
