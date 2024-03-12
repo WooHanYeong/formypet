@@ -1,10 +1,14 @@
 package com.formypet.jpa.product.entity;
 
 
+import com.formypet.jpa.product.dto.ProductDto;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,15 +31,28 @@ public class Product {
 	
 	private String productContent;
 	
+	private String productAnimalType;
+	
 	private String productCategory;
 	
 	private String productPrice;
 	
-	private String imagePath;
+	public static Product toEntity(ProductDto dto) {
+		Product product = Product.builder()
+								 .id(dto.getId())
+								 .productName(dto.getProductName())
+								 .productContent(dto.getProductContent())
+								 .productAnimalType(dto.getProductAnimalType())
+								 .productCategory(dto.getProductCategory())
+								 .productPrice(dto.getProductPrice())
+								 .image(Image.builder().imageId(dto.getId()).build())
+								 .build();
+		return product;
+	}
 	
 	
-	
-	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
+    private Image image;
 	
 	
 }

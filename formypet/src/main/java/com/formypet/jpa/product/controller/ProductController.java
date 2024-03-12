@@ -3,6 +3,7 @@ package com.formypet.jpa.product.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @org.springframework.stereotype.Controller
 @RequestMapping("/")
 public class ProductController {
@@ -27,4 +28,6 @@ public class ProductController {
 		String forwardPath = "product_detail_cat";
 		return forwardPath;
 	}
+	
+	
 }

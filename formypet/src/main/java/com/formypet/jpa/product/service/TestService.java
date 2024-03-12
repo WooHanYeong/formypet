@@ -16,6 +16,6 @@ public class TestService {
 
     @Transactional
     public Long saveImage(ImageDto imageDto) {
-        return imageRepository.save(imageDto.toEntity()).getImageNo();
+        return imageRepository.save(imageDto.toEntity()).getImageId();
     }
 }
