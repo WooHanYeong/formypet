@@ -39,13 +39,14 @@ public class Board {
 	private LocalDateTime updateTime;
 	
 	public static Board toEntity(BoardDto dto) {
-		return Board.builder()
+		Board board= Board.builder()
 					.boardId(dto.getBoardId())
 					.boardTitle(dto.getBoardTitle())
 					.boardContent(dto.getBoardContent())
 					.boardImage(dto.getBoardImage())
 					.boardReadCount(dto.getBoardReadCount())
 					.build();
+		return board;
 	}
 	
 }
