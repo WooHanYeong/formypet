@@ -22,7 +22,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	@Disabled
+	//@Disabled
 	@Rollback(false)
 	void createBoard() throws Exception{
 		Board board1 = new Board(null, "게시판1", "게시판1의 내용", "게시판1이미지", 0, null, null);
@@ -41,7 +41,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void updateBoard() throws Exception {
 		Long boardId = 2L;
