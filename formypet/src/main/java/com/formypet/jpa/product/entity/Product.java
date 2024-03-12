@@ -1,6 +1,8 @@
 package com.formypet.jpa.product.entity;
 
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.formypet.jpa.product.dto.ProductDto;
 
 import jakarta.persistence.CascadeType;
@@ -37,22 +39,18 @@ public class Product {
 	
 	private String productPrice;
 	
-	public static Product toEntity(ProductDto dto) {
-		Product product = Product.builder()
-								 .id(dto.getId())
-								 .productName(dto.getProductName())
-								 .productContent(dto.getProductContent())
-								 .productAnimalType(dto.getProductAnimalType())
-								 .productCategory(dto.getProductCategory())
-								 .productPrice(dto.getProductPrice())
-								 .image(Image.builder().imageId(dto.getId()).build())
-								 .build();
-		return product;
-	}
+	private String productImage;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private Image image;
-	
+	/*
+	 * public static Product toEntity(ProductDto dto) { Product product =
+	 * Product.builder() .id(dto.getId()) .productName(dto.getProductName())
+	 * .productContent(dto.getProductContent())
+	 * .productAnimalType(dto.getProductAnimalType())
+	 * .productCategory(dto.getProductCategory())
+	 * .productPrice(dto.getProductPrice())
+	 * .image(Image.builder().imageNo(dto.getId()).build()) .build(); return
+	 * product; }
+	 */
 	
 }

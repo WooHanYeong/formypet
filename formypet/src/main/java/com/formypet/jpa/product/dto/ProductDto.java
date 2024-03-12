@@ -1,6 +1,5 @@
 package com.formypet.jpa.product.dto;
 
-import com.formypet.jpa.product.entity.Image;
 import com.formypet.jpa.product.entity.Product;
 
 import jakarta.persistence.Entity;
@@ -32,19 +31,17 @@ public class ProductDto {
 
     private String productPrice;
 
-    private Long image;
+	private String productImage;
 
-    public static ProductDto toDto(Product entity) {
-        return ProductDto.builder()
-                .id(entity.getId())
-                .productName(entity.getProductName())
-                .productContent(entity.getProductContent())
-                .productAnimalType(entity.getProductAnimalType())
-                .productCategory(entity.getProductCategory())
-                .productPrice(entity.getProductPrice())
-                .image(entity.getImage().getImageId())
-                .build(); // 빌더로 객체 생성 후 반환
-    }
+	/*
+	 * public static ProductDto toDto(Product entity) { return ProductDto.builder()
+	 * .id(entity.getId()) .productName(entity.getProductName())
+	 * .productContent(entity.getProductContent())
+	 * .productAnimalType(entity.getProductAnimalType())
+	 * .productCategory(entity.getProductCategory())
+	 * .productPrice(entity.getProductPrice())
+	 * .image(entity.getImage().getImageNo()) .build(); // 빌더로 객체 생성 후 반환 }
+	 */
     
 
 }
