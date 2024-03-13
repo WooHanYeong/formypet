@@ -1,5 +1,7 @@
 package com.formypet.jpa.board.service;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.test.annotation.Rollback;
 
 import com.formypet.jpa.FormypetApplicationTest;
 import com.formypet.jpa.board.dto.BoardDto;
+import com.formypet.jpa.board.entity.Board;
 import com.formypet.jpa.board.repository.BoardRepository;
 
 import jakarta.transaction.Transactional;
@@ -19,7 +22,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void createBoard() throws Exception{
 		BoardDto boardDto1 = new BoardDto();
@@ -48,6 +51,16 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 		BoardDto updateBoard = new BoardDto(boardId, "제목만수정", null, null, 0);
 		boardService.updateBoard(boardId, updateBoard);
 	
+	}
+	
+	@Test
+	@Transactional
+	//@Disabled
+	@Rollback(false)
+	void selectBoard() throws Exception {
+		Long boardId = 1L;
+		Optional<Board> findBoard = boardService.getBoardById(boardId);
+		System.out.println("한개정보"+findBoard);
 	}
 	
 	

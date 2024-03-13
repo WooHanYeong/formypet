@@ -51,4 +51,9 @@ public class BoardServiceImpl implements BoardService {
         }
     }
 
+	@Override
+	public Optional<Board> getBoardById(Long boardId) throws Exception {
+		return boardRepository.findById(boardId);
+	}
+
 }
