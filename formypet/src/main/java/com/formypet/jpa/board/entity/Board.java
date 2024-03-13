@@ -7,18 +7,15 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.formypet.jpa.board.dto.BoardDto;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @Builder
@@ -32,9 +29,7 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "BOARD_BOARD_NO_SEQ")
 	private Long boardId;
 	
-	@Column(nullable = false)
 	private String boardTitle;
-	@Column(nullable = false)
 	private String boardContent;
 	private String boardImage;
 	private int boardReadCount; 
@@ -51,8 +46,6 @@ public class Board {
 					.boardContent(dto.getBoardContent())
 					.boardImage(dto.getBoardImage())
 					.boardReadCount(dto.getBoardReadCount())
-					.createdTime(dto.getCreatedTime())
-					.updateTime(dto.getUpdateTime())
 					.build();
 		return board;
 	}
