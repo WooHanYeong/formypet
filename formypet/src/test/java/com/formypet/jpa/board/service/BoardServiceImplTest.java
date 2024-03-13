@@ -9,7 +9,6 @@ import org.springframework.test.annotation.Rollback;
 
 import com.formypet.jpa.FormypetApplicationTest;
 import com.formypet.jpa.board.dto.BoardDto;
-import com.formypet.jpa.board.entity.Board;
 import com.formypet.jpa.board.repository.BoardRepository;
 
 import jakarta.transaction.Transactional;
@@ -55,4 +54,3 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	
 }
-

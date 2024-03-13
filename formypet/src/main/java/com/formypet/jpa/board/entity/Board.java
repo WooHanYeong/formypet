@@ -35,7 +35,7 @@ public class Board {
 	private int boardReadCount; 
 	
 	@CreationTimestamp
-	private LocalDateTime createdDateTime;
+	private LocalDateTime createdTime;
 	@UpdateTimestamp
 	private LocalDateTime updateTime;
 	

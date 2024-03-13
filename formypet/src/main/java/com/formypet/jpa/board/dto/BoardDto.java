@@ -5,17 +5,19 @@ import com.formypet.jpa.board.entity.Board;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @ToString
+@Builder
 public class BoardDto {
-	private Long boardId;
 	
+	private Long boardId;
 	private String boardTitle;
 	private String boardContent;
 	private String boardImage;
@@ -23,14 +25,13 @@ public class BoardDto {
 
 	
 	public static BoardDto toDto(Board entity) {
-		BoardDto boardDto = BoardDto.builder()
+		return  BoardDto.builder()
 						.boardId(entity.getBoardId())
 						.boardTitle(entity.getBoardTitle())
 						.boardContent(entity.getBoardContent())
 						.boardImage(entity.getBoardImage())
 						.boardReadCount(entity.getBoardReadCount())
 						.build();
-		return boardDto;
 	}
 	
 }
