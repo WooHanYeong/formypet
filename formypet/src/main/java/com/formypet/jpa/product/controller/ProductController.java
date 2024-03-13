@@ -1,5 +1,7 @@
 package com.formypet.jpa.product.controller;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,20 @@ public class ProductController {
 	//강아지 상품 리스트
 	@GetMapping("/product_list_dog")
 	public String product_list_dog(Model model) {
+		
+		//강아지타입product
 		List<Product> dogList = productServiceImpl.findByProductAnimalType_OrderByCreatedTimeDesc("강아지");
 		model.addAttribute("dogList", dogList);
+		
+		//top4 상품리스트
+		List<Product> sortedDogList = new ArrayList<>(dogList);
+		sortedDogList.sort(Comparator.comparing(Product::getProduct_ReadCount).reversed());
+		List<Product> top4DogList = sortedDogList.subList(0, Math.min(sortedDogList.size(), 4));
+		System.out.println("top4DogList = >>>>>"+top4DogList);
+		model.addAttribute("top4DogList", top4DogList);
+
+		
+		//카테고리리스트
 		List<Product> dogListCategory1 = productServiceImpl.findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc("강아지", "건사료");
 		List<Product> dogListCategory2 = productServiceImpl.findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc("강아지", "배변패드");
 		List<Product> dogListCategory3 = productServiceImpl.findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc("강아지", "방석/쿠션");
@@ -34,6 +48,7 @@ public class ProductController {
 		model.addAttribute("dogListCategory4", dogListCategory4);
 		model.addAttribute("dogListCategory5", dogListCategory5);
 		model.addAttribute("dogListCategory6", dogListCategory6);
+		
 		return "product_list_dog";
 	}
 
