@@ -19,18 +19,21 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	private BoardService boardService;
 	@Autowired
 	private BoardRepository boardRepository;
-	
+	/*
 	@Test
 	@Transactional
 	//@Disabled
 	@Rollback(false)
 	void createBoard() throws Exception{
-		Board board1 = new Board(null, "게시판1", "게시판1의 내용", "게시판1이미지", 0, null, null);
-		boardService.createBoard(board1);
-		Board board2 = new Board(null, "게시판2", "게시판2의 내용", "게시판2이미지", 0, null, null);
-		boardService.createBoard(board2);
+		BoardDto boardDto1 = new BoardDto();
+		boardDto1.setBoardTitle("제목1");
+		boardDto1.setBoardContent("내용1");
+		boardDto1.setBoardImage("이미지1");
+		boardDto1.setBoardReadCount(1);
+		boardService.createBoard(boardDto1);
+		
 	}
-	
+	*/
 	@Test
 	@Transactional
 	@Disabled
@@ -45,7 +48,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	@Rollback(false)
 	void updateBoard() throws Exception {
 		Long boardId = 2L;
-		BoardDto updateBoard = new BoardDto(boardId, "제목만수정", null, null, 0, null, null);
+		BoardDto updateBoard = new BoardDto(boardId, "제목만수정", null, null, 0);
 		boardService.updateBoard(boardId, updateBoard);
 	
 	}

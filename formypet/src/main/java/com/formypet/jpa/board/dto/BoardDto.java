@@ -20,24 +20,22 @@ import lombok.ToString;
 @ToString
 public class BoardDto {
 	private Long boardId;
+	
 	private String boardTitle;
 	private String boardContent;
 	private String boardImage;
 	private int boardReadCount;
 	
-	@CreationTimestamp
-	private LocalDateTime createdDateTime;
-	@UpdateTimestamp
-	private LocalDateTime updateTime;
 	
 	public static BoardDto toDto(Board entity) {
-		return BoardDto.builder()
+		BoardDto boardDto = BoardDto.builder()
 						.boardId(entity.getBoardId())
 						.boardTitle(entity.getBoardTitle())
 						.boardContent(entity.getBoardContent())
 						.boardImage(entity.getBoardImage())
 						.boardReadCount(entity.getBoardReadCount())
 						.build();
+		return boardDto;
 	}
 	
 }
