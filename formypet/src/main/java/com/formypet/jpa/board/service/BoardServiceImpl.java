@@ -32,7 +32,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 */
 	@Override
-	public Board createBoard(Board board) throws Exception{
+	public Board insert(Board board){
 		return boardRepository.save(board);
 	}
 

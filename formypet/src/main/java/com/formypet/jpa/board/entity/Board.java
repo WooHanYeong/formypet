@@ -32,13 +32,15 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "BOARD_BOARD_NO_SEQ")
 	private Long boardId;
 	
+	@Column(nullable = false)
 	private String boardTitle;
+	@Column(nullable = false)
 	private String boardContent;
 	private String boardImage;
 	private int boardReadCount; 
 	
 	@CreationTimestamp
-	private LocalDateTime createdDateTime;
+	private LocalDateTime createdTime;
 	@UpdateTimestamp
 	private LocalDateTime updateTime;
 	
@@ -49,6 +51,8 @@ public class Board {
 					.boardContent(dto.getBoardContent())
 					.boardImage(dto.getBoardImage())
 					.boardReadCount(dto.getBoardReadCount())
+					.createdTime(dto.getCreatedTime())
+					.updateTime(dto.getUpdateTime())
 					.build();
 		return board;
 	}

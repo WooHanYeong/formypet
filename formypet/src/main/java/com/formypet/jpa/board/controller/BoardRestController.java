@@ -17,10 +17,11 @@ import com.formypet.jpa.board.service.BoardServiceImpl;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-@RequestMapping("/api/board")
+@RequestMapping("/")
 public class BoardRestController {
+	
 	@Autowired
-	BoardService boardService;
+	private BoardServiceImpl boardServiceImpl;
 
 	/*
 	 * @PostMapping("/create") public ResponseEntity<Board> createBoard(@RequestBody
@@ -32,7 +33,7 @@ public class BoardRestController {
 	public ResponseEntity<BoardDto> createBoard(@RequestBody BoardDto boardDto) {
 		try {
 			Board board = Board.toEntity(boardDto);
-			Board createdBoard = boardService.createBoard(board);
+			Board createdBoard = boardServiceImpl.insert(board);
 			BoardDto createdBoardDto = BoardDto.toDto(createdBoard);
 			return new ResponseEntity<>(createdBoardDto,HttpStatus.CREATED);
 		} catch(Exception e) {
@@ -44,7 +45,7 @@ public class BoardRestController {
 	@DeleteMapping("/delete/{boardId}")
 	public void deleteBoard(@PathVariable(value = "boardId") Long boardId) {
 		try {
-			boardService.deleteBoard(boardId);
+			boardServiceImpl.deleteBoard(boardId);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
