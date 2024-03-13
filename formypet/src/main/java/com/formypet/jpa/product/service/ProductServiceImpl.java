@@ -1,12 +1,9 @@
 package com.formypet.jpa.product.service;
 
-import java.io.File;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoField;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.formypet.jpa.product.entity.Product;
 import com.formypet.jpa.product.repository.ProductRepository;
@@ -23,6 +20,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public Product insert(Product product) {
 		return productRepository.save(product);
+	}
+
+	@Override
+	public List<Product> findByProductAnimalType_OrderByCreatedTimeDesc(String productcategory) {
+		return productRepository.findByProductAnimalType_OrderByCreatedTimeDesc(productcategory);
 	}
 	
 }
