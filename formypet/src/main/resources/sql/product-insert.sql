@@ -44,23 +44,37 @@ VALUES('강아지', '배변패드', '강아지배변패드 요기쏘', '요기�
 
 -- 강아지 방석/쿠션
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
-VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 바잇미', '바잇미 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_바잇미.jpg',23000,150,SYSTIMESTAMP,SYSTIMESTAMP);
+VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 바잇미', '바잇미 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_바잇미.jpg',23000,160,SYSTIMESTAMP,SYSTIMESTAMP);
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
-VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 보웰', '보웰 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_보웰.jpg',18000,150,SYSTIMESTAMP,SYSTIMESTAMP);
+VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 보웰', '보웰 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_보웰.jpg',18000,170,SYSTIMESTAMP,SYSTIMESTAMP);
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
-VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 인터파크', '인터파크 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_인터파크.jpg',17000,150,SYSTIMESTAMP,SYSTIMESTAMP);
+VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 인터파크', '인터파크 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_인터파크.jpg',17000,180,SYSTIMESTAMP,SYSTIMESTAMP);
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
-VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 클라우드', '클라우드 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_클라우드.jpg',25000,150,SYSTIMESTAMP,SYSTIMESTAMP);
+VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 클라우드', '클라우드 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_클라우드.jpg',25000,190,SYSTIMESTAMP,SYSTIMESTAMP);
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
-VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 티티오씨', '티티오씨 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_티티오씨.jpg',10000,150,SYSTIMESTAMP,SYSTIMESTAMP);
+VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 티티오씨', '티티오씨 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_티티오씨.jpg',10000,200,SYSTIMESTAMP,SYSTIMESTAMP);
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
-VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 펫테일', '펫테일 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_펫테일.jpg',30000,150,SYSTIMESTAMP,SYSTIMESTAMP);
+VALUES('강아지', '방석/쿠션', '강아지방석/쿠션 펫테일', '펫테일 강아지방석/쿠션입니다.','defaultimg/강아지방석쿠션_펫테일.jpg',30000,210,SYSTIMESTAMP,SYSTIMESTAMP);
 
+--강아지이동가방
+INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
+VALUES('강아지', '이동가방', '강아지이동가방 마이플러피', '마이플러피 강아지이동가방입니다.','defaultimg/강아지이동가방_마이플러피.jpg',19000,110,SYSTIMESTAMP,SYSTIMESTAMP);
 
+INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
+VALUES('강아지', '이동가방', '강아지이동가방 울리', '울리 강아지이동가방입니다.','defaultimg/강아지이동가방_울리.jpg',20000,100,SYSTIMESTAMP,SYSTIMESTAMP);
+
+INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
+VALUES('강아지', '이동가방', '강아지이동가방 펫츠랜드', '펫츠랜드 강아지이동가방입니다.','defaultimg/강아지이동가방_펫츠랜드.jpg',30000,120,SYSTIMESTAMP,SYSTIMESTAMP);
+
+INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
+VALUES('강아지', '이동가방', '강아지이동가방 펫테일', '펫테일 강아지이동가방입니다.','defaultimg/강아지이동가방_펫테일.jpg',11000,130,SYSTIMESTAMP,SYSTIMESTAMP);
+
+INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE,PRODUCT_PRICE,PRODUCT_READ_COUNT,CREATED_TIME, UPDATE_TIME) 
+VALUES('강아지', '이동가방', '강아지이동가방 허메스', '허메스 강아지이동가방입니다.','defaultimg/강아지이동가방_허메스.jpg',7000,150,SYSTIMESTAMP,SYSTIMESTAMP);
 
 commit;
