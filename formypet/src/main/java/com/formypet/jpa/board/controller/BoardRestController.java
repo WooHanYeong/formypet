@@ -17,11 +17,10 @@ import com.formypet.jpa.board.service.BoardServiceImpl;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/board")
 public class BoardRestController {
-	
 	@Autowired
-	private BoardServiceImpl boardServiceImpl;
+	BoardServiceImpl boardServiceImpl;
 
 	/*
 	 * @PostMapping("/create") public ResponseEntity<Board> createBoard(@RequestBody

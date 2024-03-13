@@ -15,12 +15,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @ToString
+@Builder
 public class BoardDto {
 	
 	private Long boardId;
