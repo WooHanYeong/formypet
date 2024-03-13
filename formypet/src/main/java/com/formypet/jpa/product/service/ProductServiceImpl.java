@@ -26,5 +26,10 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> findByProductAnimalType_OrderByCreatedTimeDesc(String productcategory) {
 		return productRepository.findByProductAnimalType_OrderByCreatedTimeDesc(productcategory);
 	}
+
+	@Override
+	public List<Product> findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc(String animalType, String productcategory) {
+		return productRepository.findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc(animalType, productcategory);
+	}
 	
 }

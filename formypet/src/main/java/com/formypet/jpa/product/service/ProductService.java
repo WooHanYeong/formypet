@@ -11,5 +11,8 @@ public interface ProductService {
 	
 	//강아지,고양이 카테고리 분류(최신순서)
 	List<Product> findByProductAnimalType_OrderByCreatedTimeDesc(String productcategory);
-
+	
+	//강아지물품 카테고리 분류 (최신순서)
+	List<Product> findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc(String animalType,String productcategory);
+	
 }
