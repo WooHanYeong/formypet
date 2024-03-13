@@ -11,7 +11,7 @@ public interface BoardService {
 
 	public void deleteBoard(Long boardId) throws Exception;
 	
-	public void updateBoard(Long boardId,BoardDto boardDto) throws Exception;
+	public Board updateBoard(Long boardId,BoardDto boardDto) throws Exception;
 	
 	
 }

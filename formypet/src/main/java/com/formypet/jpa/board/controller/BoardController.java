@@ -12,6 +12,12 @@ public class BoardController {
 		return forwardPath;
 	}
 	
+	@GetMapping("/board_write")
+	public String boardWrite() {
+		String forwardPath = "board_write";
+		return forwardPath;
+	}
+	
 	@GetMapping("/board_detail")
 	public String boardDetail() {
 		String forwardPath = "board_detail";

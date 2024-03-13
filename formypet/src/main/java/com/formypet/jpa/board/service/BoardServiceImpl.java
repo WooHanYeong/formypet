@@ -38,17 +38,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void updateBoard(Long boardId, BoardDto boardDto) throws Exception {
-		Optional<Board> optionalBoard = boardRepository.findById(boardId);
-		if (optionalBoard.isPresent()) {
-			Board findBoard = optionalBoard.get();
-			findBoard.setBoardTitle(boardDto.getBoardTitle());
-			findBoard.setBoardContent(boardDto.getBoardContent());
-			findBoard.setBoardImage(boardDto.getBoardImage());
-			boardRepository.save(findBoard);
-		} else {
-			System.out.println("보드에러발생");
-		}
-	}
+	public Board updateBoard(Long boardId, BoardDto boardDto) throws Exception {
+        Optional<Board> optionalBoard = boardRepository.findById(boardId);
+        if (optionalBoard.isPresent()) {
+            Board findBoard = optionalBoard.get();
+            findBoard.setBoardTitle(boardDto.getBoardTitle());
+            findBoard.setBoardContent(boardDto.getBoardContent());
+            findBoard.setBoardImage(boardDto.getBoardImage());
+            return boardRepository.save(findBoard);
+        } else {
+            throw new Exception("id를 찾을수 없습니다.: " + boardId);
+        }
+    }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,18 @@ public class BoardRestController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	@PutMapping("/update/{boardId}")
+	public ResponseEntity<String> updateBoard(@PathVariable (value = "boardId") Long boardId,@RequestBody BoardDto boardDto) {
+		try {
+			boardService.updateBoard(boardId, boardDto);
+			return new ResponseEntity<>("boardId : "+boardId + "업데이트 성공", HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResponseEntity<>("boardId : "+ boardId + "를 찾을 수 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }
