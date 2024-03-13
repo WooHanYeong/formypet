@@ -1,6 +1,10 @@
 package com.formypet.jpa.product.entity;
 
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.formypet.jpa.product.dto.ProductDto;
@@ -40,6 +44,13 @@ public class Product {
 	private String productPrice;
 	
 	private String productImage;
+	
+	private int product_ReadCount;
+	
+	@CreationTimestamp
+	private LocalDateTime createdTime;
+	@UpdateTimestamp
+	private LocalDateTime updateTime;
 	
 	
 	/*
