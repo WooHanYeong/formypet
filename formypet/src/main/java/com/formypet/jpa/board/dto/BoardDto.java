@@ -1,10 +1,5 @@
 package com.formypet.jpa.board.dto;
 
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import com.formypet.jpa.board.entity.Board;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +20,7 @@ public class BoardDto {
 	private String boardContent;
 	private String boardImage;
 	private int boardReadCount;
-	
+
 	
 	public static BoardDto toDto(Board entity) {
 		BoardDto boardDto = BoardDto.builder()

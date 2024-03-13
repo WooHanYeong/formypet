@@ -6,7 +6,7 @@ import com.formypet.jpa.board.entity.Board;
 
 public interface BoardService {
 	
-	public Board createBoard(Board board) throws Exception;
+	public Board createBoard(BoardDto boardDto) throws Exception;
 
 	public void deleteBoard(Long boardId) throws Exception;
 	

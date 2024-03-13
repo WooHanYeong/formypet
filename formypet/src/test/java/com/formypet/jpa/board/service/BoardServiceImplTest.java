@@ -19,7 +19,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	private BoardService boardService;
 	@Autowired
 	private BoardRepository boardRepository;
-	/*
+	
 	@Test
 	@Transactional
 	//@Disabled
@@ -33,7 +33,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 		boardService.createBoard(boardDto1);
 		
 	}
-	*/
+	
 	@Test
 	@Transactional
 	@Disabled
