@@ -65,13 +65,13 @@
 							<!--    <img class="img-fluid" src="img/blog/single_blog_1.png" alt="">-->
 						</div>
 						<div class="blog_details">
-							<h2 id="detailTitle">제목
+							<h2 id="detailTitle" th:text="${board.boardTitle}">제목
 							</h2>
 							<ul class="blog-info-link mt-3 mb-4">
 								<li><a href="#"><i class="far fa-user"></i> 작성자 이름</a></li>
 								<li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
 							</ul>
-							<p class="excert" id="detailContent">
+							<p class="excert" id="detailContent" th:text="${board.boardContent}">
 								내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
 							</p>
 							<!-- <p>

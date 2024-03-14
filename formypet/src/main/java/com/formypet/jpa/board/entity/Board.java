@@ -30,6 +30,7 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "BOARD_BOARD_NO_SEQ")
 	private Long boardId;
 	private String boardTitle;
+	@Column(columnDefinition = "CLOB")
 	private String boardContent;
 	private String boardImage;
 	private int boardReadCount; 

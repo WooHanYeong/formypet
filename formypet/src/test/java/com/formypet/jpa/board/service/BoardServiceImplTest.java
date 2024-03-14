@@ -18,8 +18,6 @@ import jakarta.transaction.Transactional;
 public class BoardServiceImplTest extends FormypetApplicationTest{
 	@Autowired
 	private BoardService boardService;
-	@Autowired
-	private BoardRepository boardRepository;
 	
 	@Test
 	@Transactional

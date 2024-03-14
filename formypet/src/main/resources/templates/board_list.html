@@ -308,26 +308,30 @@
 				</div>
 			</div>-->
 			<div class="section-top-border">
-				<h3 class="mb-30">Table</h3>
+				<h3 class="mb-30">자유게시판</h3>
 				<div class="progress-table-wrap">
 					<div class="progress-table">
 						<div class="table-head">
 							<div class="serial">#</div>
-							<div class="country">Countries</div>
-							<div class="visit">Visits</div>
+							<div class="country">제목</div>
+							<div class="visit">작성자</div>
 							<div class="percentage">Percentages</div>
 						</div>
-						<div class="table-row">
-							<div class="serial">01</div>
-							<div class="country"> <img src="img/elements/f1.jpg" alt="flag">Canada</div>
-							<div class="visit">645032</div>
-							<div class="percentage">
-								<div class="progress">
-									<div class="progress-bar color-1" role="progressbar" style="width: 80%"
-										aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+						<tr th:each="board : ${boardList}">
+							<div class="table-row">
+								<div class="serial">01</div>
+								<div class="country" id="title">
+									<a th:href="${'/board_detail?boardId='+board.boardId}" th:text="${board.boardTitle}">제목</a>
+								</div>
+								<div class="visit" id="write">작성자</div>
+								<div class="percentage">
+									<div class="progress">
+										<div class="progress-bar color-1" role="progressbar" style="width: 80%"
+											aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</div>
 							</div>
-						</div>
+						</tr>
 					</div>
 				</div>
 			</div>
@@ -338,7 +342,7 @@
 			</div>-->
 		</div>
 	</div>
-<!--	<div class="section-top-border">
+	<!--	<div class="section-top-border">
 		<div class="row">
 			<div class="col-md-4">
 				<h3 class="mb-20">Image Gallery</h3>
@@ -593,6 +597,12 @@
 	<!-- End Align Area -->
 
 	<!--::footer_part start::-->
+	<hr style="width: 1140px;">
+	<div>
+		<form class="write-button" action="/write" method="get" style="transform: translateX(-15%);">
+			<button type="button" class="write-bt" onclick="window.location.href='/board_write'">글쓰기</button>
+		</form>
+	</div>
 	<footer class="footer_part">
 		<div class="container">
 			<div class="row">
@@ -703,6 +713,9 @@
 	<script src="js/mail-script.js"></script>
 	<!-- custom js -->
 	<script src="js/custom.js"></script>
+
+
+	<script src="customjs/board_list.js"></script>
 </body>
 
 </html>
