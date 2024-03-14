@@ -23,4 +23,9 @@ public class BoardController {
 		String forwardPath = "board_detail";
 		return forwardPath;
 	}
+	@GetMapping("/elements")
+	public String elements() {
+		String forwardPath = "elements";
+		return forwardPath;
+	}
 }
