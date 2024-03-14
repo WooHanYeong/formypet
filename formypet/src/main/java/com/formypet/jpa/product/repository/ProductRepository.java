@@ -10,5 +10,9 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	
 	//강아지,고양이 카테고리 분류(최신순서)
 	List<Product> findByProductAnimalType_OrderByCreatedTimeDesc(String productcategory);
+	
+	//카테고리별리스트뽑기.
+	List<Product> findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc(String animalType, String category);
+	
 
 }

@@ -1,5 +1,7 @@
 package com.formypet.jpa.product.controller;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,33 @@ public class ProductController {
 	//강아지 상품 리스트
 	@GetMapping("/product_list_dog")
 	public String product_list_dog(Model model) {
+		
+		//강아지타입product
 		List<Product> dogList = productServiceImpl.findByProductAnimalType_OrderByCreatedTimeDesc("강아지");
 		model.addAttribute("dogList", dogList);
-		System.out.println("강아지리스트(최신)" + dogList);
+		
+		//top4 상품리스트
+		List<Product> sortedDogList = new ArrayList<>(dogList);
+		sortedDogList.sort(Comparator.comparing(Product::getProduct_ReadCount).reversed());
+		List<Product> top4DogList = sortedDogList.subList(0, Math.min(sortedDogList.size(), 4));
+		System.out.println("top4DogList = >>>>>"+top4DogList);
+		model.addAttribute("top4DogList", top4DogList);
+
+		
+		//카테고리리스트
+		List<Product> dogListCategory1 = productServiceImpl.findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc("강아지", "건사료");
+		List<Product> dogListCategory2 = productServiceImpl.findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc("강아지", "배변패드");
+		List<Product> dogListCategory3 = productServiceImpl.findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc("강아지", "방석/쿠션");
+		List<Product> dogListCategory4 = productServiceImpl.findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc("강아지", "이동가방");
+		List<Product> dogListCategory5 = productServiceImpl.findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc("강아지", "샴푸/비누");
+		List<Product> dogListCategory6 = productServiceImpl.findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc("강아지", "기타");
+		model.addAttribute("dogListCategory1", dogListCategory1);
+		model.addAttribute("dogListCategory2", dogListCategory2);
+		model.addAttribute("dogListCategory3", dogListCategory3);
+		model.addAttribute("dogListCategory4", dogListCategory4);
+		model.addAttribute("dogListCategory5", dogListCategory5);
+		model.addAttribute("dogListCategory6", dogListCategory6);
+		
 		return "product_list_dog";
 	}
 
