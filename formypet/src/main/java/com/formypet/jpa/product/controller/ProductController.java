@@ -69,8 +69,8 @@ public class ProductController {
 		List<Product> sortedCatList = new ArrayList<>(catList);
 		sortedCatList.sort(Comparator.comparing(Product::getProduct_ReadCount).reversed());
 		List<Product> top4CatList = sortedCatList.subList(0, Math.min(sortedCatList.size(), 4));
-		System.out.println("top4DogList = >>>>>" + top4CatList);
-		model.addAttribute("top4DogList", top4CatList);
+		System.out.println("top4CatList = >>>>>" + top4CatList);
+		model.addAttribute("top4CatList", top4CatList);
 
 		// 카테고리리스트
 		List<Product> catListCategory1 = productServiceImpl

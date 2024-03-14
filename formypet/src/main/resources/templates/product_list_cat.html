@@ -112,7 +112,7 @@
 								</div>
 								<div class="single_product_menu d-flex">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder="search"
+										<input type="text" class="form-control"id="searchInput" placeholder="search"
 											aria-describedby="inputGroupPrepend">
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="inputGroupPrepend"><i
@@ -124,7 +124,7 @@
 						</div>
 					</div>
 
-					<div class="row align-items-center latest_product_inner">
+					<div class="row align-items-center latest_product_inner" id="container" style="max-height: 1200px; overflow-y:auto;">
 						<div class="col-lg-4 col-sm-6" th:each="cat: ${catList}">
 							<div class="single_product_item">
 								<img th:src="@{'/productimg/' + ${cat.productImage}}" alt="">
@@ -221,7 +221,9 @@
 			</div>
 		</div>
 	</footer>
-	<!--::footer_part end::-->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="customjs/product-cat.js"></script>
 
 	<!-- jquery plugins here-->
 	<script src="js/jquery-1.12.1.min.js"></script>
