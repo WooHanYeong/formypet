@@ -56,49 +56,49 @@
 	<!-- breadcrumb start-->
 
 	<!--================Category Product Area =================-->
-	<section class="cat_product_area section_padding" >
+	<section class="cat_product_area section_padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
-					<div class="left_sidebar_area">
-						<aside class="left_widgets p_filter_widgets" style="margin-top: 100px;">
+					<div class="left_sidebar_area" style="margin-right: 20px; ">
+
+						<aside class="left_widgets p_filter_widgets" style="margin-top: 100px; ">
 							<div class="l_w_title">
 								<h3>Product Categories</h3>
 							</div>
 							<div class="widgets_inner">
 								<ul class="list">
 									<li>
-										<a href="#">Frozen Fish</a>
-										<span>(250)</span>
+										<a href="#" id="all">전체</a>
+										<span th:text="${'('+#lists.size(catList)+')'}">(250)</span>
 									</li>
 									<li>
-										<a href="#">Dried Fish</a>
-										<span>(250)</span>
+										<a href="#" id="category1">건사료</a>
+										<span th:text="${'('+#lists.size(catListCategory1)+')'}">(250)</span>
 									</li>
 									<li>
-										<a href="#">Fresh Fish</a>
-										<span>(250)</span>
+										<a href="#" id="category2">배변패드</a>
+										<span th:text="${'('+#lists.size(catListCategory2)+')'}">(250)</span>
 									</li>
 									<li>
-										<a href="#">Meat Alternatives</a>
-										<span>(250)</span>
+										<a href="#" id="category3">방석/쿠션</a>
+										<span th:text="${'('+#lists.size(catListCategory3)+')'}">(250)</span>
 									</li>
 									<li>
-										<a href="#">Fresh Fish</a>
-										<span>(250)</span>
+										<a href="#" id="category4">이동가방</a>
+										<span th:text="${'('+#lists.size(catListCategory4)+')'}">(250)</span>
 									</li>
 									<li>
-										<a href="#">Meat Alternatives</a>
-										<span>(250)</span>
+										<a href="#" id="category5">샴푸/비누</a>
+										<span th:text="${'('+#lists.size(catListCategory5)+')'}">(250)</span>
 									</li>
 									<li>
-										<a href="#">Meat</a>
-										<span>(250)</span>
+										<a href="#" id="category6">기타</a>
+										<span th:text="${'('+#lists.size(catListCategory6)+')'}">(250)</span>
 									</li>
 								</ul>
 							</div>
 						</aside>
-
 					</div>
 				</div>
 				<div class="col-lg-9">
@@ -108,7 +108,7 @@
 
 
 								<div class="single_product_menu d-flex">
-									
+
 								</div>
 								<div class="single_product_menu d-flex">
 									<div class="input-group">
@@ -125,118 +125,15 @@
 					</div>
 
 					<div class="row align-items-center latest_product_inner">
-						<div class="col-lg-4 col-sm-6">
+						<div class="col-lg-4 col-sm-6" th:each="cat: ${catList}">
 							<div class="single_product_item">
-								<img src="img/product/product_1.png" alt="">
+								<img th:src="@{'/productimg/' + ${cat.productImage}}" alt="">
 								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
+									<h4 th:text="${cat.productName}">Quartz Belt Watch</h4>
+									<h3 th:text="${cat.productPrice}+'원'">$150.00</h3>
+									<h3 th:text="${cat.productCategory}" style="display: none;">$150.00</h3>
 									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
 								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="single_product_item">
-								<img src="img/product/product_2.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="single_product_item">
-								<img src="img/product/product_3.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="single_product_item">
-								<img src="img/product/product_4.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="single_product_item">
-								<img src="img/product/product_5.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="single_product_item">
-								<img src="img/product/product_6.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="single_product_item">
-								<img src="img/product/product_7.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="single_product_item">
-								<img src="img/product/product_8.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="single_product_item">
-								<img src="img/product/product_2.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="pageination">
-								<nav aria-label="Page navigation example">
-									<ul class="pagination justify-content-center">
-										<li class="page-item">
-											<a class="page-link" href="#" aria-label="Previous">
-												<i class="ti-angle-double-left"></i>
-											</a>
-										</li>
-										<li class="page-item"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#">4</a></li>
-										<li class="page-item"><a class="page-link" href="#">5</a></li>
-										<li class="page-item"><a class="page-link" href="#">6</a></li>
-										<li class="page-item">
-											<a class="page-link" href="#" aria-label="Next">
-												<i class="ti-angle-double-right"></i>
-											</a>
-										</li>
-									</ul>
-								</nav>
 							</div>
 						</div>
 					</div>
@@ -260,38 +157,31 @@
 				<div class="col-lg-12">
 					<div class="best_product_slider owl-carousel">
 						<div class="single_product_item">
-							<img src="img/product/product_1.png" alt="">
+							<img th:src="@{'/productimg/' + ${top4CatList[0].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4>Quartz Belt Watch</h4>
-								<h3>$150.00</h3>
+								<h4 th:text="${top4CatList[0].productName}">Quartz Belt Watch</h4>
+								<h3 th:text="${top4CatList[0].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
 						<div class="single_product_item">
-							<img src="img/product/product_2.png" alt="">
+							<img th:src="@{'/productimg/' + ${top4CatList[1].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4>Quartz Belt Watch</h4>
-								<h3>$150.00</h3>
+								<h4 th:text="${top4CatList[1].productName}">Quartz Belt Watch</h4>
+								<h3 th:text="${top4CatList[1].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
 						<div class="single_product_item">
-							<img src="img/product/product_3.png" alt="">
+							<img th:src="@{'/productimg/' + ${top4CatList[2].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4>Quartz Belt Watch</h4>
-								<h3>$150.00</h3>
+								<h4 th:text="${top4CatList[2].productName}">Quartz Belt Watch</h4>
+								<h3 th:text="${top4CatList[2].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
 						<div class="single_product_item">
-							<img src="img/product/product_4.png" alt="">
+							<img th:src="@{'/productimg/' + ${top4CatList[3].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4>Quartz Belt Watch</h4>
-								<h3>$150.00</h3>
-							</div>
-						</div>
-						<div class="single_product_item">
-							<img src="img/product/product_5.png" alt="">
-							<div class="single_product_text">
-								<h4>Quartz Belt Watch</h4>
-								<h3>$150.00</h3>
+								<h4 th:text="${top4CatList[3].productName}">Quartz Belt Watch</h4>
+								<h3 th:text="${top4CatList[3].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
 					</div>
