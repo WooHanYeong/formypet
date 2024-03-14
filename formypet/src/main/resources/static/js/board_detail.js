@@ -17,8 +17,7 @@ function getBoardById(boardId) {
         });
 }
 
-// 페이지 로드 시 특정 게시글 데이터를 가져와서 화면에 표시
 window.onload = function() {
-    const boardId = 3; // 특정 게시글의 ID를 지정해야 함
+    const boardId = 2; 
     getBoardById(boardId);
 };
