@@ -56,16 +56,5 @@ public class BoardRestController {
 		}
 	}
 
-	@GetMapping("/select/{boardId}")
-	public ResponseEntity<Board> getBoardById(@PathVariable(value = "boardId") Long boardId) throws Exception {
-		Optional<Board> boardOptional = boardService.getBoardById(boardId);
-		return boardOptional.map(board -> new ResponseEntity<>(board, HttpStatus.OK))
-				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-	}
-	
-	@GetMapping("/selectAll")
-	public ResponseEntity<List<Board>> getBoardAll() throws Exception{
-		List<Board> boards = boardService.getBoardByAll();
-		return new ResponseEntity<>(boards,HttpStatus.OK);
-	}
+
 }
