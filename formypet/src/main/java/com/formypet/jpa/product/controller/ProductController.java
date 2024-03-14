@@ -109,13 +109,24 @@ public class ProductController {
 			// 게시물이 존재하지 않을 경우 에러 처리
 			model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
 		}
+		
 		return "product_detail_dog";
 	}
 
 	@GetMapping("/product_detail_cat")
-	public String product_detail_cat() {
-		String forwardPath = "product_detail_cat";
-		return forwardPath;
+	public String product_detail_cat(@RequestParam(name="productId")Long id, Model model) {
+		
+		//삼풍가져오기
+				Optional<Product> productOptional =productServiceImpl.findById(id);
+				if(productOptional.isPresent()) {
+					Product product =productOptional.get();
+					model.addAttribute("product", product);
+				}else {
+					// 게시물이 존재하지 않을 경우 에러 처리
+					model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
+				}
+		
+		return "product_detail_cat";
 	}
 
 }

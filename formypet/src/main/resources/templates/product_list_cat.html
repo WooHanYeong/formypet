@@ -112,7 +112,7 @@
 								</div>
 								<div class="single_product_menu d-flex">
 									<div class="input-group">
-										<input type="text" class="form-control"id="searchInput" placeholder="search"
+										<input type="text" class="form-control" id="searchInput" placeholder="search"
 											aria-describedby="inputGroupPrepend">
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="inputGroupPrepend"><i
@@ -124,14 +124,19 @@
 						</div>
 					</div>
 
-					<div class="row align-items-center latest_product_inner" id="container" style="max-height: 1200px; overflow-y:auto;">
+					<div class="row align-items-center latest_product_inner" id="container"
+						style="max-height: 1200px; overflow-y:auto;">
 						<div class="col-lg-4 col-sm-6" th:each="cat: ${catList}">
 							<div class="single_product_item">
 								<img th:src="@{'/productimg/' + ${cat.productImage}}" alt="">
+								<h4 style=" margin-top: 50px; text-align: center;">
+									<a style="color: black; margin-top: 10px; "
+										th:href="${'/product_detail_cat?productId='+cat.id}"
+										th:text="${cat.productName}">Quartz Belt Watch</a>
+								</h4>
+								<h3 style=" text-align: center;"th:text="${cat.productPrice}+'원'">$150.00</h3>
+								<h3 th:text="${cat.productCategory}" style="display: none;">$150.00</h3>
 								<div class="single_product_text">
-									<h4 th:text="${cat.productName}">Quartz Belt Watch</h4>
-									<h3 th:text="${cat.productPrice}+'원'">$150.00</h3>
-									<h3 th:text="${cat.productCategory}" style="display: none;">$150.00</h3>
 									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
 								</div>
 							</div>
@@ -221,7 +226,7 @@
 			</div>
 		</div>
 	</footer>
-	
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="customjs/product-cat.js"></script>
 
