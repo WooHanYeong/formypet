@@ -136,12 +136,12 @@
 							<div class="single_product_item">
 								<img th:src="@{'/productimg/' + ${dog.productImage}}" alt="">
 								<h4 style=" margin-top: 50px; text-align: center;">
-									<a 	style="color: black; margin-top: 10px; "
+									<a style="color: black; margin-top: 10px; "
 										th:href="${'/product_detail_dog?productId='+dog.id}"
 										th:text="${dog.productName}">Quartz Belt Watch</a>
 								</h4>
-									<h3 style=" text-align: center;" th:text="${dog.productPrice}+'원'">$150.00</h3>
-									<h3 th:text="${dog.productCategory}" style="display: none;">$150.00</h3>
+								<h3 style=" text-align: center;" th:text="${dog.productPrice}+'원'">$150.00</h3>
+								<h3 th:text="${dog.productCategory}" style="display: none;">$150.00</h3>
 								<div class="single_product_text">
 									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
 								</div>
@@ -149,31 +149,6 @@
 						</div>
 					</div>
 
-
-					<!--	<div class="col-lg-12">
-						<div class="pageination">
-							<nav aria-label="Page navigation example">
-								<ul class="pagination justify-content-center">
-									<li class="page-item">
-										<a class="page-link" href="#" aria-label="Previous">
-											<i class="ti-angle-double-left"></i>
-										</a>
-									</li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#">5</a></li>
-									<li class="page-item"><a class="page-link" href="#">6</a></li>
-									<li class="page-item">
-										<a class="page-link" href="#" aria-label="Next">
-											<i class="ti-angle-double-right"></i>
-										</a>
-									</li>
-								</ul>
-							</nav>
-						</div>
-					</div>-->
 					<script>
 
 					</script>
@@ -200,28 +175,32 @@
 						<div class="single_product_item">
 							<img th:src="@{'/productimg/' + ${top4DogList[0].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4 th:text="${top4DogList[0].productName}">Quartz Belt Watch</h4>
+								<h4 th:onclick="'window.location.href=\'/product_detail_dog?productId=' + ${top4DogList[0].id} + '\''"
+									th:text="${top4DogList[0].productName}">Quartz Belt Watch</h4>
 								<h3 th:text="${top4DogList[0].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
 						<div class="single_product_item">
 							<img th:src="@{'/productimg/' + ${top4DogList[1].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4 th:text="${top4DogList[1].productName}">Quartz Belt Watch</h4>
+								<h4 th:onclick="'window.location.href=\'/product_detail_dog?productId=' + ${top4DogList[1].id} + '\''"
+									th:text="${top4DogList[1].productName}">Quartz Belt Watch</h4>
 								<h3 th:text="${top4DogList[1].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
 						<div class="single_product_item">
 							<img th:src="@{'/productimg/' + ${top4DogList[2].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4 th:text="${top4DogList[2].productName}">Quartz Belt Watch</h4>
+								<h4 th:onclick="'window.location.href=\'/product_detail_dog?productId=' + ${top4DogList[2].id} + '\''"
+									th:text="${top4DogList[2].productName}">Quartz Belt Watch</h4>
 								<h3 th:text="${top4DogList[2].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
 						<div class="single_product_item">
 							<img th:src="@{'/productimg/' + ${top4DogList[3].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4 th:text="${top4DogList[3].productName}">Quartz Belt Watch</h4>
+								<h4 th:onclick="'window.location.href=\'/product_detail_dog?productId=' + ${top4DogList[3].id} + '\''"
+									th:text="${top4DogList[3].productName}">Quartz Belt Watch</h4>
 								<h3 th:text="${top4DogList[3].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>

@@ -134,7 +134,7 @@
 										th:href="${'/product_detail_cat?productId='+cat.id}"
 										th:text="${cat.productName}">Quartz Belt Watch</a>
 								</h4>
-								<h3 style=" text-align: center;"th:text="${cat.productPrice}+'원'">$150.00</h3>
+								<h3 style=" text-align: center;" th:text="${cat.productPrice}+'원'">$150.00</h3>
 								<h3 th:text="${cat.productCategory}" style="display: none;">$150.00</h3>
 								<div class="single_product_text">
 									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
@@ -164,28 +164,32 @@
 						<div class="single_product_item">
 							<img th:src="@{'/productimg/' + ${top4CatList[0].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4 th:text="${top4CatList[0].productName}">Quartz Belt Watch</h4>
+								<h4 th:onclick="'window.location.href=\'/product_detail_cat?productId=' + ${top4CatList[0].id} + '\''"
+									th:text="${top4CatList[0].productName}">Quartz Belt Watch</h4>
 								<h3 th:text="${top4CatList[0].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
 						<div class="single_product_item">
 							<img th:src="@{'/productimg/' + ${top4CatList[1].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4 th:text="${top4CatList[1].productName}">Quartz Belt Watch</h4>
+								<h4 th:onclick="'window.location.href=\'/product_detail_cat?productId=' + ${top4CatList[1].id} + '\''"
+									th:text="${top4CatList[1].productName}">Quartz Belt Watch</h4>
 								<h3 th:text="${top4CatList[1].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
 						<div class="single_product_item">
 							<img th:src="@{'/productimg/' + ${top4CatList[2].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4 th:text="${top4CatList[2].productName}">Quartz Belt Watch</h4>
+								<h4 th:onclick="'window.location.href=\'/product_detail_cat?productId=' + ${top4CatList[2].id} + '\''"
+									th:text="${top4CatList[2].productName}">Quartz Belt Watch</h4>
 								<h3 th:text="${top4CatList[2].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
 						<div class="single_product_item">
 							<img th:src="@{'/productimg/' + ${top4CatList[3].productImage}}" alt="">
 							<div class="single_product_text">
-								<h4 th:text="${top4CatList[3].productName}">Quartz Belt Watch</h4>
+								<h4 th:onclick="'window.location.href=\'/product_detail_cat?productId=' + ${top4CatList[3].id} + '\''"
+									th:text="${top4CatList[3].productName}">Quartz Belt Watch</h4>
 								<h3 th:text="${top4CatList[3].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
