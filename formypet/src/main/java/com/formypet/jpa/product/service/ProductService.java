@@ -1,6 +1,7 @@
 package com.formypet.jpa.product.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.formypet.jpa.product.entity.Product;
 
@@ -17,4 +18,5 @@ public interface ProductService {
 
 	Product increaseReadCount(Product product);
 	
+	public Optional<Product> findById(Long id);
 }

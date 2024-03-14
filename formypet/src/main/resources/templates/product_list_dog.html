@@ -61,7 +61,7 @@
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="left_sidebar_area" style="margin-right: 20px; ">
-						
+
 						<aside class="left_widgets p_filter_widgets" style="margin-top: 100px; ">
 							<div class="l_w_title">
 								<h3>Product Categories</h3>
@@ -129,23 +129,28 @@
 
 					</script>
 
-					<div class="row align-items-center latest_product_inner" id="container" style="max-height: 1200px; overflow-y:auto;">
+					<div class="row align-items-center latest_product_inner" id="container"
+						style="max-height: 1200px; overflow-y:auto;">
 
 						<div class="col-lg-4 col-sm-6" th:each="dog: ${dogList}">
 							<div class="single_product_item">
 								<img th:src="@{'/productimg/' + ${dog.productImage}}" alt="">
-								<div class="single_product_text">
-									<h4 th:text="${dog.productName}">Quartz Belt Watch</h4>
-									<h3 th:text="${dog.productPrice}+'원'">$150.00</h3>
+								<h4 style=" margin-top: 50px; text-align: center;">
+									<a 	style="color: black; margin-top: 10px; "
+										th:href="${'/product_detail_dog?productId='+dog.id}"
+										th:text="${dog.productName}">Quartz Belt Watch</a>
+								</h4>
+									<h3 style=" text-align: center;" th:text="${dog.productPrice}+'원'">$150.00</h3>
 									<h3 th:text="${dog.productCategory}" style="display: none;">$150.00</h3>
+								<div class="single_product_text">
 									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
 								</div>
 							</div>
 						</div>
 					</div>
-					
-					
-				<!--	<div class="col-lg-12">
+
+
+					<!--	<div class="col-lg-12">
 						<div class="pageination">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center">
@@ -169,9 +174,9 @@
 							</nav>
 						</div>
 					</div>-->
-	<script>
-		
-	</script>
+					<script>
+
+					</script>
 				</div>
 			</div>
 		</div>
@@ -189,9 +194,9 @@
 				</div>
 			</div>
 			<div class="row align-items-center justify-content-between">
-				<div class="col-lg-12" >
+				<div class="col-lg-12">
 					<div class="best_product_slider owl-carousel">
-						
+
 						<div class="single_product_item">
 							<img th:src="@{'/productimg/' + ${top4DogList[0].productImage}}" alt="">
 							<div class="single_product_text">
@@ -220,7 +225,7 @@
 								<h3 th:text="${top4DogList[3].productPrice+'원'}">$150.00</h3>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>

@@ -3,11 +3,13 @@ package com.formypet.jpa.product.controller;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.formypet.jpa.product.entity.Product;
 import com.formypet.jpa.product.service.ProductServiceImpl;
@@ -96,9 +98,18 @@ public class ProductController {
 	}
 
 	@GetMapping("/product_detail_dog")
-	public String product_detail_dog() {
-		String forwardPath = "product_detail_dog";
-		return forwardPath;
+	public String product_detail_dog(@RequestParam(name="productId")Long id, Model model) {
+		
+		//삼풍가져오기
+		Optional<Product> productOptional =productServiceImpl.findById(id);
+		if(productOptional.isPresent()) {
+			Product product =productOptional.get();
+			model.addAttribute("product", product);
+		}else {
+			// 게시물이 존재하지 않을 경우 에러 처리
+			model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
+		}
+		return "product_detail_dog";
 	}
 
 	@GetMapping("/product_detail_cat")
