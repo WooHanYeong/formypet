@@ -1,5 +1,6 @@
 package com.formypet.jpa.board.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Disabled;
@@ -61,6 +62,15 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 		Long boardId = 1L;
 		Optional<Board> findBoard = boardService.getBoardById(boardId);
 		System.out.println("한개정보"+findBoard);
+	}
+	
+	@Test
+	@Transactional
+	//@Disabled
+	@Rollback(false)
+	void selectBoardAll() throws Exception {
+		List<Board> boardList = boardService.getBoardByAll();
+		System.out.println("보드리스트:"+boardList);
 	}
 	
 	

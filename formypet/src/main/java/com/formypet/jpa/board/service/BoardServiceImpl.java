@@ -1,5 +1,6 @@
 package com.formypet.jpa.board.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Optional<Board> getBoardById(Long boardId) throws Exception {
 		return boardRepository.findById(boardId);
+	}
+
+	@Override
+	public List<Board> getBoardByAll() throws Exception {
+		return boardRepository.findAll();
 	}
 
 }

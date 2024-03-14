@@ -1,5 +1,6 @@
 package com.formypet.jpa.board.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,11 @@ public class BoardRestController {
 		Optional<Board> boardOptional = boardService.getBoardById(boardId);
 		return boardOptional.map(board -> new ResponseEntity<>(board, HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+	}
+	
+	@GetMapping("/selectAll")
+	public ResponseEntity<List<Board>> getBoardAll() throws Exception{
+		List<Board> boards = boardService.getBoardByAll();
+		return new ResponseEntity<>(boards,HttpStatus.OK);
 	}
 }

@@ -1,6 +1,7 @@
 package com.formypet.jpa.board.service;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import com.formypet.jpa.board.dto.BoardDto;
@@ -16,6 +17,8 @@ public interface BoardService {
 	public Board updateBoard(Long boardId,BoardDto boardDto) throws Exception;
 	
 	public Optional<Board> getBoardById(Long boardId) throws Exception;
+	
+	public List<Board> getBoardByAll() throws Exception;
 	
 	
 }
