@@ -2,24 +2,24 @@ package com.formypet.jpa.product.entity;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.formypet.jpa.product.dto.ProductDto;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity(name = "product")
 @Table(name = "product")
@@ -52,6 +52,11 @@ public class Product {
 	@UpdateTimestamp
 	private LocalDateTime updateTime;
 	
+	//상품 - 댓글 관계설정
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	@Builder.Default
+	@ToString.Exclude
+	private List<ProductReply> productList =new ArrayList<>();
 	
 	/*
 	 * public static Product toEntity(ProductDto dto) { Product product =
