@@ -1,0 +1,31 @@
+package com.formypet.jpa.board.service;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
+
+import com.formypet.jpa.FormypetApplicationTest;
+import com.formypet.jpa.board.entity.BoardSubCategory;
+
+import jakarta.transaction.Transactional;
+
+public class BoardSubCategoryServiceImplTest extends FormypetApplicationTest {
+	@Autowired
+	BoardSubCategoryServiceImpl boardSubCategoryServiceImpl;
+
+	@Test
+	@Transactional
+	// @Disabled
+	@Rollback(false)
+	void subCate() throws Exception {
+		Long categoryId = 1L;
+		List<String> test1 = boardSubCategoryServiceImpl.getSubCategoryNameByMainCategoryId(categoryId);
+		for (String subCategoryName : test1) {
+			System.out.println(subCategoryName);
+		}
+	}
+
+}

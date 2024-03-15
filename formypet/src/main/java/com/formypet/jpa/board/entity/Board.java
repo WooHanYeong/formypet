@@ -12,11 +12,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Builder
@@ -50,5 +53,11 @@ public class Board {
 					.build();
 		return board;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	@ToString.Exclude
+	private BoardCategory boardCategory;
+	
 	
 }

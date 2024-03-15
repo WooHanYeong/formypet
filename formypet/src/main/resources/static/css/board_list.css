@@ -1,65 +1,102 @@
+/*list페이지에서 검색관련 */
 .search-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	height: 60px;
 }
 
 .search-input {
-  width: 500px;
-  height: 40px;
-  padding: 0 10px;
-  border-radius: 5px 0 0 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
+	width: 500px;
+	height: 40px;
+	padding: 0 10px;
+	border-radius: 5px 0 0 5px;
+	border: 1px solid #ccc;
+	font-size: 16px;
+	font-family: Arial, sans-serif;
 }
 
 .search-button {
-  width: 100px;
-  height: 40px;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  background-color: #007bff;
-  color: #fff;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
-  cursor: pointer;
+	width: 100px;
+	height: 40px;
+	border: none;
+	border-radius: 0 5px 5px 0;
+	background-color: #007bff;
+	color: #fff;
+	font-size: 16px;
+	font-family: Arial, sans-serif;
+	cursor: pointer;
 }
 
 .search-button:hover {
-  background-color: #0056b3;
+	background-color: #0056b3;
 }
 
 
 a:link {
-  color: #000000;
+	color: #000000;
 }
 
 a:visited {
-  color: #000000;
+	color: #000000;
 }
 
+
+
+/*list페이지에서 작성관련 */
 .write-button {
-  display: flex;
-  margin-left: 50%;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
+	display: flex;
+	margin-left: 50%;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
 }
+
 
 .write-bt {
-  width: 200px;
-  height: 40px;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  background-color: rgb(128, 128, 128);
-  color: #fff;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
-  cursor: pointer;
+	width: 200px;
+	height: 40px;
+	border: none;
+	border-radius: 0 5px 5px 0;
+	background-color: rgb(128, 128, 128);
+	color: #fff;
+	font-size: 16px;
+	font-family: Arial, sans-serif;
+	cursor: pointer;
 }
 
-.write-bt:hover {
-  background-color: #0056b3;
+
+
+
+
+/*list페이지에서 큰카테고리 관련 */
+.main_category {
+	width: 100%;
+	padding: 20px 0;
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.main_category ul {
+	list-style-type: none;
+	padding: 20px 0 0;
+	margin: 0;
+	display: flex;
+	border-top: 1px solid #eee;
+}
+
+.main_category li {
+	font-size: 15px;
+	margin-right: 50px;
+	font-weight: bold;
+}
+
+.main_category a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.2s; 
+}
+
+.main_category a:hover {
+    color: rgb(255, 128, 64); 
 }

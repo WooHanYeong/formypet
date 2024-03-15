@@ -187,17 +187,11 @@
 	</section>-->
 	<!-- End Button -->
 
-	<div>
-		<form class="search-form" action="/search" method="get">
-			<input type="text" name="query" class="search-input" placeholder="찾으시는 글이 있으신가요?">
-			<button type="submit" class="search-button">검색</button>
-		</form>
-	</div>
+
 
 	<!-- Start Align Area -->
-	<div class="whole-wrap">
-		<div class="container box_1170">
-			<!--<div class="section-top-border">
+
+	<!--<div class="section-top-border">
 				<h3 class="mb-30">Left Aligned</h3>
 				<div class="row">
 					<div class="col-md-3">
@@ -224,7 +218,7 @@
 					</div>
 				</div>
 			</div>-->
-			<!--<div class="section-top-border text-right">
+	<!--<div class="section-top-border text-right">
 				<h3 class="mb-30">Right Aligned</h3>
 				<div class="row">
 					<div class="col-md-9">
@@ -248,7 +242,7 @@
 					</div>
 				</div>
 			</div>-->
-			<!--<div class="section-top-border">
+	<!--<div class="section-top-border">
 				<h3 class="mb-30">Definition</h3>
 				<div class="row">
 					<div class="col-md-4">
@@ -283,7 +277,7 @@
 					</div>
 				</div>
 			</div>-->
-			<!--<div class="section-top-border">
+	<!--<div class="section-top-border">
 				<h3 class="mb-30">Block Quotes</h3>
 				<div class="row">
 					<div class="col-lg-12">
@@ -307,7 +301,30 @@
 					</div>
 				</div>
 			</div>-->
+	<div class="whole-wrap">
+		<div class="container box_1170">
+			<div class="main_category">
+				<ul>
+					<li th:each="category : ${categories}">
+						<a href="#" th:text="${category.categoryName}"></a>
+					</li>
+				</ul>
+			</div>
+
 			<div class="section-top-border">
+				<div>
+					<form class="search-form" action="/search" method="get">
+						<input type="text" name="query" class="search-input" placeholder="찾으시는 글이 있으신가요?">
+						<button type="submit" class="search-button">검색</button>
+					</form>
+				</div>
+				<div class="sub_category">
+					<ul>
+						<li th:each="category : ${categories}">
+							<a href="#" th:text="${category.categoryName}"></a>
+						</li>
+					</ul>
+				</div>
 				<h3 class="mb-30">자유게시판</h3>
 				<div class="progress-table-wrap">
 					<div class="progress-table">
@@ -321,7 +338,8 @@
 							<div class="table-row">
 								<div class="serial">01</div>
 								<div class="country" id="title">
-									<a th:href="${'/board_detail?boardId='+board.boardId}" th:text="${board.boardTitle}">제목</a>
+									<a th:href="${'/board_detail?boardId='+board.boardId}"
+										th:text="${board.boardTitle}">제목</a>
 								</div>
 								<div class="visit" id="write">작성자</div>
 								<div class="percentage">
@@ -598,7 +616,7 @@
 
 	<!--::footer_part start::-->
 	<hr style="width: 1140px;">
-	<div>
+	<div class="write-class">
 		<form class="write-button" action="/write" method="get" style="transform: translateX(-15%);">
 			<button type="button" class="write-bt" onclick="window.location.href='/board_write'">글쓰기</button>
 		</form>
