@@ -43,6 +43,12 @@ public class Board {
 	@UpdateTimestamp
 	private LocalDateTime updateTime;
 	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	@ToString.Exclude
+	private BoardCategory boardCategory;
+	
+	
 	public static Board toEntity(BoardDto dto) {
 		Board board= Board.builder()
 					.boardId(dto.getBoardId())
@@ -50,14 +56,11 @@ public class Board {
 					.boardContent(dto.getBoardContent())
 					.boardImage(dto.getBoardImage())
 					.boardReadCount(dto.getBoardReadCount())
+					.boardCategory(BoardCategory.builder().categoryId(dto.getBoardCategoryId()).build())
 					.build();
 		return board;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	@ToString.Exclude
-	private BoardCategory boardCategory;
-	
+
 	
 }

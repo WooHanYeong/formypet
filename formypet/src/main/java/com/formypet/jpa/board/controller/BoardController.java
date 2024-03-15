@@ -16,6 +16,7 @@ import com.formypet.jpa.board.entity.Board;
 import com.formypet.jpa.board.entity.BoardCategory;
 import com.formypet.jpa.board.repository.BoardCategoryRepository;
 import com.formypet.jpa.board.service.BoardService;
+import com.formypet.jpa.board.service.BoardSubCategoryServiceImpl;
 
 @Controller
 @RequestMapping("/")
@@ -24,15 +25,15 @@ public class BoardController {
 	BoardService boardService;
 	@Autowired
 	BoardCategoryRepository boardCategoryRepository;
+	@Autowired
+	BoardSubCategoryServiceImpl boardSubCategoryServiceImpl;
 
 	@GetMapping("/board_list")
 	public String boardList(Model model) throws Exception {
 		List<Board> boardList = boardService.getBoardByAll();
 		model.addAttribute("boardList", boardList);
-		List<BoardCategory> categories = boardCategoryRepository.findAll();
-		System.out.println("카테고리확인"+categories);
-		model.addAttribute("categories", categories);
-
+	    List<String> subCategoryNames = boardSubCategoryServiceImpl.getSubCategoryNameByMainCategoryId(1L);
+	    model.addAttribute("subCategoryNames", subCategoryNames);
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
@@ -40,6 +41,12 @@ public class BoardController {
 	@GetMapping("/board_write")
 	public String boardWrite() {
 		String forwardPath = "board_write";
+		return forwardPath;
+	}
+
+	@GetMapping("/board_adopt")
+	public String boardAdopt() {
+		String forwardPath = "board_adopt";
 		return forwardPath;
 	}
 

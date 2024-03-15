@@ -1,7 +1,6 @@
 package com.formypet.jpa.board.service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class BoardSubCategoryServiceImpl implements BoardSubCategoryService{
 		if (category != null) {
 			List<BoardSubCategory> subCategories = category.getSubCategories();
 			for(BoardSubCategory subCategory : subCategories) {
-				if(category.getCategoryId()==subCategory.getBoardCategory().getCategoryId()) {
+				if(category.getCategoryId().equals(subCategory.getBoardCategory().getCategoryId())) {
 					subCategoryNames.add(subCategory.getSubCategoryName());
 				}
 			}

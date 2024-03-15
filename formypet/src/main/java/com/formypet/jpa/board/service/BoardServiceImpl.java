@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.convert.DtoInstantiatingConverter;
 import org.springframework.stereotype.Service;
 
 import com.formypet.jpa.board.dto.BoardDto;
 import com.formypet.jpa.board.entity.Board;
+import com.formypet.jpa.board.entity.BoardCategory;
+import com.formypet.jpa.board.repository.BoardCategoryRepository;
 import com.formypet.jpa.board.repository.BoardRepository;
 
 import jakarta.transaction.Transactional;
@@ -19,15 +22,19 @@ import jakarta.transaction.Transactional;
 public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardRepository boardRepository;
+	@Autowired
+	BoardCategoryRepository boardCategoryRepository;
 
 	@Override
 	public Board createBoard(BoardDto boardDto) throws Exception {
+
 		System.out.println("dto 확인"+boardDto);
 		Board board = Board.builder()
 							.boardTitle(boardDto.getBoardTitle())
 							.boardContent(boardDto.getBoardContent())
 							.boardImage(boardDto.getBoardImage())
 							.boardReadCount(boardDto.getBoardReadCount())
+							.boardCategory(BoardCategory.builder().categoryId(boardDto.getBoardCategoryId()).build())
 							.build();
 		System.out.println("board확인"+board);
 		return boardRepository.save(board);
@@ -60,6 +67,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Board> getBoardByAll() throws Exception {
 		return boardRepository.findAll();
+	}
+
+	@Override
+	public List<Board> getBoardByCategoryId(Long categoryId) throws Exception {
+		return boardRepository.findByBoardCategoryCategoryId(categoryId);
+	}
+
+	@Override
+	public List<Board> getBoardByCategoryName(String categoryName) throws Exception {
+		return boardRepository.findByBoardCategoryCategoryName(categoryName);
 	}
 
 }

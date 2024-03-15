@@ -20,5 +20,8 @@ public interface BoardService {
 	
 	public List<Board> getBoardByAll() throws Exception;
 	
+	public List<Board> getBoardByCategoryId(Long categoryId) throws Exception;
+	
+	public List<Board> getBoardByCategoryName(String categoryName) throws Exception;
 	
 }

@@ -21,7 +21,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	@Disabled
+	//@Disabled
 	@Rollback(false)
 	void createBoard() throws Exception{
 		BoardDto boardDto1 = new BoardDto();
@@ -29,6 +29,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 		boardDto1.setBoardContent("내용1");
 		boardDto1.setBoardImage("이미지1");
 		boardDto1.setBoardReadCount(1);
+		boardDto1.setBoardCategoryId(1L);
 		boardService.createBoard(boardDto1);
 		
 	}
@@ -40,7 +41,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	void deleteBoard() throws Exception {
 		boardService.deleteBoard(1L);
 	}
-	
+	/*
 	@Test
 	@Transactional
 	@Disabled
@@ -51,10 +52,10 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 		boardService.updateBoard(boardId, updateBoard);
 	
 	}
-	
+	*/
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void selectBoard() throws Exception {
 		Long boardId = 1L;
@@ -64,11 +65,21 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void selectBoardAll() throws Exception {
 		List<Board> boardList = boardService.getBoardByAll();
 		System.out.println("보드리스트:"+boardList);
+	}
+	
+	@Test
+	@Transactional
+	//@Disabled
+	@Rollback(false)
+	void selectBoardByCategoryId() throws Exception {
+		Long categoryId = 1L;
+		List<Board> test1 =  boardService.getBoardByCategoryId(categoryId);
+		System.out.println("asdsadsadas"+test1);
 	}
 	
 	

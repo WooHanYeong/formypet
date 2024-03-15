@@ -100,3 +100,29 @@ a:visited {
 .main_category a:hover {
     color: rgb(255, 128, 64); 
 }
+
+
+
+.sub_category {
+    margin-top: 20px;
+}
+
+.sub_category ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sub_category li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.sub_category li a {
+    text-decoration: none;
+    color: #333; 
+    font-weight: bold; 
+}
+
+.sub_category li a:hover {
+    color: #666; 
+}
