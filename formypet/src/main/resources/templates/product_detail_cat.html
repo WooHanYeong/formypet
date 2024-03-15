@@ -133,7 +133,8 @@
 													3:12 pm </p>
 											</div>
 											<div class="reply-btn">
-												<a href="#" class="btn-reply text-uppercase" style="color: red;">Delete</a>
+												<a href="#" class="btn-reply text-uppercase"
+													style="color: red;">Delete</a>
 											</div>
 										</div>
 									</div>
@@ -226,6 +227,16 @@
 	</footer>
 	<script>
 		function submitCommentForm() {
+			
+			var userId = document.getElementById("userId").value;
+			console.log(userId)
+			if (userId === "id") {
+				if (confirm("사용자 ID가 없습니다. 로그인 화면으로 이동하시겠습니까?")) {
+					window.location.href = "/user_login_form"; 
+				}
+				return; 
+			}
+
 
 			var formData = new FormData(document.getElementById("commentForm"));
 			var queryString = window.location.search; // 쿼리 문자열 가져오기 (예: ?productId=32)
