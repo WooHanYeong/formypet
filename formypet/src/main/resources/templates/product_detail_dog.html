@@ -127,7 +127,7 @@
 												<p class="date">December 4, 2017 at 3:12 pm </p>
 											</div>
 											<div class="reply-btn">
-												<a href="#" class="btn-reply text-uppercase">reply</a>
+												<a href="#" class="btn-reply text-uppercase">delete</a>
 											</div>
 										</div>
 									</div>
@@ -153,7 +153,7 @@
 												<p class="date">December 4, 2017 at 3:12 pm </p>
 											</div>
 											<div class="reply-btn">
-												<a href="#" class="btn-reply text-uppercase">reply</a>
+												<a href="#" class="btn-reply text-uppercase">delete</a>
 											</div>
 										</div>
 									</div>
@@ -179,7 +179,7 @@
 												<p class="date">December 4, 2017 at 3:12 pm </p>
 											</div>
 											<div class="reply-btn">
-												<a href="#" class="btn-reply text-uppercase">reply</a>
+												<a href="#" class="btn-reply text-uppercase">delete</a>
 											</div>
 										</div>
 									</div>
@@ -189,28 +189,82 @@
 					</div>
 					<div class="comment-form">
 						<h4>Leave a Reply</h4>
-						<form class="form-contact comment_form" action="#" id="commentForm">
+						<form class="form-contact comment_form" id="commentForm" enctype="multipart/form-data">
 							<div class="row">
-								<div class="col-12">
+								<div class="col-sm-6">
 									<div class="form-group">
-										<textarea class="form-control w-100" name="comment" id="comment" cols="30"
-											rows="9" placeholder="Write Comment"></textarea>
+										<input class="form-control" name="productReplyTitle" id="productReplyTitle"
+											type="text" placeholder="CommentTitle">
 									</div>
 								</div>
+								<div class="col-12">
+									<div class="form-group">
+										<textarea class="form-control w-100" name="productReplyContent"
+											id="productReplyContent" cols="30" rows="9"
+											placeholder="Write Comment"></textarea>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<input class="form-control" name="name" id="name" type="text"
+											th:placeholder="${session.loginUser.userName}" readonly>
+									</div>
+								</div>
+								<div class="col-sm-6" style="display: none;">
+									<div class="form-group">
+										<input class="form-control" name="userId" id="userId" type="text"
+											th:value="${session.loginUser.id}" readonly>
+									</div>
+								</div>
+
+
 							</div>
 							<div class="form-group mt-3">
-								<a href="#" class="btn_3 button-contactForm">Send Message</a>
+								<a href="#" onclick="submitCommentForm()" class="btn_3 button-contactForm">Send
+									Message</a>
 							</div>
 						</form>
 					</div>
 				</div>
 				<!--Post End -->
-				
+
 			</div>
 		</div>
 	</div>
 
+	<script>
+		function submitCommentForm() {
 
+			var formData = new FormData(document.getElementById("commentForm"));
+			var queryString = window.location.search; // 쿼리 문자열 가져오기 (예: ?productId=32)
+			var urlParams = new URLSearchParams(queryString); // URLSearchParams 객체 생성
+			var productId = urlParams.get('productId'); // productId 가져오기
+
+			console.log("productId:", productId);
+			console.log(productId);
+
+			//formData.append('productId', productId);
+
+			$.ajax({
+				url: "/api/productcomment/productCommentInsertForm/" + productId,
+				type: "POST",
+				enctype: 'multipart/form-data',
+				data: formData,
+				processData: false,
+				contentType: false,
+				cache: false,
+				success: function (response) {
+					alert("댓글이 성공적으로 등록되었습니다.");
+					window.location.href = "product_detail_dog?productId="+ productId;
+				},
+				error: function (error) {
+					alert("댓글 등록에 실패했습니다.");
+					console.log(error);
+				}
+			});
+		}
+
+	</script>
 
 
 	<!--::footer_part start::-->

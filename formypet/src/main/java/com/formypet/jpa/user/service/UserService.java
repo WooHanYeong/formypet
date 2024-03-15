@@ -27,5 +27,6 @@ public interface UserService {
 	String findUserPasswordByUserIdNameAndBirthDate
 				(String userId, String userName, String userBirthDate) throws Exception;
 	
-	
+	//long값으로 유저정보 가져오기
+	User findUserById(Long userId);
 }

@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.formypet.jpa.product.entity.Product;
 import com.formypet.jpa.product.service.ProductServiceImpl;
+import com.formypet.jpa.user.dto.UserDto;
+import com.formypet.jpa.user.entity.User;
+import com.formypet.jpa.user.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @org.springframework.stereotype.Controller
 @RequestMapping("/")
@@ -20,6 +25,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductServiceImpl productServiceImpl;
+	
+	@Autowired
+	private UserService userService;
 
 	// 강아지 상품 리스트
 	@GetMapping("/product_list_dog")
@@ -98,8 +106,13 @@ public class ProductController {
 	}
 
 	@GetMapping("/product_detail_dog")
-	public String product_detail_dog(@RequestParam(name="productId")Long id, Model model) {
-		
+	public String product_detail_dog(HttpSession session, @RequestParam(name="productId")Long id, Model model) throws Exception {
+		User loginUser = (User) session.getAttribute("loginUser");
+
+		if (loginUser != null) {
+			UserDto user = userService.findUser(loginUser.getUserId());
+			model.addAttribute("loginUser", user);
+		}
 		//삼풍가져오기
 		Optional<Product> productOptional =productServiceImpl.findById(id);
 		if(productOptional.isPresent()) {

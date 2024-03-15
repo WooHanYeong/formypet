@@ -119,4 +119,10 @@ public class UserServiceImpl implements UserService {
 		return userPassWord;
 	}
 
+	//long값으로 유저정보 가져오기
+	@Override
+	public User findUserById(Long userId) {
+		return userRepository.findById(userId).orElse(null);
+	}
+
 }
