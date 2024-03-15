@@ -12,7 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.formypet.jpa.product.entity.Product;
+import com.formypet.jpa.product.entity.ProductReply;
+import com.formypet.jpa.product.service.ProductReplyServiceImpl;
 import com.formypet.jpa.product.service.ProductServiceImpl;
+import com.formypet.jpa.user.dto.UserDto;
+import com.formypet.jpa.user.entity.User;
+import com.formypet.jpa.user.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @org.springframework.stereotype.Controller
 @RequestMapping("/")
@@ -20,6 +27,12 @@ public class ProductController {
 
 	@Autowired
 	private ProductServiceImpl productServiceImpl;
+
+	@Autowired
+	private ProductReplyServiceImpl productReplyServiceImpl;
+
+	@Autowired
+	private UserService userService;
 
 	// 강아지 상품 리스트
 	@GetMapping("/product_list_dog")
@@ -98,34 +111,44 @@ public class ProductController {
 	}
 
 	@GetMapping("/product_detail_dog")
-	public String product_detail_dog(@RequestParam(name="productId")Long id, Model model) {
-		
-		//삼풍가져오기
-		Optional<Product> productOptional =productServiceImpl.findById(id);
-		if(productOptional.isPresent()) {
-			Product product =productOptional.get();
+	public String product_detail_dog(@RequestParam(name = "productId") Long id, Model model) throws Exception {
+
+		// 댓글리스트 가져오기
+		List<ProductReply> productReplyList = 
+				productReplyServiceImpl.findByProduct_IdOrderByCreateDateTimeDesc(id);
+		model.addAttribute("productReplyList", productReplyList);
+
+		// 삼풍가져오기
+		Optional<Product> productOptional = productServiceImpl.findById(id);
+		if (productOptional.isPresent()) {
+			Product product = productOptional.get();
 			model.addAttribute("product", product);
-		}else {
+		} else {
 			// 게시물이 존재하지 않을 경우 에러 처리
 			model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
 		}
-		
+
 		return "product_detail_dog";
 	}
 
 	@GetMapping("/product_detail_cat")
-	public String product_detail_cat(@RequestParam(name="productId")Long id, Model model) {
-		
-		//삼풍가져오기
-				Optional<Product> productOptional =productServiceImpl.findById(id);
-				if(productOptional.isPresent()) {
-					Product product =productOptional.get();
-					model.addAttribute("product", product);
-				}else {
-					// 게시물이 존재하지 않을 경우 에러 처리
-					model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
-				}
-		
+	public String product_detail_cat(@RequestParam(name = "productId") Long id, Model model) {
+
+		// 댓글리스트 가져오기
+		List<ProductReply> productReplyList =
+				productReplyServiceImpl.findByProduct_IdOrderByCreateDateTimeDesc(id);
+		model.addAttribute("productReplyList", productReplyList);
+
+		// 삼풍가져오기
+		Optional<Product> productOptional = productServiceImpl.findById(id);
+		if (productOptional.isPresent()) {
+			Product product = productOptional.get();
+			model.addAttribute("product", product);
+		} else {
+			// 게시물이 존재하지 않을 경우 에러 처리
+			model.addAttribute("errorMSG", "게시물을 찾을 수 없습니다.");
+		}
+
 		return "product_detail_cat";
 	}
 

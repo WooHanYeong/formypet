@@ -47,7 +47,6 @@ public class ProductReply {
 						   .user(User.builder().id(dto.getUserId()).build())
 						   .build();
 	}
-	
 	//상품 - 댓글 관계설정
 	@ManyToOne
 	@JoinColumn(name="product_id") // 외래 키 컬럼명 지정
