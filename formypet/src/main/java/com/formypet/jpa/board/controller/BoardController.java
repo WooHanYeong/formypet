@@ -32,21 +32,32 @@ public class BoardController {
 	public String boardList(Model model) throws Exception {
 		List<Board> boardList = boardService.getBoardByAll();
 		model.addAttribute("boardList", boardList);
-	    List<String> subCategoryNames = boardSubCategoryServiceImpl.getSubCategoryNameByMainCategoryId(1L);
-	    model.addAttribute("subCategoryNames", subCategoryNames);
+		List<BoardCategory> categories = boardCategoryRepository.findAll();
+		model.addAttribute("categories", categories);
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
 
 	@GetMapping("/board_write")
-	public String boardWrite() {
+	public String boardWrite(Model model) {
+		List<BoardCategory> categories = boardCategoryRepository.findAll();
+		model.addAttribute("categories", categories);
 		String forwardPath = "board_write";
 		return forwardPath;
 	}
 
 	@GetMapping("/board_adopt")
-	public String boardAdopt() {
+	public String boardAdopt(Model model) throws Exception {
+		List<Board> boardList = boardService.getBoardByAll();
+		model.addAttribute("boardList", boardList);
+		List<BoardCategory> categories = boardCategoryRepository.findAll();
+		model.addAttribute("categories", categories);
 		String forwardPath = "board_adopt";
+		return forwardPath;
+	}
+	@GetMapping("/test")
+	public String test() {
+		String forwardPath = "test";
 		return forwardPath;
 	}
 

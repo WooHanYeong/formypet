@@ -126,3 +126,11 @@ a:visited {
 .sub_category li a:hover {
     color: #666; 
 }
+
+
+
+.select-box,
+.form-group {
+  flex: 1; /* 자식 요소를 동일한 너비로 설정하여 양 옆에 붙이기 */
+  margin-right: 10px; /* 요소 사이의 간격 조절 */
+}

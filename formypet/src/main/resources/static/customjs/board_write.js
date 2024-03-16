@@ -1,6 +1,7 @@
 function submitForm() {
 	const title = document.getElementById('boardTitle').value;
 	const content = document.getElementById('boardContent').value;
+	const categoryId = document.getElementById('items').value;
 
 	if (title.trim() === '' || content.trim() === '') {
 		alert('제목과 내용을 모두 입력해주세요!');
@@ -9,7 +10,8 @@ function submitForm() {
 
 	const jsonData = {
 		boardTitle: title,
-		boardContent: content
+		boardContent: content,
+		boardCategoryId: categoryId
 	};
 	console.log("제목"+title,"내용"+content);
 	fetch('/api/board/create', {
@@ -30,6 +32,7 @@ function submitForm() {
 			console.error('에러가 발생했습니다.:', error);
 			alert('게시글 작성 중 오류가 발생했습니다. 다시 시도해주세요.');
 		});
+		debugger;
 }
 
 function clearForm() {

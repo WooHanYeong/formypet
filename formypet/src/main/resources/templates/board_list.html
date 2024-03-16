@@ -62,10 +62,11 @@
 		<div class="container box_1170">
 			<div class="main_category">
 				<ul>
-					<li><a href="/board_list?categoryId=1">자유게시판</a></li>
-					<li><a href="/board_adopt?categoryId=2">분양</a></li>
-					<li><a href="#">공지사항</a></li>
-					<li><a href="#">이벤트</a></li>
+					<li th:each="category, iterStat : ${categories}">
+						<a href="#" th:data-category="${category.categoryId}">
+							<span th:text="${category.categoryName}"></span>
+						</a>
+					</li>
 				</ul>
 			</div>
 
@@ -76,14 +77,14 @@
 						<button type="submit" class="search-button">검색</button>
 					</form>
 				</div>
-				<div class="sub_category">
+				<!--			<div class="sub_category">
 					<ul>
 						<li th:each="subCategoryName : ${subCategoryNames}">
 							<a href="@{'/board_list?categoryName=' + ${subCategoryName}}"
 								th:text="${subCategoryName}"></a>
 						</li>
 					</ul>
-				</div>
+				</div>-->
 				<h3 class="mb-30">자유게시판</h3>
 				<div class="progress-table-wrap">
 					<div class="progress-table">

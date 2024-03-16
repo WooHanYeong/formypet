@@ -43,11 +43,6 @@ public class Board {
 	@UpdateTimestamp
 	private LocalDateTime updateTime;
 	
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	@ToString.Exclude
-	private BoardCategory boardCategory;
-	
 	
 	public static Board toEntity(BoardDto dto) {
 		Board board= Board.builder()
@@ -61,6 +56,10 @@ public class Board {
 		return board;
 	}
 	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	@ToString.Exclude
+	private BoardCategory boardCategory;
 
 	
 }
