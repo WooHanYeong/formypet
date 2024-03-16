@@ -1,5 +1,7 @@
 package com.formypet.jpa.user.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -123,6 +125,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findUserById(Long userId) {
 		return userRepository.findById(userId).orElse(null);
+	}
+	
+	//모든회원조회
+	@Override
+	public List<User> findByAllUser() {
+		return userRepository.findAll();
 	}
 
 }

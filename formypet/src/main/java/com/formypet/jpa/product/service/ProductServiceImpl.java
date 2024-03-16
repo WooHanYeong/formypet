@@ -41,7 +41,7 @@ public class ProductServiceImpl implements ProductService{
 	public Product increaseReadCount(Product product) {
 		Product findproduct = productRepository.findById(product.getId()).orElse(null);
 		if(findproduct !=null) {
-			findproduct.setProduct_ReadCount(findproduct.getProduct_ReadCount()+1);
+			findproduct.setProductReadCount(findproduct.getProductReadCount()+1);
 			productRepository.save(findproduct);
 		}
 		return findproduct;
@@ -51,6 +51,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public Optional<Product> findById(Long id){
 		return productRepository.findById(id);
+	}
+
+	@Override
+	public List<Product> findAllProductList() {
+		return productRepository.findAll();
 	}
 	
 	
