@@ -1,5 +1,7 @@
 package com.formypet.jpa.user.service;
 
+import java.util.List;
+
 import com.formypet.jpa.user.dto.UserDto;
 import com.formypet.jpa.user.entity.User;
 
@@ -29,4 +31,7 @@ public interface UserService {
 	
 	//long값으로 유저정보 가져오기
 	User findUserById(Long userId);
+	
+	//모든회원조회
+	List<User> findByAllUser();
 }

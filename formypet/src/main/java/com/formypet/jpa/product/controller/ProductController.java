@@ -44,7 +44,7 @@ public class ProductController {
 
 		// 강아지 top4 상품리스트
 		List<Product> sortedDogList = new ArrayList<>(dogList);
-		sortedDogList.sort(Comparator.comparing(Product::getProduct_ReadCount).reversed());
+		sortedDogList.sort(Comparator.comparing(Product::getProductReadCount).reversed());
 		List<Product> top4DogList = sortedDogList.subList(0, Math.min(sortedDogList.size(), 4));
 		System.out.println("top4DogList = >>>>>" + top4DogList);
 		model.addAttribute("top4DogList", top4DogList);
@@ -82,7 +82,7 @@ public class ProductController {
 
 		// 고양이 top4 상품리스트
 		List<Product> sortedCatList = new ArrayList<>(catList);
-		sortedCatList.sort(Comparator.comparing(Product::getProduct_ReadCount).reversed());
+		sortedCatList.sort(Comparator.comparing(Product::getProductReadCount).reversed());
 		List<Product> top4CatList = sortedCatList.subList(0, Math.min(sortedCatList.size(), 4));
 		System.out.println("top4CatList = >>>>>" + top4CatList);
 		model.addAttribute("top4CatList", top4CatList);

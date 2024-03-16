@@ -45,7 +45,7 @@ public class Product {
 	
 	private String productImage;
 	
-	private int product_ReadCount;
+	private int productReadCount;
 	
 	@CreationTimestamp
 	private LocalDateTime createdTime;

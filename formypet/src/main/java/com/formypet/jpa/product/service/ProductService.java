@@ -15,8 +15,14 @@ public interface ProductService {
 	
 	//강아지물품 카테고리 분류 (최신순서)
 	List<Product> findByProductAnimalTypeAndProductCategoryOrderByCreatedTimeDesc(String animalType,String productcategory);
-
+	
+	//조회수증가
 	Product increaseReadCount(Product product);
 	
+	//아이디로 상품찾기
 	public Optional<Product> findById(Long id);
+	
+	//상품리스트출력
+	List<Product> findAllProductList();
+	
 }
