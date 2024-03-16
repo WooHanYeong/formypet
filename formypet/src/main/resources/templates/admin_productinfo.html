@@ -158,12 +158,15 @@
 									</thead>
 									<tbody>
 										<tr th:each="product : ${productList}">
-											<td th:text="${product.productName}">Tiger Nixon</td>
+											<td th:onclick="'window.location.href=\'/product_detail_dog?productId=' + ${product.id} + '\''"
+												th:text="${product.productName}" onmouseover="this.style.color='red'"
+												onmouseout="this.style.color='inherit'">Tiger Nixon</td>
 											<td th:text="${product.productAnimalType}">System Architect</td>
 											<td th:text="${product.productCategory}">Edinburgh</td>
 											<td th:text="${product.productPrice}">61</td>
 											<td th:text="${product.productReadCount}">2011/04/25</td>
-											<td th:text="${#temporals.format(product.createdTime, 'yyyy년 MM월 dd일')}">2011/04/25</td>
+											<td th:text="${#temporals.format(product.createdTime, 'yyyy년 MM월 dd일')}">
+												2011/04/25</td>
 										</tr>
 
 									</tbody>
