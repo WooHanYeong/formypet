@@ -63,8 +63,9 @@
 			<div class="main_category">
 				<ul>
 					<li th:each="category, iterStat : ${categories}">
+						<input type="hidden" id="cateId" class="test" th:data-categoryId="${category.categoryId}" th:value="${category.categoryId}">
 						<a href="#" th:data-category="${category.categoryId}">
-							<span th:text="${category.categoryName}"></span>
+							<span id="test1" th:text="${category.categoryName}"></span>
 						</a>
 					</li>
 				</ul>
@@ -77,14 +78,13 @@
 						<button type="submit" class="search-button">검색</button>
 					</form>
 				</div>
-				<!--			<div class="sub_category">
+				<div class="sub_category">
 					<ul>
-						<li th:each="subCategoryName : ${subCategoryNames}">
-							<a href="@{'/board_list?categoryName=' + ${subCategoryName}}"
-								th:text="${subCategoryName}"></a>
+						<li th:each="subCategoryName : ${subCategories}">
+							<a href="#" th:text="${subCategoryName}"></a>
 						</li>
 					</ul>
-				</div>-->
+				</div>
 				<h3 class="mb-30">자유게시판</h3>
 				<div class="progress-table-wrap">
 					<div class="progress-table">
@@ -94,7 +94,7 @@
 							<div class="visit">작성자</div>
 							<div class="percentage">Percentages</div>
 						</div>
-						<tr th:each="board : ${boardList}">
+						<tr th:each="board : ${boardListByCategory}">
 							<div class="table-row">
 								<div class="serial">01</div>
 								<div class="country" id="title">
@@ -162,6 +162,7 @@
 			</div>
 		</div>
 	</footer>
+	
 	<!--::footer_part end::-->
 
 	<!-- jquery plugins here-->

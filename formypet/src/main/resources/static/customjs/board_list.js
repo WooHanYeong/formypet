@@ -44,3 +44,59 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	});
 });
+
+/*document.addEventListener("DOMContentLoaded", function() {
+    // 현재 페이지의 URL에서 ID 값을 추출
+    var categoryLinks = document.querySelectorAll(".main_category a");
+    var categoryIdElement = document.querySelector('.test'); // 클래스 이름으로 선택
+    var currentCategoryId = categoryIdElement.dataset.categoryid; // 데이터 속성 가져오기
+    console.log(currentCategoryId);
+
+    // 모든 카테고리 링크에 대해 처리
+    var categoryLinks = document.querySelectorAll(".main_category a");
+    categoryLinks.forEach(function(link) {
+        var categoryId = link.dataset.category; // 데이터 속성 가져오기
+        if (categoryId === currentCategoryId) {
+            link.querySelector("span").style.color = "rgb(255, 128, 64)";
+        }
+    });
+});*/
+
+/*document.addEventListener("DOMContentLoaded", function() {
+    var categoryLinks = document.querySelectorAll(".main_category a");
+    var currentCategoryId = null;
+    // 카테고리 링크를 클릭했을 때의 이벤트 처리
+    categoryLinks.forEach(function(link) {
+        link.addEventListener("click", function(event) {
+            event.preventDefault(); // 링크의 기본 동작 방지
+            // 클릭된 링크의 데이터 속성에서 카테고리 ID 가져오기
+            currentCategoryId = link.getAttribute("data-category");
+            console.log(currentCategoryId);
+            debugger;
+            // 모든 카테고리 링크에 대해 스타일을 초기화
+            categoryLinks.forEach(function(link) {
+                link.querySelector("span").style.color = "#333";
+            });
+
+            // 현재 클릭된 링크에 선택된 스타일 적용
+            link.querySelector("span").style.color = "rgb(255, 128, 64)";
+        });
+    });
+});*/
+
+
+/*
+document.addEventListener("DOMContentLoaded", function() {
+    // 모든 카테고리 링크에 대해 처리
+    var categoryLinks = document.querySelectorAll(".main_category a");
+    categoryLinks.forEach(function(link) {
+        // 링크의 data-category 속성에서 카테고리 ID를 가져옴
+        var currentCategoryId = link.getAttribute("data-category");
+
+        // 현재 페이지의 categoryId와 링크의 data-category를 비교하여 색상 변경
+        if (currentCategoryId === link.getAttribute("data-category")) {
+            link.querySelector("span").style.color = "rgb(255, 128, 64)";
+            debugger;
+        }
+    });
+});*/

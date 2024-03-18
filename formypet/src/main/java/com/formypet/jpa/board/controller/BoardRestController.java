@@ -25,14 +25,6 @@ public class BoardRestController {
 	@Autowired
 	BoardService boardService;
 
-	@PostMapping("/create")
-	public ResponseEntity<Board> createBoard(@RequestBody BoardDto boardDto) throws Exception {
-		System.out.println("boardDto!!" + boardDto);
-		Board board = boardService.createBoard(boardDto);
-		System.out.println("들어옴??" + board);
-		return new ResponseEntity<>(board, HttpStatus.CREATED);
-	}
-
 	@DeleteMapping("/delete/{boardId}")
 	public void deleteBoard(@PathVariable(value = "boardId") Long boardId) {
 		try {
