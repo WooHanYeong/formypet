@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
 import com.formypet.jpa.FormypetApplicationTest;
+import com.formypet.jpa.board.entity.Board;
 import com.formypet.jpa.board.entity.BoardSubCategory;
 
 import jakarta.transaction.Transactional;
@@ -15,7 +16,9 @@ import jakarta.transaction.Transactional;
 public class BoardSubCategoryServiceImplTest extends FormypetApplicationTest {
 	@Autowired
 	BoardSubCategoryServiceImpl boardSubCategoryServiceImpl;
-
+	@Autowired
+	BoardService boardService;
+	
 	@Test
 	@Transactional
 	// @Disabled
