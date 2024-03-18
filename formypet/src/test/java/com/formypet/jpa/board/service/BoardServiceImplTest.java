@@ -21,7 +21,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void createBoard() throws Exception{
 		BoardDto boardDto1 = new BoardDto();
@@ -74,7 +74,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void selectBoardByCategoryId() throws Exception {
 		Long categoryId = 1L;
@@ -82,5 +82,15 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 		System.out.println("asdsadsadas"+test1);
 	}
 	
+	@Test
+	@Transactional
+	// @Disabled
+	@Rollback(false)
+	void boardListbySub() throws Exception {
+		Long categoryId = 1L;
+		Long subCategoryId = 1L;
+		List<Board> boardList = boardService.getBoardByCategoryIdBySubCategory(categoryId, subCategoryId);
+		System.out.println("adsadsadsadsad"+boardList);
+	}
 	
 }

@@ -1,7 +1,10 @@
 package com.formypet.jpa.board.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.convert.DtoInstantiatingConverter;
@@ -10,13 +13,12 @@ import org.springframework.stereotype.Service;
 import com.formypet.jpa.board.dto.BoardDto;
 import com.formypet.jpa.board.entity.Board;
 import com.formypet.jpa.board.entity.BoardCategory;
+import com.formypet.jpa.board.entity.BoardSubCategory;
 import com.formypet.jpa.board.repository.BoardCategoryRepository;
 import com.formypet.jpa.board.repository.BoardRepository;
 import com.formypet.jpa.board.repository.BoardSubCategoryRepository;
 
 import jakarta.transaction.Transactional;
-
-
 
 @Service
 @Transactional
@@ -31,15 +33,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board createBoard(BoardDto boardDto) throws Exception {
 
-		System.out.println("dto 확인"+boardDto);
-		Board board = Board.builder()
-							.boardTitle(boardDto.getBoardTitle())
-							.boardContent(boardDto.getBoardContent())
-							.boardImage(boardDto.getBoardImage())
-							.boardReadCount(boardDto.getBoardReadCount())
-							.boardCategory(BoardCategory.builder().categoryId(boardDto.getBoardCategoryId()).build())
-							.build();
-		System.out.println("board확인"+board);
+		System.out.println("dto 확인" + boardDto);
+		Board board = Board.builder().boardTitle(boardDto.getBoardTitle()).boardContent(boardDto.getBoardContent())
+				.boardImage(boardDto.getBoardImage()).boardReadCount(boardDto.getBoardReadCount())
+				.boardCategory(BoardCategory.builder().categoryId(boardDto.getBoardCategoryId()).build()).build();
+		System.out.println("board확인" + board);
 		return boardRepository.save(board);
 	}
 
@@ -50,17 +48,17 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Board updateBoard(Long boardId, BoardDto boardDto) throws Exception {
-        Optional<Board> optionalBoard = boardRepository.findById(boardId);
-        if (optionalBoard.isPresent()) {
-            Board findBoard = optionalBoard.get();
-            findBoard.setBoardTitle(boardDto.getBoardTitle());
-            findBoard.setBoardContent(boardDto.getBoardContent());
-            findBoard.setBoardImage(boardDto.getBoardImage());
-            return boardRepository.save(findBoard);
-        } else {
-            throw new Exception("id를 찾을수 없습니다.: " + boardId);
-        }
-    }
+		Optional<Board> optionalBoard = boardRepository.findById(boardId);
+		if (optionalBoard.isPresent()) {
+			Board findBoard = optionalBoard.get();
+			findBoard.setBoardTitle(boardDto.getBoardTitle());
+			findBoard.setBoardContent(boardDto.getBoardContent());
+			findBoard.setBoardImage(boardDto.getBoardImage());
+			return boardRepository.save(findBoard);
+		} else {
+			throw new Exception("id를 찾을수 없습니다.: " + boardId);
+		}
+	}
 
 	@Override
 	public Optional<Board> getBoardById(Long boardId) throws Exception {
@@ -81,14 +79,17 @@ public class BoardServiceImpl implements BoardService {
 	public List<Board> getBoardByCategoryName(String categoryName) throws Exception {
 		return boardRepository.findByBoardCategoryCategoryName(categoryName);
 	}
-	
+
 	@Override
-	public List<Board> getBoardByCategoryIdBySubCategory(Long categoryId,Long subCategoryId) throws Exception {
+	public List<Board> getBoardByCategoryIdBySubCategory(Long categoryId, Long subCategoryId) throws Exception {
 		List<Board> boardList = boardRepository.findByBoardCategoryCategoryId(categoryId);
-		List<Board> subBoardList = boardSubCategoryRepository.findBySubCategoryId(subCategoryId);
-		subBoardList.addAll(boardList);
-		return subBoardList;
-		
+		System.out.println("보드리시트" + boardList);
+		List<BoardSubCategory> subBoardList = boardSubCategoryRepository.findBySubCategoryId(subCategoryId);
+		System.out.println("서브리스트" + subBoardList);
+
+
+		return boardList;
+
 	}
 
 }
