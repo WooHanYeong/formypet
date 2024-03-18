@@ -25,4 +25,8 @@ public interface ProductService {
 	//상품리스트출력
 	List<Product> findAllProductList();
 	
+	//상품삭제(1개이상)
+	void deleteAllById(Iterable<Long> ids);
+
+	
 }

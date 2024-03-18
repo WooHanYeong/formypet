@@ -148,16 +148,21 @@
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
+											<th></th>
 											<th>상품이름</th>
 											<th>상품관련동물</th>
 											<th>상품카테고리</th>
 											<th>상품가격</th>
 											<th>상품조회수</th>
 											<th>상품등록일</th>
+											<th style="display: none;"></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr th:each="product : ${productList}">
+											<td>
+												<input type="checkbox" name="selectedProducts" value="" /> <!-- 체크박스 -->
+											</td>
 											<td th:onclick="'window.location.href=\'/product_detail_dog?productId=' + ${product.id} + '\''"
 												th:text="${product.productName}" onmouseover="this.style.color='red'"
 												onmouseout="this.style.color='inherit'">Tiger Nixon</td>
@@ -167,10 +172,16 @@
 											<td th:text="${product.productReadCount}">2011/04/25</td>
 											<td th:text="${#temporals.format(product.createdTime, 'yyyy년 MM월 dd일')}">
 												2011/04/25</td>
+											<td id="productId" th:text="${product.id}" style="display: none;"></td>
 										</tr>
-
 									</tbody>
 								</table>
+								<a href="#" class="btn btn-danger btn-icon-split">
+									<span class="icon text-white-50">
+										<i class="fas fa-trash"></i>
+									</span>
+									<span class="text" onclick="printSelectedProductIds()">Split Button Danger</span>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -178,38 +189,54 @@
 				</div>
 
 			</div>
-			<!-- End of Main Content -->
-
-
-
 		</div>
-		<!-- End of Content Wrapper -->
-
 	</div>
-	<!-- End of Page Wrapper -->
 
-	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top">
 		<i class="fas fa-angle-up"></i>
 	</a>
+
+
+	<script>
+		function printSelectedProductIds() {
+			var selectedIds = [];
+			var checkboxes = document.getElementsByName('selectedProducts');
+			checkboxes.forEach(function (checkbox) {
+				if (checkbox.checked) {
+					var productId = checkbox.closest('tr').querySelector('#productId').textContent;
+					selectedIds.push(Number(productId)); // 문자열을 숫자(혹은 long)로 변환하여 추가
+				}
+			});
+
+			console.log(selectedIds);
+
+			$.ajax({
+				url: `/api/product/delete/products`,
+				method: 'DELETE',
+				data: JSON.stringify(selectedIds), // 선택된 상품 ID 리스트를 JSON 문자열로 변환하여 전송
+				contentType: 'application/json', // 요청의 컨텐츠 타입을 JSON으로 설정
+				success: function (response) {
+					alert("상품 삭제 성공!");
+					location.reload();
+				},
+				error: function (error) {
+					alert("상품 삭제 실패. 다시 시도해주세요.");
+					console.error("Error deleting user:", error);
+				},
+			});
+		}
+
+	</script>
 
 
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
 	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
-
-	<!-- Page level plugins -->
 	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
 	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-	<!-- Page level custom scripts -->
 	<script src="js/demo/datatables-demo.js"></script>
 
 </body>

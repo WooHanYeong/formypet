@@ -8,6 +8,8 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.formypet.jpa.cart.entity.CartItem;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -56,7 +58,12 @@ public class Product {
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	@Builder.Default
 	@ToString.Exclude
-	private List<ProductReply> productList =new ArrayList<>();
+	private List<ProductReply> productReplyList =new ArrayList<>();
+	
+	//cartItem관계설정
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, orphanRemoval = true)
+	private List<CartItem> cartItem = new ArrayList<>();
+	
 	
 	/*
 	 * public static Product toEntity(ProductDto dto) { Product product =
