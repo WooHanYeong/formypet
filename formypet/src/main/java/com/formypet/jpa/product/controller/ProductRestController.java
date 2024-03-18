@@ -2,11 +2,13 @@
 package com.formypet.jpa.product.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +53,13 @@ public class ProductRestController {
 			// 실패 시 오류 응답 반환
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload product.");
 		}
+	}
+	
+	//상품삭제(1개이상)완
+	@DeleteMapping("/delete/products")
+	public ResponseEntity<String> deleteProducts(@RequestBody List<Long> ids) {
+	    productService.deleteAllById(ids);
+	    return ResponseEntity.ok("Products delete successfully.");
 	}
 
 }

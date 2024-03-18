@@ -57,7 +57,10 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> findAllProductList() {
 		return productRepository.findAll();
 	}
-	
-	
-	
+
+	@Override
+	public void deleteAllById(Iterable<Long> ids) {
+	    productRepository.deleteAllById(ids);
+	}
+
 }
