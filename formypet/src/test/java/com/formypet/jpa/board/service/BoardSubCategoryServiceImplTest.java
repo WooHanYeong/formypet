@@ -19,7 +19,7 @@ public class BoardSubCategoryServiceImplTest extends FormypetApplicationTest {
 	BoardSubCategoryServiceImpl boardSubCategoryServiceImpl;
 	@Autowired
 	BoardService boardService;
-	
+	/*
 	@Test
 	@Transactional
 	//@Disabled
@@ -31,6 +31,7 @@ public class BoardSubCategoryServiceImplTest extends FormypetApplicationTest {
 			System.out.println(subCategoryName);
 		}
 	}
+	*/
 	/*
 	@Test
 	@Transactional

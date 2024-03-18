@@ -39,12 +39,13 @@ public class BoardController {
 
 	@GetMapping("/board_list")
 	public String boardList(Model model) throws Exception {
+		Long subCategoryId = 1L;
 		Long categoryId = 1L;
-	/*	List<Board> boardListByCategory = boardService.getBoardBySubCategoryId(categoryId);
-		model.addAttribute("boardListByCategory", boardListByCategory);*/
+		List<Board> boardListByCategory = boardService.getBoardBySubCategoryId(subCategoryId);
+		model.addAttribute("boardListByCategory", boardListByCategory);
 		List<BoardCategory> categories = boardCategoryRepository.findAll();
 		model.addAttribute("categories", categories);
-		List<String> subCategories = boardSubCategoryServiceImpl.getSubCategoryNameByMainCategoryId(categoryId);
+		List<BoardSubCategory> subCategories = boardSubCategoryServiceImpl.getSubCategoryByMainCategoryId(categoryId);
 		model.addAttribute("subCategories", subCategories);
 		String forwardPath = "board_list";
 		return forwardPath;
@@ -80,11 +81,11 @@ public class BoardController {
 
 	@GetMapping("/board_adopt")
 	public String boardAdopt(Model model) throws Exception {
-/*
-		Long categoryId = 2L;
-		List<Board> boardListByCategory = boardService.getBoardBySubCategoryId(categoryId);
-		model.addAttribute("boardListByCategory", boardListByCategory);
-*/
+		/*
+		 * Long categoryId = 2L; List<Board> boardListByCategory =
+		 * boardService.getBoardBySubCategoryId(categoryId);
+		 * model.addAttribute("boardListByCategory", boardListByCategory);
+		 */
 		List<BoardCategory> categories = boardCategoryRepository.findAll();
 		model.addAttribute("categories", categories);
 		String forwardPath = "board_list";

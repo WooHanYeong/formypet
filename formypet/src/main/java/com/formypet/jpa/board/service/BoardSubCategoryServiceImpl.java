@@ -12,29 +12,38 @@ import com.formypet.jpa.board.repository.BoardCategoryRepository;
 import com.formypet.jpa.board.repository.BoardSubCategoryRepository;
 
 import jakarta.transaction.Transactional;
+
 @Service
 @Transactional
-public class BoardSubCategoryServiceImpl implements BoardSubCategoryService{
+public class BoardSubCategoryServiceImpl implements BoardSubCategoryService {
 	@Autowired
 	BoardCategoryRepository boardCategoryRepository;
 	@Autowired
 	BoardSubCategoryRepository boardSubCategoryRepository;
-	
+
 	@Override
-	public List<String> getSubCategoryNameByMainCategoryId(Long categoryId) throws Exception {
-		List<String> subCategoryNames = new ArrayList<>();
+	public List<BoardSubCategory> getSubCategoryByMainCategoryId(Long categoryId) throws Exception {
+		List<BoardSubCategory> subCategoryList = new ArrayList<>();
 		BoardCategory category = boardCategoryRepository.findById(categoryId).orElse(null);
 		if (category != null) {
 			List<BoardSubCategory> subCategories = category.getSubCategories();
-			for(BoardSubCategory subCategory : subCategories) {
-				if(category.getCategoryId().equals(subCategory.getBoardCategory().getCategoryId())) {
-					subCategoryNames.add(subCategory.getSubCategoryName());
+			for (BoardSubCategory subCategory : subCategories) {
+				if (category.getCategoryId().equals(subCategory.getBoardCategory().getCategoryId())) {
+					subCategoryList.add(subCategory);
 				}
 			}
 		}
-		return subCategoryNames;
+		return subCategoryList;
 	}
 
+	@Override
+	public List<BoardSubCategory> getSubCategory(Long subCategoryId) throws Exception {
+		return boardSubCategoryRepository.findBySubCategoryId(subCategoryId);
+	}
 
+	@Override
+	public List<BoardSubCategory> getSubCategoryAll() throws Exception {
+		return boardSubCategoryRepository.findAll();
+	}
 
 }

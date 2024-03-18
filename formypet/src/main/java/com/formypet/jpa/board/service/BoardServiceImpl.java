@@ -69,6 +69,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.findAll();
 	}
 
+	
 	@Override
 	public List<Board> getBoardBySubCategoryId(Long subCategoryId) throws Exception {
 		return boardRepository.findByBoardSubCategorySubCategoryId(subCategoryId);

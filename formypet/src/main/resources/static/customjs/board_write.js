@@ -1,7 +1,7 @@
 function submitForm() {
 	const title = document.getElementById('boardTitle').value;
 	const content = document.getElementById('boardContent').value;
-	const categoryId = document.getElementById('items').value;
+	const subCategoryId = document.getElementById('items').value;
 
 	if (title.trim() === '' || content.trim() === '') {
 		alert('제목과 내용을 모두 입력해주세요!');
@@ -10,7 +10,7 @@ function submitForm() {
 
 	let redirectUrl = '';
 
-	switch (categoryId) {
+	switch (subCategoryId) {
 		case '1':
 			redirectUrl = '/board_list';
 			break;
@@ -25,7 +25,7 @@ function submitForm() {
 	const jsonData = {
 		boardTitle: title,
 		boardContent: content,
-		boardCategoryId: categoryId
+		boardSubCategoryId: subCategoryId
 	};
 	console.log("제목" + title, "내용" + content);
 	

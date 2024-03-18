@@ -80,8 +80,8 @@
 				</div>
 				<div class="sub_category">
 					<ul>
-						<li th:each="subCategoryName : ${subCategories}">
-							<a href="#" th:text="${subCategoryName}"></a>
+						<li th:each="subCategory : ${subCategories}">
+							<a href="#" th:text="${subCategory.subCategoryName}"></a>
 						</li>
 					</ul>
 				</div>
