@@ -44,7 +44,7 @@ public class ProductRestController {
 
 			// 상품 정보 저장
 			Product product = new Product(null, productName, productContent, productAnimalType, productCategory,
-					productPrice, savedFileName1, 0, null, null,null);
+					productPrice, savedFileName1, 0, null, null,null,null);
 			productService.insert(product);
 
 			// 성공 응답 반환
