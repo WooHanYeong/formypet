@@ -131,10 +131,15 @@
 													December 4, 2017 at
 													3:12 pm </p>
 											</div>
-											<div class="reply-btn">
-												<a href="#" class="btn-reply text-uppercase"
-													style="color: red;">Delete</a>
+											
+											<div class="reply-btn" th:if="${session.loginUser.id == reply.getUser.id}">
+												<a href="#" class="btn-reply text-uppercase" style="color: red;"
+													onclick="deleteReply()">Delete</a>
 											</div>
+											
+											<p id="replyId" th:text="${reply.productReplyId}" style="display: none;">
+											</p>
+
 										</div>
 									</div>
 								</div>
@@ -233,6 +238,33 @@
 					console.log(error);
 				}
 			});
+		}
+		
+		//댓글삭제
+		function deleteReply() {
+
+			var replyId = document.getElementById("replyId").innerText;
+			console.log(replyId);
+
+			$.ajax({
+				url: `/api/productcomment/productReplyDelete/${replyId}`,
+				method: 'DELETE',
+				success: function (data) {
+					alert("댓글 삭제 성공!");
+					location.reload();
+					
+				},
+				error: function (error) {
+					alert("댓글 삭제 실패. 다시 시도해주세요.");
+					console.error("Error deleting user:", error);
+				},
+				complete: function () {
+					// 비동기 처리 완료 후 버튼 활성화
+					$("#withdrawalButton").prop("disabled", false);
+				}
+			});
+
+
 		}
 
 	</script>
