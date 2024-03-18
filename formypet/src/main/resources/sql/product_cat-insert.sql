@@ -1,7 +1,8 @@
--- 고양이 / 건사료 
+
 -- 고양이 건사료
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '건사료', '고스비 고양이사료', '고스비 고양이사료입니다.', 'defaultimg/고양이사료_고스비.jpg', 20000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '건사료', '고스비 고양이사료', '고스비 고양이사료입니다.', 'defaultimg/고양이사료_고스비.jpg', 20000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -9,7 +10,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '건사료', '나비엠알오 고양이사료', '나비엠알오 고양이사료입니다.', 'defaultimg/고양이사료_나비엠알오.jpg', 9000, 110, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '건사료', '나비엠알오 고양이사료', '나비엠알오 고양이사료입니다.', 'defaultimg/고양이사료_나비엠알오.jpg', 9000, 110, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -17,7 +19,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '건사료', '두나펫 고양이사료', '두나펫 고양이사료입니다.', 'defaultimg/고양이사료_두나펫.jpg', 11000, 130, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '건사료', '두나펫 고양이사료', '두나펫 고양이사료입니다.', 'defaultimg/고양이사료_두나펫.jpg', 11000, 130, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -25,7 +28,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '건사료', '리브레 고양이사료', '리브레 고양이사료입니다.', 'defaultimg/고양이사료_리브레.jpg', 29000, 5000, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '건사료', '리브레 고양이사료', '리브레 고양이사료입니다.', 'defaultimg/고양이사료_리브레.jpg', 29000, 5000, SYSTIMESTAMP, SYSTIMESTAMP)
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -33,7 +37,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '건사료', '어덜트 고양이사료', '어덜트 고양이사료입니다.', 'defaultimg/고양이사료_어덜트.jpg', 22000, 150, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '건사료', '어덜트 고양이사료', '어덜트 고양이사료입니다.', 'defaultimg/고양이사료_어덜트.jpg', 22000, 150, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -41,7 +46,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '건사료', '캣블리 고양이사료', '캣블리 고양이사료입니다.', 'defaultimg/고양이사료_캣블리.jpg', 32000, 160, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '건사료', '캣블리 고양이사료', '캣블리 고양이사료입니다.', 'defaultimg/고양이사료_캣블리.jpg', 32000, 160, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -49,7 +55,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '건사료', '커클랜드 고양이사료', '커클랜드 고양이사료입니다.', 'defaultimg/고양이사료_커클랜드.jpg', 16000, 180, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '건사료', '커클랜드 고양이사료', '커클랜드 고양이사료입니다.', 'defaultimg/고양이사료_커클랜드.jpg', 16000, 180, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -57,18 +64,18 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '건사료', '쿠쿳 고양이사료', '쿠쿳 고양이사료입니다.', 'defaultimg/고양이사료_쿠쿳.jpg', 19000, 190, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '건사료', '쿠쿳 고양이사료', '쿠쿳 고양이사료입니다.', 'defaultimg/고양이사료_쿠쿳.jpg', 19000, 190, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
     WHERE PRODUCT_NAME = '쿠쿳 고양이사료'
 );
 
-
--- 고양이 /배변패드
 -- 고양이 배변패드
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '배변패드', '롯데 배변패드', '롯데 고양이배변패드입니다.', 'defaultimg/고양이배변패드_롯데.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '배변패드', '롯데 배변패드', '롯데 고양이배변패드입니다.', 'defaultimg/고양이배변패드_롯데.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -76,7 +83,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '배변패드', '브런치 배변패드', '브런치 고양이배변패드입니다.', 'defaultimg/고양이배변패드_브런치.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '배변패드', '브런치 배변패드', '브런치 고양이배변패드입니다.', 'defaultimg/고양이배변패드_브런치.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -84,7 +92,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '배변패드', '아트박스 배변패드', '아트박스 고양이배변패드입니다.', 'defaultimg/고양이배변패드_아트박스.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '배변패드', '아트박스 배변패드', '아트박스 고양이배변패드입니다.', 'defaultimg/고양이배변패드_아트박스.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -92,7 +101,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '배변패드', '예홈펫 배변패드', '예홈펫 고양이배변패드입니다.', 'defaultimg/고양이배변패드_예홈펫.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '배변패드', '예홈펫 배변패드', '예홈펫 고양이배변패드입니다.', 'defaultimg/고양이배변패드_예홈펫.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -100,7 +110,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '배변패드', '오늘의집 배변패드', '오늘의집 고양이배변패드입니다.', 'defaultimg/고양이배변패드_오늘의집.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '배변패드', '오늘의집 배변패드', '오늘의집 고양이배변패드입니다.', 'defaultimg/고양이배변패드_오늘의집.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -108,7 +119,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '배변패드', '코 배변패드', '코 고양이배변패드입니다.', 'defaultimg/고양이배변패드_코.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '배변패드', '코 배변패드', '코 고양이배변패드입니다.', 'defaultimg/고양이배변패드_코.jpg', 35000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -116,9 +128,9 @@ WHERE NOT EXISTS (
 );
 
 -- 고양이 방석/쿠션
--- 고양이 방석/쿠션
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '방석/쿠션', '고양이방석/쿠션 도넛마약', '도넛마약 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_도넛마약.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '방석/쿠션', '고양이방석/쿠션 도넛마약', '도넛마약 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_도넛마약.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -126,7 +138,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '방석/쿠션', '고양이방석/쿠션 바잇미', '바잇미 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_바잇미.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '방석/쿠션', '고양이방석/쿠션 바잇미', '바잇미 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_바잇미.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -134,7 +147,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '방석/쿠션', '고양이방석/쿠션 소소네코', '소소네코 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_소소네코.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '방석/쿠션', '고양이방석/쿠션 소소네코', '소소네코 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_소소네코.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -142,7 +156,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '방석/쿠션', '고양이방석/쿠션 아르르', '아르르 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_아르르.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '방석/쿠션', '고양이방석/쿠션 아르르', '아르르 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_아르르.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -150,7 +165,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '방석/쿠션', '고양이방석/쿠션 위드펫', '위드펫 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_위드펫.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '방석/쿠션', '고양이방석/쿠션 위드펫', '위드펫 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_위드펫.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -158,7 +174,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '방석/쿠션', '고양이방석/쿠션 페스텝', '페스텝 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_페스텝.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '방석/쿠션', '고양이방석/쿠션 페스텝', '페스텝 고양이방석/쿠션입니다.', 'defaultimg/고양이방석쿠션_페스텝.jpg', 23000, 160, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -168,7 +185,8 @@ WHERE NOT EXISTS (
 --고양이이동가방
 -- 고양이 이동가방
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '이동가방', '고양이이동가방 네모', '네모 고양이이동가방입니다.', 'defaultimg/고양이이동가방_네모.jpg', 19000, 110, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '이동가방', '고양이이동가방 네모', '네모 고양이이동가방입니다.', 'defaultimg/고양이이동가방_네모.jpg', 19000, 110, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -176,7 +194,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '이동가방', '고양이이동가방 롯데', '롯데 고양이이동가방입니다.', 'defaultimg/고양이이동가방_롯데.jpg', 19000, 110, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '이동가방', '고양이이동가방 롯데', '롯데 고양이이동가방입니다.', 'defaultimg/고양이이동가방_롯데.jpg', 19000, 110, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -184,7 +203,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '이동가방', '고양이이동가방 바잇미', '바잇미 고양이이동가방입니다.', 'defaultimg/고양이이동가방_바잇미.jpg', 19000, 110, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '이동가방', '고양이이동가방 바잇미', '바잇미 고양이이동가방입니다.', 'defaultimg/고양이이동가방_바잇미.jpg', 19000, 110, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -192,7 +212,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '이동가방', '고양이이동가방 제이피', '제이피 고양이이동가방입니다.', 'defaultimg/고양이이동가방_제이피.jpg', 19000, 110, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '이동가방', '고양이이동가방 제이피', '제이피 고양이이동가방입니다.', 'defaultimg/고양이이동가방_제이피.jpg', 19000, 110, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -200,7 +221,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '이동가방', '고양이이동가방 타임리스', '타임리스 고양이이동가방입니다.', 'defaultimg/고양이이동가방_타임리스.jpg', 19000, 110, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '이동가방', '고양이이동가방 타임리스', '타임리스 고양이이동가방입니다.', 'defaultimg/고양이이동가방_타임리스.jpg', 19000, 110, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -210,7 +232,8 @@ WHERE NOT EXISTS (
 --고양이 샴푸비누
 -- 고양이 샴푸/비누
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '샴푸/비누', '고양이샴푸/비누 그린태비', '그린태비 고양이샴푸/비누입니다.', 'defaultimg/고양이샴푸비누_그린태비.jpg', 11000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '샴푸/비누', '고양이샴푸/비누 그린태비', '그린태비 고양이샴푸/비누입니다.', 'defaultimg/고양이샴푸비누_그린태비.jpg', 11000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -218,7 +241,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '샴푸/비누', '고양이샴푸/비누 수솝', '수솝 고양이샴푸/비누입니다.', 'defaultimg/고양이샴푸비누_수솝.jpg', 11000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '샴푸/비누', '고양이샴푸/비누 수솝', '수솝 고양이샴푸/비누입니다.', 'defaultimg/고양이샴푸비누_수솝.jpg', 11000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -226,7 +250,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '샴푸/비누', '고양이샴푸/비누 아인솝', '아인솝 고양이샴푸/비누입니다.', 'defaultimg/고양이샴푸비누_아인솝.jpg', 11000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '샴푸/비누', '고양이샴푸/비누 아인솝', '아인솝 고양이샴푸/비누입니다.', 'defaultimg/고양이샴푸비누_아인솝.jpg', 11000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -234,7 +259,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '샴푸/비누', '고양이샴푸/비누 프롬한라', '프롬한라 고양이샴푸/비누입니다.', 'defaultimg/고양이샴푸비누_프롬한라.jpg', 11000, 100, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '샴푸/비누', '고양이샴푸/비누 프롬한라', '프롬한라 고양이샴푸/비누입니다.', 'defaultimg/고양이샴푸비누_프롬한라.jpg', 11000, 100, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -243,7 +269,8 @@ WHERE NOT EXISTS (
 
 -- 고양이 기타
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '기타', '고양이장난감 무빙휠', '고양이장난감무빙휠입니다.', 'defaultimg/고양이장난감_무빙휠.jpg', 15000, 3000, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '기타', '고양이장난감 무빙휠', '고양이장난감무빙휠입니다.', 'defaultimg/고양이장난감_무빙휠.jpg', 15000, 3000, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -251,7 +278,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '기타', '고양이장난감 에코펫위드', '고양이장난감에코펫위드입니다.', 'defaultimg/고양이장난감_에코펫위드.jpg', 15000, 3000, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '기타', '고양이장난감 에코펫위드', '고양이장난감에코펫위드입니다.', 'defaultimg/고양이장난감_에코펫위드.jpg', 15000, 3000, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
@@ -259,7 +287,8 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO product(PRODUCT_ANIMAL_TYPE, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_IMAGE, PRODUCT_PRICE, PRODUCT_READ_COUNT, CREATED_TIME, UPDATE_TIME)
-VALUES('고양이', '기타', '고양이장난감 천연볼', '고양이장난감천연볼입니다.', 'defaultimg/고양이장난감_천연볼.jpg', 15000, 3000, SYSTIMESTAMP, SYSTIMESTAMP)
+SELECT'고양이', '기타', '고양이장난감 천연볼', '고양이장난감천연볼입니다.', 'defaultimg/고양이장난감_천연볼.jpg', 15000, 3000, SYSTIMESTAMP, SYSTIMESTAMP
+FROM dual
 WHERE NOT EXISTS (
     SELECT 1 
     FROM product 
