@@ -12,6 +12,7 @@ import com.formypet.jpa.board.entity.Board;
 import com.formypet.jpa.board.entity.BoardCategory;
 import com.formypet.jpa.board.repository.BoardCategoryRepository;
 import com.formypet.jpa.board.repository.BoardRepository;
+import com.formypet.jpa.board.repository.BoardSubCategoryRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -24,6 +25,8 @@ public class BoardServiceImpl implements BoardService {
 	BoardRepository boardRepository;
 	@Autowired
 	BoardCategoryRepository boardCategoryRepository;
+	@Autowired
+	BoardSubCategoryRepository boardSubCategoryRepository;
 
 	@Override
 	public Board createBoard(BoardDto boardDto) throws Exception {
@@ -77,6 +80,15 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Board> getBoardByCategoryName(String categoryName) throws Exception {
 		return boardRepository.findByBoardCategoryCategoryName(categoryName);
+	}
+	
+	@Override
+	public List<Board> getBoardByCategoryIdBySubCategory(Long categoryId,Long subCategoryId) throws Exception {
+		List<Board> boardList = boardRepository.findByBoardCategoryCategoryId(categoryId);
+		List<Board> subBoardList = boardSubCategoryRepository.findBySubCategoryId(subCategoryId);
+		subBoardList.addAll(boardList);
+		return subBoardList;
+		
 	}
 
 }

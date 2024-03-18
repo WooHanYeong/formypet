@@ -47,6 +47,12 @@ public class BoardController {
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
+	@GetMapping("/board_list/{subCategoryId}")
+	public String boardSubCategoryList(Model model) throws Exception {
+		
+		String forwardPath = "board_list";
+		return forwardPath;
+	}
 	
 	@PostMapping("/api/board/create")
 	public ResponseEntity<Board> createBoardForList(@RequestBody BoardDto boardDto) throws Exception {
