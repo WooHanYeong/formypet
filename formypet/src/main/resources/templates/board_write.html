@@ -68,7 +68,7 @@
 								<div class="select-box">
 									<select name="items" id="items">
 										<option value="">선택</option>
-										<option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+										<option th:each="subCategory : ${subCategories}" th:value="${subCategory.subCategoryId}" th:text="${subCategory.subCategoryName}"></option>
 									</select>
 								</div>
 								<div class="form-group" style="width: 900px;">

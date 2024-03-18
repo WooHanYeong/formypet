@@ -9,6 +9,7 @@ import org.springframework.test.annotation.Rollback;
 
 import com.formypet.jpa.FormypetApplicationTest;
 import com.formypet.jpa.board.entity.Board;
+import com.formypet.jpa.board.entity.BoardCategory;
 import com.formypet.jpa.board.entity.BoardSubCategory;
 
 import jakarta.transaction.Transactional;
@@ -21,7 +22,7 @@ public class BoardSubCategoryServiceImplTest extends FormypetApplicationTest {
 	
 	@Test
 	@Transactional
-	// @Disabled
+	//@Disabled
 	@Rollback(false)
 	void subCate() throws Exception {
 		Long categoryId = 1L;
@@ -30,5 +31,19 @@ public class BoardSubCategoryServiceImplTest extends FormypetApplicationTest {
 			System.out.println(subCategoryName);
 		}
 	}
+	/*
+	@Test
+	@Transactional
+	// @Disabled
+	@Rollback(false)
+	void subCategory() throws Exception {
+		Long subCategoryId = 10L;
+		List<Board> test1 = boardService.getBoardSubCategoryIds(subCategoryId);
+		System.out.println("asdsadsad"+test1);
+	}
+	*/
+
+	
+	
 
 }

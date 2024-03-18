@@ -51,15 +51,16 @@ public class Board {
 					.boardContent(dto.getBoardContent())
 					.boardImage(dto.getBoardImage())
 					.boardReadCount(dto.getBoardReadCount())
-					.boardCategory(BoardCategory.builder().categoryId(dto.getBoardCategoryId()).build())
+					.boardSubCategory(BoardSubCategory.builder().subCategoryId(dto.getBoardSubCategoryId()).build())
 					.build();
 		return board;
 	}
 	
+	
 	@ManyToOne
-	@JoinColumn(name = "category_id")
+	@JoinColumn(name = "sub_category_id")
 	@ToString.Exclude
-	private BoardCategory boardCategory;
+	private BoardSubCategory boardSubCategory;
 
 	
 }

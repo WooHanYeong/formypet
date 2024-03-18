@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import com.formypet.jpa.board.dto.BoardDto;
 import com.formypet.jpa.board.entity.Board;
+import com.formypet.jpa.board.entity.BoardCategory;
+import com.formypet.jpa.board.entity.BoardSubCategory;
 
 public interface BoardService {
 	
@@ -20,10 +22,13 @@ public interface BoardService {
 	
 	public List<Board> getBoardByAll() throws Exception;
 	
-	public List<Board> getBoardByCategoryId(Long categoryId) throws Exception;
+	public List<Board> getBoardBySubCategoryId(Long subCategoryId) throws Exception;
 	
-	public List<Board> getBoardByCategoryName(String categoryName) throws Exception;
+	public List<Board> getBoardBySubCategoryName(String subCategoryName) throws Exception;
 	
-	public List<Board> getBoardByCategoryIdBySubCategory(Long categoryId,Long subCategoryId) throws Exception;
+	public List<BoardCategory> getBoardCategoryById(Long categoryId) throws Exception;
+	
+	//public List<Board> getBoardSubCategoryIds(Long subCategoryId) throws Exception;
+	
 	
 }

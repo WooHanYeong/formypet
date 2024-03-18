@@ -2,6 +2,7 @@ package com.formypet.jpa.board.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -30,13 +31,11 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardSubCategoryRepository boardSubCategoryRepository;
 
-	@Override
 	public Board createBoard(BoardDto boardDto) throws Exception {
-
 		System.out.println("dto 확인" + boardDto);
 		Board board = Board.builder().boardTitle(boardDto.getBoardTitle()).boardContent(boardDto.getBoardContent())
 				.boardImage(boardDto.getBoardImage()).boardReadCount(boardDto.getBoardReadCount())
-				.boardCategory(BoardCategory.builder().categoryId(boardDto.getBoardCategoryId()).build()).build();
+				.boardSubCategory(BoardSubCategory.builder().subCategoryId(boardDto.getBoardSubCategoryId()).build()).build();
 		System.out.println("board확인" + board);
 		return boardRepository.save(board);
 	}
@@ -71,25 +70,28 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> getBoardByCategoryId(Long categoryId) throws Exception {
-		return boardRepository.findByBoardCategoryCategoryId(categoryId);
+	public List<Board> getBoardBySubCategoryId(Long subCategoryId) throws Exception {
+		return boardRepository.findByBoardSubCategorySubCategoryId(subCategoryId);
 	}
 
 	@Override
-	public List<Board> getBoardByCategoryName(String categoryName) throws Exception {
-		return boardRepository.findByBoardCategoryCategoryName(categoryName);
+	public List<Board> getBoardBySubCategoryName(String subCategoryName) throws Exception {
+		return boardRepository.findByBoardSubCategorySubCategoryName(subCategoryName);
 	}
+/*
+	@Override
+	public List<Board> getBoardSubCategoryIds(Long subCategoryId) {
+		List<BoardSubCategory> subCategories = boardSubCategoryRepository.findBySubCategoryId(subCategoryId);
+		List<Long> categoryIds = new ArrayList<>();
+		for (BoardSubCategory subCategory : subCategories) {
+			categoryIds.add(subCategory.getBoardCategory().getCategoryId());
+		}
+		return boardRepository.findAllById(categoryIds);
+	}
+*/
 
 	@Override
-	public List<Board> getBoardByCategoryIdBySubCategory(Long categoryId, Long subCategoryId) throws Exception {
-		List<Board> boardList = boardRepository.findByBoardCategoryCategoryId(categoryId);
-		System.out.println("보드리시트" + boardList);
-		List<BoardSubCategory> subBoardList = boardSubCategoryRepository.findBySubCategoryId(subCategoryId);
-		System.out.println("서브리스트" + subBoardList);
-
-
-		return boardList;
-
-	}
-
+	public List<BoardCategory> getBoardCategoryById(Long categoryId) throws Exception {
+		return boardCategoryRepository.findByCategoryId(categoryId);
+	}	
 }

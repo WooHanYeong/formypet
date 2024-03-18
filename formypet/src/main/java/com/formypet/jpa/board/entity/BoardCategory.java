@@ -37,11 +37,7 @@ public class BoardCategory {
 							.categoryName(dto.getCategoryName())
 							.build();
 	}
-	
-	@OneToMany(mappedBy = "boardCategory",cascade = CascadeType.PERSIST)
-	@Builder.Default
-	@ToString.Exclude
-	private List<Board> boards = new ArrayList<Board>();
+
 	
 	@OneToMany(mappedBy = "boardCategory",cascade = CascadeType.PERSIST)
 	@Builder.Default

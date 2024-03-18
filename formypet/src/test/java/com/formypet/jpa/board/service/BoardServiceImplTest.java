@@ -11,6 +11,7 @@ import org.springframework.test.annotation.Rollback;
 import com.formypet.jpa.FormypetApplicationTest;
 import com.formypet.jpa.board.dto.BoardDto;
 import com.formypet.jpa.board.entity.Board;
+import com.formypet.jpa.board.entity.BoardCategory;
 import com.formypet.jpa.board.repository.BoardRepository;
 
 import jakarta.transaction.Transactional;
@@ -18,19 +19,30 @@ import jakarta.transaction.Transactional;
 public class BoardServiceImplTest extends FormypetApplicationTest{
 	@Autowired
 	private BoardService boardService;
+	/*
+	 * @Test
+	 * 
+	 * @Transactional
+	 * 
+	 * @Disabled
+	 * 
+	 * @Rollback(false) void createBoard() throws Exception{ BoardDto boardDto1 =
+	 * new BoardDto(); boardDto1.setBoardTitle("제목1");
+	 * boardDto1.setBoardContent("내용1"); boardDto1.setBoardImage("이미지1");
+	 * boardDto1.setBoardReadCount(1); boardDto1.setBoardCategoryId(1L);
+	 * boardService.createBoard(boardDto1);
+	 * 
+	 * }
+	 */
 	
 	@Test
 	@Transactional
-	@Disabled
+	//@Disabled
 	@Rollback(false)
-	void createBoard() throws Exception{
-		BoardDto boardDto1 = new BoardDto();
-		boardDto1.setBoardTitle("제목1");
-		boardDto1.setBoardContent("내용1");
-		boardDto1.setBoardImage("이미지1");
-		boardDto1.setBoardReadCount(1);
-		boardDto1.setBoardCategoryId(1L);
-		boardService.createBoard(boardDto1);
+	void findCategory() throws Exception {
+		Long categoryId = 1L;
+		List<BoardCategory> category =  boardService.getBoardCategoryById(categoryId);
+		System.out.println("cate"+category);
 		
 	}
 	
@@ -71,7 +83,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 		List<Board> boardList = boardService.getBoardByAll();
 		System.out.println("보드리스트:"+boardList);
 	}
-	
+	/*
 	@Test
 	@Transactional
 	@Disabled
@@ -81,16 +93,18 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 		List<Board> test1 =  boardService.getBoardByCategoryId(categoryId);
 		System.out.println("asdsadsadas"+test1);
 	}
+	*/
 	
 	@Test
 	@Transactional
-	// @Disabled
+	//@Disabled
 	@Rollback(false)
-	void boardListbySub() throws Exception {
-		Long categoryId = 1L;
+	void boardCategoryId() throws Exception {
 		Long subCategoryId = 1L;
-		List<Board> boardList = boardService.getBoardByCategoryIdBySubCategory(categoryId, subCategoryId);
-		System.out.println("adsadsadsadsad"+boardList);
+		List<Board> boardList =  boardService.getBoardBySubCategoryId(subCategoryId);
+		System.out.println("asdsadsadsadsadsad"+boardList);
 	}
 	
+	
+
 }

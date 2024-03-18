@@ -36,4 +36,5 @@ public class BoardSubCategoryServiceImpl implements BoardSubCategoryService{
 	}
 
 
+
 }

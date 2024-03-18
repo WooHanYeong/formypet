@@ -34,6 +34,12 @@ public class BoardRestController {
 			e.printStackTrace();
 		}
 	}
+	
+	@PostMapping("/create")
+	public ResponseEntity<Board> createBoardForList(@RequestBody BoardDto boardDto) throws Exception {
+		Board board = boardService.createBoard(boardDto);
+		return new ResponseEntity<>(board, HttpStatus.CREATED);
+	}
 
 	@PutMapping("/update/{boardId}")
 	public ResponseEntity<String> updateBoard(@PathVariable(value = "boardId") Long boardId,
