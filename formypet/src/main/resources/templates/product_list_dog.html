@@ -47,6 +47,7 @@
 					<div class="breadcrumb_iner">
 						<div class="breadcrumb_iner_item">
 							<h2>For dog things</h2>
+							<h2 id="userid" th:text="${session.loginUser.id}" style="display: none;">id</h2>
 						</div>
 					</div>
 				</div>
@@ -143,8 +144,9 @@
 								<h3 style=" text-align: center;" th:text="${dog.productPrice}+'원'">$150.00</h3>
 								<h3 th:text="${dog.productCategory}" style="display: none;">$150.00</h3>
 								<div class="single_product_text">
-									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+									<a class="add_cart" onclick="addCartItem()">+ add to cart</a>
 								</div>
+								<h1 th:text="${dog.id}" id="productId" style="display: none;"></h1>
 							</div>
 						</div>
 					</div>
@@ -249,7 +251,34 @@
 	<script src="customjs/product-dog.js"></script>
 	<script>
 
+		function addCartItem() {
+			var userId = document.getElementById('userid').textContent;
+			var productId = document.getElementById('productId').textContent; // 수정된 부분
+			var cartItemQty = 1;
 
+			var formData = new FormData();
+
+			// 각 필드의 이름과 값을 설정
+			formData.append('userId', userId);
+			formData.append('productId', productId);
+			formData.append('cartItemQty', cartItemQty);
+
+			$.ajax({
+				url: "/api/cartItem/cartItemInsertList/" + productId,
+				type: 'POST',
+				data: formData, // 데이터 전송 설정 추가
+				processData: false, // FormData 사용 시 false로 설정
+				contentType: false, // FormData 사용 시 false로 설정
+				success: function (data) {
+					alert("장바구니 등록 성공!");
+					location.reload();
+				},
+				error: function (error) {
+					alert("장바구니 등록 실패. 다시 시도해주세요.");
+					console.error("Error deleting user:", error);
+				},
+			});
+		}
 
 
 	</script>
@@ -272,6 +301,7 @@
 	<script src="js/stellar.js"></script>
 	<script src="js/price_rangs.js"></script>
 	<script src="js/custom.js"></script>
+
 </body>
 
 </html>

@@ -47,6 +47,7 @@
 					<div class="breadcrumb_iner">
 						<div class="breadcrumb_iner_item">
 							<h2>For cat things</h2>
+							<h2 id="userid" th:text="${session.loginUser.id}" style="display: none;">id</h2>
 						</div>
 					</div>
 				</div>
@@ -137,8 +138,9 @@
 								<h3 style=" text-align: center;" th:text="${cat.productPrice}+'원'">$150.00</h3>
 								<h3 th:text="${cat.productCategory}" style="display: none;">$150.00</h3>
 								<div class="single_product_text">
-									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+									<a class="add_cart" onclick="addCartItem()">+ add to cart<i class="ti-heart"></i></a>
 								</div>
+								<h1 th:text="${cat.id}" id ="productId" style="display: none;"></h1>
 							</div>
 						</div>
 					</div>

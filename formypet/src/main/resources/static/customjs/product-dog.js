@@ -68,39 +68,38 @@ $(document).ready(function() {
 
 //검색기능 스크립트 처리(엔터).
 document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    const container = document.getElementById('container');
-    var initialData = $('#container').html();
+	const searchInput = document.getElementById('searchInput');
+	const container = document.getElementById('container');
+	var initialData = $('#container').html();
 
-    searchInput.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            const searchValue = searchInput.value;
+	searchInput.addEventListener('keydown', function(event) {
+		if (event.key === 'Enter') {
+			const searchValue = searchInput.value;
 
-            // 여기에서 검색어를 사용하여 필터링된 항목을 표시하거나 처리할 수 있습니다
-            filterItems(searchValue);
-            searchInput.value = ''; // 검색어 필드 비우기
-        }
-    });
+			// 여기에서 검색어를 사용하여 필터링된 항목을 표시하거나 처리할 수 있습니다
+			filterItems(searchValue);
+			searchInput.value = ''; // 검색어 필드 비우기
+		}
+	});
 
-    var itemList = $(initialData).find('.single_product_item').toArray();
+	var itemList = $(initialData).find('.single_product_item').toArray();
 
-    function filterItems(searchQuery) {
-        container.innerHTML = ''; // 리스트 비우기
+	function filterItems(searchQuery) {
+		container.innerHTML = ''; // 리스트 비우기
 
-        itemList.forEach(function(item) {
-            var titleElement = item.getElementsByTagName('h4')[0]; // h4 요소 선택
-            var title = titleElement.textContent;
+		itemList.forEach(function(item) {
+			var titleElement = item.getElementsByTagName('h4')[0]; // h4 요소 선택
+			var title = titleElement.textContent;
 
-            if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
-                // 새로운 제품 항목이 삽입될 때마다 이를 .col-lg-4.col-sm-6 클래스로 감싸서 결과를 추가
-                var productItemWrapper = document.createElement('div');
-                productItemWrapper.classList.add('col-lg-4', 'col-sm-6');
-                productItemWrapper.appendChild(item.cloneNode(true));
-                container.appendChild(productItemWrapper);
-            }
-        });
-    }
+			if (title.toLowerCase().includes(searchQuery.toLowerCase())) {
+				// 새로운 제품 항목이 삽입될 때마다 이를 .col-lg-4.col-sm-6 클래스로 감싸서 결과를 추가
+				var productItemWrapper = document.createElement('div');
+				productItemWrapper.classList.add('col-lg-4', 'col-sm-6');
+				productItemWrapper.appendChild(item.cloneNode(true));
+				container.appendChild(productItemWrapper);
+			}
+		});
+	}
 });
-
 
 
