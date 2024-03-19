@@ -47,7 +47,6 @@
 					<div class="breadcrumb_iner">
 						<div class="breadcrumb_iner_item">
 							<h2>For dog things</h2>
-							<h2 id="userid" th:text="${session.loginUser.id}" style="display: none;">id</h2>
 						</div>
 					</div>
 				</div>
@@ -130,26 +129,38 @@
 
 					</script>
 
-					<div class="row align-items-center latest_product_inner" id="container"
-						style="max-height: 1200px; overflow-y:auto;">
+					<form id="productForm">
+						<div class="row align-items-center latest_product_inner"
+							style="max-height: 1200px; overflow-y:auto;">
+							<div class="col-lg-4 col-sm-6" th:each="dog: ${dogList}">
+								<div class="single_product_item">
+									<img th:src="@{'/productimg/' + ${dog.productImage}}" alt="">
+									<h4 style="margin-top: 50px; text-align: center;">
+										<a style="color: black; margin-top: 10px;"
+											th:href="${'/product_detail_dog?productId='+dog.id}"
+											th:text="${dog.productName}">Quartz Belt Watch</a>
+									</h4>
+									<h3 style="text-align: center;" th:text="${dog.productPrice}+'원'">$150.00</h3>
+									<h3 th:text="${dog.productCategory}" style="display: none;">$150.00</h3>
+									<div class="single_product_text">
+										<a class="add_cart" onclick="addCartItem(this)" th:data-product-id="${dog.id}">+
+											add to cart</a>
+									</div>
+									<h1 th:text="${dog.id}"></h1>
+									<h1 th:text="${session.loginUser.id}"></h1>
 
-						<div class="col-lg-4 col-sm-6" th:each="dog: ${dogList}">
-							<div class="single_product_item">
-								<img th:src="@{'/productimg/' + ${dog.productImage}}" alt="">
-								<h4 style=" margin-top: 50px; text-align: center;">
-									<a style="color: black; margin-top: 10px; "
-										th:href="${'/product_detail_dog?productId='+dog.id}"
-										th:text="${dog.productName}">Quartz Belt Watch</a>
-								</h4>
-								<h3 style=" text-align: center;" th:text="${dog.productPrice}+'원'">$150.00</h3>
-								<h3 th:text="${dog.productCategory}" style="display: none;">$150.00</h3>
-								<div class="single_product_text">
-									<a class="add_cart" onclick="addCartItem()">+ add to cart</a>
+									<!-- Hidden input fields for userId and productId -->
+									<input type="hidden" id="cartItemQty" value="1">
+									<input type="hidden" id="userId" th:value="${session.loginUser.id}">
+									<input type="hidden" onclick="addCartItem(this)" id="productId"
+										th:value="${dog.id}">
+
 								</div>
-								<h1 th:text="${dog.id}" id="productId" style="display: none;"></h1>
 							</div>
 						</div>
-					</div>
+					</form>
+
+
 
 					<script>
 
@@ -251,34 +262,33 @@
 	<script src="customjs/product-dog.js"></script>
 	<script>
 
-		function addCartItem() {
-			var userId = document.getElementById('userid').textContent;
-			var productId = document.getElementById('productId').textContent; // 수정된 부분
-			var cartItemQty = 1;
+		function addCartItem(button) {
+			var userId = document.getElementById('userId').value;
+			var productId = button.getAttribute('data-product-id'); // 이벤트를 발생시킨 요소의 data-product-id 속성 값 가져오기
+			var cartItemQty = document.getElementById('cartItemQty').value;
 
-			var formData = new FormData();
+			var formData = {
+				productId: productId,
+				userId: userId
+			};
 
-			// 각 필드의 이름과 값을 설정
-			formData.append('userId', userId);
-			formData.append('productId', productId);
-			formData.append('cartItemQty', cartItemQty);
+			console.log(formData);
 
 			$.ajax({
 				url: "/api/cartItem/cartItemInsertList/" + productId,
-				type: 'POST',
-				data: formData, // 데이터 전송 설정 추가
-				processData: false, // FormData 사용 시 false로 설정
-				contentType: false, // FormData 사용 시 false로 설정
-				success: function (data) {
-					alert("장바구니 등록 성공!");
-					location.reload();
+				type: "POST",
+				data: formData,
+				contentType: "application/x-www-form-urlencoded",
+				success: function (response) {
+					alert("상품이 카트에 추가되었습니다.");
 				},
 				error: function (error) {
-					alert("장바구니 등록 실패. 다시 시도해주세요.");
-					console.error("Error deleting user:", error);
-				},
+					alert("상품을 카트에 추가하는 중 오류가 발생했습니다.");
+					console.log(error);
+				}
 			});
 		}
+
 
 
 	</script>

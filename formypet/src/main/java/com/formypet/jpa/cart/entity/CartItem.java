@@ -1,5 +1,6 @@
 package com.formypet.jpa.cart.entity;
 
+import com.formypet.jpa.cart.dto.CartItemDto;
 import com.formypet.jpa.product.entity.Product;
 
 import jakarta.persistence.Entity;
@@ -13,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Builder
@@ -30,6 +32,7 @@ public class CartItem {
 	//cart관계설정
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
+	@ToString.Exclude
     private Cart cart;
 	
 	
@@ -38,4 +41,10 @@ public class CartItem {
     @JoinColumn(name = "product_id")
     private Product product;
 	
+	public static CartItem toEntity(CartItemDto dto) {
+		return CartItem.builder()
+				   .id(dto.getId())
+				   .cartItemQty(dto.getCartItemQty())
+				   .build();
+	}
 }

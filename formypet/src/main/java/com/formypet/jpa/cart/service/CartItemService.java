@@ -2,6 +2,7 @@ package com.formypet.jpa.cart.service;
 
 import java.util.List;
 
+import com.formypet.jpa.cart.dto.CartItemDto;
 import com.formypet.jpa.cart.entity.CartItem;
 
 public interface CartItemService {
@@ -16,6 +17,7 @@ public interface CartItemService {
 	List<CartItem> findAllCartItemList();
 	
 	//cartItem수정
+	CartItemDto updateCartItem(CartItemDto cartItemDto)throws Exception;
 	
 	
 }
