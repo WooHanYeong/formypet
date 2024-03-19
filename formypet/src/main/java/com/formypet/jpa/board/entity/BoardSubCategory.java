@@ -35,14 +35,15 @@ public class BoardSubCategory {
 
 	public static BoardSubCategory toEntity(BoardSubCategoryDto dto) {
 		return BoardSubCategory.builder().subCategoryId(dto.getSubCategoryId())
-				.subCategoryName(dto.getSubCategoryName()).build();
+				.subCategoryName(dto.getSubCategoryName())
+				.boardCategory(BoardCategory.builder().categoryId(dto.getCategoryId()).build())
+				.build();
+		
 	}
 
-
-
-	@OneToMany(mappedBy = "boardSubCategory", cascade = CascadeType.PERSIST)
-	@Builder.Default
+	@ManyToOne
+	@JoinColumn(name = "category_id")
 	@ToString.Exclude
-	private List<BoardCategory> boardCategories = new ArrayList<BoardCategory>();
+	private BoardCategory boardCategory;
 
 }

@@ -17,13 +17,12 @@ public class BoardCategoryDto {
 	
 	private Long categoryId;    
 	private String categoryName;
-	private Long boardSubCategoryId;
+	private BoardSubCategory boardSubCategory;
 	
 	public static BoardCategoryDto toDto(BoardCategory entity) {
 		return BoardCategoryDto.builder()
 								.categoryId(entity.getCategoryId())
 								.categoryName(entity.getCategoryName())
-								.boardSubCategoryId(entity.getCategoryId())
 								.build();
 	}
 
