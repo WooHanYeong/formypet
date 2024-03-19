@@ -70,32 +70,37 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr th:each="cartItem: ${cartItemList}">
 								<td>
 									<input type="checkbox" name="selectedProducts" value="" /> <!-- 체크박스 -->
 								</td>
 								<td>
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/single-product/cart-1.jpg" alt="" />
+											<img th:src="@{'/productimg/' + ${cartItem.product.productImage}}"
+												style="width: 147px; height: 100px;" alt="" />
 										</div>
 										<div class="media-body">
-											<p>Minimalistic shop for multipurpose use</p>
+											<p th:text="${cartItem.product.productName}">Minimalistic shop for
+												multipurpose use</p>
 										</div>
 									</div>
 								</td>
 								<td>
-									<h5>$360.00</h5>
+									<h5 th:text="${cartItem.product.productPrice+'원'}">$360.00</h5>
 								</td>
 								<td>
 									<div class="product_count">
 										<span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-										<input class="input-number" type="text" value="1" min="0" max="10">
+										<input class="input-number" th:id="'quantity_' + ${cartItem.id}" type="text"
+											th:value="${cartItem.cartItemQty}" min="1" max="100">
 										<span class="input-number-increment"> <i class="ti-angle-up"></i></span>
 									</div>
 								</td>
+
 								<td>
-									<h5>$720.00</h5>
+									<h5 th:text="${(cartItem.product.productPrice * cartItem.cartItemQty)} + '원'">
+										$720.00</h5>
 								</td>
 							</tr>
 							<tr>
@@ -114,7 +119,8 @@
 					<div class="checkout_btn_inner float-right">
 						<a class="btn_1" href="#">계속 쇼핑하기</a>
 						<a class="btn_1 checkout_btn_1" href="#" style="margin-left: 10px;">주문하기</a>
-						<a class="btn_1 checkout_btn_1" href="#" style="margin-left: 10px; background-color: rgb(255, 128, 128);">삭제</a>
+						<a class="btn_1 checkout_btn_1" href="#"
+							style="margin-left: 10px; background-color: rgb(255, 128, 128);">삭제</a>
 					</div>
 				</div>
 			</div>
@@ -152,35 +158,40 @@
 		</div>
 	</footer>
 	<!--::footer_part end::-->
-	
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 	<script>
 		//한개이상 상품삭제
-		
+
 		//수량변경
-		
+
 		//계속쇼핑하기 클릭함수
-		
-		
-		
+
+		// 각 수량 입력란과 총 가격 업데이트
+		$(document).ready(function () {
+			$('.input-number').on('input', function () {
+				var quantity = parseInt($(this).val()) || 0;
+				var price = parseFloat($(this).closest('tr').find('.product-price').text().replace(/[^\d.]/g, ''));
+				var totalPrice = quantity * price;
+				$(this).closest('tr').find('.product-total-price').text('$' + totalPrice.toFixed(2));
+			});
+		});
+
+
+
+
+
 	</script>
 
-	<!-- jquery plugins here-->
-	<!-- jquery -->
 	<script src="js/jquery-1.12.1.min.js"></script>
-	<!-- popper js -->
 	<script src="js/popper.min.js"></script>
-	<!-- bootstrap js -->
 	<script src="js/bootstrap.min.js"></script>
-	<!-- easing js -->
 	<script src="js/jquery.magnific-popup.js"></script>
-	<!-- swiper js -->
 	<script src="js/swiper.min.js"></script>
-	<!-- swiper js -->
 	<script src="js/masonry.pkgd.js"></script>
-	<!-- particles js -->
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.nice-select.min.js"></script>
-	<!-- slick js -->
 	<script src="js/slick.min.js"></script>
 	<script src="js/jquery.counterup.min.js"></script>
 	<script src="js/waypoints.min.js"></script>

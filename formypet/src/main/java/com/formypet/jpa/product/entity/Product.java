@@ -43,7 +43,7 @@ public class Product {
 	
 	private String productCategory;
 	
-	private String productPrice;
+	private int productPrice;
 	
 	private String productImage;
 	

@@ -1,9 +1,11 @@
 package com.formypet.jpa.cart.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.formypet.jpa.cart.entity.CartItem;
 import com.formypet.jpa.cart.repository.CartItemRepository;
 
@@ -32,8 +34,10 @@ public class CartItemServiceImpl implements CartItemService{
 	//cartItem리스트
 	@Override
 	public List<CartItem> findAllCartItemList() {
-		return cartItemRepository.findAll();
+	    List<CartItem> cartItems = cartItemRepository.findAll();
+	    return cartItems != null ? cartItems : Collections.emptyList();
 	}
+
 
 	//cartItem수정
 	

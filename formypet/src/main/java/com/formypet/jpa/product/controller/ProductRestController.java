@@ -32,7 +32,7 @@ public class ProductRestController {
 			@RequestParam("productName") String productName, @RequestParam("productContent") String productContent,
 			@RequestParam("productAnimalType") String productAnimalType,
 			@RequestParam("productCategory") String productCategory,
-			@RequestParam("productPrice") String productPrice) {
+			@RequestParam("productPrice") int productPrice) {
 		try {
 			// 파일 저장
 			String uploadPath1 = System.getProperty("user.dir") + "/src/main/resources/static/productimg/";
