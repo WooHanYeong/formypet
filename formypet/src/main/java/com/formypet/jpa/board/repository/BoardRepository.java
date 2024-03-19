@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.formypet.jpa.board.entity.Board;
 
 public interface BoardRepository extends JpaRepository<Board, Long>{
-	//<Board> findByBoardSubCategorySubCategoryId(Long subCategoryId);
-	//List<Board> findByBoardSubCategorySubCategoryName(String subCategoryName);
-	
+	List<Board> findByBoardCategoryCategoryId(Long categoryId);
+	List<Board> findByBoardCategoryCategoryIdAndBoardCategorySubCategoriesSubCategoryId(Long categoryId, Long subCategoryId);
+
 }

@@ -61,6 +61,13 @@ public class Board {
 	@JoinColumn(name = "category_id")
 	@ToString.Exclude
 	private BoardCategory boardCategory;
+	
+	@ManyToOne
+	@JoinColumn(name = "sub_category_id")
+	@ToString.Exclude
+	private BoardSubCategory boardSubCategory;
+	
+	
 
 	
 }

@@ -45,5 +45,10 @@ public class BoardSubCategory {
 	@JoinColumn(name = "category_id")
 	@ToString.Exclude
 	private BoardCategory boardCategory;
+	
+	@OneToMany(mappedBy = "boardSubCategory",cascade = CascadeType.PERSIST)
+	@Builder.Default
+	@ToString.Exclude
+	private List<Board> boards = new ArrayList<Board>();
 
 }

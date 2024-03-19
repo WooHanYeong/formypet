@@ -11,8 +11,11 @@ import com.formypet.jpa.board.entity.BoardSubCategory;
 
 public interface BoardService {
 	
-	//게시판 글작성
-	public Board createBoard(BoardDto boardDto) throws Exception;
+	//게시판 카테고리별 글작성
+	public Board createBoardByMainCategory(Long categoryId,BoardDto boardDto) throws Exception;
+	
+	//게시판 카테고리의 서브카테고리별 글작성
+	public Board createBoardByMainCategoryBySubCategory(BoardDto boardDto,Long subCategoryId) throws Exception;
 
 	//게시판 글삭제
 	public void deleteBoard(Long boardId) throws Exception;
@@ -22,6 +25,12 @@ public interface BoardService {
 	
 	//게시판 글 모두 조회
 	public List<Board> getBoardByAll() throws Exception;
+	
+	//게시판 글 상위카테고리별 리스트 조회
+	public List<Board> getBoardByCategoryId(Long categoryId) throws Exception;
+	
+	//게시판 글 상위카테고리의 하위카테고리별 리스트 조회
+	public List<Board> getBoardByCategoryIdAndSubCategoryId(Long categoryId ,Long subCategoryId) throws Exception;
 	
 
 	
