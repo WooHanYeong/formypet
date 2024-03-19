@@ -180,7 +180,7 @@
 									<span class="icon text-white-50">
 										<i class="fas fa-trash"></i>
 									</span>
-									<span class="text" onclick="printSelectedProductIds()">Split Button Danger</span>
+									<span class="text" onclick="printSelectedProductIds()">상품삭제</span>
 								</a>
 							</div>
 						</div>
@@ -216,7 +216,7 @@
 				data: JSON.stringify(selectedIds), // 선택된 상품 ID 리스트를 JSON 문자열로 변환하여 전송
 				contentType: 'application/json', // 요청의 컨텐츠 타입을 JSON으로 설정
 				success: function (response) {
-					alert("상품 삭제 성공!");
+					alert("상품이 삭제되었습니다.!");
 					location.reload();
 				},
 				error: function (error) {

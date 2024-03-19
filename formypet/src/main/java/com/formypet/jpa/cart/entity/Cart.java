@@ -3,6 +3,7 @@ package com.formypet.jpa.cart.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.formypet.jpa.cart.dto.CartDto;
 import com.formypet.jpa.user.entity.User;
 
 import jakarta.persistence.CascadeType;
@@ -34,6 +35,14 @@ public class Cart {
 	private int cartTotalPrice;
 
 	private int cartTotalQty;
+	
+	public static Cart toEntity(CartDto dto) {
+		return Cart.builder()
+				   .id(dto.getId())
+				   .cartTotalPrice(dto.getCartTotalPrice())
+				   .cartTotalQty(dto.getCartTotalQty())
+				   .build();
+	}
 
 	// 유저관계설정
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
