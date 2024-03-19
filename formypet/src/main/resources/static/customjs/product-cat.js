@@ -102,5 +102,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
+function addCartItem(){
+	var userId =document.getElementById('userid');
+	console.log(userId);
+	var productId =document.getElementById('productId');
+	console.log(productId);
+	var cartItemQty = 1;
+	console.log(cartItemQty);
+	
+	
+	
+}
 
