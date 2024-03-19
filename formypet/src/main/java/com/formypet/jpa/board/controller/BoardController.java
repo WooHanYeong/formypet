@@ -80,31 +80,23 @@ public class BoardController {
 	 * ResponseEntity<>(subCategoryNames, HttpStatus.OK); } catch (Exception e) {
 	 * return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); } }
 	 */
-
-	@GetMapping("/board_write")
-	public String boardWrite(Model model) {
-		List<BoardCategory> categories = boardCategoryRepository.findAll();
-		model.addAttribute("categories", categories);
-		List<BoardSubCategory> subCategories = boardSubCategoryRepository.findAll();
-		model.addAttribute("subCategories", subCategories);
-		String forwardPath = "board_write";
-		return forwardPath;
-	}
-
-	@GetMapping("/board_adopt")
-	public String boardAdopt(Model model) throws Exception {
-		Long categoryId = 2L;
-		List<Board> boardListByCategory = boardService.getBoardBySubCategoryId(categoryId);
-		model.addAttribute("boardListByCategory", boardListByCategory);
-		List<BoardCategory> categories = boardCategoryRepository.findAll();
-		model.addAttribute("categories", categories);
-		String forwardPath = "board_list";
-		return forwardPath;
-	}
-
-	@GetMapping("/test")
-	public String test() {
-		String forwardPath = "test";
-		return forwardPath;
-	}
+	/*
+	 * @GetMapping("/board_write") public String boardWrite(Model model) {
+	 * List<BoardCategory> categories = boardCategoryRepository.findAll();
+	 * model.addAttribute("categories", categories); List<BoardSubCategory>
+	 * subCategories = boardSubCategoryRepository.findAll();
+	 * model.addAttribute("subCategories", subCategories); String forwardPath =
+	 * "board_write"; return forwardPath; }
+	 * 
+	 * @GetMapping("/board_adopt") public String boardAdopt(Model model) throws
+	 * Exception { Long categoryId = 2L; List<Board> boardListByCategory =
+	 * boardService.getBoardBySubCategoryId(categoryId);
+	 * model.addAttribute("boardListByCategory", boardListByCategory);
+	 * List<BoardCategory> categories = boardCategoryRepository.findAll();
+	 * model.addAttribute("categories", categories); String forwardPath =
+	 * "board_list"; return forwardPath; }
+	 * 
+	 * @GetMapping("/test") public String test() { String forwardPath = "test";
+	 * return forwardPath; }
+	 */
 }
