@@ -75,7 +75,7 @@ public class CartItemRestController {
 			cartItemService.insert(cartItem);
 			
 			//cart update
-		    findcart2.setCartTotalPrice(findcart2.getCartTotalPrice() + (Integer.parseInt(findProduct.getProductPrice()) * cartItemQty));
+		    findcart2.setCartTotalPrice(findcart2.getCartTotalPrice() + (findProduct.getProductPrice()) * cartItemQty);
 		    findcart2.setCartTotalQty(findcart2.getCartTotalQty() + cartItemQty);
 		    CartDto findcart2Dto = CartDto.toDto(findcart2);
 			cartService.updateCart(findcart2Dto);
