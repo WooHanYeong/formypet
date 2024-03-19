@@ -37,19 +37,17 @@ public class BoardCategory {
 		return BoardCategory.builder()
 							.categoryId(dto.getCategoryId())
 							.categoryName(dto.getCategoryName())
-							.boardSubCategory(BoardSubCategory.builder().subCategoryId(dto.getBoardSubCategoryId()).build())
 							.build();
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "sub_category_id")
-	@ToString.Exclude
-	private BoardSubCategory boardSubCategory;
-	
 	@OneToMany(mappedBy = "boardCategory",cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
 	private List<Board> boards = new ArrayList<Board>();
 	
+	@OneToMany(mappedBy = "boardCategory",cascade = CascadeType.PERSIST)
+	@Builder.Default
+	@ToString.Exclude
+	private List<BoardSubCategory> subCategories = new ArrayList<BoardSubCategory>();
 	
 }

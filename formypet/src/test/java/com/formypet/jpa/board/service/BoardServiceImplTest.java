@@ -27,13 +27,13 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	//@Disabled
 	@Rollback(false)
 	void createBoard() throws Exception {
-		BoardDto boardDto = new BoardDto();
+		BoardDto boardDto = new BoardDto(); 
 		boardDto.setBoardCategoryId(1L);
-		boardDto.setBoardContent("test1");
+		boardDto.setBoardContent("test2");
 		boardDto.setBoardId(null);
 		boardDto.setBoardImage(null);
 		boardDto.setBoardReadCount(0);
-		boardDto.setBoardTitle("test1");
+		boardDto.setBoardTitle("test2");
 		Board board = boardService.createBoard(boardDto);
 		System.out.println("boardCreateTest"+board);
 	}

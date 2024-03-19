@@ -16,6 +16,7 @@ public class BoardSubCategoryDto {
 	
 	private Long subCategoryId;    
 	private String subCategoryName;
+	private Long categoryId;
 	
 	public static BoardSubCategoryDto toDto(BoardSubCategory entity) {
 		return BoardSubCategoryDto.builder()
