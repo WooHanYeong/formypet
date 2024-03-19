@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.formypet.jpa.cart.dto.CartDto;
+import com.formypet.jpa.cart.dto.CartItemDto;
 import com.formypet.jpa.cart.entity.CartItem;
 import com.formypet.jpa.cart.repository.CartItemRepository;
 
@@ -38,7 +40,18 @@ public class CartItemServiceImpl implements CartItemService{
 	    return cartItems != null ? cartItems : Collections.emptyList();
 	}
 
-
 	//cartItem수정
+	@Override
+	public CartItemDto updateCartItem(CartItemDto cartItemDto) throws Exception {
+		CartItem cartItem =cartItemRepository.findById(cartItemDto.getId()).orElse(null);
+		
+		cartItem.setCartItemQty(cartItemDto.getCartItemQty());
+		
+		CartItem updateCartItem = cartItemRepository.save(cartItem);
+		
+		return CartItemDto.toDto(updateCartItem);
+	}
+
+
 	
 }
