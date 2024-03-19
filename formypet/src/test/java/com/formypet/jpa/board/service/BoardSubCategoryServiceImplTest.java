@@ -16,8 +16,6 @@ import jakarta.transaction.Transactional;
 
 public class BoardSubCategoryServiceImplTest extends FormypetApplicationTest {
 	@Autowired
-	BoardSubCategoryServiceImpl boardSubCategoryServiceImpl;
-	@Autowired
 	BoardService boardService;
 	/*
 	@Test

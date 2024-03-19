@@ -24,7 +24,6 @@ import com.formypet.jpa.board.repository.BoardCategoryRepository;
 import com.formypet.jpa.board.repository.BoardRepository;
 import com.formypet.jpa.board.repository.BoardSubCategoryRepository;
 import com.formypet.jpa.board.service.BoardService;
-import com.formypet.jpa.board.service.BoardSubCategoryServiceImpl;
 
 @Controller
 @RequestMapping("/")
@@ -37,39 +36,39 @@ public class BoardController {
 	BoardCategoryRepository boardCategoryRepository;
 	@Autowired
 	BoardSubCategoryRepository boardSubCategoryRepository;
-	@Autowired
-	BoardSubCategoryServiceImpl boardSubCategoryServiceImpl;
-	/*
-	 * @GetMapping("/board_list") public String boardList(Model model) throws
-	 * Exception { Long categoryId = 1L; List<BoardSubCategory> subCategories =
-	 * boardSubCategoryServiceImpl.getSubCategoryByMainCategoryId(categoryId);
-	 * model.addAttribute("subCategories", subCategories); List<BoardCategory>
-	 * categories = boardCategoryRepository.findAll();
-	 * model.addAttribute("categories", categories); // List<Board>
-	 * boardListBySubCategory = // boardService.getBoardBySubCategoryId(categoryId);
-	 * // model.addAttribute("boardListBySubCategory", boardListBySubCategory);
-	 * String forwardPath = "board_list"; return forwardPath; }
-	 * 
-	 * @GetMapping("/board_list/{subCategoryId}") public String
-	 * boardSubCategoryList(@PathVariable Long subCategoryId, Model model) throws
-	 * Exception { Long categoryId = 1L; List<BoardSubCategory> subCategories =
-	 * boardSubCategoryServiceImpl.getSubCategoryByMainCategoryId(categoryId);
-	 * model.addAttribute("subCategories", subCategories); List<BoardCategory>
-	 * categories = boardCategoryRepository.findAll();
-	 * model.addAttribute("categories", categories); List<Board> boards =
-	 * boardRepository.findByBoardSubCategorySubCategoryId(subCategoryId);
-	 * model.addAttribute("boards", boards); List<Board> boardListBySubCategory =
-	 * boardService.getBoardBySubCategoryId(subCategoryId);
-	 * model.addAttribute("boardListBySubCategory", boardListBySubCategory); String
-	 * forwardPath = "board_list"; return forwardPath; }
-	 * 
-	 * @GetMapping("/board_detail") public String boardDetail(@RequestParam(value =
-	 * "boardId") Long boardId, Model model) throws Exception { Optional<Board>
-	 * boardOptional = boardService.getBoardById(boardId); if
-	 * (boardOptional.isPresent()) { Board board = boardOptional.get();
-	 * model.addAttribute("board", board); } String forwardPath = "board_detail";
-	 * return forwardPath; }
-	 */
+
+	@GetMapping("/board_list/{categoryId}")
+	public String boardList(@PathVariable(value = "categoryId") Long categoryId, Model model) throws Exception {
+		List<BoardCategory> categories = boardCategoryRepository.findAll();
+		model.addAttribute("categories", categories);
+		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
+		model.addAttribute("subCategories", subCategories);
+		List<Board> boards = boardService.getBoardByCategoryId(categoryId);
+		model.addAttribute("boards", boards);
+		String forwardPath = "board_list";
+		return forwardPath;
+	}
+	
+	@GetMapping("/board_list/{categoryId}/{subCategoryId}")
+	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "subCategoryId") Long subCategoryId, Model model) throws Exception {
+		List<BoardCategory> categories = boardCategoryRepository.findAll();
+		model.addAttribute("categories", categories);
+		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
+		model.addAttribute("subCategories", subCategories);
+		List<Board> subBoards = boardService.getBoardByCategoryIdAndSubCategoryId(categoryId, subCategoryId);
+		model.addAttribute("subBoards", subBoards);
+		String forwardPath = "board_list";
+		return forwardPath;
+	}
+
+	@GetMapping("/board_detail")
+	public String boardDetail(@RequestParam(value = "boardId") Long boardId, Model model) throws Exception {
+		Board board = boardService.selectBoard(boardId);
+		model.addAttribute("board", board);
+		String forwardPath = "board_detail";
+		return forwardPath;
+	}
+
 	/*
 	 * @GetMapping("/board_list/{categoryId}") public ResponseEntity<List<String>>
 	 * getSubCategoryNamesByMainCategoryId(@PathVariable Long categoryId) { try {
@@ -80,23 +79,30 @@ public class BoardController {
 	 * ResponseEntity<>(subCategoryNames, HttpStatus.OK); } catch (Exception e) {
 	 * return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); } }
 	 */
-	/*
-	 * @GetMapping("/board_write") public String boardWrite(Model model) {
-	 * List<BoardCategory> categories = boardCategoryRepository.findAll();
-	 * model.addAttribute("categories", categories); List<BoardSubCategory>
-	 * subCategories = boardSubCategoryRepository.findAll();
-	 * model.addAttribute("subCategories", subCategories); String forwardPath =
-	 * "board_write"; return forwardPath; }
-	 * 
-	 * @GetMapping("/board_adopt") public String boardAdopt(Model model) throws
-	 * Exception { Long categoryId = 2L; List<Board> boardListByCategory =
-	 * boardService.getBoardBySubCategoryId(categoryId);
-	 * model.addAttribute("boardListByCategory", boardListByCategory);
-	 * List<BoardCategory> categories = boardCategoryRepository.findAll();
-	 * model.addAttribute("categories", categories); String forwardPath =
-	 * "board_list"; return forwardPath; }
-	 * 
-	 * @GetMapping("/test") public String test() { String forwardPath = "test";
-	 * return forwardPath; }
-	 */
+	@GetMapping("/board_write")
+	public String boardWrite(Model model) {
+		List<BoardCategory> categories = boardCategoryRepository.findAll();
+		model.addAttribute("categories", categories);
+		List<BoardSubCategory> subCategories = boardSubCategoryRepository.findAll();
+		model.addAttribute("subCategories", subCategories);
+		String forwardPath = "board_write";
+		return forwardPath;
+	}
+
+	@GetMapping("/board_adopt")
+	public String boardAdopt(Model model) throws Exception {
+		List<BoardCategory> categories = boardCategoryRepository.findAll();
+		model.addAttribute("categories", categories);
+		List<BoardSubCategory> subCategories = boardSubCategoryRepository.findAll();
+		model.addAttribute("subCategories", subCategories);
+		String forwardPath = "board_list";
+		return forwardPath;
+	}
+
+	@GetMapping("/test")
+	public String test() {
+		String forwardPath = "test";
+		return forwardPath;
+	}
+
 }

@@ -27,17 +27,17 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	@Disabled
+	//@Disabled
 	@Rollback(false)
 	void createBoard() throws Exception {
-		Long categoryId = 1L;
-		BoardDto boardDto = new BoardDto(); 
+		BoardDto boardDto = new BoardDto();
+		boardDto.setBoardCategoryId(1L);
 		boardDto.setBoardContent("test2");
 		boardDto.setBoardId(null);
 		boardDto.setBoardImage(null);
 		boardDto.setBoardReadCount(0);
 		boardDto.setBoardTitle("test2");
-		Board board = boardService.createBoardByMainCategory(categoryId,boardDto);
+		Board board = boardService.createBoardByMainCategory(boardDto);
 		System.out.println("boardCreateTest"+board);
 	}
     @Test
@@ -45,21 +45,13 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	//@Disabled
 	@Rollback(false)
     public void createBoardSubCate() throws Exception {
-        Long categoryId = 1L;
-        Long subCategoryId = 5L;
         BoardDto boardDto = new BoardDto();
+        boardDto.setBoardCategoryId(1L);
+        boardDto.setBoardSubCategoryId(1L);
         boardDto.setBoardTitle("제목");
         boardDto.setBoardContent("내용");
-        boardDto.setBoardCategoryId(categoryId);
-
-        BoardCategory boardCategory = new BoardCategory();
-        boardCategory.setCategoryId(categoryId);
-
-        BoardSubCategory boardSubCategory = new BoardSubCategory();
-        boardSubCategory.setSubCategoryId(subCategoryId);
-        
-        Board createdBoard = boardService.createBoardByMainCategoryBySubCategory(boardDto, subCategoryId);
-        System.out.println("boardCreateTest2"+createdBoard);
+        Board createdBoard = boardService.createBoardByMainCategoryBySubCategory(boardDto);
+        System.out.println("categoryAndSubCategory"+createdBoard);
     
     }
     
@@ -111,6 +103,16 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 		Long subCategoryId = 2L;
 		List<Board> boards = boardService.getBoardByCategoryIdAndSubCategoryId(categoryId, subCategoryId);
 		System.out.println("게시글 카테고리의 서브카테고리별 조회"+boards);
+	}
+	
+	@Test
+	@Transactional
+	//@Disabled
+	@Rollback(false)
+	void subCategory() throws Exception {
+		Long categoryId = 2L;
+		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
+		System.out.println("서브카테고리 조회"+subCategories);
 	}
 	
 

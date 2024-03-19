@@ -52,6 +52,7 @@ public class Board {
 					.boardImage(dto.getBoardImage())
 					.boardReadCount(dto.getBoardReadCount())
 					.boardCategory(BoardCategory.builder().categoryId(dto.getBoardCategoryId()).build())
+					.boardSubCategory(BoardSubCategory.builder().subCategoryId(dto.getBoardSubCategoryId()).build())
 					.build();
 		return board;
 	}
