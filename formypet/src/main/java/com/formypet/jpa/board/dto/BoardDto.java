@@ -24,6 +24,7 @@ public class BoardDto {
 	private int boardReadCount;
 
 	private Long boardCategoryId;
+	private Long boardSubCategoryId;
 	
 	public static BoardDto toDto(Board entity) {
 		return  BoardDto.builder()
@@ -33,6 +34,7 @@ public class BoardDto {
 						.boardImage(entity.getBoardImage())
 						.boardReadCount(entity.getBoardReadCount())
 						.boardCategoryId(entity.getBoardCategory().getCategoryId())
+						.boardSubCategoryId(entity.getBoardSubCategory().getSubCategoryId())
 						.build();
 	}
 	

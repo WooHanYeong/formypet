@@ -35,8 +35,8 @@ public class BoardServiceImpl implements BoardService {
 
 	//메인 카테고리별 create 서비스
 	@Override
-	public Board createBoardByMainCategory(Long categoryId, BoardDto boardDto) throws Exception {
-	    BoardCategory boardCategory = boardCategoryRepository.findById(categoryId)
+	public Board createBoardByMainCategory(BoardDto boardDto) throws Exception {
+	    BoardCategory boardCategory = boardCategoryRepository.findById(boardDto.getBoardCategoryId())
 	            .orElseThrow(() -> new Exception("해당하는 카테고리가 존재하지 않습니다."));
 	    Board board = Board.builder()
 	            .boardTitle(boardDto.getBoardTitle())
@@ -50,17 +50,17 @@ public class BoardServiceImpl implements BoardService {
 	
 	//메인 카테고리의 서브카테고리별 create 서비스
 	@Override
-	public Board createBoardByMainCategoryBySubCategory(BoardDto boardDto,Long subCategoryId) throws Exception {
+	public Board createBoardByMainCategoryBySubCategory(BoardDto boardDto) throws Exception {
 		BoardCategory boardCategory = boardCategoryRepository.findById(boardDto.getBoardCategoryId())
 				.orElseThrow(() -> new Exception("해당하는 카테고리가 존재하지 않습니다."));
-		Optional<BoardSubCategory> boardSubCategoryOptional = boardSubCategoryRepository.findById(subCategoryId);
+		Optional<BoardSubCategory> boardSubCategoryOptional = boardSubCategoryRepository.findById(boardDto.getBoardSubCategoryId());
 		BoardSubCategory boardSubCategory = boardSubCategoryOptional.orElseThrow(() -> new Exception("해당하는 서브 카테고리가 존재하지 않습니다."));
 		Board board = Board.builder()
 				.boardTitle(boardDto.getBoardTitle())
 				.boardContent(boardDto.getBoardContent())
 				.boardImage(boardDto.getBoardImage())
-				.boardCategory(BoardCategory.builder().categoryId(boardDto.getBoardCategoryId()).build())
 				.boardCategory(boardCategory)
+				.boardSubCategory(boardSubCategory)
 				.build();
 		return boardRepository.save(board);
 	}
@@ -98,26 +98,33 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.findByBoardCategoryCategoryId(categoryId);
 	}
 	
-
+	//게시글 상위카테고리 and 하위카테고리별 조회
 	@Override
 	public List<Board> getBoardByCategoryIdAndSubCategoryId(Long categoryId ,Long subCategoryId) throws Exception {
-	    BoardCategory boardCategory = boardCategoryRepository.findById(categoryId)
-	            .orElseThrow(() -> new Exception("해당하는 카테고리가 존재하지 않습니다."));
+		return boardRepository.findByBoardCategoryCategoryIdAndBoardSubCategorySubCategoryId(categoryId, subCategoryId);
+	}
+	
+	//페이지 서브 카테고리 표시
+	@Override
+	public List<BoardSubCategory> getSubCategoryByCategoryBySubCategoryId(Long categoryId) throws Exception {
+        Optional<BoardCategory> optionalCategory = boardCategoryRepository.findById(categoryId);
+        if (optionalCategory.isPresent()) {
+			BoardCategory category = optionalCategory.get();
+			List<BoardSubCategory> subCategories = category.getSubCategories();
+			return subCategories;
+        }
+        throw new Exception("서브카테고리를 찾을 수 없습니다.");
+	}
 
-	    // 카테고리에서 서브 카테고리 목록 조회
-	    List<BoardSubCategory> subCategories = boardCategory.getSubCategories();
-
-	    // 서브 카테고리 목록에서 원하는 서브 카테고리 필터링
-	    Optional<BoardSubCategory> matchingSubCategory = subCategories.stream()
-	            .filter(subCategory -> subCategory.getSubCategoryId().equals(subCategoryId))
-	            .findFirst();
-
-	    if (matchingSubCategory.isPresent()) {
-	        // 해당 서브 카테고리에 속하는 보드 목록 가져오기
-	        return matchingSubCategory.get().getBoardCategory().getBoards();
-	    } else {
-	        throw new Exception("해당하는 서브 카테고리가 존재하지 않습니다.");
-	    }
+	//게시글 한개 조회
+	@Override
+	public Board selectBoard(Long boardId) throws Exception {
+		Optional<Board> optionalBoard = boardRepository.findById(boardId);
+		if (optionalBoard.isPresent()) {
+			Board board = optionalBoard.get();
+			return board;
+		}
+		throw new Exception("해당 게시글을 찾을 수 없습니다.");
 	}
 	
 }
