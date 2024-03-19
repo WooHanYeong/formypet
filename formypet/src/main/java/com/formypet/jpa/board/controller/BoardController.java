@@ -48,8 +48,8 @@ public class BoardController {
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
-	/*
-	@GetMapping("/board_list/{subCategoryId}")
+	
+	@GetMapping("/board_list/{categoryId}/{subCategoryId}")
 	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "subCategoryId") Long subCategoryId, Model model) throws Exception {
 		List<BoardCategory> categories = boardCategoryRepository.findAll();
 		model.addAttribute("categories", categories);
@@ -60,7 +60,7 @@ public class BoardController {
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
-*/
+
 	@GetMapping("/board_detail")
 	public String boardDetail(@RequestParam(value = "boardId") Long boardId, Model model) throws Exception {
 		Board board = boardService.selectBoard(boardId);

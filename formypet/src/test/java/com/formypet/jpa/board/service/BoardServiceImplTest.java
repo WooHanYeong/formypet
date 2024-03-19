@@ -47,7 +47,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
     public void createBoardSubCate() throws Exception {
         BoardDto boardDto = new BoardDto();
         boardDto.setBoardCategoryId(1L);
-        boardDto.setBoardSubCategoryId(2L);
+        boardDto.setBoardSubCategoryId(1L);
         boardDto.setBoardTitle("제목");
         boardDto.setBoardContent("내용");
         Board createdBoard = boardService.createBoardByMainCategoryBySubCategory(boardDto);
