@@ -95,7 +95,8 @@ public class CartItemRestController {
 		try {
 			// 로그인된 유저정보로 카트 가져오기
 			User findUser = userService.findUserById(userId);
-			Optional<Cart> findCart = cartService.findByUserId(userId);
+			System.out.println("findUser -->"+findUser);
+			Optional<Cart> findCart = cartService.findByUserId(findUser.getId());
 			Cart findCart2 = findCart.orElseGet(() -> {
 				Cart newCart = new Cart();
 				newCart.setUser(findUser);
@@ -104,6 +105,7 @@ public class CartItemRestController {
 				cartService.insert(newCart);
 				return newCart;
 			});
+			System.out.println("Cart -->"+findCart2);
 
 			// product찾기
 			Product findProduct = productService.findById(productId).orElse(null);

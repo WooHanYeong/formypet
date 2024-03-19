@@ -39,6 +39,7 @@ public class CartItem {
 	//product관계설정
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
+	@ToString.Exclude
     private Product product;
 	
 	public static CartItem toEntity(CartItemDto dto) {

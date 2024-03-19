@@ -71,37 +71,40 @@
 						</thead>
 						<tbody>
 							<tr th:each="cartItem: ${cartItemList}">
-								<td>
-									<input type="checkbox" name="selectedProducts" value="" /> <!-- 체크박스 -->
-								</td>
-								<td>
-									<div class="media">
-										<div class="d-flex">
-											<img th:src="@{'/productimg/' + ${cartItem.product.productImage}}"
-												style="width: 147px; height: 100px;" alt="" />
+								<div th:if="${cartItem.cart.user.id eq session.loginUser.id}">
+									<td>
+										<input type="checkbox" name="selectedProducts" value="" /> <!-- 체크박스 -->
+									</td>
+									<td>
+										<div class="media">
+											<div class="d-flex">
+												<img th:src="@{'/productimg/' + ${cartItem.product.productImage}}"
+													style="width: 147px; height: 100px;" alt="" />
+											</div>
+											<div class="media-body">
+												<p th:text="${cartItem.product.productName}">Minimalistic shop for
+													multipurpose use</p>
+											</div>
 										</div>
-										<div class="media-body">
-											<p th:text="${cartItem.product.productName}">Minimalistic shop for
-												multipurpose use</p>
+									</td>
+									<td>
+										<h5 th:text="${cartItem.product.productPrice+'원'}">$360.00</h5>
+									</td>
+									<td>
+										<div class="product_count">
+											<span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
+											<input class="input-number" th:id="'quantity_' + ${cartItem.id}" type="text"
+												th:value="${cartItem.cartItemQty}" min="1" max="100">
+											<span class="input-number-increment"> <i class="ti-angle-up"></i></span>
 										</div>
-									</div>
-								</td>
-								<td>
-									<h5 th:text="${cartItem.product.productPrice+'원'}">$360.00</h5>
-								</td>
-								<td>
-									<div class="product_count">
-										<span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-										<input class="input-number" th:id="'quantity_' + ${cartItem.id}" type="text"
-											th:value="${cartItem.cartItemQty}" min="1" max="100">
-										<span class="input-number-increment"> <i class="ti-angle-up"></i></span>
-									</div>
-								</td>
+									</td>
 
-								<td>
-									<h5 th:text="${(cartItem.product.productPrice * cartItem.cartItemQty)} + '원'">
-										$720.00</h5>
-								</td>
+									<td>
+										<h5 th:text="${(cartItem.product.productPrice * cartItem.cartItemQty)} + '원'">
+											$720.00</h5>
+									</td>
+
+								</div>
 							</tr>
 							<tr>
 								<td></td>
@@ -111,7 +114,7 @@
 									<h5>Total</h5>
 								</td>
 								<td>
-									<h5>$2160.00</h5>
+									<h5 th:text="${findcart2.cartTotalPrice+'원'}">$2160.00</h5>
 								</td>
 							</tr>
 						</tbody>

@@ -125,13 +125,8 @@
 						</div>
 					</div>
 
-					<script>
-
-					</script>
-
-					<form id="productForm">
 						<div class="row align-items-center latest_product_inner"
-							style="max-height: 1200px; overflow-y:auto;">
+							style="max-height: 1200px; overflow-y:auto;" id="container">
 							<div class="col-lg-4 col-sm-6" th:each="dog: ${dogList}">
 								<div class="single_product_item">
 									<img th:src="@{'/productimg/' + ${dog.productImage}}" alt="">
@@ -146,8 +141,6 @@
 										<a class="add_cart" onclick="addCartItem(this)" th:data-product-id="${dog.id}">+
 											add to cart</a>
 									</div>
-									<h1 th:text="${dog.id}"></h1>
-									<h1 th:text="${session.loginUser.id}"></h1>
 
 									<!-- Hidden input fields for userId and productId -->
 									<input type="hidden" id="cartItemQty" value="1">
@@ -158,13 +151,7 @@
 								</div>
 							</div>
 						</div>
-					</form>
-
-
-
-					<script>
-
-					</script>
+					
 				</div>
 			</div>
 		</div>

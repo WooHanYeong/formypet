@@ -138,12 +138,19 @@
 								<h3 style=" text-align: center;" th:text="${cat.productPrice}+'원'">$150.00</h3>
 								<h3 th:text="${cat.productCategory}" style="display: none;">$150.00</h3>
 								<div class="single_product_text">
-									<a class="add_cart" onclick="addCartItem()">+ add to cart<i class="ti-heart"></i></a>
+									<a class="add_cart" onclick="addCartItem(this)" th:data-product-id="${cat.id}">+
+										add to cart</a>
 								</div>
-								<h1 th:text="${cat.id}" id ="productId" style="display: none;"></h1>
+
+								<!-- Hidden input fields for userId and productId -->
+								<input type="hidden" id="cartItemQty" value="1">
+								<input type="hidden" id="userId" th:value="${session.loginUser.id}">
+								<input type="hidden" onclick="addCartItem(this)" id="productId" th:value="${cat.id}">
+
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -235,23 +242,46 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="customjs/product-cat.js"></script>
+	<script>
 
-	<!-- jquery plugins here-->
+		function addCartItem(button) {
+			var userId = document.getElementById('userId').value;
+			var productId = button.getAttribute('data-product-id'); // 이벤트를 발생시킨 요소의 data-product-id 속성 값 가져오기
+			var cartItemQty = document.getElementById('cartItemQty').value;
+
+			var formData = {
+				productId: productId,
+				userId: userId
+			};
+
+			console.log(formData);
+
+			$.ajax({
+				url: "/api/cartItem/cartItemInsertList/" + productId,
+				type: "POST",
+				data: formData,
+				contentType: "application/x-www-form-urlencoded",
+				success: function (response) {
+					alert("상품이 카트에 추가되었습니다.");
+				},
+				error: function (error) {
+					alert("상품을 카트에 추가하는 중 오류가 발생했습니다.");
+					console.log(error);
+				}
+			});
+		}
+
+
+
+	</script>
 	<script src="js/jquery-1.12.1.min.js"></script>
-	<!-- popper js -->
 	<script src="js/popper.min.js"></script>
-	<!-- bootstrap js -->
 	<script src="js/bootstrap.min.js"></script>
-	<!-- easing js -->
 	<script src="js/jquery.magnific-popup.js"></script>
-	<!-- swiper js -->
 	<script src="js/swiper.min.js"></script>
-	<!-- swiper js -->
 	<script src="js/masonry.pkgd.js"></script>
-	<!-- particles js -->
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.nice-select.min.js"></script>
-	<!-- slick js -->
 	<script src="js/slick.min.js"></script>
 	<script src="js/jquery.counterup.min.js"></script>
 	<script src="js/waypoints.min.js"></script>
@@ -262,8 +292,8 @@
 	<script src="js/mail-script.js"></script>
 	<script src="js/stellar.js"></script>
 	<script src="js/price_rangs.js"></script>
-	<!-- custom js -->
 	<script src="js/custom.js"></script>
+
 </body>
 
 </html>
