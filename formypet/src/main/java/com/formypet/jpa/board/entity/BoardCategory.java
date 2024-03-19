@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
@@ -35,14 +37,19 @@ public class BoardCategory {
 		return BoardCategory.builder()
 							.categoryId(dto.getCategoryId())
 							.categoryName(dto.getCategoryName())
+							.boardSubCategory(BoardSubCategory.builder().subCategoryId(dto.getBoardSubCategoryId()).build())
 							.build();
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "sub_category_id")
+	@ToString.Exclude
+	private BoardSubCategory boardSubCategory;
 	
 	@OneToMany(mappedBy = "boardCategory",cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
-	private List<BoardSubCategory> subCategories = new ArrayList<BoardSubCategory>();
+	private List<Board> boards = new ArrayList<Board>();
 	
 	
 }

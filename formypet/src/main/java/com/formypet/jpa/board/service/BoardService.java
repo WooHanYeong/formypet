@@ -11,24 +11,18 @@ import com.formypet.jpa.board.entity.BoardSubCategory;
 
 public interface BoardService {
 	
-
+	//게시판 글작성
 	public Board createBoard(BoardDto boardDto) throws Exception;
 
+	//게시판 글삭제
 	public void deleteBoard(Long boardId) throws Exception;
 	
+	//게시판 글수정
 	public Board updateBoard(Long boardId,BoardDto boardDto) throws Exception;
 	
-	public Optional<Board> getBoardById(Long boardId) throws Exception;
-	
+	//게시판 글 모두 조회
 	public List<Board> getBoardByAll() throws Exception;
 	
-	public List<Board> getBoardBySubCategoryId(Long subCategoryId) throws Exception;
-	
-	public List<Board> getBoardBySubCategoryName(String subCategoryName) throws Exception;
-	
-	public List<BoardCategory> getBoardCategoryById(Long categoryId) throws Exception;
-	
-	//public List<Board> getBoardSubCategoryIds(Long subCategoryId) throws Exception;
-	
+
 	
 }

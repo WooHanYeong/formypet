@@ -32,14 +32,18 @@ public class BoardServiceImpl implements BoardService {
 	BoardSubCategoryRepository boardSubCategoryRepository;
 
 	public Board createBoard(BoardDto boardDto) throws Exception {
-		System.out.println("dto 확인" + boardDto);
-		Board board = Board.builder().boardTitle(boardDto.getBoardTitle()).boardContent(boardDto.getBoardContent())
-				.boardImage(boardDto.getBoardImage()).boardReadCount(boardDto.getBoardReadCount())
-				.boardSubCategory(BoardSubCategory.builder().subCategoryId(boardDto.getBoardSubCategoryId()).build()).build();
-		System.out.println("board확인" + board);
-		return boardRepository.save(board);
+	    BoardCategory boardCategory = boardCategoryRepository.findById(boardDto.getBoardCategoryId())
+	            .orElseThrow(() -> new Exception("해당하는 카테고리가 존재하지 않습니다."));
+	    Board board = Board.builder()
+	            .boardTitle(boardDto.getBoardTitle())
+	            .boardContent(boardDto.getBoardContent())
+	            .boardImage(boardDto.getBoardImage())
+	            .boardReadCount(boardDto.getBoardReadCount())
+	            .boardCategory(boardCategory)
+	            .build();
+	    
+	    return boardRepository.save(board);
 	}
-
 	@Override
 	public void deleteBoard(Long boardId) throws Exception {
 		boardRepository.deleteById(boardId);
@@ -58,41 +62,12 @@ public class BoardServiceImpl implements BoardService {
 			throw new Exception("id를 찾을수 없습니다.: " + boardId);
 		}
 	}
-
-	@Override
-	public Optional<Board> getBoardById(Long boardId) throws Exception {
-		return boardRepository.findById(boardId);
-	}
+	
 
 	@Override
 	public List<Board> getBoardByAll() throws Exception {
 		return boardRepository.findAll();
 	}
-
 	
-	@Override
-	public List<Board> getBoardBySubCategoryId(Long subCategoryId) throws Exception {
-		return boardRepository.findByBoardSubCategorySubCategoryId(subCategoryId);
-	}
-
-	@Override
-	public List<Board> getBoardBySubCategoryName(String subCategoryName) throws Exception {
-		return boardRepository.findByBoardSubCategorySubCategoryName(subCategoryName);
-	}
-/*
-	@Override
-	public List<Board> getBoardSubCategoryIds(Long subCategoryId) {
-		List<BoardSubCategory> subCategories = boardSubCategoryRepository.findBySubCategoryId(subCategoryId);
-		List<Long> categoryIds = new ArrayList<>();
-		for (BoardSubCategory subCategory : subCategories) {
-			categoryIds.add(subCategory.getBoardCategory().getCategoryId());
-		}
-		return boardRepository.findAllById(categoryIds);
-	}
-*/
-
-	@Override
-	public List<BoardCategory> getBoardCategoryById(Long categoryId) throws Exception {
-		return boardCategoryRepository.findByCategoryId(categoryId);
-	}	
+	
 }

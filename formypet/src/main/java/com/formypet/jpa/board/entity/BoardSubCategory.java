@@ -38,14 +38,11 @@ public class BoardSubCategory {
 				.subCategoryName(dto.getSubCategoryName()).build();
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	@ToString.Exclude
-	private BoardCategory boardCategory;
+
 
 	@OneToMany(mappedBy = "boardSubCategory", cascade = CascadeType.PERSIST)
 	@Builder.Default
 	@ToString.Exclude
-	private List<Board> boards = new ArrayList<Board>();
+	private List<BoardCategory> boardCategories = new ArrayList<BoardCategory>();
 
 }

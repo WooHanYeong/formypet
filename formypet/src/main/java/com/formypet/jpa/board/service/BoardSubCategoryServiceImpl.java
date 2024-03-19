@@ -21,29 +21,22 @@ public class BoardSubCategoryServiceImpl implements BoardSubCategoryService {
 	@Autowired
 	BoardSubCategoryRepository boardSubCategoryRepository;
 
-	@Override
-	public List<BoardSubCategory> getSubCategoryByMainCategoryId(Long categoryId) throws Exception {
-		List<BoardSubCategory> subCategoryList = new ArrayList<>();
-		BoardCategory category = boardCategoryRepository.findById(categoryId).orElse(null);
-		if (category != null) {
-			List<BoardSubCategory> subCategories = category.getSubCategories();
-			for (BoardSubCategory subCategory : subCategories) {
-				if (category.getCategoryId().equals(subCategory.getBoardCategory().getCategoryId())) {
-					subCategoryList.add(subCategory);
-				}
-			}
-		}
-		return subCategoryList;
-	}
-
-	@Override
-	public List<BoardSubCategory> getSubCategory(Long subCategoryId) throws Exception {
-		return boardSubCategoryRepository.findBySubCategoryId(subCategoryId);
-	}
-
-	@Override
-	public List<BoardSubCategory> getSubCategoryAll() throws Exception {
-		return boardSubCategoryRepository.findAll();
-	}
+	/*
+	 * @Override public List<BoardSubCategory> getSubCategoryByMainCategoryId(Long
+	 * categoryId) throws Exception { List<BoardSubCategory> subCategoryList = new
+	 * ArrayList<>(); BoardCategory category =
+	 * boardCategoryRepository.findById(categoryId).orElse(null); if (category !=
+	 * null) { List<BoardSubCategory> subCategories = category.getSubCategories();
+	 * for (BoardSubCategory subCategory : subCategories) { if
+	 * (category.getCategoryId().equals(subCategory.getBoardCategory().getCategoryId
+	 * ())) { subCategoryList.add(subCategory); } } } return subCategoryList; }
+	 * 
+	 * @Override public List<BoardSubCategory> getSubCategory(Long subCategoryId)
+	 * throws Exception { return
+	 * boardSubCategoryRepository.findBySubCategoryId(subCategoryId); }
+	 * 
+	 * @Override public List<BoardSubCategory> getSubCategoryAll() throws Exception
+	 * { return boardSubCategoryRepository.findAll(); }
+	 */
 
 }

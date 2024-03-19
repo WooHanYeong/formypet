@@ -19,31 +19,23 @@ import jakarta.transaction.Transactional;
 public class BoardServiceImplTest extends FormypetApplicationTest{
 	@Autowired
 	private BoardService boardService;
-	/*
-	 * @Test
-	 * 
-	 * @Transactional
-	 * 
-	 * @Disabled
-	 * 
-	 * @Rollback(false) void createBoard() throws Exception{ BoardDto boardDto1 =
-	 * new BoardDto(); boardDto1.setBoardTitle("제목1");
-	 * boardDto1.setBoardContent("내용1"); boardDto1.setBoardImage("이미지1");
-	 * boardDto1.setBoardReadCount(1); boardDto1.setBoardCategoryId(1L);
-	 * boardService.createBoard(boardDto1);
-	 * 
-	 * }
-	 */
+
+	
 	
 	@Test
 	@Transactional
 	//@Disabled
 	@Rollback(false)
-	void findCategory() throws Exception {
-		Long categoryId = 1L;
-		List<BoardCategory> category =  boardService.getBoardCategoryById(categoryId);
-		System.out.println("cate"+category);
-		
+	void createBoard() throws Exception {
+		BoardDto boardDto = new BoardDto();
+		boardDto.setBoardCategoryId(1L);
+		boardDto.setBoardContent("test1");
+		boardDto.setBoardId(null);
+		boardDto.setBoardImage(null);
+		boardDto.setBoardReadCount(0);
+		boardDto.setBoardTitle("test1");
+		Board board = boardService.createBoard(boardDto);
+		System.out.println("boardCreateTest"+board);
 	}
 	
 	@Test
@@ -53,57 +45,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	void deleteBoard() throws Exception {
 		boardService.deleteBoard(1L);
 	}
-	/*
-	@Test
-	@Transactional
-	@Disabled
-	@Rollback(false)
-	void updateBoard() throws Exception {
-		Long boardId = 2L;
-		BoardDto updateBoard = new BoardDto(boardId, "제목만수정", null, null, 0);
-		boardService.updateBoard(boardId, updateBoard);
-	
-	}
-	*/
-	@Test
-	@Transactional
-	@Disabled
-	@Rollback(false)
-	void selectBoard() throws Exception {
-		Long boardId = 1L;
-		Optional<Board> findBoard = boardService.getBoardById(boardId);
-		System.out.println("한개정보"+findBoard);
-	}
-	
-	@Test
-	@Transactional
-	@Disabled
-	@Rollback(false)
-	void selectBoardAll() throws Exception {
-		List<Board> boardList = boardService.getBoardByAll();
-		System.out.println("보드리스트:"+boardList);
-	}
-	/*
-	@Test
-	@Transactional
-	@Disabled
-	@Rollback(false)
-	void selectBoardByCategoryId() throws Exception {
-		Long categoryId = 1L;
-		List<Board> test1 =  boardService.getBoardByCategoryId(categoryId);
-		System.out.println("asdsadsadas"+test1);
-	}
-	*/
-	
-	@Test
-	@Transactional
-	//@Disabled
-	@Rollback(false)
-	void boardCategoryId() throws Exception {
-		Long subCategoryId = 1L;
-		List<Board> boardList =  boardService.getBoardBySubCategoryId(subCategoryId);
-		System.out.println("asdsadsadsadsadsad"+boardList);
-	}
+
 	
 	
 
