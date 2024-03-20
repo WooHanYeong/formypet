@@ -125,33 +125,33 @@
 						</div>
 					</div>
 
-						<div class="row align-items-center latest_product_inner"
-							style="max-height: 1200px; overflow-y:auto;" id="container">
-							<div class="col-lg-4 col-sm-6" th:each="dog: ${dogList}">
-								<div class="single_product_item">
-									<img th:src="@{'/productimg/' + ${dog.productImage}}" alt="">
-									<h4 style="margin-top: 50px; text-align: center;">
-										<a style="color: black; margin-top: 10px;"
-											th:href="${'/product_detail_dog?productId='+dog.id}"
-											th:text="${dog.productName}">Quartz Belt Watch</a>
-									</h4>
-									<h3 style="text-align: center;" th:text="${dog.productPrice}+'원'">$150.00</h3>
-									<h3 th:text="${dog.productCategory}" style="display: none;">$150.00</h3>
-									<div class="single_product_text">
-										<a class="add_cart" onclick="addCartItem(this)" th:data-product-id="${dog.id}">+
-											add to cart</a>
-									</div>
-
-									<!-- Hidden input fields for userId and productId -->
-									<input type="hidden" id="cartItemQty" value="1">
-									<input type="hidden" id="userId" th:value="${session.loginUser.id}">
-									<input type="hidden" onclick="addCartItem(this)" id="productId"
-										th:value="${dog.id}">
-
+					<div class="row align-items-center latest_product_inner"
+						style="max-height: 1200px; overflow-y:auto;" id="container">
+						<div class="col-lg-4 col-sm-6" th:each="dog: ${dogList}">
+							<div class="single_product_item">
+								<img th:src="@{'/productimg/' + ${dog.productImage}}" alt="">
+								<h4 style="margin-top: 50px; text-align: center;">
+									<a style="color: black; margin-top: 10px;"
+										th:href="${'/product_detail_dog?productId='+dog.id}"
+										th:text="${dog.productName}">Quartz Belt Watch</a>
+								</h4>
+								<h3 style="text-align: center;" th:text="${dog.productPrice}+'원'">$150.00</h3>
+								<h3 th:text="${dog.productCategory}" style="display: none;">$150.00</h3>
+								<div class="single_product_text">
+									<a class="add_cart" onclick="addCartItem(this)" th:data-product-id="${dog.id}">+
+										add to cart</a>
 								</div>
+
+								<!-- Hidden input fields for userId and productId -->
+								<input type="hidden" id="cartItemQty" value="1">
+								<input type="hidden" id="userId"
+									th:value="${session.loginUser != null ? session.loginUser.id : ''}">
+								<input type="hidden" onclick="addCartItem(this)" id="productId" th:value="${dog.id}">
+
 							</div>
 						</div>
-					
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -260,6 +260,17 @@
 			};
 
 			console.log(formData);
+
+			if (!formData.userId) {
+				var confirmLogin = confirm("로그인이 필요한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+
+				// 사용자가 확인을 선택한 경우
+				if (confirmLogin) {
+					window.location.href = "/user_login_form"; // 로그인 페이지 URL로 변경해주세요
+					return;
+				}
+				return;
+			}
 
 			$.ajax({
 				url: "/api/cartItem/cartItemInsertList/" + productId,

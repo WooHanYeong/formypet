@@ -47,7 +47,8 @@
 					<div class="breadcrumb_iner">
 						<div class="breadcrumb_iner_item">
 							<h2>For cat things</h2>
-							<h2 id="userid" th:text="${session.loginUser.id}" style="display: none;">id</h2>
+							<h2 id="userid" th:text="${session.loginUser != null ? session.loginUser.id : 'id'}"
+								style="display: none;">id</h2>
 						</div>
 					</div>
 				</div>
@@ -144,7 +145,8 @@
 
 								<!-- Hidden input fields for userId and productId -->
 								<input type="hidden" id="cartItemQty" value="1">
-								<input type="hidden" id="userId" th:value="${session.loginUser.id}">
+								<input type="hidden" id="userId"
+									th:value="${session.loginUser != null ? session.loginUser.id : ''}">
 								<input type="hidden" onclick="addCartItem(this)" id="productId" th:value="${cat.id}">
 
 							</div>
@@ -255,6 +257,17 @@
 			};
 
 			console.log(formData);
+
+			if (!formData.userId) {
+				var confirmLogin = confirm("로그인이 필요한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+
+				// 사용자가 확인을 선택한 경우
+				if (confirmLogin) {
+					window.location.href = "/user_login_form"; // 로그인 페이지 URL로 변경해주세요
+					return;
+				}
+				return;
+			} 
 
 			$.ajax({
 				url: "/api/cartItem/cartItemInsertList/" + productId,
