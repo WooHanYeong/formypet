@@ -17,30 +17,29 @@ import jakarta.transaction.Transactional;
 public class BoardSubCategoryServiceImplTest extends FormypetApplicationTest {
 	@Autowired
 	BoardService boardService;
-	/*
+	
 	@Test
 	@Transactional
 	//@Disabled
 	@Rollback(false)
 	void subCate() throws Exception {
-		Long categoryId = 1L;
-		List<String> test1 = boardSubCategoryServiceImpl.getSubCategoryNameByMainCategoryId(categoryId);
-		for (String subCategoryName : test1) {
-			System.out.println(subCategoryName);
-		}
+		Long subCategoryId = 1L;
+		List<String> subcategory= boardService.getSubCategoryName(subCategoryId);
+		System.out.println("asdasd"+subcategory);
+		
 	}
-	*/
-	/*
 	@Test
 	@Transactional
-	// @Disabled
+	//@Disabled
 	@Rollback(false)
-	void subCategory() throws Exception {
-		Long subCategoryId = 10L;
-		List<Board> test1 = boardService.getBoardSubCategoryIds(subCategoryId);
-		System.out.println("asdsadsad"+test1);
+	void subCate2() throws Exception {
+		Long categoryId = 1L;
+		List<String> subcategory= boardService.getSubCategoryNameByCategoryBySubCategoryId(categoryId);
+		System.out.println("asdasd"+subcategory);
+		
 	}
-	*/
+	
+
 
 	
 	

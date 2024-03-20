@@ -8,5 +8,4 @@ import com.formypet.jpa.board.entity.Board;
 import com.formypet.jpa.board.entity.BoardCategory;
 
 public interface BoardCategoryRepository extends JpaRepository<BoardCategory, Long>{
-	//List<BoardCategory> findByCategoryId(Long categoryId); 
 }

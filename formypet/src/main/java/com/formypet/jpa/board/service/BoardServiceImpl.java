@@ -137,5 +137,32 @@ public class BoardServiceImpl implements BoardService {
 		}
 		throw new Exception("해당 카테고리를 찾을 수 없습니다.");
 	}
+
+	@Override
+	public List<String> getSubCategoryName(Long subCategoryId) throws Exception {
+		List<BoardSubCategory> subCategories = boardSubCategoryRepository.findBySubCategoryId(subCategoryId);
+		List<String> subCategoryNames = new ArrayList<>();
+		for (BoardSubCategory subCategory : subCategories) {
+			subCategoryNames.add(subCategory.getSubCategoryName());
+		}
+		return subCategoryNames;
+	
+	}
+	
+	//페이지 서브 카테고리 표시
+		@Override
+		public List<String> getSubCategoryNameByCategoryBySubCategoryId(Long categoryId) throws Exception {
+	        Optional<BoardCategory> optionalCategory = boardCategoryRepository.findById(categoryId);
+	        if (optionalCategory.isPresent()) {
+				BoardCategory category = optionalCategory.get();
+				List<BoardSubCategory> subCategories = category.getSubCategories();
+				List<String> subCategoryNames = new ArrayList<>();
+				for (BoardSubCategory subCategoryName : subCategories) {
+					subCategoryNames.add(subCategoryName.getSubCategoryName());
+				}
+				return subCategoryNames;
+	        }
+	        throw new Exception("서브카테고리를 찾을 수 없습니다.");
+		}
 	
 }

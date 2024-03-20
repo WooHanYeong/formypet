@@ -55,7 +55,7 @@
 	<!-- breadcrumb start-->
 
 
-/*
+	/*
 
 	<div class="whole-wrap">
 		<div class="container box_1170">
@@ -88,19 +88,25 @@
 				</div>
 				<h3 class="mb-30">자유게시판</h3>
 				<div class="progress-table-wrap">
-					<div class="progress-table">
+					<div class="progress-table" >
 						<div class="table-head">
 							<div class="serial">구분</div>
 							<div class="country">제목</div>
 							<div class="visit">작성자</div>
-							<div class="recommend" style="color: #415094; line-height: 40px; text-transform: uppercase; font-weight: 500; margin:0 20px;">추천</div>
-							<div class="readCount" style="color: #415094; line-height: 40px; text-transform: uppercase; font-weight: 500; margin:0 50px;">조회수</div>
-							<div class="writeDay" style="color: #415094; line-height: 40px; text-transform: uppercase; font-weight: 500; margin:0 30px;">작성일</div>
+							<div class="recommend"
+								style="color: #415094; line-height: 40px; text-transform: uppercase; font-weight: 500; margin:0 20px;">
+								추천</div>
+							<div class="readCount"
+								style="color: #415094; line-height: 40px; text-transform: uppercase; font-weight: 500; margin:0 50px;">
+								조회수</div>
+							<div class="writeDay"
+								style="color: #415094; line-height: 40px; text-transform: uppercase; font-weight: 500; margin:0 30px;">
+								작성일</div>
 						</div>
-						<tr th:if="${categories.size() != 0}">
+						<tr th:if="${categories.size() != 0}" >
 							<th:block th:each="board, iterStat : ${boards}">
-								<div class="table-row" th:each="subCategory : ${subCategories}">
-									<div class="serial" th:text="${subCategory.subCategoryName}"></div>
+								<div class="table-row" >
+									<div class="serial" th:text="${subCategoryNames}"></div>
 									<div class="country" id="title">
 										<a th:href="${'/board_detail?boardId='+board.boardId}"
 											th:text="${board.boardTitle}">제목</a>
@@ -108,6 +114,7 @@
 									<div class="visit" id="write">작성자</div>
 									<div class="percentage">
 										<div class="progress">
+											
 										</div>
 									</div>
 								</div>
@@ -115,8 +122,8 @@
 						</tr>
 						<tr th:else>
 							<th:block th:each="board, iterStat : ${subBoards}">
-								<div class="table-row" th:each="subCategory : ${subCategories}">
-									<div class="serial" th:text="${subCategory.subCategoryName}"></div>
+								<div class="table-row">
+									<div class="serial" th:text="${subCategoryNames}">01</div>
 									<div class="country" id="title">
 										<a th:href="${'/board_detail?boardId='+board.boardId}"
 											th:text="${board.boardTitle}">제목</a>
@@ -124,7 +131,7 @@
 									<div class="visit" id="write">작성자</div>
 									<div class="percentage">
 										<div class="progress">
-											<div class="progress-bar color-1" ></div>
+											
 										</div>
 									</div>
 								</div>

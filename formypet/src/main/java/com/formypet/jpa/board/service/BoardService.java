@@ -42,6 +42,11 @@ public interface BoardService {
 	//게시판 상위카테고리별 서브카테고리 조회
 	public List<BoardSubCategory> getSubCategoryByCategoryBySubCategoryId(Long categoryId) throws Exception; 
 	
+	//게시판 서브카테고리 이름 조회
+	public List<String> getSubCategoryName(Long subCategoryId) throws Exception;
+	
+	
+	public List<String> getSubCategoryNameByCategoryBySubCategoryId(Long categoryId) throws Exception;
 
 	
 }
