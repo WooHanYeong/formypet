@@ -37,6 +37,7 @@ public class Board {
 	private String boardContent;
 	private String boardImage;
 	private int boardReadCount; 
+	private int boardRecommend;
 	
 	@CreationTimestamp
 	private LocalDateTime createdTime;
@@ -51,6 +52,7 @@ public class Board {
 					.boardContent(dto.getBoardContent())
 					.boardImage(dto.getBoardImage())
 					.boardReadCount(dto.getBoardReadCount())
+					.boardRecommend(dto.getBoardRecommend())
 					.boardCategory(BoardCategory.builder().categoryId(dto.getBoardCategoryId()).build())
 					.boardSubCategory(BoardSubCategory.builder().subCategoryId(dto.getBoardSubCategoryId()).build())
 					.build();

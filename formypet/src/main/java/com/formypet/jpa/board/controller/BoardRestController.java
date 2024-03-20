@@ -34,13 +34,13 @@ public class BoardRestController {
 			e.printStackTrace();
 		}
 	}
-	/*
-	@PostMapping("/create")
-	public ResponseEntity<Board> createBoardForList(@RequestBody BoardDto boardDto) throws Exception {
-		Board board = boardService.createBoard(boardDto);
+
+	@PostMapping("/create/{categoryId}/{subCategoryId}")
+	public ResponseEntity<Board> createBoardForList(@PathVariable(value = "subCategoryId") Long subCategoryId,@PathVariable(value = "categoryId") Long categoryId,@RequestBody BoardDto boardDto) throws Exception {
+		Board board = boardService.createBoardByMainCategoryBySubCategory(boardDto);
 		return new ResponseEntity<>(board, HttpStatus.CREATED);
 	}
-*/
+
 	@PutMapping("/update/{boardId}")
 	public ResponseEntity<String> updateBoard(@PathVariable(value = "boardId") Long boardId,
 			@RequestBody BoardDto boardDto) {
@@ -53,6 +53,5 @@ public class BoardRestController {
 			return new ResponseEntity<>("boardId : " + boardId + "를 찾을 수 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
 
 }

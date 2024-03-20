@@ -1,56 +1,50 @@
+// 카테고리 콤보박스 비활성화
+window.onload = function() {
+    var categoryDropdown = document.getElementById('mainCategory');
+        categoryDropdown.disabled = true;
+};
+
 function submitForm() {
-	const title = document.getElementById('boardTitle').value;
-	const content = document.getElementById('boardContent').value;
-	const subCategoryId = document.getElementById('items').value;
+    // 선택된 메인 카테고리와 서브 카테고리 ID 가져오기
+    var mainCategory = document.getElementById("mainCategory");
+    var subCategory = document.getElementById("subCategory");
+    var categoryId = mainCategory.value;
+    var subCategoryId = subCategory.value;
 
-	if (title.trim() === '' || content.trim() === '') {
-		alert('제목과 내용을 모두 입력해주세요!');
-		return;
-	}
+    // 제목과 내용 가져오기
+    var boardTitle = document.getElementById("boardTitle").value;
+    var boardContent = document.getElementById("boardContent").value;
 
-	let redirectUrl = '';
-
-	switch (subCategoryId) {
-		case '1':
-			redirectUrl = '/board_list';
-			break;
-		case '2':
-			redirectUrl = '/board_adopt';
-			break;
-		default:
-			redirectUrl = '/board_list';
-			break;
-	}
-
-	const jsonData = {
-		boardTitle: title,
-		boardContent: content,
-		boardSubCategoryId: subCategoryId
-	};
-	console.log("제목" + title, "내용" + content);
-	
-	fetch('/api/board/create', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(jsonData)
-	})
-		.then(response => {
-			if (!response.ok) {
-				throw new Error('네트워크 문제 발생');
-			}
-			alert('게시글이 성공적으로 작성되었습니다.');
-			window.location.href = redirectUrl;
-		})
-		.catch(error => {
-			console.error('에러가 발생했습니다.:', error);
-			alert('게시글 작성 중 오류가 발생했습니다. 다시 시도해주세요.');
-		});
-	debugger;
+    // 폼 데이터 생성
+    var formData = {
+        "boardCategoryId": categoryId,
+        "boardSubCategoryId": subCategoryId,
+        "boardTitle": boardTitle,
+        "boardContent": boardContent
+    };
+    // POST 요청 보내기
+    fetch("/api/board/create/" + categoryId + "/" + subCategoryId, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (response.status === 201) {
+			alert("게시글이 등록되었습니다");
+			window.location.href = "/board_list/" + categoryId + "/" + subCategoryId;
+ 				} else {
+					alert('게시글 등록에 실패했습니다.');
+				}
+			})
+			.catch(error => {
+				alert('에러 발생: ' + error);
+			});
 }
 
 function clearForm() {
-	document.getElementById('boardTitle').value = '';
-	document.getElementById('boardContent').value = '';
+    // 폼 입력 필드 초기화
+    document.getElementById("boardTitle").value = "";
+    document.getElementById("boardContent").value = "";
 }

@@ -22,6 +22,7 @@ public class BoardDto {
 	private String boardContent;
 	private String boardImage;
 	private int boardReadCount;
+	private int boardRecommend;
 
 	private Long boardCategoryId;
 	private Long boardSubCategoryId;
@@ -33,6 +34,7 @@ public class BoardDto {
 						.boardContent(entity.getBoardContent())
 						.boardImage(entity.getBoardImage())
 						.boardReadCount(entity.getBoardReadCount())
+						.boardRecommend(entity.getBoardRecommend())
 						.boardCategoryId(entity.getBoardCategory().getCategoryId())
 						.boardSubCategoryId(entity.getBoardSubCategory().getSubCategoryId())
 						.build();

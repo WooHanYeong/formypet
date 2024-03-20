@@ -25,6 +25,8 @@ import com.formypet.jpa.board.repository.BoardRepository;
 import com.formypet.jpa.board.repository.BoardSubCategoryRepository;
 import com.formypet.jpa.board.service.BoardService;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
 @RequestMapping("/")
 public class BoardController {
@@ -36,7 +38,6 @@ public class BoardController {
 	BoardCategoryRepository boardCategoryRepository;
 	@Autowired
 	BoardSubCategoryRepository boardSubCategoryRepository;
-
 	@GetMapping("/board_list/{categoryId}")
 	public String boardList(@PathVariable(value = "categoryId") Long categoryId, Model model) throws Exception {
 		List<BoardCategory> categories = boardCategoryRepository.findAll();
@@ -48,9 +49,8 @@ public class BoardController {
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
-	
 	@GetMapping("/board_list/{categoryId}/{subCategoryId}")
-	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "subCategoryId") Long subCategoryId, Model model) throws Exception {
+	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "subCategoryId", required = false) Long subCategoryId,  Model model) throws Exception {
 		List<BoardCategory> categories = boardCategoryRepository.findAll();
 		model.addAttribute("categories", categories);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
@@ -79,11 +79,11 @@ public class BoardController {
 	 * ResponseEntity<>(subCategoryNames, HttpStatus.OK); } catch (Exception e) {
 	 * return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); } }
 	 */
-	@GetMapping("/board_write")
-	public String boardWrite(Model model) {
-		List<BoardCategory> categories = boardCategoryRepository.findAll();
-		model.addAttribute("categories", categories);
-		List<BoardSubCategory> subCategories = boardSubCategoryRepository.findAll();
+	@GetMapping("/board_write/{categoryId}")
+	public String boardWrite(@PathVariable(value = "categoryId") Long categoryId,Model model) throws Exception {
+		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);
+		model.addAttribute("boardCategory", boardCategory);
+		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
 		model.addAttribute("subCategories", subCategories);
 		String forwardPath = "board_write";
 		return forwardPath;
@@ -102,6 +102,11 @@ public class BoardController {
 	@GetMapping("/test")
 	public String test() {
 		String forwardPath = "test";
+		return forwardPath;
+	}
+	@GetMapping("/elements")
+	public String elements() {
+		String forwardPath = "elements";
 		return forwardPath;
 	}
 

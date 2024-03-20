@@ -126,5 +126,16 @@ public class BoardServiceImpl implements BoardService {
 		}
 		throw new Exception("해당 게시글을 찾을 수 없습니다.");
 	}
+
+	//상위 카테고리 조회
+	@Override
+	public BoardCategory getBoardCategoryByCategoryId(Long categoryId) throws Exception {
+		Optional<BoardCategory> optionalCategory = boardCategoryRepository.findById(categoryId);
+		if (optionalCategory.isPresent()) {
+			BoardCategory boardCategory = optionalCategory.get();
+			return boardCategory;
+		}
+		throw new Exception("해당 카테고리를 찾을 수 없습니다.");
+	}
 	
 }

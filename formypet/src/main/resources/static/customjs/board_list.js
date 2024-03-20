@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", function() {
 			event.preventDefault();
 			var categoryId = this.getAttribute("data-category");
 			if (categoryId === "1") {
-				window.location.href = "board_list";
+				window.location.href = "/board_list/1";
 			} else if (categoryId === "2") {
-				window.location.href = "board_adopt";
+				window.location.href = "/board_adopt/1";
 			}
 		});
 	});
@@ -100,3 +100,4 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });*/
+
