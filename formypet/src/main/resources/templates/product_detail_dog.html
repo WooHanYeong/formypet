@@ -89,11 +89,13 @@
 							Two fruitful let days signs sea together all land fly subdue
 						</p>
 						<div class="card_area d-flex justify-content-between align-items-center">
+
 							<div class="product_count">
 								<span class="inumber-decrement"> <i class="ti-minus"></i></span>
-								<input class="input-number" type="text" value="1" min="0" max="10">
+								<input id="quantity" class="input-number" value="1" min="1" max="100">
 								<span class="number-increment"> <i class="ti-plus"></i></span>
 							</div>
+
 							<a href="#" class="btn_3">장바구니담기</a>
 							<a href="#" class="like_us"> <i class="ti-heart"></i> </a>
 						</div>
@@ -220,8 +222,28 @@
 	</footer>
 	<!--::footer_part end::-->
 
-
 	<script>
+
+		document.addEventListener("DOMContentLoaded", function () {
+			var decrementButton = document.querySelector('.inumber-decrement');
+			var incrementButton = document.querySelector('.number-increment');
+			var quantityInput = document.getElementById('quantity');
+
+			decrementButton.addEventListener('click', function () {
+				var currentValue = parseInt(quantityInput.value);
+				if (currentValue > 1) {
+					quantityInput.value = currentValue - 1;
+				}
+			});
+
+			incrementButton.addEventListener('click', function () {
+				var currentValue = parseInt(quantityInput.value);
+				if (currentValue < 100) {
+					quantityInput.value = currentValue + 1;
+				}
+			});
+		});
+
 		function submitCommentForm() {
 			// 사용자 ID 가져오기
 			var userId = document.getElementById("userId").value;
