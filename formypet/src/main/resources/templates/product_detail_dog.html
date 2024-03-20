@@ -92,11 +92,11 @@
 
 							<div class="product_count">
 								<span class="inumber-decrement"> <i class="ti-minus"></i></span>
-								<input id="quantity" class="input-number" value="1" min="1" max="100">
+								<input id="cartItemQty" class="input-number" value="1" min="1" max="100">
 								<span class="number-increment"> <i class="ti-plus"></i></span>
 							</div>
 
-							<a href="#" class="btn_3">장바구니담기</a>
+							<a onclick="addCartItem(this)" class="btn_3">장바구니담기</a>
 							<a href="#" class="like_us"> <i class="ti-heart"></i> </a>
 						</div>
 						<div class="card_area d-flex justify-content-between align-items-center">
@@ -223,11 +223,51 @@
 	<!--::footer_part end::-->
 
 	<script>
+		function addCartItem(button) {
+			var userId = document.getElementById('userId').value;
+			var cartItemQty = document.getElementById('cartItemQty').value;
+			var queryString = window.location.search;
+			var urlParams = new URLSearchParams(queryString);
+			var productId = urlParams.get('productId');
+
+			var formData = {
+				cartItemQty: cartItemQty,
+				userId: userId
+
+			};
+
+			console.log(formData);
+
+			if (formData.userId==='id') {
+				var confirmLogin = confirm("로그인이 필요한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+
+				// 사용자가 확인을 선택한 경우
+				if (confirmLogin) {
+					window.location.href = "/user_login_form"; // 로그인 페이지 URL로 변경해주세요
+					return;
+				}
+				return;
+			}
+
+			$.ajax({
+				url: "/api/cartItem/cartItemInsertDetail/" + productId,
+				type: "POST",
+				data: formData,
+				contentType: "application/x-www-form-urlencoded",
+				success: function (response) {
+					alert("상품이 카트에 추가되었습니다.");
+				},
+				error: function (error) {
+					alert("상품을 카트에 추가하는 중 오류가 발생했습니다.");
+					console.log(error);
+				}
+			});
+		}
 
 		document.addEventListener("DOMContentLoaded", function () {
 			var decrementButton = document.querySelector('.inumber-decrement');
 			var incrementButton = document.querySelector('.number-increment');
-			var quantityInput = document.getElementById('quantity');
+			var quantityInput = document.getElementById('cartItemQty');
 
 			decrementButton.addEventListener('click', function () {
 				var currentValue = parseInt(quantityInput.value);
