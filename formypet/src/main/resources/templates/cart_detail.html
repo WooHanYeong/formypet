@@ -55,7 +55,7 @@
 	<!-- breadcrumb start-->
 
 	<!--================Cart Area =================-->
-	<section class="cart_area padding_top">
+	<section class="cart_area padding_top" th:if="${findcart2 != null and findcart2.cartTotalPrice != 0}">
 		<div class="container">
 			<div class="cart_inner">
 				<div class="table-responsive">
@@ -127,6 +127,31 @@
 					</div>
 				</div>
 			</div>
+	</section>
+
+	<section class="our_offer section_padding" th:unless="${findcart2 != null and findcart2.cartTotalPrice != 0}">
+		<div class="container">
+			<div class="row align-items-center justify-content-between">
+				<div class="col-lg-6 col-md-6">
+					<div class="offer_img">
+						<img src="img/텅.jpg" alt="">
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="offer_text">
+						<h2>장바구니가 비어있어요
+						</h2>
+						<div class="input-group" style="margin-top: 100px;">
+							<input type="text" class="form-control" placeholder=""
+								aria-label="Recipient's username" aria-describedby="basic-addon2" readonly>
+							<div class="input-group-append">
+								<a href="product_list_dog" class="input-group-text btn_2" id="basic-addon2">Buy now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 	<!--================End Cart Area =================-->
 
