@@ -45,8 +45,12 @@ public interface BoardService {
 	//게시판 서브카테고리 이름 조회
 	public List<String> getSubCategoryName(Long subCategoryId) throws Exception;
 	
+	//board_list{categoryId} 컨트롤러 subCategoryId 찾기
+	public List<String> getSubCategoryByCategoryId(Long categoryId) throws Exception;  
 	
-	public List<String> getSubCategoryNameByCategoryBySubCategoryId(Long categoryId) throws Exception;
-
+	//조회수 증가
+	public void increaseReadCount(Long boardId) throws Exception;  
 	
+	//추천수 증가
+	public void updateRecommendCount(Long boardId, int recommendCount) throws Exception;
 }

@@ -53,5 +53,17 @@ public class BoardRestController {
 			return new ResponseEntity<>("boardId : " + boardId + "를 찾을 수 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+
+    @PutMapping("/update/recommend/{boardId}")
+    public ResponseEntity<String> updateRecommendCount(@PathVariable(value = "boardId") Long boardId, @RequestParam int recommend) {
+        try {
+            boardService.updateRecommendCount(boardId, recommend);
+            return ResponseEntity.ok("게시글의 추천 수가 업데이트되었습니다: " + recommend);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("게시글의 추천 수 업데이트에 실패했습니다.");
+        }
+    }
 
 }

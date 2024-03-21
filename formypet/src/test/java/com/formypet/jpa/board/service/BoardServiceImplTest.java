@@ -27,7 +27,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void createBoard() throws Exception {
 		BoardDto boardDto = new BoardDto();
@@ -42,7 +42,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	}
     @Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
     public void createBoardSubCate() throws Exception {
         BoardDto boardDto = new BoardDto();
@@ -89,14 +89,14 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	@Disabled
 	@Rollback(false)
 	void selectByCategoryId() throws Exception {
-		Long categoryId = 2L;
+		Long categoryId = 1L;
 		List<Board> boards = boardService.getBoardByCategoryId(categoryId);
 		System.out.println("게시글 카테고리별 조회"+boards);
 	}
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void selectByCategoryIdAndSubCategoryId() throws Exception {
 		Long categoryId = 1L;
@@ -110,10 +110,11 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	//@Disabled
 	@Rollback(false)
 	void subCategory() throws Exception {
-		Long categoryId = 2L;
-		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
-		System.out.println("서브카테고리 조회"+subCategories);
+		Long categoryId = 1L;
+		List<String> string = boardService.getSubCategoryByCategoryId(categoryId);
+		System.out.println("서브카테고리 조회"+string);
 	}
+	
 	
 
 }

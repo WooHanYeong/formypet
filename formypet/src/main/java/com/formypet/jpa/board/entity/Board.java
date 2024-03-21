@@ -9,6 +9,7 @@ import com.formypet.jpa.board.dto.BoardDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -60,12 +61,12 @@ public class Board {
 	}
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id")
 	@ToString.Exclude
 	private BoardCategory boardCategory;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sub_category_id")
 	@ToString.Exclude
 	private BoardSubCategory boardSubCategory;

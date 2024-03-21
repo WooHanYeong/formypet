@@ -7,6 +7,7 @@ import com.formypet.jpa.board.dto.BoardSubCategoryDto;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,8 +41,7 @@ public class BoardSubCategory {
 				.build();
 		
 	}
-
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id")
 	@ToString.Exclude
 	private BoardCategory boardCategory;

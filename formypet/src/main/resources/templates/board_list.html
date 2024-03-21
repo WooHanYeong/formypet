@@ -88,7 +88,7 @@
 				</div>
 				<h3 class="mb-30">자유게시판</h3>
 				<div class="progress-table-wrap">
-					<div class="progress-table" >
+					<div class="progress-table">
 						<div class="table-head">
 							<div class="serial">구분</div>
 							<div class="country">제목</div>
@@ -103,25 +103,32 @@
 								style="color: #415094; line-height: 40px; text-transform: uppercase; font-weight: 500; margin:0 30px;">
 								작성일</div>
 						</div>
-						<tr th:if="${categories.size() != 0}" >
-							<th:block th:each="board, iterStat : ${boards}">
-								<div class="table-row" >
-									<div class="serial" th:text="${subCategoryNames}"></div>
+						<tr>
+							<th:block th:each="board : ${boards}">
+								<div class="table-row">
+									<div class="serial" th:text=${board.boardId}></div>
 									<div class="country" id="title">
-										<a th:href="${'/board_detail?boardId='+board.boardId}"
+										<a th:href="${'/board_detail?boardId=' + board.boardId}"
 											th:text="${board.boardTitle}">제목</a>
 									</div>
 									<div class="visit" id="write">작성자</div>
 									<div class="percentage">
-										<div class="progress">
-											
+										<div class="progress" id="recommend" th:text="${board.boardRecommend}"
+											style="margin:0 30px">
+										</div>
+										<div class="progress" id="readCount" th:text="${board.boardReadCount}"
+											style="margin:0 -90px">
+										</div>
+										<div class="progress" id="createdTime"
+											th:text="${#temporals.format(board.createdTime, 'MM/dd')}"
+											style="margin-left:30px;">
 										</div>
 									</div>
 								</div>
 							</th:block>
 						</tr>
-						<tr th:else>
-							<th:block th:each="board, iterStat : ${subBoards}">
+						<tr>
+							<th:block th:each="board  : ${subBoards}">
 								<div class="table-row">
 									<div class="serial" th:text="${subCategoryNames}">01</div>
 									<div class="country" id="title">
@@ -131,7 +138,7 @@
 									<div class="visit" id="write">작성자</div>
 									<div class="percentage">
 										<div class="progress">
-											
+
 										</div>
 									</div>
 								</div>

@@ -28,16 +28,6 @@ public class BoardSubCategoryServiceImplTest extends FormypetApplicationTest {
 		System.out.println("asdasd"+subcategory);
 		
 	}
-	@Test
-	@Transactional
-	//@Disabled
-	@Rollback(false)
-	void subCate2() throws Exception {
-		Long categoryId = 1L;
-		List<String> subcategory= boardService.getSubCategoryNameByCategoryBySubCategoryId(categoryId);
-		System.out.println("asdasd"+subcategory);
-		
-	}
 	
 
 

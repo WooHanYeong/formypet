@@ -46,8 +46,8 @@ public class BoardController {
 		model.addAttribute("subCategories", subCategories);
 		List<Board> boards = boardService.getBoardByCategoryId(categoryId);
 		model.addAttribute("boards", boards);
-		List<String> subCategoryNames = boardService.getSubCategoryNameByCategoryBySubCategoryId(categoryId);
-		model.addAttribute("subCategoryNames",subCategoryNames);
+		List<String> subNames = boardService.getSubCategoryByCategoryId(categoryId);
+		model.addAttribute("subNames", subNames);
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
@@ -69,6 +69,7 @@ public class BoardController {
 	public String boardDetail(@RequestParam(value = "boardId") Long boardId, Model model) throws Exception {
 		Board board = boardService.selectBoard(boardId);
 		model.addAttribute("board", board);
+		boardService.increaseReadCount(boardId);
 		String forwardPath = "board_detail";
 		return forwardPath;
 	}
@@ -85,6 +86,15 @@ public class BoardController {
 	 */
 	@GetMapping("/board_write/{categoryId}")
 	public String boardWrite(@PathVariable(value = "categoryId") Long categoryId,Model model) throws Exception {
+		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);
+		model.addAttribute("boardCategory", boardCategory);
+		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
+		model.addAttribute("subCategories", subCategories);
+		String forwardPath = "board_write";
+		return forwardPath;
+	}
+	@GetMapping("/board_write/{categoryId}/{boardId}")
+	public String boardWrite(@PathVariable(value = "categoryId") Long categoryId,@RequestParam(value = "boardId") Long boardId,Model model) throws Exception {
 		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);
 		model.addAttribute("boardCategory", boardCategory);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
