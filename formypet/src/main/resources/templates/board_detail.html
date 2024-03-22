@@ -142,8 +142,9 @@
 	<!--::footer_part start::-->
 	<footer class="footer_part">
 		<div class="container">
-            <input type="hidden" name="boardId" th:value="${board.boardId}">
-            <!--<input type="hidden" name="boardId" th:value="${board.categoryId}">-->
+            <input type="hidden" id="boardId" th:value="${board.boardId}">
+            <input type="hidden" id="categoryId" th:value="${board.boardCategory.categoryId}">
+            <input type="hidden" id="subCategoryId" th:value="${board.boardSubCategory.subCategoryId}">
             <button type="submit" class="btn btn-danger" onclick="updateBoard()">게시글 수정</button>
             <button type="submit" class="btn btn-danger" onclick="deleteBoard()">게시글 삭제</button>
 			</div>
@@ -209,6 +210,7 @@
 
 
 	<script src="customjs/board_detail.js"></script>
+	<script src="customjs/board_update.js"></script>
 </body>
 
 </html>

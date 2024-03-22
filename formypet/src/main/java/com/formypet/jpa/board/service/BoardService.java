@@ -53,4 +53,7 @@ public interface BoardService {
 	
 	//추천수 증가
 	public void updateRecommendCount(Long boardId, int recommendCount) throws Exception;
+	
+	//서브카테고리 다시
+	public String subCategoryNameBySubCategoryId(Long subCategoryId) throws Exception;
 }
