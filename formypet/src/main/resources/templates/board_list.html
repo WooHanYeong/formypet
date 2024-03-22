@@ -106,7 +106,7 @@
 						<tr>
 							<th:block th:each="board : ${boards}">
 								<div class="table-row">
-									<div class="serial" th:text=${board.boardId}></div>
+									<div class="serial" th:text=${board.boardSubCategory.subCategoryName}></div>
 									<div class="country" id="title">
 										<a th:href="${'/board_detail?boardId=' + board.boardId}"
 											th:text="${board.boardTitle}">제목</a>
@@ -130,7 +130,7 @@
 						<tr>
 							<th:block th:each="board  : ${subBoards}">
 								<div class="table-row">
-									<div class="serial" th:text="${subCategoryNames}">01</div>
+									<div class="serial" th:text="${subCategoryName}">01</div>
 									<div class="country" id="title">
 										<a th:href="${'/board_detail?boardId='+board.boardId}"
 											th:text="${board.boardTitle}">제목</a>

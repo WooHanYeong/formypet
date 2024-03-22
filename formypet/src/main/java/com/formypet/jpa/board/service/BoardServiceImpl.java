@@ -138,6 +138,7 @@ public class BoardServiceImpl implements BoardService {
 		List<String> subCategoryNames = new ArrayList<>();
 		for (BoardSubCategory subCategory : subCategories) {
 			subCategoryNames.add(subCategory.getSubCategoryName());
+			System.out.println("sub"+subCategory);
 		}
 		return subCategoryNames;
 
@@ -184,5 +185,16 @@ public class BoardServiceImpl implements BoardService {
             System.out.println("해당하는 게시글을 찾을 수 없습니다.");
         }
     }
+
+	@Override
+	public String subCategoryNameBySubCategoryId(Long subCategoryId) throws Exception {
+		Optional<BoardSubCategory> optionalSubCategory = boardSubCategoryRepository.findById(subCategoryId);
+		if (optionalSubCategory.isPresent()) {
+			String subCategoryName = optionalSubCategory.get().getSubCategoryName();
+			return subCategoryName;
+			
+		}
+		return null;
+	}
 
 }

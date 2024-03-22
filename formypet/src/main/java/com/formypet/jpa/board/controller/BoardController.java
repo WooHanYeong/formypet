@@ -61,6 +61,8 @@ public class BoardController {
 		model.addAttribute("subBoards", subBoards);
 		List<String> subCategoryNames = boardService.getSubCategoryName(subCategoryId);
 		model.addAttribute("subCategoryNames",subCategoryNames);
+		String subCategoryName = boardService.subCategoryNameBySubCategoryId(subCategoryId);
+		model.addAttribute("subCategoryName",subCategoryName);
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
@@ -74,16 +76,6 @@ public class BoardController {
 		return forwardPath;
 	}
 
-	/*
-	 * @GetMapping("/board_list/{categoryId}") public ResponseEntity<List<String>>
-	 * getSubCategoryNamesByMainCategoryId(@PathVariable Long categoryId) { try {
-	 * List<String> subCategoryNames =
-	 * boardSubCategoryServiceImpl.getSubCategoryNameByMainCategoryId(categoryId);
-	 * if (subCategoryNames.isEmpty()) { return new
-	 * ResponseEntity<>(HttpStatus.NO_CONTENT); } return new
-	 * ResponseEntity<>(subCategoryNames, HttpStatus.OK); } catch (Exception e) {
-	 * return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); } }
-	 */
 	@GetMapping("/board_write/{categoryId}")
 	public String boardWrite(@PathVariable(value = "categoryId") Long categoryId,Model model) throws Exception {
 		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);
@@ -93,15 +85,18 @@ public class BoardController {
 		String forwardPath = "board_write";
 		return forwardPath;
 	}
-	@GetMapping("/board_write/{categoryId}/{boardId}")
-	public String boardWrite(@PathVariable(value = "categoryId") Long categoryId,@RequestParam(value = "boardId") Long boardId,Model model) throws Exception {
+	@GetMapping("/board_update/{categoryId}/{boardId}")
+	public String boardUpdate(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "boardId") Long boardId, Model model) throws Exception {
+		Board board = boardService.selectBoard(boardId);
+		model.addAttribute("board", board);
 		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);
 		model.addAttribute("boardCategory", boardCategory);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
 		model.addAttribute("subCategories", subCategories);
-		String forwardPath = "board_write";
+		String forwardPath = "board_update";
 		return forwardPath;
 	}
+
 
 	@GetMapping("/board_adopt")
 	public String boardAdopt(Model model) throws Exception {

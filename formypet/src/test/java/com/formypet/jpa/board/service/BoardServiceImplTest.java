@@ -107,11 +107,21 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void subCategory() throws Exception {
 		Long categoryId = 1L;
 		List<String> string = boardService.getSubCategoryByCategoryId(categoryId);
+		System.out.println("서브카테고리 조회"+string);
+	}
+	
+	@Test
+	@Transactional
+	//@Disabled
+	@Rollback(false)
+	void subCategory1() throws Exception {
+		Long subCategoryId = 1L;
+		List<String> string = boardService.getSubCategoryName(subCategoryId);
 		System.out.println("서브카테고리 조회"+string);
 	}
 	

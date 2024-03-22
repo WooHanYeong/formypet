@@ -55,6 +55,11 @@ function deleteBoard() {
 }
 
 function updateBoard() {
+    var categoryId = document.getElementById('categoryId').value;
     var boardId = document.getElementById('boardId').value;
-    window.location.href = '/board_write/' + boardId;
+    var subCategoryId = document.getElementById('subCategoryId').value;
+    console.log(categoryId);
+    console.log(boardId);
+    console.log(subCategoryId);
+    window.location.href = '/board_update/'+ categoryId +'/'+ boardId;
 }

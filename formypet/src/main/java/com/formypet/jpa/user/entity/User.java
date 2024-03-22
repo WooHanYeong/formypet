@@ -3,6 +3,7 @@ package com.formypet.jpa.user.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.formypet.jpa.board.entity.Board;
 import com.formypet.jpa.cart.entity.Cart;
 import com.formypet.jpa.product.entity.ProductReply;
 import com.formypet.jpa.user.dto.UserDto;
@@ -78,6 +79,12 @@ public class User {
     @ToString.Exclude
     @JoinColumn(name="cart_id")
     private Cart cart;
+    
+    //유저와 게시판 관계설정
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @JoinColumn(name="cart_id")
+    private Board board;
     
  }
    
