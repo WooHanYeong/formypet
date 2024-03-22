@@ -122,7 +122,7 @@
 					<div class="checkout_btn_inner float-right">
 						<a class="btn_1" href="#">계속 쇼핑하기</a>
 						<a class="btn_1 checkout_btn_1" href="#" style="margin-left: 10px;">주문하기</a>
-						<a class="btn_1 checkout_btn_1" href="#"
+						<a class="btn_1 checkout_btn_1" onclick="deleteCartItem()"
 							style="margin-left: 10px; background-color: rgb(255, 128, 128);">삭제</a>
 					</div>
 				</div>
@@ -142,8 +142,8 @@
 						<h2>장바구니가 비어있어요
 						</h2>
 						<div class="input-group" style="margin-top: 100px;">
-							<input type="text" class="form-control" placeholder=""
-								aria-label="Recipient's username" aria-describedby="basic-addon2" readonly>
+							<input type="text" class="form-control" placeholder="" aria-label="Recipient's username"
+								aria-describedby="basic-addon2" readonly>
 							<div class="input-group-append">
 								<a href="product_list_dog" class="input-group-text btn_2" id="basic-addon2">Buy now</a>
 							</div>
@@ -205,6 +205,13 @@
 				$(this).closest('tr').find('.product-total-price').text('$' + totalPrice.toFixed(2));
 			});
 		});
+
+		function deleteCartItem() {
+			var inputElement = document.querySelector(".input-number");
+			console.log(inputElement);
+
+		}
+
 
 
 

@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,13 +36,10 @@ public class Cart {
 	private int cartTotalPrice;
 
 	private int cartTotalQty;
-	
+
 	public static Cart toEntity(CartDto dto) {
-		return Cart.builder()
-				   .id(dto.getId())
-				   .cartTotalPrice(dto.getCartTotalPrice())
-				   .cartTotalQty(dto.getCartTotalQty())
-				   .build();
+		return Cart.builder().id(dto.getId()).cartTotalPrice(dto.getCartTotalPrice())
+				.cartTotalQty(dto.getCartTotalQty()).build();
 	}
 
 	// 유저관계설정
@@ -53,6 +51,6 @@ public class Cart {
 	// cartItem관계설정
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<CartItem> cartItem = new ArrayList<>();
-	
+
 	// product관계설정
 }
