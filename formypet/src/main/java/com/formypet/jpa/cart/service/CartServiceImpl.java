@@ -42,6 +42,11 @@ public class CartServiceImpl implements CartService {
 		
 		return CartDto.toDto(updatecart);
 	}
+
+	@Override
+	public Optional<Cart> findByCartItemId(Long id) {
+		return cartRepository.findByCartItemId(id);
+	}
 	
 	
 	
