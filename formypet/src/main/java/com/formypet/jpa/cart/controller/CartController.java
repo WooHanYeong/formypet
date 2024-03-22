@@ -36,7 +36,7 @@ public class CartController {
 	public String cart_detail(HttpSession session,@RequestParam String userId, Model model) throws Exception {
 		User loginUser = (User) session.getAttribute("loginUser");
 		Long loginuserId = loginUser.getId();
-		Optional<Cart> findcart = cartService.findByUserId(loginuserId);
+		Optional<Cart> findcart = cartService.findByUserId(loginUser.getCart().getId());
 		Cart findcart2 = findcart.orElse(null);
 		model.addAttribute("findcart2",findcart2);
 		System.out.println("findcart2--->>"+findcart2);

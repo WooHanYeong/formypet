@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.formypet.jpa.Exception.ExistedUserException;
+import com.formypet.jpa.cart.entity.Cart;
+import com.formypet.jpa.cart.service.CartService;
 import com.formypet.jpa.user.dao.UserDao;
 import com.formypet.jpa.user.dto.UserDto;
 import com.formypet.jpa.user.dto.UserLoginDto;
@@ -32,6 +34,9 @@ public class UserRestController {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private CartService cartService;
 
 	@Operation(summary = "회원가입[성공]")
 	@PostMapping(value = "/join")
@@ -40,9 +45,14 @@ public class UserRestController {
 			if (userDao.existsById(userDto.getUserId())) {
 				throw new ExistedUserException(">>>" + userDto.getUserId() + "는 이미 존재하는 아이디입니다.");
 			}
-			UserDto createdUser = userService.createUser(userDto);
-
-			return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+			
+			Cart newCart = new Cart();
+			newCart.setUser(User.toEntity(userDto));
+			newCart.setCartTotalPrice(0);
+			newCart.setCartTotalQty(0);
+			cartService.insert(newCart);
+			
+			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (ExistedUserException e) {
 			// 이미 존재하는 사용자 예외 처리
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

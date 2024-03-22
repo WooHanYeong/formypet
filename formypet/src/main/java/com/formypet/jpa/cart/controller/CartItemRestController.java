@@ -48,29 +48,25 @@ public class CartItemRestController {
 			@RequestParam(value = "userId", required = false) Long userId) throws Exception {
 
 		try {
-			// 로그인된 유저정보로 카트 가져오기
+			// 로그인된 유저정보랑 카트 가져오기
 			User findUser = userService.findUserById(userId);
 			System.out.println("findUser -->" + findUser);
-			Optional<Cart> findCart = cartService.findByUserId(findUser.getId());
-			Cart findCart2 = findCart.orElseGet(() -> {
-				Cart newCart = new Cart();
-				newCart.setUser(findUser);
-				newCart.setCartTotalPrice(0);
-				newCart.setCartTotalQty(0);
-				cartService.insert(newCart);
-				return newCart;
-			});
-			System.out.println("Cart -->" + findCart2);
+			
+			Cart findCart = cartService.findByUserId(findUser.getCart().getId()).get();
+			System.out.println("Cart -->" + findCart);
 
 			// product찾기
 			Product findProduct = productService.findById(productId).orElse(null);
+			System.out.println("findProduct==>" + findProduct);
 
-			if (findProduct == null || findCart2 == null) {
+			//
+
+			if (findProduct == null || findCart == null) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to find product or cart.");
 			}
 
 			// 이미 카트에 해당 상품이 존재하는지 확인
-			Optional<CartItem> existingCartItem = findCart2.getCartItem().stream()
+			Optional<CartItem> existingCartItem = findCart.getCartItem().stream()
 					.filter(cartItem -> cartItem.getProduct().getId().equals(productId)).findFirst();
 
 			if (existingCartItem.isPresent()) {
@@ -83,14 +79,15 @@ public class CartItemRestController {
 			} else {
 				// 새로운 아이템으로 등록
 				int cartItemQty2 = cartItemQty;
-				CartItem cartItem = new CartItem(null, cartItemQty2, findCart2, findProduct);
+				CartItem cartItem = new CartItem(null, cartItemQty2, findCart, findProduct);
 				cartItemService.insert(cartItem);
 			}
 
 			// cart update
-			findCart2.setCartTotalPrice(findCart2.getCartTotalPrice() + findProduct.getProductPrice()*cartItemQty);
-			findCart2.setCartTotalQty(findCart2.getCartTotalQty() + cartItemQty);
-			CartDto findcart2Dto = CartDto.toDto(findCart2);
+			findCart.setCartTotalPrice(findCart.getCartTotalPrice() + findProduct.getProductPrice() * cartItemQty);
+			findCart.setCartTotalQty(findCart.getCartTotalQty() + cartItemQty);
+			findCart.setCartItem(findCart.getCartItem());
+			CartDto findcart2Dto = CartDto.toDto(findCart);
 			cartService.updateCart(findcart2Dto);
 
 			return ResponseEntity.ok("CartItem 성공");
@@ -106,29 +103,24 @@ public class CartItemRestController {
 	public ResponseEntity<String> cartItemInsertList(@RequestParam(value = "productId") Long productId,
 			@RequestParam(value = "userId") Long userId) {
 		try {
-			// 로그인된 유저정보로 카트 가져오기
+			// 로그인된 유저정보랑 카트 가져오기
 			User findUser = userService.findUserById(userId);
 			System.out.println("findUser -->" + findUser);
-			Optional<Cart> findCart = cartService.findByUserId(findUser.getId());
-			Cart findCart2 = findCart.orElseGet(() -> {
-				Cart newCart = new Cart();
-				newCart.setUser(findUser);
-				newCart.setCartTotalPrice(0);
-				newCart.setCartTotalQty(0);
-				cartService.insert(newCart);
-				return newCart;
-			});
-			System.out.println("Cart -->" + findCart2);
+			Cart findCart = cartService.findByUserId(findUser.getCart().getId()).get();
+			System.out.println("Cart -->" + findCart);
 
 			// product찾기
 			Product findProduct = productService.findById(productId).orElse(null);
+			System.out.println("findProduct==>" + findProduct);
 
-			if (findProduct == null || findCart2 == null) {
+			//
+
+			if (findProduct == null || findCart == null) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to find product or cart.");
 			}
 
 			// 이미 카트에 해당 상품이 존재하는지 확인
-			Optional<CartItem> existingCartItem = findCart2.getCartItem().stream()
+			Optional<CartItem> existingCartItem = findCart.getCartItem().stream()
 					.filter(cartItem -> cartItem.getProduct().getId().equals(productId)).findFirst();
 
 			if (existingCartItem.isPresent()) {
@@ -141,14 +133,17 @@ public class CartItemRestController {
 			} else {
 				// 새로운 아이템으로 등록
 				int cartItemQty = 1;
-				CartItem cartItem = new CartItem(null, cartItemQty, findCart2, findProduct);
+				CartItem cartItem = new CartItem(null, cartItemQty, findCart, findProduct);
 				cartItemService.insert(cartItem);
 			}
 
 			// cart update
-			findCart2.setCartTotalPrice(findCart2.getCartTotalPrice() + findProduct.getProductPrice());
-			findCart2.setCartTotalQty(findCart2.getCartTotalQty() + 1);
-			CartDto findcart2Dto = CartDto.toDto(findCart2);
+			System.out.println("check");
+
+			findCart.setCartTotalPrice(findCart.getCartTotalPrice() + findProduct.getProductPrice());
+			findCart.setCartTotalQty(findCart.getCartTotalQty() + 1);
+			findCart.setCartItem(findCart.getCartItem());
+			CartDto findcart2Dto = CartDto.toDto(findCart);
 			cartService.updateCart(findcart2Dto);
 
 			return ResponseEntity.ok("CartItem 성공");
