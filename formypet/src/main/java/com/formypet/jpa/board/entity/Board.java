@@ -74,7 +74,7 @@ public class Board {
 	@ToString.Exclude
 	private BoardSubCategory boardSubCategory;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;

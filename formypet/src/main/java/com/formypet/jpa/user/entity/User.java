@@ -80,11 +80,10 @@ public class User {
     @JoinColumn(name="cart_id")
     private Cart cart;
     
-    //유저와 게시판 관계설정
-    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    // 유저와 게시판 관계 설정
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @ToString.Exclude
-    @JoinColumn(name="cart_id")
-    private Board board;
+    private List<Board> boards = new ArrayList<>();
     
  }
    

@@ -6,7 +6,7 @@
 	<meta th:charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>formypet</title>
-	<link rel="icon" href="img/pet_icon.png">
+	<link rel="icon" href="/img/pet_icon.png">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<!-- animate CSS -->
@@ -55,12 +55,13 @@
 	<!-- breadcrumb start-->
 
 
-	/*
+
 
 	<div class="whole-wrap">
 		<div class="container box_1170">
 			<div class="main_category">
 				<ul>
+					<input type="hidden" id="userId" th:if="${loginUser != null}" th:value="${loginUser.userId}">
 					<li th:each="category, iterStat : ${categories}">
 						<a href="#" th:data-category="${category.categoryId}">
 							<span id="test1" th:text="${category.categoryName}"></span>
@@ -106,12 +107,12 @@
 						<tr>
 							<th:block th:each="board : ${boards}">
 								<div class="table-row">
-									<div class="serial" th:text=${board.boardSubCategory.subCategoryName}></div>
+									<div class="serial" th:text="${board.boardSubCategory.subCategoryName}"></div>
 									<div class="country" id="title">
 										<a th:href="${'/board_detail?boardId=' + board.boardId}"
 											th:text="${board.boardTitle}">제목</a>
 									</div>
-									<div class="visit" id="write">작성자</div>
+									<div class="visit" id="write" th:text="${loginUser.userId}">작성자</div>
 									<div class="percentage">
 										<div class="progress" id="recommend" th:text="${board.boardRecommend}"
 											style="margin:0 30px">
@@ -135,10 +136,17 @@
 										<a th:href="${'/board_detail?boardId='+board.boardId}"
 											th:text="${board.boardTitle}">제목</a>
 									</div>
-									<div class="visit" id="write">작성자</div>
+									<div class="visit" id="write" th:text="${loginUser.userId}"></div>
 									<div class="percentage">
-										<div class="progress">
-
+										<div class="progress" id="recommend" th:text="${board.boardRecommend}"
+											style="margin:0 30px">
+										</div>
+										<div class="progress" id="readCount" th:text="${board.boardReadCount}"
+											style="margin:0 -90px">
+										</div>
+										<div class="progress" id="createdTime"
+											th:text="${#temporals.format(board.createdTime, 'MM/dd')}"
+											style="margin-left:30px;">
 										</div>
 									</div>
 								</div>
@@ -160,7 +168,7 @@
 	<hr style="width: 1140px;">
 	<div class="write-class">
 		<form class="write-button" action="/write" method="get" style="transform: translateX(-15%);">
-			<button type="button" class="write-bt" onclick="window.location.href='/board_write/1'">글쓰기</button>
+			<button type="button" class="write-bt" onclick="boardWrite()">글쓰기</button>
 		</form>
 	</div>
 	<footer class="footer_part">

@@ -60,7 +60,8 @@
 		<div class="row">
 			<!--<div class="col-lg-8 posts-list">-->
 			<div class="single-post">
-				<div class="comment-form">
+				<input type="hidden" id="userId" th:value="${loginUser.userId}">
+				<div class="comment-form"th:if="${loginUser != null}">
 					<h4>글쓰기</h4>
 					<form class="form-contact comment_form" action="#" id="commentForm">
 						<div class="row">
@@ -108,7 +109,7 @@
 					<div class="row justify-content-around">
 
 					</div>
-
+	
 				</div>
 				<div class="copyright_part">
 					<div class="container">

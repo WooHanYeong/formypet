@@ -24,7 +24,11 @@ import com.formypet.jpa.board.repository.BoardCategoryRepository;
 import com.formypet.jpa.board.repository.BoardRepository;
 import com.formypet.jpa.board.repository.BoardSubCategoryRepository;
 import com.formypet.jpa.board.service.BoardService;
+import com.formypet.jpa.user.dto.UserDto;
+import com.formypet.jpa.user.entity.User;
+import com.formypet.jpa.user.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -38,8 +42,20 @@ public class BoardController {
 	BoardCategoryRepository boardCategoryRepository;
 	@Autowired
 	BoardSubCategoryRepository boardSubCategoryRepository;
+	@Autowired
+	UserService userService;
+
 	@GetMapping("/board_list/{categoryId}")
-	public String boardList(@PathVariable(value = "categoryId") Long categoryId, Model model) throws Exception {
+	public String boardList(@PathVariable(value = "categoryId") Long categoryId, Model model, HttpSession session)
+			throws Exception {
+	    User loginUser = (User) session.getAttribute("loginUser");
+	    if (loginUser != null) {
+	        UserDto user = userService.findUser(loginUser.getUserId());
+	        model.addAttribute("loginUser", user);
+	    }
+	    else {
+	        model.addAttribute("loginUser", null);
+	    }
 		List<BoardCategory> categories = boardCategoryRepository.findAll();
 		model.addAttribute("categories", categories);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
@@ -51,8 +67,19 @@ public class BoardController {
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
+
 	@GetMapping("/board_list/{categoryId}/{subCategoryId}")
-	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "subCategoryId") Long subCategoryId,  Model model) throws Exception {
+	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId,
+			@PathVariable(value = "subCategoryId") Long subCategoryId, Model model, HttpSession session)
+			throws Exception {
+	    User loginUser = (User) session.getAttribute("loginUser");
+	    if (loginUser != null) {
+	        UserDto user = userService.findUser(loginUser.getUserId());
+	        model.addAttribute("loginUser", user);
+	    }
+	    else {
+	        model.addAttribute("loginUser", null);
+	    }
 		List<BoardCategory> categories = boardCategoryRepository.findAll();
 		model.addAttribute("categories", categories);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
@@ -60,15 +87,16 @@ public class BoardController {
 		List<Board> subBoards = boardService.getBoardByCategoryIdAndSubCategoryId(categoryId, subCategoryId);
 		model.addAttribute("subBoards", subBoards);
 		List<String> subCategoryNames = boardService.getSubCategoryName(subCategoryId);
-		model.addAttribute("subCategoryNames",subCategoryNames);
+		model.addAttribute("subCategoryNames", subCategoryNames);
 		String subCategoryName = boardService.subCategoryNameBySubCategoryId(subCategoryId);
-		model.addAttribute("subCategoryName",subCategoryName);
+		model.addAttribute("subCategoryName", subCategoryName);
 		String forwardPath = "board_list";
 		return forwardPath;
 	}
 
 	@GetMapping("/board_detail")
-	public String boardDetail(@RequestParam(value = "boardId") Long boardId, Model model) throws Exception {
+	public String boardDetail(@RequestParam(value = "boardId") Long boardId, Model model, HttpSession session)
+			throws Exception {
 		Board board = boardService.selectBoard(boardId);
 		model.addAttribute("board", board);
 		boardService.increaseReadCount(boardId);
@@ -77,7 +105,14 @@ public class BoardController {
 	}
 
 	@GetMapping("/board_write/{categoryId}")
-	public String boardWrite(@PathVariable(value = "categoryId") Long categoryId,Model model) throws Exception {
+	public String boardWrite(@PathVariable(value = "categoryId") Long categoryId, Model model, HttpSession session)
+			throws Exception {
+	    User loginUser = (User) session.getAttribute("loginUser");
+	    if (loginUser == null) {
+	        return "redirect:/user_login_form";
+	    }
+	    UserDto user = userService.findUser(loginUser.getUserId());
+	    model.addAttribute("loginUser", user);
 		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);
 		model.addAttribute("boardCategory", boardCategory);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
@@ -85,8 +120,10 @@ public class BoardController {
 		String forwardPath = "board_write";
 		return forwardPath;
 	}
+
 	@GetMapping("/board_update/{categoryId}/{boardId}")
-	public String boardUpdate(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "boardId") Long boardId, Model model) throws Exception {
+	public String boardUpdate(@PathVariable(value = "categoryId") Long categoryId,
+			@PathVariable(value = "boardId") Long boardId, Model model, HttpSession session) throws Exception {
 		Board board = boardService.selectBoard(boardId);
 		model.addAttribute("board", board);
 		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);
@@ -96,7 +133,6 @@ public class BoardController {
 		String forwardPath = "board_update";
 		return forwardPath;
 	}
-
 
 	@GetMapping("/board_adopt")
 	public String boardAdopt(Model model) throws Exception {
@@ -113,6 +149,7 @@ public class BoardController {
 		String forwardPath = "test";
 		return forwardPath;
 	}
+
 	@GetMapping("/elements")
 	public String elements() {
 		String forwardPath = "elements";
