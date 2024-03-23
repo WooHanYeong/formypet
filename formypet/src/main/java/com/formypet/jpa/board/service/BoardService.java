@@ -16,7 +16,7 @@ public interface BoardService {
 	public Board createBoardByMainCategory(BoardDto boardDto) throws Exception;
 	
 	//게시판 카테고리의 서브카테고리별 글작성
-	public Board createBoardByMainCategoryBySubCategory(BoardDto boardDto) throws Exception;
+	public Board createBoardByMainCategoryBySubCategory(BoardDto boardDto, String userId) throws Exception;
 
 	//게시판 글삭제
 	public void deleteBoard(Long boardId) throws Exception;

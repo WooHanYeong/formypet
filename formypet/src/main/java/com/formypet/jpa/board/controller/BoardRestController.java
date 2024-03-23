@@ -36,9 +36,11 @@ public class BoardRestController {
 	}
 
 	@PostMapping("/create/{categoryId}/{subCategoryId}")
-	public ResponseEntity<Board> createBoardForList(@PathVariable(value = "subCategoryId") Long subCategoryId,@PathVariable(value = "categoryId") Long categoryId,@RequestBody BoardDto boardDto) throws Exception {
-		Board board = boardService.createBoardByMainCategoryBySubCategory(boardDto);
-		return new ResponseEntity<>(board, HttpStatus.CREATED);
+	public ResponseEntity<Board> createBoardForList(@PathVariable(value = "subCategoryId") Long subCategoryId,
+	        @PathVariable(value = "categoryId") Long categoryId, @RequestBody BoardDto boardDto,
+	        @RequestParam(name = "userId") String userId) throws Exception {
+	    Board board = boardService.createBoardByMainCategoryBySubCategory(boardDto, userId);
+	    return new ResponseEntity<>(board, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update/{boardId}")
@@ -53,17 +55,17 @@ public class BoardRestController {
 			return new ResponseEntity<>("boardId : " + boardId + "를 찾을 수 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
 
-    @PutMapping("/update/recommend/{boardId}")
-    public ResponseEntity<String> updateRecommendCount(@PathVariable(value = "boardId") Long boardId, @RequestParam int recommend) {
-        try {
-            boardService.updateRecommendCount(boardId, recommend);
-            return ResponseEntity.ok("게시글의 추천 수가 업데이트되었습니다: " + recommend);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("게시글의 추천 수 업데이트에 실패했습니다.");
-        }
-    }
+	@PutMapping("/update/recommend/{boardId}")
+	public ResponseEntity<String> updateRecommendCount(@PathVariable(value = "boardId") Long boardId,
+			@RequestParam int recommend) {
+		try {
+			boardService.updateRecommendCount(boardId, recommend);
+			return ResponseEntity.ok("게시글의 추천 수가 업데이트되었습니다: " + recommend);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("게시글의 추천 수 업데이트에 실패했습니다.");
+		}
+	}
 
 }

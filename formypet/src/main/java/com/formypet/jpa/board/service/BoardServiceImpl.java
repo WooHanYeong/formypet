@@ -20,6 +20,10 @@ import com.formypet.jpa.board.entity.BoardSubCategory;
 import com.formypet.jpa.board.repository.BoardCategoryRepository;
 import com.formypet.jpa.board.repository.BoardRepository;
 import com.formypet.jpa.board.repository.BoardSubCategoryRepository;
+import com.formypet.jpa.user.dto.UserDto;
+import com.formypet.jpa.user.entity.User;
+import com.formypet.jpa.user.repository.UserRepository;
+import com.formypet.jpa.user.service.UserService;
 
 import jakarta.transaction.Transactional;
 
@@ -32,6 +36,8 @@ public class BoardServiceImpl implements BoardService {
 	BoardCategoryRepository boardCategoryRepository;
 	@Autowired
 	BoardSubCategoryRepository boardSubCategoryRepository;
+	@Autowired
+	UserRepository userRepository;
 
 	// 메인 카테고리별 create 서비스
 	@Override
@@ -46,7 +52,11 @@ public class BoardServiceImpl implements BoardService {
 
 	// 메인 카테고리의 서브카테고리별 create 서비스
 	@Override
-	public Board createBoardByMainCategoryBySubCategory(BoardDto boardDto) throws Exception {
+	public Board createBoardByMainCategoryBySubCategory(BoardDto boardDto,String userId) throws Exception {
+		User user = userRepository.findByUserId(userId);
+        if (user == null) {
+            throw new Exception("해당하는 사용자를 찾을 수 없습니다.");
+        }
 		BoardCategory boardCategory = boardCategoryRepository.findById(boardDto.getBoardCategoryId())
 				.orElseThrow(() -> new Exception("해당하는 카테고리가 존재하지 않습니다."));
 		Optional<BoardSubCategory> boardSubCategoryOptional = boardSubCategoryRepository
@@ -55,6 +65,7 @@ public class BoardServiceImpl implements BoardService {
 				.orElseThrow(() -> new Exception("해당하는 서브 카테고리가 존재하지 않습니다."));
 		Board board = Board.builder().boardTitle(boardDto.getBoardTitle()).boardContent(boardDto.getBoardContent())
 				.boardImage(boardDto.getBoardImage()).boardCategory(boardCategory).boardSubCategory(boardSubCategory)
+				.user(user)
 				.build();
 		return boardRepository.save(board);
 	}
@@ -138,7 +149,7 @@ public class BoardServiceImpl implements BoardService {
 		List<String> subCategoryNames = new ArrayList<>();
 		for (BoardSubCategory subCategory : subCategories) {
 			subCategoryNames.add(subCategory.getSubCategoryName());
-			System.out.println("sub"+subCategory);
+			System.out.println("sub" + subCategory);
 		}
 		return subCategoryNames;
 
@@ -164,27 +175,28 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return subCategoryNames;
 	}
-	
-    @Override
-    public void increaseReadCount(Long boardId) throws Exception{
-        Optional<Board> optionalBoard = boardRepository.findById(boardId);
-        if (optionalBoard.isPresent()) {
-            Board board = optionalBoard.get();
-            board.setBoardReadCount(board.getBoardReadCount() + 1);
-            boardRepository.save(board);
-        } 
-    }
-    @Override
-    public void updateRecommendCount(Long boardId, int recommendCount) throws Exception{
-        Board board = boardRepository.findByBoardId(boardId);
-        if (board != null) {
-            board.setBoardRecommend(recommendCount);
-            boardRepository.save(board);
-            System.out.println("게시글의 추천 수가 업데이트되었습니다: " + recommendCount);
-        } else {
-            System.out.println("해당하는 게시글을 찾을 수 없습니다.");
-        }
-    }
+
+	@Override
+	public void increaseReadCount(Long boardId) throws Exception {
+		Optional<Board> optionalBoard = boardRepository.findById(boardId);
+		if (optionalBoard.isPresent()) {
+			Board board = optionalBoard.get();
+			board.setBoardReadCount(board.getBoardReadCount() + 1);
+			boardRepository.save(board);
+		}
+	}
+
+	@Override
+	public void updateRecommendCount(Long boardId, int recommendCount) throws Exception {
+		Board board = boardRepository.findByBoardId(boardId);
+		if (board != null) {
+			board.setBoardRecommend(recommendCount);
+			boardRepository.save(board);
+			System.out.println("게시글의 추천 수가 업데이트되었습니다: " + recommendCount);
+		} else {
+			System.out.println("해당하는 게시글을 찾을 수 없습니다.");
+		}
+	}
 
 	@Override
 	public String subCategoryNameBySubCategoryId(Long subCategoryId) throws Exception {
@@ -192,7 +204,7 @@ public class BoardServiceImpl implements BoardService {
 		if (optionalSubCategory.isPresent()) {
 			String subCategoryName = optionalSubCategory.get().getSubCategoryName();
 			return subCategoryName;
-			
+
 		}
 		return null;
 	}

@@ -1,3 +1,5 @@
+var loginUser = document.getElementById('userId').value;
+console.log(loginUser);
 // 카테고리 콤보박스 비활성화
 window.onload = function() {
 	var categoryDropdown = document.getElementById('mainCategory');
@@ -10,7 +12,7 @@ function submitForm() {
 	var subCategory = document.getElementById("subCategory");
 	var categoryId = mainCategory.value;
 	var subCategoryId = subCategory.value;
-
+debugger;
 	// 제목과 내용 가져오기
 	var boardTitle = document.getElementById("boardTitle").value;
 	var boardContent = document.getElementById("boardContent").value;
@@ -23,7 +25,7 @@ function submitForm() {
 		"boardContent": boardContent
 	};
 	// POST 요청 보내기
-	fetch("/api/board/create/" + categoryId + "/" + subCategoryId, {
+	fetch(`/api/board/create/${categoryId}/${subCategoryId}?userId=${loginUser}`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"

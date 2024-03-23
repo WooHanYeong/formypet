@@ -70,7 +70,7 @@
                                 </li>-->
 
 								<li class="nav-item">
-									<a class="nav-link" href="user_login_form"
+									<a class="nav-link" href="/user_login_form"
 										th:if="${session.loginUser == null}">Login</a>
 								</li>
 								<li class="nav-item">
@@ -82,7 +82,7 @@
 									<a class="nav-link" href="#">방문객님</a>
 								</li>
 								<li class="nav-item" th:unless="${session.loginUser == null}">
-									<a class="nav-link" href="user_mypage_form"
+									<a class="nav-link" href="/user_mypage_form"
 										th:text="${session.loginUser.userName + '  님'}">로그인유저네임</a>
 								</li>
 

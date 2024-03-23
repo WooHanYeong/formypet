@@ -42,15 +42,16 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	}
     @Test
 	@Transactional
-	@Disabled
+	//@Disabled
 	@Rollback(false)
     public void createBoardSubCate() throws Exception {
+    	String userId= "admin";
         BoardDto boardDto = new BoardDto();
         boardDto.setBoardCategoryId(1L);
         boardDto.setBoardSubCategoryId(1L);
         boardDto.setBoardTitle("제목");
         boardDto.setBoardContent("내용");
-        Board createdBoard = boardService.createBoardByMainCategoryBySubCategory(boardDto);
+        Board createdBoard = boardService.createBoardByMainCategoryBySubCategory(boardDto,userId);
         System.out.println("categoryAndSubCategory"+createdBoard);
     
     }
@@ -117,7 +118,7 @@ public class BoardServiceImplTest extends FormypetApplicationTest{
 	
 	@Test
 	@Transactional
-	//@Disabled
+	@Disabled
 	@Rollback(false)
 	void subCategory1() throws Exception {
 		Long subCategoryId = 1L;
