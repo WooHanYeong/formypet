@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>formypet</title>
+	<link rel="icon" href="img/pet_icon.png">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/all.css">
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/slick.css">
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+		.bar {
+			background-color: rgb(243, 225, 139);
+			padding-left: 100px;
+			padding-right: 100px;
+			border-radius: 20px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			/* 그림자 설정 */
+			display: flex;
+			justify-content: center;
+			/* 수평 정렬을 위한 설정 */
+			align-items: center;
+			/* 수직 정렬을 위한 설정 */
+			width: 500px;
+			/* 너비 조정 */
+		}
+
+		.bar-container {
+			display: flex;
+			justify-content: center;
+			margin-top: 120px;
+		}
+
+
+		.category-button {
+			width: 60px;
+			height: 60px;
+			margin: 20px;
+			display: flex;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.category-button:hover {
+			background-color: #f0f0f0;
+		}
+
+		.filter-container {
+			display: flex;
+		}
+
+		.filter {
+			margin-right: 20px;
+		}
+
+		.dropdown {
+			width: 150px;
+			/* 드롭다운 메뉴의 폭 조정 */
+		}
+	</style>
+</head>
+
+
+<body>
+
+	<!-- Header Start -->
+	<header class="ht-header">
+		<div class="container">
+			<div th:insert="~{header :: headerFragment}"></div>
+		</div>
+	</header>
+
+
+	<div class="whole-wrap" style="margin-top: 10%;">
+		<div class="container box_1170"
+			style="background-image: url('icon/강고.png'); background-repeat: repeat-x; z-index: 1; ">
+
+			<div class="backimg">
+
+				<h3 style="text-align: center;">유기동물 입양</h3>
+				<div class="bar-container">
+					<div class="container"
+						style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+						<div class="bar">
+							<div class="category-button" onclick="selectCategory('dog')">
+								<img src="icon/강아지icon.png" alt="강아지">
+							</div>
+							<div class="category-button" onclick="selectCategory('cat')">
+								<img src="icon/고양이icon.png" alt="고양이">
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="filter-container" style="padding-left: 10%;">
+					<div class="filter">
+						<select class="dropdown">
+							<option value="option1">상태</option>
+							<option value="option2">Option 2</option>
+							<option value="option3">Option 3</option>
+						</select>
+					</div>
+					<div class="filter">
+						<select class="dropdown">
+							<option value="option1">나이</option>
+							<option value="option2">Option 2</option>
+							<option value="option3">Option 3</option>
+						</select>
+					</div>
+					<!-- 필요한 만큼 더 추가 -->
+				</div>
+
+
+
+				<!-- 이미지 반복문 line 3 or4-->
+				<div class="row gallery-item" style="padding-left: 10%; padding-right: 10%;">
+					<div class="col-md-4">
+						<a href="img/elements/강아지방석쿠션_바잇미.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="img/elements/g1.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="img/elements/강아지방석쿠션_바잇미.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4">
+						<a href="img/elements/강아지방석쿠션_바잇미.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="img/elements/g1.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="img/elements/강아지방석쿠션_바잇미.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4">
+						<a href="img/elements/강아지방석쿠션_바잇미.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="img/elements/g1.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="img/elements/강아지방석쿠션_바잇미.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4">
+						<a href="img/elements/강아지방석쿠션_바잇미.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="img/elements/g1.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="img/elements/강아지방석쿠션_바잇미.jpg" class="img-pop-up img-gal">
+							<div class="single-gallery-image" style="background: url(img/elements/강아지방석쿠션_바잇미.jpg); ">
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--::footer_part start::-->
+		<footer class="footer_part">
+			<div class="copyright_part">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8">
+							<div class="copyright_text">
+								<P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									Copyright &copy;
+									<script>document.write(new Date().getFullYear());</script> All rights reserved |
+									This
+									template is made with <i class="ti-heart" aria-hidden="true"></i> by <a
+										href="https://colorlib.com" target="_blank">Colorlib</a>
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</P>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="footer_icon social_icon">
+								<ul class="list-unstyled">
+									<li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a>
+									</li>
+									<li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
+									<li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
+									<li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!--::footer_part end::-->
+
+
+
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.magnific-popup.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/masonry.pkgd.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+<!--		<script src="js/jquery.nice-select.min.js"></script>
+-->
+		<script src="js/slick.min.js"></script>
+		<script src="js/jquery.counterup.min.js"></script>
+		<script src="js/waypoints.min.js"></script>
+		<script src="js/contact.js"></script>
+		<script src="js/jquery.ajaxchimp.min.js"></script>
+		<script src="js/jquery.form.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script src="js/mail-script.js"></script>
+		<script src="js/stellar.js"></script>
+		<script src="js/price_rangs.js"></script>
+		<!-- custom js -->
+		<script src="js/custom.js"></script>
+</body>
+
+</html>

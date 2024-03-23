@@ -35,6 +35,11 @@ public class Controller {
 		String forwardPath = "blog";
 		return forwardPath;
 	}
+	@GetMapping("/elementss")
+	public String elements() {
+		String forwardPath = "elementss";
+		return forwardPath;
+	}
 	@GetMapping("/header")
 	public String header(HttpSession session, Model model) throws Exception{
 		User loginUser = (User) session.getAttribute("loginUser");
