@@ -13,6 +13,11 @@ public interface CartService {
 	//cart찾기
 	public Optional<Cart> findByUserId(Long id);
 	
+	//cart찾기(아이템으로)
+	public Optional<Cart> findByCartItemId(Long id);
+	
+	
+	
 	//cart 수정
 	CartDto updateCart(CartDto cartDto)throws Exception;
 	

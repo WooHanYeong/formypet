@@ -92,10 +92,15 @@
 									</td>
 									<td>
 										<div class="product_count">
-											<span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
+											<span class="input-number-decrement"
+												th:onclick="'minus(' + ${cartItem.id} + ')'"> <i
+													class="ti-angle-down"></i></span>
 											<input class="input-number" th:id="'quantity_' + ${cartItem.id}" type="text"
 												th:value="${cartItem.cartItemQty}" min="1" max="100">
-											<span class="input-number-increment"> <i class="ti-angle-up"></i></span>
+											<span class="input-number-increment"
+												th:onclick="'plus(' + ${cartItem.id} + ')'">
+												<i class="ti-angle-up"></i>
+											</span>
 										</div>
 									</td>
 
@@ -104,6 +109,10 @@
 											$720.00</h5>
 									</td>
 
+									<td>
+										<div id="cartItemId" th:text="${cartItem.id}" style="display: none;">
+										</div>
+									</td>
 								</div>
 							</tr>
 							<tr>
@@ -115,6 +124,8 @@
 								</td>
 								<td>
 									<h5 th:text="${findcart2.cartTotalPrice+'원'}">$2160.00</h5>
+									<input type="hidden" id="cartItemPk" th:value="${findcart2.id}">
+									</input>
 								</td>
 							</tr>
 						</tbody>
@@ -190,9 +201,51 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<script>
-		//한개이상 상품삭제
 
-		//수량변경
+		//수량변경+
+		function plus(itemId) {
+			console.log(itemId);
+			var selectedIds = [itemId];
+			console.log(selectedIds);
+
+			$.ajax({
+				url: `/api/cartItem2/CartItemUpdateP`,
+				method: 'POST',
+				data: JSON.stringify(selectedIds), // 선택된 상품 ID 리스트를 JSON 문자열로 변환하여 전송
+				contentType: 'application/json', // 요청의 컨텐츠 타입을 JSON으로 설정
+				success: function (response) {
+					alert("수량이 변경되었습니다.!");
+					location.reload();
+				},
+				error: function (error) {
+					alert("수량 변경 실패. 다시 시도해주세요.");
+					console.error("Error deleting user:", error);
+				},
+			});
+		}
+		//수량변경-
+		function minus(itemId) {
+			console.log(itemId);
+			var selectedIds = [itemId];
+			console.log(selectedIds);
+
+			$.ajax({
+				url: `/api/cartItem2/CartItemUpdateM`,
+				method: 'POST',
+				data: JSON.stringify(selectedIds), // 선택된 상품 ID 리스트를 JSON 문자열로 변환하여 전송
+				contentType: 'application/json', // 요청의 컨텐츠 타입을 JSON으로 설정
+				success: function (response) {
+					alert("수량이 변경되었습니다.!");
+					location.reload();
+				},
+				error: function (error) {
+					alert("수량 변경 실패. 다시 시도해주세요.");
+					console.error("Error deleting user:", error);
+				},
+			});
+		}
+
+
 
 		//계속쇼핑하기 클릭함수
 
@@ -206,9 +259,34 @@
 			});
 		});
 
+
+		// cartItem delete ids
 		function deleteCartItem() {
-			var inputElement = document.querySelector(".input-number");
-			console.log(inputElement);
+			var selectedIds = [];
+			var checkboxes = document.getElementsByName('selectedProducts');
+			checkboxes.forEach(function (checkbox) {
+				if (checkbox.checked) {
+					var productId = checkbox.closest('tr').querySelector('#cartItemId').textContent;
+					selectedIds.push(Number(productId)); // 문자열을 숫자(혹은 long)로 변환하여 추가
+				}
+			});
+			console.log(selectedIds);
+
+			$.ajax({
+				url: `/api/cartItem2/CartItemDelete`,
+				method: 'DELETE',
+				data: JSON.stringify(selectedIds), // 선택된 상품 ID 리스트를 JSON 문자열로 변환하여 전송
+				contentType: 'application/json', // 요청의 컨텐츠 타입을 JSON으로 설정
+				success: function (response) {
+					alert("상품이 삭제되었습니다.!");
+					location.reload();
+				},
+				error: function (error) {
+					alert("상품 삭제 실패. 다시 시도해주세요.");
+					console.error("Error deleting user:", error);
+				},
+			});
+
 
 		}
 

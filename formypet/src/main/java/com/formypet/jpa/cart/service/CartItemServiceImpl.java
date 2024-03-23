@@ -2,6 +2,7 @@ package com.formypet.jpa.cart.service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,17 @@ public class CartItemServiceImpl implements CartItemService{
 		CartItem updateCartItem = cartItemRepository.save(cartItem);
 		
 		return CartItemDto.toDto(updateCartItem);
+	}
+	
+	//ids받아서 삭제리스트.
+	@Override
+	public List<CartItem> findLongListCartItemList(List<Long> ids) {
+		return cartItemRepository.findAllById(ids);
+	}
+
+	@Override
+	public Optional<CartItem> findById(Long id) {
+		return cartItemRepository.findById(id);
 	}
 
 
