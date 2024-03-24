@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>formypet</title>
+	<link rel="icon" href="img/pet_icon.png">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/all.css">
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/slick.css">
+	<link rel="stylesheet" href="css/stylecustom.css">
+	<style>
+		.dropdowncuston {
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			background-color: #f2f2f2;
+			border: none;
+			padding: 10px;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			width: 150px;
+		}
+
+
+		/* 드롭다운 옵션 스타일링 */
+		.dropdown option {
+			background-color: #f2f2f2;
+			color: #333;
+			font-weight: bold;
+		}
+
+		.bar {
+			background-color: rgb(243, 225, 139);
+			padding-left: 100px;
+			padding-right: 100px;
+			border-radius: 20px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			/* 그림자 설정 */
+			display: flex;
+			justify-content: center;
+			/* 수평 정렬을 위한 설정 */
+			align-items: center;
+			/* 수직 정렬을 위한 설정 */
+			width: 500px;
+			/* 너비 조정 */
+		}
+
+		.bar-container {
+			display: flex;
+			justify-content: center;
+		}
+
+		.category-button {
+			width: 60px;
+			height: 60px;
+			margin: 20px;
+			display: flex;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.category-button:hover {
+			background-color: #f0f0f0;
+		}
+
+		.filter-container {
+			display: flex;
+		}
+
+		.filter {
+			margin-right: 20px;
+		}
+	</style>
+</head>
+
+
+<body>
+
+	<!-- Header Start -->
+	<header class="ht-header">
+		<div class="container">
+			<div th:insert="~{header :: headerFragment}"></div>
+		</div>
+	</header>
+
+
+	<div class="whole-wrap" style="margin-top: 10%;">
+		<div class="container box_1170"
+			style="background-image: url('icon/강고.png'); background-repeat: repeat-x; z-index: 1; ">
+			<h3 style="text-align: center;">유기동물 입양</h3>
+			<div class="bar-container" style="margin-top: 120px;">
+				<div class="container"
+					style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+					<div class="bar">
+						<div class="category-button" onclick="selectCategory('dog')">
+							<img src="icon/전체icon.png" alt="전체">
+						</div>
+						<div class="category-button" onclick="selectCategory('dog')">
+							<img src="icon/강아지icon.png" alt="강아지">
+						</div>
+						<div class="category-button" onclick="selectCategory('cat')">
+							<img src="icon/고양이icon.png" alt="고양이">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="cat_product_area section_padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="left_sidebar_area">
+
+						<aside class="left_widgets p_filter_widgets">
+							<div class="l_w_title">
+								<h3>Color Filter</h3>
+							</div>
+							<div class="widgets_inner">
+								<ul class="list">
+									<select class="dropdowncuston">
+										<option value="option1">품종</option>
+										<option value="option2">진돗개</option>
+										<option value="option3">골든 리트리버</option>
+									</select>
+								</ul>
+							</div>
+						</aside>
+
+
+
+						<aside class="left_widgets p_filter_widgets">
+							<div class="l_w_title">
+								<h3>Age</h3>
+							</div>
+							<div class="widgets_inner">
+								<ul class="list">
+									<li>
+										<input type="checkbox" id="checkbox1">
+										<a>1살미만</a>
+									</li>
+									<li>
+										<input type="checkbox" id="checkbox1">
+										<a>1살 ~5살</a>
+									</li>
+									<li class="active">
+										<input type="checkbox" id="checkbox1">
+										<a>6살~9살</a>
+									</li>
+									<li>
+										<input type="checkbox" id="checkbox1">
+										<a>10살이상</a>
+									</li>
+								</ul>
+							</div>
+						</aside>
+
+
+
+						<aside class="left_widgets p_filter_widgets">
+							<div class="l_w_title">
+								<h3>Sex</h3>
+							</div>
+							<div class="widgets_inner">
+								<ul class="list">
+									<li>
+										<input type="checkbox" id="checkbox1">
+										<a>남아</a>
+									</li>
+									<li>
+										<input type="checkbox" id="checkbox1">
+										<a>여아</a>
+									</li>
+								</ul>
+							</div>
+						</aside>
+
+						<aside class="left_widgets p_filter_widgets">
+							<div class="l_w_title">
+								<h3>Neutering</h3>
+							</div>
+							<div class="widgets_inner">
+								<ul class="list">
+									<li>
+										<input type="checkbox" id="checkbox1">
+										<a>완료</a>
+									</li>
+									<li>
+										<input type="checkbox" id="checkbox1">
+										<a>미완료</a>
+									</li>
+									<li>
+										<input type="checkbox" id="checkbox1">
+										<a>알 수 없음</a>
+									</li>
+								</ul>
+							</div>
+						</aside>
+
+
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="product_top_bar d-flex justify-content-between align-items-center">
+
+								<div class="single_product_menu d-flex">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="search"
+											aria-describedby="inputGroupPrepend">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="inputGroupPrepend"><i
+													class="ti-search"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row align-items-center latest_product_inner">
+						<div class="col-lg-4 col-sm-6">
+							<div class="single_product_item">
+								<img src="img/elements/강아지방석쿠션_바잇미.jpg" alt="">
+								<div class="single_product_text">
+									<h4>Quartz Belt Watch</h4>
+									<h3>$150.00</h3>
+									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="single_product_item">
+								<img src="img/elements/강아지방석쿠션_바잇미.jpg" alt="">
+								<div class="single_product_text">
+									<h4>Quartz Belt Watch</h4>
+									<h3>$150.00</h3>
+									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="single_product_item">
+								<img src="img/elements/강아지방석쿠션_바잇미.jpg" alt="">
+								<div class="single_product_text">
+									<h4>Quartz Belt Watch</h4>
+									<h3>$150.00</h3>
+									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="single_product_item">
+								<img src="img/elements/강아지방석쿠션_바잇미.jpg" alt="">
+								<div class="single_product_text">
+									<h4>Quartz Belt Watch</h4>
+									<h3>$150.00</h3>
+									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="single_product_item">
+								<img src="img/elements/강아지방석쿠션_바잇미.jpg" alt="">
+								<div class="single_product_text">
+									<h4>Quartz Belt Watch</h4>
+									<h3>$150.00</h3>
+									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="single_product_item">
+								<img src="img/elements/강아지방석쿠션_바잇미.jpg" alt="">
+								<div class="single_product_text">
+									<h4>Quartz Belt Watch</h4>
+									<h3>$150.00</h3>
+									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="single_product_item">
+								<img src="img/elements/강아지방석쿠션_바잇미.jpg" alt="">
+								<div class="single_product_text">
+									<h4>Quartz Belt Watch</h4>
+									<h3>$150.00</h3>
+									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="single_product_item">
+								<img src="img/elements/강아지방석쿠션_바잇미.jpg" alt="">
+								<div class="single_product_text">
+									<h4>Quartz Belt Watch</h4>
+									<h3>$150.00</h3>
+									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="single_product_item">
+								<img src="img/elements/강아지방석쿠션_바잇미.jpg" alt="">
+								<div class="single_product_text">
+									<h4>Quartz Belt Watch</h4>
+									<h3>$150.00</h3>
+									<a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-12">
+							<div class="pageination">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination justify-content-center">
+										<li class="page-item">
+											<a class="page-link" href="#" aria-label="Previous">
+												<i class="ti-angle-double-left"></i>
+											</a>
+										</li>
+										<li class="page-item"><a class="page-link" href="#">1</a></li>
+										<li class="page-item"><a class="page-link" href="#">2</a></li>
+										<li class="page-item"><a class="page-link" href="#">3</a></li>
+										<li class="page-item"><a class="page-link" href="#">4</a></li>
+										<li class="page-item"><a class="page-link" href="#">5</a></li>
+										<li class="page-item"><a class="page-link" href="#">6</a></li>
+										<li class="page-item">
+											<a class="page-link" href="#" aria-label="Next">
+												<i class="ti-angle-double-right"></i>
+											</a>
+										</li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--::footer_part start::-->
+	<footer class="footer_part">
+		<div class="copyright_part">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="copyright_text">
+							<P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;
+								<script>document.write(new Date().getFullYear());</script> All rights reserved |
+								This
+								template is made with <i class="ti-heart" aria-hidden="true"></i> by <a
+									href="https://colorlib.com" target="_blank">Colorlib</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</P>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="footer_icon social_icon">
+							<ul class="list-unstyled">
+								<li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a>
+								</li>
+								<li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
+								<li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
+								<li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--::footer_part end::-->
+
+
+
+	<script src="js/jquery-1.12.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.magnific-popup.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/masonry.pkgd.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<!--		<script src="js/jquery.nice-select.min.js"></script>
+-->
+	<script src="js/slick.min.js"></script>
+	<script src="js/jquery.counterup.min.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script src="js/contact.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/jquery.form.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/stellar.js"></script>
+	<script src="js/price_rangs.js"></script>
+	<!-- custom js -->
+	<script src="js/custom.js"></script>
+</body>
+
+</html>
