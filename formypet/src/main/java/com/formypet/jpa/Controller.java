@@ -30,11 +30,7 @@ public class Controller {
 		return forwardPath;
 	}
 
-	@GetMapping("/adopt_list")
-	public String adopt_list() {
-		String forwardPath = "adopt_list";
-		return forwardPath;
-	}
+
 	@GetMapping("/elementss")
 	public String elements() {
 		String forwardPath = "elementss";

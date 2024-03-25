@@ -7612,8 +7612,8 @@ button.bg-dark:hover {
 
 .justify-content-between {
 	-ms-flex-pack: justify !important;
-	justify-content: space-between !important
-}
+/*	justify-content: space-between !important
+*/}
 
 .justify-content-around {
 	-ms-flex-pack: distribute !important;
