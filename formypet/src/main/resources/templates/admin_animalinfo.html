@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title> Admin- Dashboard</title>
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link
+		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet">
+	<link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+			<!-- Sidebar - Brand -->
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin_index">
+				<div class="sidebar-brand-icon rotate-n-15">
+					<i class="fas fa-laugh-wink"></i>
+				</div>
+				<div class="sidebar-brand-text mx-3"> Admin </div>
+			</a>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0">
+
+			<!-- Nav Item - Dashboard -->
+			<li class="nav-item active">
+				<a class="nav-link" href="admin_index">
+					<i class="fas fa-fw fa-tachometer-alt"></i>
+					<span>Dashboard</span></a>
+			</li>
+
+			<hr class="sidebar-divider">
+
+
+			<!-- Divider -->
+
+			<!-- Heading -->
+			<div class="sidebar-heading">
+				Addons
+			</div>
+
+			<li class="nav-item">
+				<a class="nav-link" href="index">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>메인으로</span></a>
+			</li>
+
+
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+					aria-expanded="true" aria-controls="collapsePages">
+					<i class="fas fa-fw fa-folder"></i>
+					<span>등록Page</span>
+				</a>
+				<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<div class="collapse-divider"></div>
+						<a class="collapse-item" href="admin_create_animal">유기동물등록</a>
+						<a class="collapse-item" href="admin_create_product"> 상품등록</a>
+					</div>
+				</div>
+			</li>
+
+			<!-- Nav Item - Charts -->
+			<li class="nav-item">
+				<a class="nav-link" href="admin_productinfo">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>상품관리</span></a>
+			</li><!-- Nav Item - Charts -->
+
+			<li class="nav-item">
+				<a class="nav-link" href="admin_animalinfo">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>유기동물관리</span></a>
+			</li>
+
+
+			<!-- Nav Item - Charts -->
+			<li class="nav-item">
+				<a class="nav-link" href="admin_orderinfo">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>주문관리</span></a>
+			</li>
+
+			<!-- Nav Item - Tables -->
+			<li class="nav-item">
+				<a class="nav-link" href="admin_userinfo">
+					<i class="fas fa-fw fa-table"></i>
+					<span>회원관리</span></a>
+			</li>
+			<!-- Divider -->
+			<hr class="sidebar-divider d-none d-md-block">
+
+			<!-- Sidebar Toggler (Sidebar) -->
+			<div class="text-center d-none d-md-inline">
+				<button class="rounded-circle border-0" id="sidebarToggle"></button>
+			</div>
+
+		</ul>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+					<!-- Sidebar Toggle (Topbar) -->
+					<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+						<i class="fa fa-bars"></i>
+					</button>
+
+
+					<!-- Topbar Navbar -->
+					<ul class="navbar-nav ml-auto">
+
+
+						<div class="topbar-divider d-none d-sm-block"></div>
+
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow">
+							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="mr-2 d-none d-lg-inline text-gray-600 small">관리자님</span>
+								<img class="img-profile rounded-circle"
+									src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+							</a>
+						</li>
+					</ul>
+
+				</nav>
+				<!-- End of Topbar -->
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<h1 class="h3 mb-2 text-gray-800">Animal Info Table</h1>
+					<p class="mb-4">유기동물정보를 한번에 볼 수 있는 테이블입니다.</p>
+
+					<!-- DataTales Example -->
+					<div class="card shadow mb-4">
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th></th>
+											<th>동물종류</th>
+											<th>종</th>
+											<th>나이</th>
+											<th>성별</th>
+											<th>중성화여부</th>
+											<th>무게</th>
+											<th>지역</th>
+											<th>성격</th>
+											<th>코드</th>
+											<th>등록일</th>
+											<th style="display: none;"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="animal : ${animalList}">
+											<td>
+												<input type="checkbox" name="selectedProducts" value="" /> <!-- 체크박스 -->
+											</td>
+												
+												
+											<td th:text="${animal.animalType}">System Architect</td>
+											<td th:text="${animal.animalBreed}">System Architect</td>
+											<td th:text="${animal.animalAge}">System Architect</td>
+											<td th:text="${animal.animalSex}">Edinburgh</td>
+											<td th:text="${animal.animalNeutering}">61</td>
+											<td th:text="${animal.animalWeight+'kg'}">2011/04/25</td>
+											<td th:text="${animal.animalRegion}">2011/04/25</td>
+											<td th:text="${animal.animalEtc}">2011/04/25</td>
+											<td th:text="${animal.animalCodeNumber}">2011/04/25</td>
+											<td th:text="${#temporals.format(animal.createdTime, 'yyyy년 MM월 dd일')}">
+												2011/04/25</td>
+<!--											<td id="productId" th:text="${product.id}" style="display: none;"></td>
+-->										</tr>
+									</tbody>
+								</table>
+								<a href="#" class="btn btn-danger btn-icon-split">
+									<span class="icon text-white-50">
+										<i class="fas fa-trash"></i>
+									</span>
+									<span class="text" onclick="printSelectedProductIds()">상품삭제</span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<a class="scroll-to-top rounded" href="#page-top">
+		<i class="fas fa-angle-up"></i>
+	</a>
+
+
+	<script>
+		function printSelectedProductIds() {
+			var selectedIds = [];
+			var checkboxes = document.getElementsByName('selectedProducts');
+			checkboxes.forEach(function (checkbox) {
+				if (checkbox.checked) {
+					var productId = checkbox.closest('tr').querySelector('#productId').textContent;
+					selectedIds.push(Number(productId)); // 문자열을 숫자(혹은 long)로 변환하여 추가
+				}
+			});
+
+			console.log(selectedIds);
+
+			$.ajax({
+				url: `/api/product/delete/products`,
+				method: 'DELETE',
+				data: JSON.stringify(selectedIds), // 선택된 상품 ID 리스트를 JSON 문자열로 변환하여 전송
+				contentType: 'application/json', // 요청의 컨텐츠 타입을 JSON으로 설정
+				success: function (response) {
+					alert("상품이 삭제되었습니다.!");
+					location.reload();
+				},
+				error: function (error) {
+					alert("상품 삭제 실패. 다시 시도해주세요.");
+					console.error("Error deleting user:", error);
+				},
+			});
+		}
+
+	</script>
+
+
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="js/sb-admin-2.min.js"></script>
+	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+	<script src="js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>
