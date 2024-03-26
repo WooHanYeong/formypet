@@ -10,4 +10,6 @@ public interface AnimalRepository extends JpaRepository<Animal, Long>{
 
 	//강아지 리스트 최신순
 	List<Animal> findByAnimalType_OrderByCreatedTimeDesc(String animaltype);
+	
+	
 }
