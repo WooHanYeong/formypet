@@ -23,5 +23,6 @@ public interface AnimalService {
 	List<Animal> findAllAnimalList();
 	
 	
+	
 
 }
