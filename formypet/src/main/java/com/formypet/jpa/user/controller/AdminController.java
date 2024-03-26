@@ -62,6 +62,7 @@ public class AdminController {
 	@GetMapping("/admin_animalinfo")
 	public String admin_animalinfo(Model model) throws Exception {
 		List<Animal> animalList = animalService.findAllAnimalList();
+		System.out.println("애니멀리스트"+animalList);
 		model.addAttribute("animalList",animalList);
 		return "admin_animalinfo";
 	}

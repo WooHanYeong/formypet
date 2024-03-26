@@ -8,9 +8,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdoptController {
 	
 	
-	@GetMapping("/adopt_list")
-	public String adopt_list() {
-		String forwardPath = "adopt_list";
+	@GetMapping("/adopt_list_index")
+	public String adopt_list_index() {
+		String forwardPath = "adopt_list_index";
+		return forwardPath;
+	}
+	
+	
+	@GetMapping("/adopt_list_dog")
+	public String adopt_list_dog() {
+		String forwardPath = "adopt_list_dog";
+		return forwardPath;
+	}
+	
+	@GetMapping("/adopt_list_cat")
+	public String adopt_list_cat() {
+		String forwardPath = "adopt_list_cat";
 		return forwardPath;
 	}
 	
@@ -19,6 +32,8 @@ public class AdoptController {
 		String forwardPath = "adopt_detail";
 		return forwardPath;
 	}
+	
+	
 	@GetMapping("/adopt_application")
 	public String adopt_application() {
 		String forwardPath = "adopt_application";

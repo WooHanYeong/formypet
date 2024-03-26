@@ -179,10 +179,10 @@
 									<tbody>
 										<tr th:each="animal : ${animalList}">
 											<td>
-												<input type="checkbox" name="selectedProducts" value="" /> <!-- 체크박스 -->
+												<input type="checkbox" name="selectedAnimals" value="" /> <!-- 체크박스 -->
 											</td>
-												
-												
+
+
 											<td th:text="${animal.animalType}">System Architect</td>
 											<td th:text="${animal.animalBreed}">System Architect</td>
 											<td th:text="${animal.animalAge}">System Architect</td>
@@ -194,15 +194,15 @@
 											<td th:text="${animal.animalCodeNumber}">2011/04/25</td>
 											<td th:text="${#temporals.format(animal.createdTime, 'yyyy년 MM월 dd일')}">
 												2011/04/25</td>
-<!--											<td id="productId" th:text="${product.id}" style="display: none;"></td>
--->										</tr>
+											<td id="animalId" th:text="${animal.id}" style="display: none;"></td>
+										</tr>
 									</tbody>
 								</table>
 								<a href="#" class="btn btn-danger btn-icon-split">
 									<span class="icon text-white-50">
 										<i class="fas fa-trash"></i>
 									</span>
-									<span class="text" onclick="printSelectedProductIds()">상품삭제</span>
+									<span class="text" onclick="deleteAnimalIds()">상품삭제</span>
 								</a>
 							</div>
 						</div>
@@ -220,29 +220,29 @@
 
 
 	<script>
-		function printSelectedProductIds() {
+		function deleteAnimalIds() {
 			var selectedIds = [];
-			var checkboxes = document.getElementsByName('selectedProducts');
+			var checkboxes = document.getElementsByName('selectedAnimals');
 			checkboxes.forEach(function (checkbox) {
 				if (checkbox.checked) {
-					var productId = checkbox.closest('tr').querySelector('#productId').textContent;
-					selectedIds.push(Number(productId)); // 문자열을 숫자(혹은 long)로 변환하여 추가
+					var animalId = checkbox.closest('tr').querySelector('#animalId').textContent;
+					selectedIds.push(Number(animalId)); // 문자열을 숫자(혹은 long)로 변환하여 추가
 				}
 			});
 
 			console.log(selectedIds);
 
 			$.ajax({
-				url: `/api/product/delete/products`,
+				url: `/api/animal/delete/animals`,
 				method: 'DELETE',
 				data: JSON.stringify(selectedIds), // 선택된 상품 ID 리스트를 JSON 문자열로 변환하여 전송
 				contentType: 'application/json', // 요청의 컨텐츠 타입을 JSON으로 설정
 				success: function (response) {
-					alert("상품이 삭제되었습니다.!");
+					alert("동물들이 삭제되었습니다.!");
 					location.reload();
 				},
 				error: function (error) {
-					alert("상품 삭제 실패. 다시 시도해주세요.");
+					alert("동물 삭제 실패. 다시 시도해주세요.");
 					console.error("Error deleting user:", error);
 				},
 			});

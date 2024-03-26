@@ -56,7 +56,7 @@ public class AnimalRestContoroller {
 	}
 	
 	//유기동물 삭제(1개이상)
-	@DeleteMapping("delete/animals")
+	@DeleteMapping("/delete/animals")
 	public ResponseEntity<String> deleteAnimals(@RequestBody List<Long> ids){
 		animalService.deleteAllById(ids);
 	    return ResponseEntity.ok("animals delete successfully.");

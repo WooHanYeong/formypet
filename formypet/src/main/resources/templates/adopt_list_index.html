@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>formypet</title>
 	<link rel="icon" href="img/pet_icon.png">
-	<link rel="stylesheet" href="css/bootstrap1.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/all.css">
@@ -17,27 +17,6 @@
 	<link rel="stylesheet" href="css/slick.css">
 	<link rel="stylesheet" href="css/stylecustom.css">
 	<style>
-		.dropdowncuston {
-			appearance: none;
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			background-color: #f2f2f2;
-			border: none;
-			padding: 10px;
-			border-radius: 5px;
-			font-size: 16px;
-			cursor: pointer;
-			width: 150px;
-		}
-
-
-		/* 드롭다운 옵션 스타일링 */
-		.dropdown option {
-			background-color: #f2f2f2;
-			color: #333;
-			font-weight: bold;
-		}
-
 		.bar {
 			background-color: rgb(243, 225, 139);
 			padding-left: 100px;
@@ -50,7 +29,8 @@
 			/* 수평 정렬을 위한 설정 */
 			align-items: center;
 			/* 수직 정렬을 위한 설정 */
-			width: 500px;
+			width: 800px;
+			height: 400px;
 			/* 너비 조정 */
 		}
 
@@ -60,8 +40,8 @@
 		}
 
 		.category-button {
-			width: 60px;
-			height: 60px;
+			width: 300px;
+			height: 300px;
 			margin: 20px;
 			display: flex;
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -99,72 +79,21 @@
 
 	<div class="whole-wrap" style="margin-top: 10%;">
 		<div class="container box_1170"
-			style="background-image: url('icon/강고.png'); background-repeat: repeat-x; z-index: 1; height: 200px;">
+			style="background-image: url('icon/강고.png'); background-repeat: repeat-x; z-index: 1; ">
 			<h3 style="text-align: center;">유기동물 입양</h3>
 			<div class="bar-container" style="margin-top: 120px;">
 				<div class="container"
 					style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
 					<div class="bar">
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="product_image_area section_padding">
-		<div class="container">
-			<div class="row s_product_inner justify-content-between">
-
-
-				<div class="col-lg-7 col-xl-7">
-					<div class="product_slider_img">
-						<div class="lSSlideOuter  vertical" style="padding-right: 105px;">
-							<div class="lSSlideWrapper usingCss" style="height: 450px;">
-
-								<div class="lslide active" style="height: 450px; margin-bottom: 0px;">
-									<img src="/animalimg/defaultimg/러시안블루1.jpg">
-								</div>
-
-								<div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div>
-							</div>
+						<div class="category-button">
+							<a href="adopt_list_dog">
+								<img src="icon/강아지icon.png" alt="강아지" style="width: 300px; height: 300px;">
+							</a>
 						</div>
-					</div>
-				</div>
-
-
-				<div class="col-lg-5 col-xl-4">
-					<div class="s_product_text">
-						<h3>[강아지]</h3>
-						<h3>진돗개 <span>-</span> 1세미만</h3>
-						<ul class="list" style=" border-top:1px solid #dddddd">
-							<li style="margin-top: 20px;">
-								<a class="active">
-									<span>품종</span> :&nbsp;&nbsp; 진돗개</a>
-							</li>
-							<li>
-								<a> <span>Age</span> :&nbsp;&nbsp; 1살미만</a>
-							</li>
-							<li>
-								<a> <span>Sex</span> :&nbsp;&nbsp; 남아</a>
-							</li>
-							<li>
-								<a> <span>Neutering</span> :&nbsp;&nbsp; 알 수 없음</a>
-							</li>
-							<li>
-								<a> <span>weight</span> :&nbsp;&nbsp; 2kg</a>
-							</li>
-							<li>
-								<a> <span>지역</span> :&nbsp;&nbsp; 경기도 안양시</a>
-							</li>
-							<li style="margin-bottom: 20px;">
-								<a> <span>특이사항</span> :&nbsp;&nbsp; 온순</a>
-							</li>
-						</ul>
-						<div class="card_area d-flex justify-content-between align-items-center">
-							<a href="#" id="openWindowBtn" class="btn_3">입양신청하기</a>
-							<a href="#" class="like_us" style="margin-left: 10px;"> <i class="ti-heart"></i> </a>
+						<div class="category-button">
+							<a href="adopt_list_cat">
+								<img src="icon/고양이icon.png" alt="강아지" style="width: 300px; height: 300px;">
+							</a>
 						</div>
 					</div>
 				</div>
@@ -207,15 +136,7 @@
 	</footer>
 	<!--::footer_part end::-->
 
-	<script>
 
-		var adoptionBtn = document.getElementById("openWindowBtn");
-
-		adoptionBtn.addEventListener("click", function () {
-			var newWindow = window.open("adopt_application", "_blank", "width=600,height=400");
-		});
-
-	</script>
 
 	<script src="js/jquery-1.12.1.min.js"></script>
 	<script src="js/popper.min.js"></script>

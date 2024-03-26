@@ -65,7 +65,6 @@
 			margin: 20px;
 			display: flex;
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
 			justify-content: center;
 			align-items: center;
 			cursor: pointer;
@@ -105,14 +104,15 @@
 				<div class="container"
 					style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
 					<div class="bar">
-						<div class="category-button" onclick="selectCategory('dog')">
-							<img src="icon/전체icon.png" alt="전체">
+						<div class="category-button">
+							<a href="adopt_list_dog">
+								<img src="icon/강아지icon.png" alt="강아지" >
+							</a>
 						</div>
-						<div class="category-button" onclick="selectCategory('dog')">
-							<img src="icon/강아지icon.png" alt="강아지">
-						</div>
-						<div class="category-button" onclick="selectCategory('cat')">
-							<img src="icon/고양이icon.png" alt="고양이">
+						<div class="category-button">
+							<a href="adopt_list_cat">
+								<img src="icon/고양이icon.png" alt="고양이" >
+							</a>
 						</div>
 					</div>
 				</div>
@@ -136,6 +136,7 @@
 										<option value="option1">품종</option>
 										<option value="option2">진돗개</option>
 										<option value="option3">골든 리트리버</option>
+										<option value="option4">기타</option>
 									</select>
 								</ul>
 							</div>
