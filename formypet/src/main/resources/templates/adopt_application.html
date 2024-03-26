@@ -89,35 +89,9 @@
 
 <body>
 
-	<!-- Header Start -->
-	<header class="ht-header">
-		<div class="container">
-			<div th:insert="~{header :: headerFragment}"></div>
-		</div>
-	</header>
-
-
-	<div class="whole-wrap" style="margin-top: 10%;">
-		<div class="container box_1170"
-			style="background-image: url('icon/강고.png'); background-repeat: repeat-x; z-index: 1; height: 200px;">
-			<h3 style="text-align: center;">유기동물 입양</h3>
-			<div class="bar-container" style="margin-top: 120px;">
-				<div class="container"
-					style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-					<div class="bar">
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
 	<div class="product_image_area section_padding">
 		<div class="container">
 			<div class="row s_product_inner justify-content-between">
-
-
 				<div class="col-lg-7 col-xl-7">
 					<div class="product_slider_img">
 						<div class="lSSlideOuter  vertical" style="padding-right: 105px;">
@@ -171,51 +145,6 @@
 			</div>
 		</div>
 	</div>
-
-
-	<!--::footer_part start::-->
-	<footer class="footer_part">
-		<div class="copyright_part">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8">
-						<div class="copyright_text">
-							<P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;
-								<script>document.write(new Date().getFullYear());</script> All rights reserved |
-								This
-								template is made with <i class="ti-heart" aria-hidden="true"></i> by <a
-									href="https://colorlib.com" target="_blank">Colorlib</a>
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							</P>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="footer_icon social_icon">
-							<ul class="list-unstyled">
-								<li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a>
-								</li>
-								<li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
-								<li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!--::footer_part end::-->
-
-	<script>
-
-		var adoptionBtn = document.getElementById("openWindowBtn");
-
-		adoptionBtn.addEventListener("click", function () {
-			var newWindow = window.open("adopt_application", "_blank", "width=600,height=400");
-		});
-
-	</script>
 
 	<script src="js/jquery-1.12.1.min.js"></script>
 	<script src="js/popper.min.js"></script>
