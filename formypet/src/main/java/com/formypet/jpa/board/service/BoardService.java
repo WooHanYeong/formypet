@@ -1,6 +1,7 @@
 package com.formypet.jpa.board.service;
 
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +60,5 @@ public interface BoardService {
 	
 	//키워드별 리스트 검색
 	public List<Board> searchBoardByKeyword(String keyword) throws Exception;
-	
 	
 }

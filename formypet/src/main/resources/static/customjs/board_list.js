@@ -23,3 +23,5 @@ function boardWrite() {
 		window.location.href = '/board_list/1'
 	}
 }
+
+

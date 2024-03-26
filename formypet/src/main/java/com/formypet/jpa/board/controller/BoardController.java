@@ -47,16 +47,17 @@ public class BoardController {
 	UserService userService;
 
 	@GetMapping("/board_list/{categoryId}")
-	public String boardList(@PathVariable(value = "categoryId") Long categoryId, Model model, HttpSession session)
-			throws Exception {
-	    User loginUser = (User) session.getAttribute("loginUser");
-	    if (loginUser != null) {
-	        UserDto user = userService.findUser(loginUser.getUserId());
-	        model.addAttribute("loginUser", user);
-	    }
-	    else {
-	        model.addAttribute("loginUser", null);
-	    }
+	public String boardList(@PathVariable(value = "categoryId") Long categoryId, Model model, HttpSession session,
+			@RequestParam(value = "keyword", required = false) String keyword) throws Exception {
+		User loginUser = (User) session.getAttribute("loginUser");
+		if (loginUser != null) {
+			UserDto user = userService.findUser(loginUser.getUserId());
+			model.addAttribute("loginUser", user);
+		} else {
+			model.addAttribute("loginUser", null);
+		}
+		List<Board> searchedBoards = boardService.searchBoardByKeyword(keyword);
+		model.addAttribute("searchedBoards", searchedBoards);
 		List<BoardCategory> categories = boardCategoryRepository.findAll();
 		model.addAttribute("categories", categories);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
@@ -71,16 +72,17 @@ public class BoardController {
 
 	@GetMapping("/board_list/{categoryId}/{subCategoryId}")
 	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId,
-			@PathVariable(value = "subCategoryId") Long subCategoryId, Model model, HttpSession session)
-			throws Exception {
-	    User loginUser = (User) session.getAttribute("loginUser");
-	    if (loginUser != null) {
-	        UserDto user = userService.findUser(loginUser.getUserId());
-	        model.addAttribute("loginUser", user);
-	    }
-	    else {
-	        model.addAttribute("loginUser", null);
-	    }
+			@PathVariable(value = "subCategoryId") Long subCategoryId, Model model, HttpSession session,
+			@RequestParam(value = "keyword", required = false) String keyword) throws Exception {
+		User loginUser = (User) session.getAttribute("loginUser");
+		if (loginUser != null) {
+			UserDto user = userService.findUser(loginUser.getUserId());
+			model.addAttribute("loginUser", user);
+		} else {
+			model.addAttribute("loginUser", null);
+		}
+		List<Board> searchedBoards = boardService.searchBoardByKeyword(keyword);
+		model.addAttribute("searchedBoards", searchedBoards);
 		List<BoardCategory> categories = boardCategoryRepository.findAll();
 		model.addAttribute("categories", categories);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
@@ -98,14 +100,13 @@ public class BoardController {
 	@GetMapping("/board_detail")
 	public String boardDetail(@RequestParam(value = "boardId") Long boardId, Model model, HttpSession session)
 			throws Exception {
-	    User loginUser = (User) session.getAttribute("loginUser");
-	    if (loginUser != null) {
-	        UserDto user = userService.findUser(loginUser.getUserId());
-	        model.addAttribute("loginUser", user);
-	    }
-	    else {
-	        model.addAttribute("loginUser", null);
-	    }
+		User loginUser = (User) session.getAttribute("loginUser");
+		if (loginUser != null) {
+			UserDto user = userService.findUser(loginUser.getUserId());
+			model.addAttribute("loginUser", user);
+		} else {
+			model.addAttribute("loginUser", null);
+		}
 		Board board = boardService.selectBoard(boardId);
 		model.addAttribute("board", board);
 		User writerUserId = board.getUser();
@@ -118,12 +119,12 @@ public class BoardController {
 	@GetMapping("/board_write/{categoryId}")
 	public String boardWrite(@PathVariable(value = "categoryId") Long categoryId, Model model, HttpSession session)
 			throws Exception {
-	    User loginUser = (User) session.getAttribute("loginUser");
-	    if (loginUser == null) {
-	        return "redirect:/user_login_form";
-	    }
-	    UserDto user = userService.findUser(loginUser.getUserId());
-	    model.addAttribute("loginUser", user);
+		User loginUser = (User) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			return "redirect:/user_login_form";
+		}
+		UserDto user = userService.findUser(loginUser.getUserId());
+		model.addAttribute("loginUser", user);
 		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);
 		model.addAttribute("boardCategory", boardCategory);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
@@ -135,14 +136,13 @@ public class BoardController {
 	@GetMapping("/board_update/{categoryId}/{boardId}")
 	public String boardUpdate(@PathVariable(value = "categoryId") Long categoryId,
 			@PathVariable(value = "boardId") Long boardId, Model model, HttpSession session) throws Exception {
-	    User loginUser = (User) session.getAttribute("loginUser");
-	    if (loginUser != null) {
-	        UserDto user = userService.findUser(loginUser.getUserId());
-	        model.addAttribute("loginUser", user);
-	    }
-	    else {
-	        model.addAttribute("loginUser", null);
-	    }
+		User loginUser = (User) session.getAttribute("loginUser");
+		if (loginUser != null) {
+			UserDto user = userService.findUser(loginUser.getUserId());
+			model.addAttribute("loginUser", user);
+		} else {
+			model.addAttribute("loginUser", null);
+		}
 		Board board = boardService.selectBoard(boardId);
 		model.addAttribute("board", board);
 		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);
@@ -174,13 +174,5 @@ public class BoardController {
 		String forwardPath = "elements";
 		return forwardPath;
 	}
-	
-	@GetMapping("/board_search_list")
-	public String searchBoard(@RequestParam("keyword") String keyword, Model model) throws Exception {
-	    List<Board> searchResults = boardService.searchBoardByKeyword(keyword);
-	    model.addAttribute("searchResults", searchResults);
-	    return "board_search_list"; // 검색 결과를 보여줄 뷰로 이동
-	}
-	
 
 }
