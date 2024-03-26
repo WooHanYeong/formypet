@@ -11,15 +11,34 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		});
 	});
-	
+
 });
-function boardWrite(){
+function boardWrite() {
 	var loginUser = document.getElementById('userId');
-		if(loginUser && loginUser.value.trim() !== ''){
-		window.location.href='/board_write/1'
-		
-		} else {
-			alert("로그인이 필요합니다");
-			window.location.href='/board_list/1'
-		}
+	if (loginUser && loginUser.value.trim() !== '') {
+		window.location.href = '/board_write/1'
+
+	} else {
+		alert("로그인이 필요합니다");
+		window.location.href = '/board_list/1'
+	}
 }
+
+$(document).ready(function() {
+    $("#searchButton").click(function() {
+        var keyword = $("#searchInput").val();
+        $.ajax({
+            type: "GET",
+            url: "/api/board/search?keyword=" + keyword,
+            success: function(boards) {
+                $("#searchResults").empty();
+                boards.forEach(function(board) {
+                    $("#searchResults").append("<p>" + board.title + "</p>");
+                });
+            },
+            error: function() {
+                alert("검색에 실패했습니다.");
+            }
+        });
+    });
+});

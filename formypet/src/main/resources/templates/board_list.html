@@ -72,8 +72,9 @@
 			<div class="section-top-border">
 				<div>
 					<form class="search-form" action="/search" method="get">
-						<input type="text" name="query" class="search-input" placeholder="찾으시는 글이 있으신가요?">
-						<button type="submit" class="search-button">검색</button>
+						<input type="text" id="searchInput" name="query" class="search-input" placeholder="찾으시는 글이 있으신가요?">
+						<button type="submit" class="searchButton">검색</button>
+						<div id="searchResults"></div>
 					</form>
 				</div>
 				<div class="sub_category">
@@ -112,7 +113,7 @@
 										<a th:href="${'/board_detail?boardId=' + board.boardId}"
 											th:text="${board.boardTitle}">제목</a>
 									</div>
-									<div class="visit" id="write" th:text="${loginUser.userId}">작성자</div>
+									<div class="visit" id="write" th:text="${board.User.userId}">작성자</div>
 									<div class="percentage">
 										<div class="progress" id="recommend" th:text="${board.boardRecommend}"
 											style="margin:0 30px">
@@ -136,7 +137,7 @@
 										<a th:href="${'/board_detail?boardId='+board.boardId}"
 											th:text="${board.boardTitle}">제목</a>
 									</div>
-									<div class="visit" id="write" th:text="${loginUser.userId}"></div>
+									<div class="visit" id="write" th:text="${board.User.userId}"></div>
 									<div class="percentage">
 										<div class="progress" id="recommend" th:text="${board.boardRecommend}"
 											style="margin:0 30px">

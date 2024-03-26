@@ -1,5 +1,6 @@
 package com.formypet.jpa.board.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +68,12 @@ public class BoardRestController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("게시글의 추천 수 업데이트에 실패했습니다.");
 		}
 	}
+	
+	@GetMapping("/search")
+    public List<Board> searchPostsByTitle(@RequestParam String keyword) throws Exception {
+        return boardService.searchBoardByKeyword(keyword);
+    }
+	
+	
 
 }

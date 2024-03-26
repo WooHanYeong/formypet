@@ -209,4 +209,9 @@ public class BoardServiceImpl implements BoardService {
 		return null;
 	}
 
+	@Override
+	public List<Board> searchBoardByKeyword(String keyword) throws Exception {
+		return boardRepository.findByBoardTitleContaining(keyword);
+	}
+
 }

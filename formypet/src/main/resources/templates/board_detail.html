@@ -77,8 +77,8 @@
 					<div class="navigation-top">
 						<div class="d-sm-flex justify-content-between text-center">
 							<div class="like-info">
-								<input type="hidden" id="userId" th:value="${loginUser.userId}">
-								<input type="hidden" id="writerUserId" th:value="${writerUserId}">
+								<input type="hidden" id="userId" th:if="${loginUser != null}" th:value="${loginUser.userId}">
+								<input type="hidden" id="writerUserId" th:value="${board.User.userId}">
 								<input type="hidden" id="boardId" th:value="${board.boardId}">
 								<span class="align-middle"><i class="far fa-heart"></i></span>
 								<span id="recommendCount" th:text="${board.boardRecommend}">0</span>
@@ -212,7 +212,6 @@
 
 
 	<script src="customjs/board_detail.js"></script>
-	<script src="customjs/board_update.js"></script>
 </body>
 
 </html>

@@ -56,4 +56,9 @@ public interface BoardService {
 	
 	//서브카테고리 다시
 	public String subCategoryNameBySubCategoryId(Long subCategoryId) throws Exception;
+	
+	//키워드별 리스트 검색
+	public List<Board> searchBoardByKeyword(String keyword) throws Exception;
+	
+	
 }
