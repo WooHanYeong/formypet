@@ -1,5 +1,6 @@
 package com.formypet.jpa.board.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,8 +98,18 @@ public class BoardController {
 	@GetMapping("/board_detail")
 	public String boardDetail(@RequestParam(value = "boardId") Long boardId, Model model, HttpSession session)
 			throws Exception {
+	    User loginUser = (User) session.getAttribute("loginUser");
+	    if (loginUser != null) {
+	        UserDto user = userService.findUser(loginUser.getUserId());
+	        model.addAttribute("loginUser", user);
+	    }
+	    else {
+	        model.addAttribute("loginUser", null);
+	    }
 		Board board = boardService.selectBoard(boardId);
 		model.addAttribute("board", board);
+		User writerUserId = board.getUser();
+		model.addAttribute("writerUserId", writerUserId);
 		boardService.increaseReadCount(boardId);
 		String forwardPath = "board_detail";
 		return forwardPath;
@@ -124,6 +135,14 @@ public class BoardController {
 	@GetMapping("/board_update/{categoryId}/{boardId}")
 	public String boardUpdate(@PathVariable(value = "categoryId") Long categoryId,
 			@PathVariable(value = "boardId") Long boardId, Model model, HttpSession session) throws Exception {
+	    User loginUser = (User) session.getAttribute("loginUser");
+	    if (loginUser != null) {
+	        UserDto user = userService.findUser(loginUser.getUserId());
+	        model.addAttribute("loginUser", user);
+	    }
+	    else {
+	        model.addAttribute("loginUser", null);
+	    }
 		Board board = boardService.selectBoard(boardId);
 		model.addAttribute("board", board);
 		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);

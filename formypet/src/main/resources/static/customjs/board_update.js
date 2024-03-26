@@ -21,6 +21,15 @@ window.onload = function() {
 
 	// Update 요청을 보내는 함수
 	function sendUpdateRequest() {
+		const userId = document.getElementById('userId').value;
+		const writerUserid = document.getElementById('writerUserId').value;
+		if(userId === writerUserid){
+			document.getElementById('updateBtn').style.display = "block";
+			document.getElementById('deleteBtn').style.display = "block";
+		} else {
+			document.getElementById('updateBtn').style.display = "none";
+			document.getElementById('deleteBtn').style.display = "none";
+		}
 		var boardTitle = document.getElementById("boardTitle").value;
 		var boardContent = document.getElementById("boardContent").value;
 		var boardId = document.getElementById('boardId').value; // 원하는 boardId 값

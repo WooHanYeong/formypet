@@ -77,6 +77,8 @@
 					<div class="navigation-top">
 						<div class="d-sm-flex justify-content-between text-center">
 							<div class="like-info">
+								<input type="hidden" id="userId" th:value="${loginUser.userId}">
+								<input type="hidden" id="writerUserId" th:value="${writerUserId}">
 								<input type="hidden" id="boardId" th:value="${board.boardId}">
 								<span class="align-middle"><i class="far fa-heart"></i></span>
 								<span id="recommendCount" th:text="${board.boardRecommend}">0</span>
@@ -145,8 +147,8 @@
             <input type="hidden" id="boardId" th:value="${board.boardId}">
             <input type="hidden" id="categoryId" th:value="${board.boardCategory.categoryId}">
             <input type="hidden" id="subCategoryId" th:value="${board.boardSubCategory.subCategoryId}">
-            <button type="submit" class="btn btn-danger" onclick="updateBoard()">게시글 수정</button>
-            <button type="submit" class="btn btn-danger" onclick="deleteBoard()">게시글 삭제</button>
+            <button type="submit" id ="updateBtn" class="btn btn-danger" onclick="updateBoard()">게시글 수정</button>
+            <button type="submit" id="deleteBtn" class="btn btn-danger" onclick="deleteBoard()">게시글 삭제</button>
 			</div>
 		</div>
 		<div class="copyright_part">
