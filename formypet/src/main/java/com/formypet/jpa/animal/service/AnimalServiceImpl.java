@@ -3,32 +3,40 @@ package com.formypet.jpa.animal.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.formypet.jpa.animal.entity.Animal;
+import com.formypet.jpa.animal.repository.AnimalRepository;
 
+import jakarta.transaction.Transactional;
+
+
+@Service
+@Transactional
 public class AnimalServiceImpl implements AnimalService{
-
+	
+	@Autowired
+	private AnimalRepository animalRepository;
+	
 	@Override
 	public Animal insert(Animal animal) {
-		// TODO Auto-generated method stub
-		return null;
+		return animalRepository.save(animal);
 	}
 
 	@Override
 	public List<Animal> findByAnimalType_OrderByCreatedTimeDesc(String animaltype) {
-		// TODO Auto-generated method stub
-		return null;
+		return animalRepository.findByAnimalType_OrderByCreatedTimeDesc(animaltype);
 	}
 
 	@Override
 	public Optional<Animal> findById(Long id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return animalRepository.findById(id);
 	}
 
 	@Override
 	public void deleteAllById(Iterable<Long> ids) {
-		// TODO Auto-generated method stub
-		
+		animalRepository.deleteAllById(ids);
 	}
 
 }

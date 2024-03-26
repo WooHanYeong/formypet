@@ -10,7 +10,7 @@ public interface AnimalService {
 	//동물등록
 	public Animal insert(Animal animal);
 	
-	//동물 리스트 최신순
+	//동물 리스트 최신순(list)
 	List<Animal> findByAnimalType_OrderByCreatedTimeDesc(String animaltype);
 	
 	//아이디로 동물찾기(detail)
