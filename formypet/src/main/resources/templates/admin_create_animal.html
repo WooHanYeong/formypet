@@ -1,0 +1,461 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title> Admin- Dashboard</title>
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link
+		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet">
+	<link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+			<!-- Sidebar - Brand -->
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin_index">
+				<div class="sidebar-brand-icon rotate-n-15">
+					<i class="fas fa-laugh-wink"></i>
+				</div>
+				<div class="sidebar-brand-text mx-3"> Admin </div>
+			</a>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0">
+
+			<!-- Nav Item - Dashboard -->
+			<li class="nav-item active">
+				<a class="nav-link" href="admin_index">
+					<i class="fas fa-fw fa-tachometer-alt"></i>
+					<span>Dashboard</span></a>
+			</li>
+
+			<hr class="sidebar-divider">
+
+
+			<!-- Divider -->
+
+			<!-- Heading -->
+			<div class="sidebar-heading">
+				Addons
+			</div>
+
+			<li class="nav-item">
+				<a class="nav-link" href="index">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>메인으로</span></a>
+			</li>
+
+
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+					aria-expanded="true" aria-controls="collapsePages">
+					<i class="fas fa-fw fa-folder"></i>
+					<span>등록Page</span>
+				</a>
+				<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<div class="collapse-divider"></div>
+						<a class="collapse-item" href="admin_create_animal">유기동물등록</a>
+						<a class="collapse-item" href="admin_create_product"> 상품등록</a>
+					</div>
+				</div>
+			</li>
+
+			<!-- Nav Item - Charts -->
+			<li class="nav-item">
+				<a class="nav-link" href="admin_productinfo">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>상품관리</span></a>
+			</li><!-- Nav Item - Charts -->
+
+			<li class="nav-item">
+				<a class="nav-link" href="admin_animalinfo">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>유기동물관리</span></a>
+			</li>
+
+
+
+			<!-- Nav Item - Charts -->
+			<li class="nav-item">
+				<a class="nav-link" href="admin_orderinfo">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>주문관리</span></a>
+			</li>
+
+			<!-- Nav Item - Tables -->
+			<li class="nav-item">
+				<a class="nav-link" href="admin_userinfo">
+					<i class="fas fa-fw fa-table"></i>
+					<span>회원관리</span></a>
+			</li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider d-none d-md-block">
+
+			<!-- Sidebar Toggler (Sidebar) -->
+			<div class="text-center d-none d-md-inline">
+				<button class="rounded-circle border-0" id="sidebarToggle"></button>
+			</div>
+
+		</ul>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+					<!-- Sidebar Toggle (Topbar) -->
+					<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+						<i class="fa fa-bars"></i>
+					</button>
+
+
+					<!-- Topbar Navbar -->
+					<ul class="navbar-nav ml-auto">
+
+
+						<div class="topbar-divider d-none d-sm-block"></div>
+
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow">
+							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="mr-2 d-none d-lg-inline text-gray-600 small">관리자님</span>
+								<img class="img-profile rounded-circle"
+									src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+							</a>
+						</li>
+					</ul>
+
+				</nav>
+				<!-- End of Topbar -->
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<h1 class="h3 mb-2 text-gray-800">Animal Create Page</h1>
+					<p class="mb-4">유기동물을 등록 할 수 있는 테이블입니다.</p>
+
+					<!-- DataTales Example -->
+					<div class="card shadow mb-4">
+						<div class="card-body">
+							<div class="comment-form">
+
+								<form class="form-contact comment_form" id="animalForm" enctype="multipart/form-data">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group" style="width: 50%;">
+												<select class="form-control" name="animalType" id="animalType">
+													<option value="">동물을 선택해주세요</option>
+													<option value="강아지">강아지</option>
+													<option value="고양이">고양이</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group" style="width: 50%;">
+												<select class="form-control" name="animalBreed" id="animalBreed">
+													<option value="" class="select">카테고리를 선택하세요</option>
+													<option value="골든리트리버" class="dog-category" style="display: none;">
+														골든리트리버</option>
+													<option value="진돗개" class="dog-category" style="display: none;">진돗개
+													</option>
+													<option value="러시안블루" class="cat-category" style="display: none;">
+														러시안블루</option>
+													<option value="페르시안" class="cat-category" style="display: none;">
+														페르시안</option>
+													<option value="기타" class="all-category" style="display: none;">기타
+													</option>
+												</select>
+											</div>
+										</div>
+
+
+										<div class="col-sm-6">
+											<div class="form-group" style="width: 50%;">
+												<select class="form-control" name="animalAge" id="animalAge">
+													<option value="">나이를 선택해주세요</option>
+													<option value="1살미만">1살미만</option>
+													<option value="1살~5살">1살~5살</option>
+													<option value="6살~9살">6살~9살</option>
+													<option value="10살이상">10살이상</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group" style="width: 50%;">
+												<select class="form-control" name="animalSex" id="animalSex">
+													<option value="">성별을 선택해주세요</option>
+													<option value="남아">남아</option>
+													<option value="여아">여아</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group" style="width: 50%;">
+												<select class="form-control" name="animalNeutering"
+													id="animalNeutering">
+													<option value="">중성화여부를 선택해주세요</option>
+													<option value="완료">완료</option>
+													<option value="미완료">미완료</option>
+													<option value="알 수 없음">알 수 없음</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group" style="width: 50%;">
+												<input class="form-control" name="animalWeight" id="animalWeight"
+													type="text" placeholder="무게(kg)">
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group" style="width: 50%;">
+												<input class="form-control" name="animalRegion" id="animalRegion"
+													type="text" placeholder="지역">
+											</div>
+										</div>
+
+
+										<div class="col-sm-6">
+											<div class="form-group" style="width: 50%;">
+												<input class="form-control" name="animalEtc" id="animalEtc" type="text"
+													placeholder="성격">
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group" style="width: 50%;">
+												<input class="form-control" name="animalCodeNumber"
+													id="animalCodeNumber" type="text" placeholder="animalCodeNumber"
+													readonly>
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group" style="width: 50%;">
+												<input class="form-control" type="file" name="imageFile1"
+													id="imageFile1" onchange="previewImage()">
+											</div>
+										</div>
+										<div class="col-12">
+											<div class="form-group" style="width: 30%; height: 40%">
+												<img id="preview" src="#" alt="미리보기"
+													style="display: none; width: 200px; height: auto;">
+											</div>
+										</div>
+
+									</div>
+
+									<button type="button" class="btn btn-secondary btn-icon-split"
+										onclick="submitAnimalForm()">
+										<span class="icon text-white-50">
+											<i class="fas fa-arrow-right"></i>
+										</span>
+										<span class="text">유기동물 등록하기</span>
+									</button>
+								</form>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top">
+		<i class="fas fa-angle-up"></i>
+	</a>
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		//카테고리설정.
+		$(document).ready(function () {
+
+			$("#animalType").change(function () {
+				var animalType = $(this).val();
+				if (animalType === "강아지") {
+					$(".cat-category").hide();
+					$(".dog-category").show();
+					$(".all-category").show();
+				} else if (animalType === "고양이") {
+					$(".dog-category").hide();
+					$(".cat-category").show();
+					$(".all-category").show();
+				} else {
+					$(".cat-category").hide();
+					$(".dog-category").hide();
+					$(".all-category").hide();
+					$("#animalBreed").val(""); // 카테고리 선택란을 리셋합니다.
+					return;
+				}
+				$("#animalBreed").show(); // 동물을 선택했을 때 항상 카테고리 보이게 하기 위해 이동
+			}).trigger('change'); // 초기에 한 번 실행
+		});
+
+
+
+		$(document).ready(function () {
+			// 랜덤한 8자리 숫자 생성
+			function generateRandomNumber() {
+				return Math.floor(Math.random() * 100000000).toString().padStart(8, '0');
+			}
+
+			// 페이지 로드시 랜덤 숫자 생성 후 입력란에 표시
+			$('#animalCodeNumber').val(generateRandomNumber());
+		});
+
+		function previewImage() {
+			var fileInput = document.getElementById('imageFile1');
+			var preview = document.getElementById('preview');
+
+			// 파일이 선택되지 않은 경우 미리보기를 숨김
+			if (!fileInput.files[0]) {
+				preview.style.display = "none";
+				return;
+			}
+
+			var reader = new FileReader();
+
+			reader.onload = function (event) {
+				preview.src = event.target.result;
+				preview.style.display = "block";
+			}
+
+			reader.readAsDataURL(fileInput.files[0]);
+		}
+
+	</script>
+	
+	
+	<script>
+		//유기동물등록
+		function submitAnimalForm() {
+			//유효성체크
+			var animalType = document.getElementById("animalType").value;
+			var animalBreed = document.getElementById("animalBreed").value;
+			var animalAge = document.getElementById("animalAge").value;
+			var animalSex = document.getElementById("animalSex").value;
+			var animalNeutering = document.getElementById("animalNeutering").value;
+			var animalWeight = document.getElementById("animalWeight").value;
+			var animalRegion = document.getElementById("animalRegion").value;
+			var animalEtc = document.getElementById("animalEtc").value;
+			var animalCodeNumber = document.getElementById("animalCodeNumber").value;
+			var file = document.getElementById("imageFile1").value; // 파일을 가져옵니다.
+
+			
+			if (animalType === "" || animalBreed === "") {
+				alert("관련동물과 카테고리를 선택해주세요.");
+				return;
+			}
+			if (animalAge === "") {
+				alert("동물나이를 등록해주세요");
+				return;
+			}
+			if (animalSex === "") {
+				alert("동물성별 등록해주세요");
+				return;
+			}
+			if (animalNeutering === "") {
+				alert("동물 중성화여부를 등록해주세요");
+				return;
+			}
+			if (animalWeight === "") {
+				alert("동물무게 등록해주세요");
+				return;
+			}
+			if (animalRegion === "") {
+				alert("동물발견지역을 등록해주세요");
+				return;
+			}
+			var animalValue = parseInt(animalWeight);
+			if (isNaN(animalValue) || animalValue <= 0 || animalValue > 100) {
+				alert("무게는 1~100kg 사이의 숫자로 입력해주세요.");
+				return;
+			}
+			if (animalEtc === "") {
+				alert("동물성격을 등록해주세요");
+				return;
+			}
+			if (file === "") {
+				alert("동물사진을 등록해주세요");
+				return;
+			}
+			
+			
+			var formData = new FormData(document.getElementById("animalForm"));
+			$.ajax({
+				url: "/api/animal/animalInsertForm",
+				type: "POST",
+				enctype: 'multipart/form-data',
+				data: formData,
+				processData: false,
+				contentType: false,
+				cache: false,
+				success: function (response) {
+					alert("유기돌물이 성공적으로 등록되었습니다.");
+					window.location.href = "admin_index";
+				},
+				error: function (error) {
+					alert("유기동물 등록에 실패했습니다.");
+					console.log(error);
+				}
+			});
+		}
+
+	</script>
+
+
+
+
+
+
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="js/sb-admin-2.min.js"></script>
+	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+	<script src="js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>

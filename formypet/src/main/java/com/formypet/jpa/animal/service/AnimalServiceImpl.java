@@ -39,4 +39,9 @@ public class AnimalServiceImpl implements AnimalService{
 		animalRepository.deleteAllById(ids);
 	}
 
+	@Override
+	public List<Animal> findAllAnimalList() {
+		return animalRepository.findAll();
+	}
+
 }

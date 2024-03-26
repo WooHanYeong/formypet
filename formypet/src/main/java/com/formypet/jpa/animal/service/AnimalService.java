@@ -19,6 +19,9 @@ public interface AnimalService {
 	//동물삭제
 	void deleteAllById(Iterable<Long> ids);
 	
+	//전체리스트
+	List<Animal> findAllAnimalList();
+	
 	
 
 }
