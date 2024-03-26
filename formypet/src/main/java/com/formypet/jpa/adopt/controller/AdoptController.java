@@ -19,5 +19,10 @@ public class AdoptController {
 		String forwardPath = "adopt_detail";
 		return forwardPath;
 	}
+	@GetMapping("/adopt_application")
+	public String adopt_application() {
+		String forwardPath = "adopt_application";
+		return forwardPath;
+	}
 	
 }

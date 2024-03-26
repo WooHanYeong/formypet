@@ -1,5 +1,5 @@
 package com.formypet.jpa.adopt.service;
 
-public class AdoptServiceImpl {
+public class AdoptServiceImpl implements AdoptService{
 
 }
