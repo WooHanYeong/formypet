@@ -56,6 +56,8 @@ public class BoardController {
 		} else {
 			model.addAttribute("loginUser", null);
 		}
+		List<Board> searchedBoards = boardService.searchBoardByKeyword(keyword);
+		model.addAttribute("searchedBoards", searchedBoards);
 		List<BoardCategory> categories = boardCategoryRepository.findAll();
 		model.addAttribute("categories", categories);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
@@ -68,8 +70,9 @@ public class BoardController {
 		return forwardPath;
 	}
 
-	@GetMapping("/board_search_list/{categoryId}")
-	public String boardSearchList(@PathVariable(value = "categoryId") Long categoryId, Model model, HttpSession session,
+	@GetMapping("/board_list/{categoryId}/{subCategoryId}")
+	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId,
+			@PathVariable(value = "subCategoryId") Long subCategoryId, Model model, HttpSession session,
 			@RequestParam(value = "keyword", required = false) String keyword) throws Exception {
 		User loginUser = (User) session.getAttribute("loginUser");
 		if (loginUser != null) {
@@ -84,13 +87,16 @@ public class BoardController {
 		model.addAttribute("categories", categories);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
 		model.addAttribute("subCategories", subCategories);
-		List<String> subNames = boardService.getSubCategoryByCategoryId(categoryId);
-		model.addAttribute("subNames", subNames);
-		String forwardPath = "board_search_list";
+		List<Board> subBoards = boardService.getBoardByCategoryIdAndSubCategoryId(categoryId, subCategoryId);
+		model.addAttribute("subBoards", subBoards);
+		List<String> subCategoryNames = boardService.getSubCategoryName(subCategoryId);
+		model.addAttribute("subCategoryNames", subCategoryNames);
+		String subCategoryName = boardService.subCategoryNameBySubCategoryId(subCategoryId);
+		model.addAttribute("subCategoryName", subCategoryName);
+		String forwardPath = "board_list";
 		return forwardPath;
 	}
 
-	
 	@GetMapping("/board_detail")
 	public String boardDetail(@RequestParam(value = "boardId") Long boardId, Model model, HttpSession session)
 			throws Exception {

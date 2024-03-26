@@ -23,25 +23,5 @@ function boardWrite() {
 		window.location.href = '/board_list/1'
 	}
 }
-document.getElementById("searchForm").addEventListener("submit", function(event) {
-	event.preventDefault(); // 폼의 기본 동작 방지
 
-	var categoryId = document.getElementById("categoryId").value; // categoryId 값을 가져옴
-	var keyword = document.getElementById("searchInput").value; // 검색어를 가져옴
 
-	// 동적으로 URL 생성 및 제출
-	var url = "/board_list/" + categoryId + "?keyword=" + encodeURIComponent(keyword);
-	window.location.href = url;
-});
-
-document.getElementById('searchForm').addEventListener('submit', function(event) {
-	event.preventDefault(); // 기본 동작 방지
-	var categoryId = '여기에_카테고리_ID_설정'; // categoryId를 동적으로 설정하거나 필요에 따라 가져오는 작업 필요
-	var keyword = document.getElementById('searchInput').value.trim();
-	// categoryId와 keyword를 사용하여 URL을 생성
-	var url = '/board_list/' + categoryId + '?keyword=' + encodeURIComponent(keyword);
-	// 생성된 URL을 form action으로 설정
-	this.action = url;
-	// form을 서버로 제출
-	this.submit();
-});
