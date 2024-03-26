@@ -23,22 +23,3 @@ function boardWrite() {
 		window.location.href = '/board_list/1'
 	}
 }
-
-$(document).ready(function() {
-    $("#searchButton").click(function() {
-        var keyword = $("#searchInput").val();
-        $.ajax({
-            type: "GET",
-            url: "/api/board/search?keyword=" + keyword,
-            success: function(boards) {
-                $("#searchResults").empty();
-                boards.forEach(function(board) {
-                    $("#searchResults").append("<p>" + board.title + "</p>");
-                });
-            },
-            error: function() {
-                alert("검색에 실패했습니다.");
-            }
-        });
-    });
-});

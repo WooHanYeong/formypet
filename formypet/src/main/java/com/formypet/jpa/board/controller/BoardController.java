@@ -174,5 +174,13 @@ public class BoardController {
 		String forwardPath = "elements";
 		return forwardPath;
 	}
+	
+	@GetMapping("/board_search_list")
+	public String searchBoard(@RequestParam("keyword") String keyword, Model model) throws Exception {
+	    List<Board> searchResults = boardService.searchBoardByKeyword(keyword);
+	    model.addAttribute("searchResults", searchResults);
+	    return "board_search_list"; // 검색 결과를 보여줄 뷰로 이동
+	}
+	
 
 }

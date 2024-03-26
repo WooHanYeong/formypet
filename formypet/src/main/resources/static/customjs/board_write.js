@@ -12,7 +12,6 @@ function submitForm() {
 	var subCategory = document.getElementById("subCategory");
 	var categoryId = mainCategory.value;
 	var subCategoryId = subCategory.value;
-debugger;
 	// 제목과 내용 가져오기
 	var boardTitle = document.getElementById("boardTitle").value;
 	var boardContent = document.getElementById("boardContent").value;

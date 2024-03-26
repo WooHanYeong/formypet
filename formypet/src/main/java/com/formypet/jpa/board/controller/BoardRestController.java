@@ -69,11 +69,5 @@ public class BoardRestController {
 		}
 	}
 	
-	@GetMapping("/search")
-    public List<Board> searchPostsByTitle(@RequestParam String keyword) throws Exception {
-        return boardService.searchBoardByKeyword(keyword);
-    }
-	
-	
 
 }

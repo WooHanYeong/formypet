@@ -105,7 +105,7 @@
 								작성일</div>
 						</div>
 						<tr>
-							<th:block th:each="board : ${searchResults}">
+							<th:block th:each="board : ${boards}">
 								<div class="table-row">
 									<div class="serial" th:text="${board.boardSubCategory.subCategoryName}"></div>
 									<div class="country" id="title">
