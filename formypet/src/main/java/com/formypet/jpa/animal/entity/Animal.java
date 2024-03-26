@@ -45,6 +45,8 @@ public class Animal {
 	private String animalRegion;
 	private String animalEtc;
 	private String animalCodeNumber;
+	private String animalImage;
+	
 	
 	@CreationTimestamp
 	private LocalDateTime createdTime;
