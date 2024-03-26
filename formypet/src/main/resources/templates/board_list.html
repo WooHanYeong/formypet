@@ -71,7 +71,7 @@
 			</div>
 			<div class="section-top-border">
 				<div>
-					<form class="search-form" action="/search" method="get">
+					<form class="search-form" th:action="@{/board_list/{categoryId}(categoryId=${categoryId})}" method="get">
 						<input type="text" id="searchInput" name="keyword" class="search-input" placeholder="찾으시는 글이 있으신가요?">
 						<button type="submit" class="search-button">검색</button>
 					</form>
@@ -105,7 +105,7 @@
 								작성일</div>
 						</div>
 						<tr>
-							<th:block th:each="board : ${searchResults}">
+							<th:block th:each="board : ${#lists.isEmpty(searchedBoards) ? boards : searchedBoards}">
 								<div class="table-row">
 									<div class="serial" th:text="${board.boardSubCategory.subCategoryName}"></div>
 									<div class="country" id="title">
