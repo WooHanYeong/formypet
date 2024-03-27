@@ -36,9 +36,12 @@ public class Adopt {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String adoptStatus;
+	private String adoptPhone;
 	
 	private String adoptComment;
+	
+	private String adoptStatus;
+	
 	
 	@CreationTimestamp
 	private LocalDateTime createdTime;

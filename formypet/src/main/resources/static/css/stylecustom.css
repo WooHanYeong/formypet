@@ -66,7 +66,7 @@ input:focus {
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   /* line 24, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
   .section_padding {
-    padding: 70px 0px;
+  /*  padding: 70px 0px;*/
   }
 }
 
@@ -105,13 +105,13 @@ input:focus {
 
 /* line 64, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
 .padding_top {
-  padding-top: 140px;
+ /* padding-top: 140px;*/
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   /* line 64, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
   .padding_top {
-    padding-top: 100px;
+    /*padding-top: 100px;*/
   }
 }
 

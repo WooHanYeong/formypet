@@ -137,11 +137,12 @@
 						<h3 th:text="${'['+ animalObject.animalType +']'}">[강아지]</h3>
 						<h3 th:text="${animalObject.animalBreed + ' - ' + animalObject.animalAge}">진돗개 <span>-</span>
 							1세미만</h3>
-							
+
 						<ul class="list" style=" border-top:1px solid #dddddd">
 							<li style="margin-top: 20px;">
 								<a class="active">
-									<span >품종</span> :&nbsp;&nbsp; <span style="color: red;" th:text="${animalObject.animalBreed}"></span></a>
+									<span>품종</span> :&nbsp;&nbsp; <span style="color: red;"
+										th:text="${animalObject.animalBreed}"></span></a>
 							</li>
 							<li>
 								<a> <span>Age</span> :&nbsp;&nbsp; <span th:text="${animalObject.animalAge}"></span></a>
@@ -150,22 +151,32 @@
 								<a> <span>Sex</span> :&nbsp;&nbsp; <span th:text="${animalObject.animalSex}"></span></a>
 							</li>
 							<li>
-								<a> <span>Neutering</span> :&nbsp;&nbsp; <span th:text="${animalObject.animalNeutering}"></span></a>
+								<a> <span>Neutering</span> :&nbsp;&nbsp; <span
+										th:text="${animalObject.animalNeutering}"></span></a>
 							</li>
 							<li>
-								<a> <span>weight</span> :&nbsp;&nbsp; <span th:text="${animalObject.animalWeight}"></span></a>
+								<a> <span>weight</span> :&nbsp;&nbsp; <span
+										th:text="${animalObject.animalWeight +' kg'}"></span></a>
 							</li>
 							<li>
-								<a> <span>지역</span> :&nbsp;&nbsp; <span th:text="${animalObject.animalRegion}"></span></a>
+								<a> <span>지역</span> :&nbsp;&nbsp; <span
+										th:text="${animalObject.animalRegion}"></span></a>
 							</li>
 							<li style="margin-bottom: 20px;">
-								<a> <span>특이사항</span> :&nbsp;&nbsp; <span th:text="${animalObject.animalEtc}"></span></a>
+								<a> <span>특이사항</span> :&nbsp;&nbsp; <span
+										th:text="${animalObject.animalEtc}"></span></a>
 							</li>
 						</ul>
 						<div class="card_area d-flex justify-content-between align-items-center">
 							<a href="#" id="openWindowBtn" class="btn_3">입양신청하기</a>
 							<a href="#" class="like_us" style="margin-left: 10px;"> <i class="ti-heart"></i> </a>
 						</div>
+
+						<!--세션과 아이디붙음 입양신청에 붙어야함.-->
+						<input type="hidden" id="animalId" th:value="${animalObject.id}">
+						<input type="hidden" id="userId"
+							th:value="${session.loginUser != null ? session.loginUser.id : ''}">
+
 					</div>
 				</div>
 			</div>
@@ -209,11 +220,30 @@
 
 	<script>
 
-		var adoptionBtn = document.getElementById("openWindowBtn");
+		function openAdoptionWindow() {
+			var userId = document.getElementById('userId').value;
+			var animalId = document.getElementById('animalId').value;
+			var url = "adopt_application?animalId=" + animalId;
 
-		adoptionBtn.addEventListener("click", function () {
-			var newWindow = window.open("adopt_application", "_blank", "width=600,height=400");
-		});
+
+			if (!userId) {
+				var confirmLogin = confirm("로그인이 필요한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+
+				// 사용자가 확인을 선택한 경우
+				if (confirmLogin) {
+					window.location.href = "/user_login_form"; // 로그인 페이지 URL로 변경해주세요
+					return;
+				}
+				return;
+			}
+			var newWindow = window.open(url, "_blank", "width=1000,height=800");
+
+		}
+
+		// 버튼 요소의 onclick 속성을 설정하여 클릭 이벤트를 지정합니다.
+		document.getElementById("openWindowBtn").onclick = openAdoptionWindow;
+
+
 
 	</script>
 
