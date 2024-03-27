@@ -96,7 +96,7 @@ function updateBoard() {
 
 
 function registerReply() {
-	var userId = document.getElementById('user');
+	var userId = document.getElementById('user').value;
 	console.log(userId);
 	var boardId = document.getElementById('boardId').value;
 	var replyContent = document.getElementById('replyContent').value;
@@ -105,8 +105,7 @@ function registerReply() {
 		"replyContent": replyContent,
 		"userId": userId
 	};
-
-	fetch("/api/boardReply/insert_reply/" + boardId, {
+	fetch(`/api/boardReply/insert_reply/${boardId}?userId=${userId}`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
