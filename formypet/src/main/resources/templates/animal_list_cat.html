@@ -134,10 +134,10 @@
 							<div class="widgets_inner">
 								<ul class="list">
 									<select class="dropdowncuston">
-										<option value="option1">품종</option>
-										<option value="option2">러시안 블루</option>
-										<option value="option3">페르시안</option>
-										<option value="option4">기타</option>
+										<option value="품종">품종</option>
+										<option value="러시안블루">러시안 블루</option>
+										<option value="페르시안">페르시안</option>
+										<option value="기타">기타</option>
 									</select>
 								</ul>
 							</div>
@@ -157,7 +157,7 @@
 									</li>
 									<li>
 										<input type="checkbox" id="checkbox1">
-										<a>1살 ~5살</a>
+										<a>1살~5살</a>
 									</li>
 									<li class="active">
 										<input type="checkbox" id="checkbox1">
@@ -180,11 +180,11 @@
 							<div class="widgets_inner">
 								<ul class="list">
 									<li>
-										<input type="checkbox" id="checkbox1">
+										<input type="checkbox" id="checkbox2"> <!-- 각각의 체크박스에 고유한 ID를 부여 -->
 										<a>남아</a>
 									</li>
 									<li>
-										<input type="checkbox" id="checkbox1">
+										<input type="checkbox" id="checkbox2">
 										<a>여아</a>
 									</li>
 								</ul>
@@ -198,20 +198,21 @@
 							<div class="widgets_inner">
 								<ul class="list">
 									<li>
-										<input type="checkbox" id="checkbox1">
+										<input type="checkbox" id="checkbox3"> <!-- 각각의 체크박스에 고유한 ID를 부여 -->
 										<a>완료</a>
 									</li>
 									<li>
-										<input type="checkbox" id="checkbox1">
+										<input type="checkbox" id="checkbox3">
 										<a>미완료</a>
 									</li>
 									<li>
-										<input type="checkbox" id="checkbox1">
+										<input type="checkbox" id="checkbox3">
 										<a>알 수 없음</a>
 									</li>
 								</ul>
 							</div>
 						</aside>
+
 
 
 					</div>
@@ -222,17 +223,6 @@
 							<div class="product_top_bar d-flex justify-content-between align-items-center">
 								<h4 th:text="${#lists.size(animalCatList)+' '+'마리의 아이들이 보호자를 기다리고 있어요'}">748마리의 아이들이
 									보호자를 기다리고 있어요</h4>
-
-								<div class="single_product_menu d-flex">
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="search"
-											aria-describedby="inputGroupPrepend">
-										<div class="input-group-prepend">
-											<span class="input-group-text" id="inputGroupPrepend"><i
-													class="ti-search"></i></span>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -242,7 +232,7 @@
 
 						<div class="col-lg-4 col-sm-6" th:each="cat: ${animalCatList}">
 							<div class="single_product_item">
-								<img th:src="@{'/animalimg/' + ${cat.animalImage}}" alt=""  >
+								<img th:src="@{'/animalimg/' + ${cat.animalImage}}" alt="">
 
 								<h4 style="margin-top: 30px; text-align: center;">
 									<a style="color: black; margin-top: 10px;"
@@ -256,6 +246,13 @@
 								<h4 style="font-size: 15px; text-align: center; margin-bottom: 30px;"
 									th:text="${'중성화 : ' + cat.animalNeutering}">남아 - 중성화 알
 									수 없음</h4>
+
+								<h3 th:text="${cat.animalBreed}" style="display: none;"></h3>
+								<h3 th:text="${cat.animalAge}" style="display: none;"></h3>
+								<h3 th:text="${cat.animalSex}" style="display: none;"></h3>
+								<h3 th:text="${cat.animalNeutering}" style="display: none;"></h3>
+
+
 
 							</div>
 						</div>
@@ -301,7 +298,8 @@
 	</footer>
 	<!--::footer_part end::-->
 
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="customjs/animal_list_cat.js"></script>
 
 	<script src="js/jquery-1.12.1.min.js"></script>
 	<script src="js/popper.min.js"></script>

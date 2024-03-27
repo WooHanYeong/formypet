@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 		$.each(itemList, function(index, item) {
 			var productCategory = $(item).find('h3').eq(1).text(); // 클래스 선택자를 수정하여 'single_product_text' 대신 'h3'을 사용했습니다.
-
+			
 			if (category === 'all' ||
 				(category === '건사료' && productCategory === '건사료') ||
 				(category === '배변패드' && productCategory === '배변패드') ||
