@@ -123,6 +123,7 @@ public class BoardController {
 		boardService.increaseReadCount(boardId);
 		List<BoardReply> replies = boardReplyService.findReplyByBoardId(boardId);
 		model.addAttribute("replies",replies);
+		
 		String forwardPath = "board_detail";
 		return forwardPath;
 	}
