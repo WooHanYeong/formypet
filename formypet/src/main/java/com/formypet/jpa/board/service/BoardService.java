@@ -26,7 +26,7 @@ public interface BoardService {
 	public Board updateBoard(Long boardId,BoardDto boardDto) throws Exception;
 	
 	//게시글 1개 조회
-	public Board selectBoard(Long boardId) throws Exception;
+	public Optional<Board> selectBoard(Long boardId);
 	
 	//게시판 글 모두 조회
 	public List<Board> getBoardByAll() throws Exception;

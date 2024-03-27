@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.formypet.jpa.board.dto.BoardDto;
 import com.formypet.jpa.board.entity.Board;
 import com.formypet.jpa.board.entity.BoardCategory;
+import com.formypet.jpa.board.entity.BoardReply;
 import com.formypet.jpa.board.entity.BoardSubCategory;
 import com.formypet.jpa.board.repository.BoardCategoryRepository;
+import com.formypet.jpa.board.repository.BoardReplyRepository;
 import com.formypet.jpa.board.repository.BoardRepository;
 import com.formypet.jpa.board.repository.BoardSubCategoryRepository;
+import com.formypet.jpa.board.service.BoardReplyService;
 import com.formypet.jpa.board.service.BoardService;
 import com.formypet.jpa.user.dto.UserDto;
 import com.formypet.jpa.user.entity.User;
@@ -45,6 +48,8 @@ public class BoardController {
 	BoardSubCategoryRepository boardSubCategoryRepository;
 	@Autowired
 	UserService userService;
+	@Autowired
+	BoardReplyService boardReplyService;
 
 	@GetMapping("/board_list/{categoryId}")
 	public String boardList(@PathVariable(value = "categoryId") Long categoryId, Model model, HttpSession session,
@@ -107,10 +112,13 @@ public class BoardController {
 		} else {
 			model.addAttribute("loginUser", null);
 		}
-		Board board = boardService.selectBoard(boardId);
-		model.addAttribute("board", board);
-		User writerUserId = board.getUser();
-		model.addAttribute("writerUserId", writerUserId);
+		Optional<Board> optionalBoard = boardService.selectBoard(boardId);
+		if (optionalBoard.isPresent()) {
+			Board board = optionalBoard.get();
+			model.addAttribute("board", board);
+			User writerUserId = board.getUser();
+			model.addAttribute("writerUserId", writerUserId);
+		}
 		boardService.increaseReadCount(boardId);
 		String forwardPath = "board_detail";
 		return forwardPath;
@@ -143,8 +151,11 @@ public class BoardController {
 		} else {
 			model.addAttribute("loginUser", null);
 		}
-		Board board = boardService.selectBoard(boardId);
-		model.addAttribute("board", board);
+		Optional<Board> optioanlBoard = boardService.selectBoard(boardId);
+		if (optioanlBoard.isPresent()) {
+			Board board = optioanlBoard.get();
+			model.addAttribute("board", board);
+		}
 		BoardCategory boardCategory = boardService.getBoardCategoryByCategoryId(categoryId);
 		model.addAttribute("boardCategory", boardCategory);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
