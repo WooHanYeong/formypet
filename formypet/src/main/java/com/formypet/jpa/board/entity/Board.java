@@ -1,6 +1,8 @@
 package com.formypet.jpa.board.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -17,6 +19,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
@@ -78,6 +81,14 @@ public class Board {
 	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;
+	
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+	@Builder.Default
+	@ToString.Exclude
+	private List<BoardReply> boardReply = new ArrayList<>();
+
+
+	
 
 	
 }

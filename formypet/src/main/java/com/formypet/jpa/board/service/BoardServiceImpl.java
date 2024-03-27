@@ -124,13 +124,8 @@ public class BoardServiceImpl implements BoardService {
 
 	// 게시글 한개 조회
 	@Override
-	public Board selectBoard(Long boardId) throws Exception {
-		Optional<Board> optionalBoard = boardRepository.findById(boardId);
-		if (optionalBoard.isPresent()) {
-			Board board = optionalBoard.get();
-			return board;
-		}
-		throw new Exception("해당 게시글을 찾을 수 없습니다.");
+	public Optional<Board> selectBoard(Long boardId) {
+		return boardRepository.findById(boardId);
 	}
 
 	// 상위 카테고리 조회

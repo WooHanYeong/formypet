@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.formypet.jpa.adopt.entity.Adopt;
 import com.formypet.jpa.board.entity.Board;
+import com.formypet.jpa.board.entity.BoardReply;
 import com.formypet.jpa.cart.entity.Cart;
 import com.formypet.jpa.product.entity.ProductReply;
 import com.formypet.jpa.user.dto.UserDto;
@@ -91,6 +92,11 @@ public class User {
     @ToString.Exclude
     @JoinColumn(name="adopt_id")
     private Adopt adopt;
+    
+    //유저와 게시판댓글관계설정
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@ToString.Exclude
+	private List<BoardReply> boardReplyList =new ArrayList<>();
     
  }
    

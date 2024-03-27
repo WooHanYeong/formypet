@@ -66,7 +66,7 @@
 							<h2 id="detailTitle" th:text="${board.boardTitle}">제목
 							</h2>
 							<ul class="blog-info-link mt-3 mb-4">
-								<li><a href="#"><i class="far fa-user"></i> 작성자 이름</a></li>
+								<li><i class="far fa-user" th:text="${board.User.userId}"></i></a></li>
 								<li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
 							</ul>
 							<p class="excert" id="detailContent" th:text="${board.boardContent}">
@@ -123,14 +123,14 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="form-group">
-											<textarea class="form-control w-100" name="comment" id="comment" cols="30"
+											<textarea class="form-control w-100" name="comment" id="replyContent" cols="30"
 												rows="9" placeholder="로그인 후 이용해주세요"></textarea>
 										</div>
 									</div>
 
 								</div>
 								<div class="form-group mt-3">
-									<a href="#" class="btn_3 button-contactForm">등록</a>
+									<a href="#" class="btn_3 button-contactForm" onclick="registerReply()">등록</a>
 								</div>
 							</form>
 						</div>

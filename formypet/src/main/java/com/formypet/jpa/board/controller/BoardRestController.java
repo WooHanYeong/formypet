@@ -36,6 +36,7 @@ public class BoardRestController {
 		}
 	}
 
+	
 	@PostMapping("/create/{categoryId}/{subCategoryId}")
 	public ResponseEntity<Board> createBoardForList(@PathVariable(value = "subCategoryId") Long subCategoryId,
 	        @PathVariable(value = "categoryId") Long categoryId, @RequestBody BoardDto boardDto,
