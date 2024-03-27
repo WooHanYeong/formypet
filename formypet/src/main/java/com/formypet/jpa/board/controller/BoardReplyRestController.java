@@ -36,7 +36,7 @@ public class BoardReplyRestController {
 		return new ResponseEntity<>(reply, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/delete_reply/{replyId}")
 	public void boardReplyDelete(@PathVariable(name="replyId") Long replyId) {
 		boardReplyService.deleteReply(replyId);
 	}

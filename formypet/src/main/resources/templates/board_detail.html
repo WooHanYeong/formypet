@@ -25,6 +25,8 @@
 	<!-- style CSS -->
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/board_list.css">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -67,7 +69,9 @@
 							</h2>
 							<ul class="blog-info-link mt-3 mb-4">
 								<li><i class="far fa-user" th:text="${board.User.userId}"></i></a></li>
-								<li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
+								<li><a>작성날짜: <i
+											th:text="${#temporals.format(board.createdTime, 'yyyy.MM.dd a h시mm분ss초')}"></i></a>
+								</li>
 							</ul>
 							<p class="excert" id="detailContent" th:text="${board.boardContent}">
 
@@ -77,7 +81,9 @@
 					<div class="navigation-top">
 						<div class="d-sm-flex justify-content-between text-center">
 							<div class="like-info">
-								<input type="hidden" id="userId" th:if="${loginUser != null}" th:value="${loginUser.userId}">
+								<input type="hidden" id="user" th:if="${loginUser != null}" th:value="${user.id}">
+								<input type="hidden" id="userId" th:if="${loginUser != null}"
+									th:value="${loginUser.userId}">
 								<input type="hidden" id="writerUserId" th:value="${board.User.userId}">
 								<input type="hidden" id="boardId" th:value="${board.boardId}">
 								<span class="align-middle"><i class="far fa-heart"></i></span>
@@ -92,26 +98,34 @@
 					</div>
 
 					<div class="comments-area">
-						<h4>댓글수</h4>
+						<h4>댓글 <span th:text="${replies.size()}"></span></h4>
 						<div class="comment-list">
-							<div class="single-comment justify-content-between d-flex">
+							<div class="single-comment justify-content-between d-flex" th:each="reply : ${replies}">
+								<input type="hidden" id = "replyId" th:value="${reply.replyId}">
 								<div class="user justify-content-between d-flex">
 									<div class="thumb">
 									</div>
 									<div class="desc">
-										<p class="comment">
-											댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
-											내용댓글 내용
+										<p class="comment" th:text="${reply.replyContent}">
+
 										</p>
 										<div class="d-flex justify-content-between">
 											<div class="d-flex align-items-center">
 												<h5>
-													<a href="#">댓글 쓴사람 이름</a>
+													<a th:text="${reply.User.userId}"></a>
 												</h5>
-												<p class="date">댓글 쓴 날짜 </p>
+												<p class="date"
+													th:text="${#temporals.format(reply.createdTime, 'yyyy.MM.dd a h시mm분ss초')}">
+												</p>
 											</div>
-
+											<button th:if="${loginUser != null && loginUser.userId == reply.User.userId}" 
+											type="button" class="btn btn-outline-danger btn-sm"
+												onclick="deleteReply(/*[[${reply.replyId}]]*/)">
+												<i class="fas fa-times"></i>
+											</button>
 										</div>
+										<hr
+											style="border: none; border-top: 1px solid #ccc; margin: 20px 0; width: 720px;">
 									</div>
 								</div>
 							</div>
@@ -123,8 +137,8 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="form-group">
-											<textarea class="form-control w-100" name="comment" id="replyContent" cols="30"
-												rows="9" placeholder="로그인 후 이용해주세요"></textarea>
+											<textarea class="form-control w-100" name="comment" id="replyContent"
+												cols="30" rows="9" placeholder="댓글을 입력해 주세요"></textarea>
 										</div>
 									</div>
 
@@ -144,12 +158,12 @@
 	<!--::footer_part start::-->
 	<footer class="footer_part">
 		<div class="container">
-            <input type="hidden" id="boardId" th:value="${board.boardId}">
-            <input type="hidden" id="categoryId" th:value="${board.boardCategory.categoryId}">
-            <input type="hidden" id="subCategoryId" th:value="${board.boardSubCategory.subCategoryId}">
-            <button type="submit" id ="updateBtn" class="btn btn-danger" onclick="updateBoard()">게시글 수정</button>
-            <button type="submit" id="deleteBtn" class="btn btn-danger" onclick="deleteBoard()">게시글 삭제</button>
-			</div>
+			<input type="hidden" id="boardId" th:value="${board.boardId}">
+			<input type="hidden" id="categoryId" th:value="${board.boardCategory.categoryId}">
+			<input type="hidden" id="subCategoryId" th:value="${board.boardSubCategory.subCategoryId}">
+			<button type="submit" id="updateBtn" class="btn btn-danger" onclick="updateBoard()">게시글 수정</button>
+			<button type="submit" id="deleteBtn" class="btn btn-danger" onclick="deleteBoard()">게시글 삭제</button>
+		</div>
 		</div>
 		<div class="copyright_part">
 			<div class="container">

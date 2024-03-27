@@ -107,6 +107,7 @@ public class BoardController {
 			throws Exception {
 		User loginUser = (User) session.getAttribute("loginUser");
 		if (loginUser != null) {
+			model.addAttribute("user", loginUser);
 			UserDto user = userService.findUser(loginUser.getUserId());
 			model.addAttribute("loginUser", user);
 		} else {
@@ -120,6 +121,9 @@ public class BoardController {
 			model.addAttribute("writerUserId", writerUserId);
 		}
 		boardService.increaseReadCount(boardId);
+		List<BoardReply> replies = boardReplyService.findReplyByBoardId(boardId);
+		model.addAttribute("replies",replies);
+		
 		String forwardPath = "board_detail";
 		return forwardPath;
 	}

@@ -54,7 +54,6 @@ public class Board {
 	
 	public static Board toEntity(BoardDto dto) {
 		Board board= Board.builder()
-					.boardId(dto.getBoardId())
 					.boardTitle(dto.getBoardTitle())
 					.boardContent(dto.getBoardContent())
 					.boardImage(dto.getBoardImage())

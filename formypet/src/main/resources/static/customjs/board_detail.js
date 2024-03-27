@@ -92,38 +92,64 @@ function updateBoard() {
 
 
 
-
-
-
 function registerReply() {
-	var userId = document.getElementById('userId').value;
+	var userIdElement = document.getElementById('user');
+	if (!userIdElement) {
+		alert("댓글을 작성하려면 먼저 로그인해주세요.");
+		window.location.href = "/user_login_form";
+	}
+	var userId = document.getElementById('user').value;
 	var boardId = document.getElementById('boardId').value;
 	var replyContent = document.getElementById('replyContent').value;
-debugger;
+
 	var formData = {
 		"boardId": boardId,
 		"replyContent": replyContent,
 		"userId": userId
 	};
-
-	fetch("/api/boardReply/insert_reply/" + boardId, {
+	fetch(`/api/boardReply/insert_reply/${boardId}?userId=${userId}`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify(formData)
 	})
-	.then(response => {
-		if(response.ok) {
-			alert("댓글이 등록되었습니다.");
-			window.location.href = "/board_detail?boardId=" + boardId;
-		} else {
-			alert("댓글 등록이 실패하였습니다.");
-		}
-	})
-	.catch(error => {
-		alert('에러 발생' + error);
-	});
+		.then(response => {
+			if (response.ok) {
+				alert("댓글이 등록되었습니다.");
+				window.location.href = "/board_detail?boardId=" + boardId;
+			} else {
+				alert("댓글 등록이 실패하였습니다.");
+			}
+		})
+		.catch(error => {
+			alert('에러 발생' + error);
+		});
+}
+
+
+function deleteReply() {
+	var boardId = document.getElementById('boardId').value;
+	var replyId = document.getElementById('replyId').value;
+	if (confirm("댓글을 삭제하시겠습니까?")) {
+		fetch('/api/boardReply/delete_reply/' + replyId, {
+			method: 'DELETE'
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('네트워크 에러 발생');
+				}
+				return response;
+			})
+			.then(() => {
+				console.log('게시글 삭제 성공');
+				alert('댓글이 삭제되었습니다.');
+				window.location.href = '/board_detail?boardId=' + boardId;
+			})
+			.catch(error => {
+				console.error('댓글 삭제 실패:', error);
+			});
+	}
 }
 
 
@@ -132,56 +158,3 @@ debugger;
 
 
 
-
-
-
-
-
-
-/*function registerReply() {
-	// 사용자 ID 가져오기
-	var userId = document.getElementById("userId").value;
-	console.log(userId)
-	if (userId === "id") {
-		if (confirm("사용자 ID가 없습니다. 로그인 화면으로 이동하시겠습니까?")) {
-			window.location.href = "/user_login_form";
-		}
-		return;
-	}
-	// 댓글 내용 가져오기
-	var commentContent = document.getElementById("comment").value;
-
-	// 댓글 내용이 비어 있는지 확인
-	if (commentContent.trim() === "") {
-		alert("댓글 내용을 입력해주세요.");
-		return;
-	}
-
-	var formData = new FormData(); // FormData 객체 생성
-
-	// FormData 객체에 댓글 내용과 사용자 ID 추가
-	formData.append("replyContent", commentContent);
-	formData.append("userId", userId);
-
-	var queryString = window.location.search;
-	var urlParams = new URLSearchParams(queryString);
-	var boardId = urlParams.get('boardId');
-
-	console.log("boardId:", boardId);
-
-	$.ajax({
-		url: "/api/boardReply/insert_reply/" + boardId,
-		type: "POST",
-		data: formData,
-		processData: false,
-		contentType: false,
-		success: function(response) {
-			alert("댓글이 성공적으로 등록되었습니다.");
-			window.location.href = "board_detail?boardId=" + boardId;
-		},
-		error: function(error) {
-			alert("댓글 등록에 실패했습니다.");
-			console.log(error);
-		}
-	});
-}*/

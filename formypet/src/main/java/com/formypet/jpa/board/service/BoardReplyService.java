@@ -9,5 +9,5 @@ public interface BoardReplyService {
 	
 	BoardReply createReply(BoardReplyDto boardReplyDto);
 	void deleteReply(Long replyId);
-	List<BoardReply> findReplyByBoardId(Long boardId)throws Exception; 
+	List<BoardReply> findReplyByBoardId(Long boardId)throws Exception;
 }
