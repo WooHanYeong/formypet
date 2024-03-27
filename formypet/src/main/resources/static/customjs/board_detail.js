@@ -96,10 +96,10 @@ function updateBoard() {
 
 
 function registerReply() {
-	var userId = document.getElementById('userId').value;
+	var userId = document.getElementById('user');
+	console.log(userId);
 	var boardId = document.getElementById('boardId').value;
 	var replyContent = document.getElementById('replyContent').value;
-debugger;
 	var formData = {
 		"boardId": boardId,
 		"replyContent": replyContent,
