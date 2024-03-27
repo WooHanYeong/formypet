@@ -220,7 +220,8 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="product_top_bar d-flex justify-content-between align-items-center">
-								<h4 th:text="${#lists.size(animalCatList)+' '+'마리의 아이들이 보호자를 기다리고 있어요'}">748마리의 아이들이 보호자를 기다리고 있어요</h4>
+								<h4 th:text="${#lists.size(animalCatList)+' '+'마리의 아이들이 보호자를 기다리고 있어요'}">748마리의 아이들이
+									보호자를 기다리고 있어요</h4>
 
 								<div class="single_product_menu d-flex">
 									<div class="input-group">
@@ -237,20 +238,29 @@
 					</div>
 
 					<div class="row align-items-center latest_product_inner"
-					style="max-height: 1200px; overflow-y:auto;" id="container">
-						
+						style="max-height: 1200px; overflow-y:auto;" id="container">
+
 						<div class="col-lg-4 col-sm-6" th:each="cat: ${animalCatList}">
 							<div class="single_product_item">
-								<img th:src="@{'/animalimg/' + ${cat.animalImage}}" alt="">
-								<div class="single_product_text">
-									<h4 style="font-size: 15px;" th:text="${'['+cat.animalType+'] '+cat.animalBreed }">[강아지]&nbsp; 진돗개&nbsp; |&nbsp;&nbsp; 1살미만</h4>
-									<h4 style="font-size: 15px;" th:text="${cat.animalSex +' '+ ':' + ' '+ cat.animalAge}">남아 - 중성화 알 수 없음</h4>
-									<h4 style="font-size: 15px;" th:text="${'중성화 : ' + cat.animalNeutering}">남아 - 중성화 알 수 없음</h4>
-								</div>
+								<img th:src="@{'/animalimg/' + ${cat.animalImage}}" alt=""  >
+
+								<h4 style="margin-top: 30px; text-align: center;">
+									<a style="color: black; margin-top: 10px;"
+										th:href="${'/animal_detail?animalId='+cat.id}"
+										th:text="${'['+cat.animalType+'] '+cat.animalBreed }">Quartz Belt Watch</a>
+								</h4>
+
+								<h4 style="font-size: 15px; text-align: center;"
+									th:text="${cat.animalSex +' '+ ':' + ' '+  cat.animalAge}">
+									남아 - 중성화 알 수 없음</h4>
+								<h4 style="font-size: 15px; text-align: center; margin-bottom: 30px;"
+									th:text="${'중성화 : ' + cat.animalNeutering}">남아 - 중성화 알
+									수 없음</h4>
+
 							</div>
 						</div>
-						
-						
+
+
 					</div>
 				</div>
 			</div>

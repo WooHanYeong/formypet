@@ -1,11 +1,13 @@
 package com.formypet.jpa.animal.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.formypet.jpa.animal.entity.Animal;
 import com.formypet.jpa.animal.service.AnimalService;
@@ -41,13 +43,17 @@ public class AnimalController {
 	}
 	
 	//detail
-	@GetMapping("/animal_detail_dog")
-	public String animal_detail_dog() {
-		return "animal_detail_dog";
+	@GetMapping("/animal_detail")
+	public String animal_detail(@RequestParam(name="animalId") Long id,Model model) {
+		
+		//동물 detail접근.
+		Optional<Animal> animalOptional =
+				animalService.findById(id);
+		Animal animalObject = animalOptional.get();
+		model.addAttribute("animalObject",animalObject);
+		
+		return "animal_detail";
 	}
-	@GetMapping("/animal_detail_cat")
-	public String animal_detail_cat() {
-		return "animal_detail_cat";
-	}
+	
 	
 }
