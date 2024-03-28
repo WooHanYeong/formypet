@@ -50,8 +50,8 @@ public class Adopt {
 	
 	public static Adopt toEntity(AdoptDto dto) {
 		return Adopt.builder()
+					.id(dto.getId())
 					.adoptStatus(dto.getAdoptStatus())
-					.adoptComment(dto.getAdoptComment())
 					.build();
 	}
 	

@@ -6,4 +6,6 @@ import com.formypet.jpa.adopt.entity.Adopt;
 
 public interface AdoptRepository extends JpaRepository<Adopt, Long>{
 
+	Adopt findByUserId(Long userId);
+	
 }

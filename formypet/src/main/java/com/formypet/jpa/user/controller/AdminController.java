@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.formypet.jpa.adopt.entity.Adopt;
+import com.formypet.jpa.adopt.service.AdoptService;
 import com.formypet.jpa.animal.entity.Animal;
 import com.formypet.jpa.animal.service.AnimalService;
 import com.formypet.jpa.product.entity.Product;
@@ -26,6 +28,9 @@ public class AdminController {
 	
 	@Autowired
 	private AnimalService animalService;
+	
+	@Autowired
+	private AdoptService adoptService;
 	
 	@GetMapping("/admin_index")
 	public String dash() throws Exception {
@@ -70,6 +75,12 @@ public class AdminController {
 	public String admin_create_animal() throws Exception {
 		String forwardPath ="admin_create_animal";
 		return forwardPath;
+	}
+	@GetMapping("/admin_adoptinfo")
+	public String admin_adoptinfo(Model model) throws Exception {
+		List<Adopt> adoptList = adoptService.findAllAdoptList();
+		model.addAttribute("adoptList",adoptList);
+		return "admin_adoptinfo";
 	}
 	
 	

@@ -89,7 +89,11 @@
 					<span>유기동물관리</span></a>
 			</li>
 
-
+			<li class="nav-item">
+				<a class="nav-link" href="admin_adoptinfo">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>유기동물입양신청관리</span></a>
+			</li>
 
 			<!-- Nav Item - Charts -->
 			<li class="nav-item">
@@ -364,8 +368,8 @@
 		}
 
 	</script>
-	
-	
+
+
 	<script>
 		//유기동물등록
 		function submitAnimalForm() {
@@ -381,7 +385,7 @@
 			var animalCodeNumber = document.getElementById("animalCodeNumber").value;
 			var file = document.getElementById("imageFile1").value; // 파일을 가져옵니다.
 
-			
+
 			if (animalType === "" || animalBreed === "") {
 				alert("관련동물과 카테고리를 선택해주세요.");
 				return;
@@ -419,8 +423,8 @@
 				alert("동물사진을 등록해주세요");
 				return;
 			}
-			
-			
+
+
 			var formData = new FormData(document.getElementById("animalForm"));
 			$.ajax({
 				url: "/api/animal/animalInsertForm",
@@ -443,7 +447,7 @@
 
 
 		//유기동물 삭제
-		
+
 	</script>
 
 

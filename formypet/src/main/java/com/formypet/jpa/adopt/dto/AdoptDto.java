@@ -15,14 +15,14 @@ import lombok.ToString;
 @Builder
 public class AdoptDto {
 
-	private String adoptStatus;
+	private Long id;
 	
-	private String adoptComment;
+	private String adoptStatus;
 	
 	public static AdoptDto toDto(Adopt entity) {
 		return AdoptDto.builder()
+					   .id(entity.getId())
 					   .adoptStatus(entity.getAdoptStatus())
-					   .adoptComment(entity.getAdoptComment())
 					   .build();
 	}
 

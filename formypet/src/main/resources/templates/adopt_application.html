@@ -149,6 +149,14 @@
 										th:text="${animalObject.animalEtc}"></span></a>
 							</li>
 						</ul>
+						
+						<!--animalId붙음-->
+						<div class="col-sm-6" style="display: none;">
+							<div class="form-group">
+								<input class="form-control" name="animalId" id="animalId" type="text"
+									th:value="${animalObject.id}" readonly>
+							</div>
+						</div>
 
 						<!-- 세션붙음. -->
 						<div class="col-sm-6" style="display: none;">
@@ -157,6 +165,7 @@
 									th:value="${session.loginUser != null} ? ${session.loginUser.id} : 'id'" readonly>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -166,14 +175,15 @@
 					<div class="row" style="justify-content: center;">
 						<div class="col-lg-8">
 							<h3> 입양 신청서 </h3>
-							<form class="row contact_form" action="#" method="post" novalidate="novalidate">
+							<form class="row contact_form" action="#" method="post" novalidate="novalidate"
+								id="adoptForm">
 								<div class="col-md-6 form-group p_star">
 									<input type="text" class="form-control" id="userName" name="name" disabled>
 									<span class="placeholder" th:data-placeholder="${session.loginUser.userName}"
 										contenteditable="false"></span>
 								</div>
 								<div class="col-md-6 form-group p_star">
-									<input type="text" class="form-control" id="userPhone" name="number"
+									<input type="text" class="form-control" id="adoptPhone" name="adoptPhone"
 										placeholder="연락가능번호">
 								</div>
 
@@ -191,14 +201,15 @@
 								</div>
 
 								<div class="col-md-12 form-group">
-									<textarea class="form-control" name="message" id="message" rows="1"
+									<textarea class="form-control" name="adoptComment" id="adoptComment" rows="1"
 										placeholder="분양을 원하는 이유"></textarea>
 								</div>
 							</form>
-								<div class="card_area d-flex justify-content-between align-items-center" style="justify-content: center;">
-									<a href="#" onclick="submitadopt()" class="btn_3">입양신청하기</a>
-									</a>
-								</div>
+							<div class="card_area d-flex justify-content-between align-items-center"
+								style="justify-content: center;">
+								<a href="#" onclick="submitadopt()" class="btn_3">입양신청하기</a>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -206,6 +217,50 @@
 		</div>
 	</div>
 
+	<script>
+
+		function submitadopt() {
+
+			var userId = document.getElementById('userId').value;
+			var animalId = document.getElementById('animalId').value;
+			var adoptPhone = document.getElementById('adoptPhone').value;
+			var adoptComment = document.getElementById('adoptComment').value;
+
+			if(!adoptPhone){
+				alert("연락가능한 번호를 입력하세요")
+				return;
+			}
+			if(!adoptComment){
+				alert("분양을 원하는 이유를 입력하세요")
+				return;
+			}
+			
+			
+
+			var formData ={
+				animalId : animalId,
+				userId : userId ,
+				adoptPhone : adoptPhone,
+				adoptComment : adoptComment
+			};
+	
+
+			$.ajax({
+				url: "/api/adopt/AdoptIsertForm",
+				type: "POST",
+				data: formData,
+				contentType: "application/x-www-form-urlencoded",
+				success: function (response) {
+					alert("분양신청이 완료되었습니다.");
+				},
+				error: function (error) {
+					alert("해당동물은 분양진행중이거나 이미 분양을 진행중입니다.");
+					console.log(error);
+				}
+			});
+		}
+
+	</script>
 
 
 

@@ -87,12 +87,13 @@
 					<i class="fas fa-fw fa-chart-area"></i>
 					<span>유기동물관리</span></a>
 			</li>
-			
+
 			<li class="nav-item">
 				<a class="nav-link" href="admin_adoptinfo">
 					<i class="fas fa-fw fa-chart-area"></i>
 					<span>유기동물입양신청관리</span></a>
 			</li>
+
 
 			<!-- Nav Item - Charts -->
 			<li class="nav-item">
@@ -157,8 +158,8 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Product Info Table</h1>
-					<p class="mb-4">상품정보를 한번에 볼 수 있는 테이블입니다.</p>
+					<h1 class="h3 mb-2 text-gray-800">Animal Info Table</h1>
+					<p class="mb-4">유기동물정보를 한번에 볼 수 있는 테이블입니다.</p>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
@@ -168,30 +169,32 @@
 									<thead>
 										<tr>
 											<th></th>
-											<th>상품이름</th>
-											<th>상품관련동물</th>
-											<th>상품카테고리</th>
-											<th>상품가격</th>
-											<th>상품조회수</th>
-											<th>상품등록일</th>
+											<th>신청자이름</th>
+											<th>신청자아이디</th>
+											<th>동물코드</th>
+											<th>연락가능번호</th>
+											<th>등록메세지</th>
+											<th>신청일</th>
+											<th>입양진행상태</th>
 											<th style="display: none;"></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="product : ${productList}">
+										<tr th:each="adopt : ${adoptList}">
 											<td>
-												<input type="checkbox" name="selectedProducts" value="" /> <!-- 체크박스 -->
+												<input type="checkbox" name="selectedAdopts" value="" /> <!-- 체크박스 -->
 											</td>
-											<td th:onclick="'window.location.href=\'/product_detail_dog?productId=' + ${product.id} + '\''"
-												th:text="${product.productName}" onmouseover="this.style.color='red'"
-												onmouseout="this.style.color='inherit'">Tiger Nixon</td>
-											<td th:text="${product.productAnimalType}">System Architect</td>
-											<td th:text="${product.productCategory}">Edinburgh</td>
-											<td th:text="${product.productPrice}">61</td>
-											<td th:text="${product.productReadCount}">2011/04/25</td>
-											<td th:text="${#temporals.format(product.createdTime, 'yyyy년 MM월 dd일')}">
+
+
+											<td th:text="${adopt.User.userName}">System Architect</td>
+											<td th:text="${adopt.User.userId}">System Architect</td>
+											<td th:text="${adopt.Animal.animalCodeNumber}">System Architect</td>
+											<td th:text="${adopt.adoptPhone}">Edinburgh</td>
+											<td th:text="${adopt.adoptComment}">61</td>
+											<td th:text="${#temporals.format(adopt.createdTime, 'yyyy년 MM월 dd일')}">
 												2011/04/25</td>
-											<td id="productId" th:text="${product.id}" style="display: none;"></td>
+											<td th:text="${adopt.adoptStatus}">2011/04/25</td>
+											<td id="adoptId" th:text="${adopt.id}" style="display: none;"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -199,7 +202,7 @@
 									<span class="icon text-white-50">
 										<i class="fas fa-trash"></i>
 									</span>
-									<span class="text" onclick="printSelectedProductIds()">상품삭제</span>
+									<span class="text" onclick="changestatus()">입양완료처리</span>
 								</a>
 							</div>
 						</div>
@@ -217,36 +220,37 @@
 
 
 	<script>
-		function printSelectedProductIds() {
+		function changestatus() {
 			var selectedIds = [];
-			var checkboxes = document.getElementsByName('selectedProducts');
+			var checkboxes = document.getElementsByName('selectedAdopts');
 			checkboxes.forEach(function (checkbox) {
 				if (checkbox.checked) {
-					var productId = checkbox.closest('tr').querySelector('#productId').textContent;
-					selectedIds.push(Number(productId)); // 문자열을 숫자(혹은 long)로 변환하여 추가
+					var adoptId = checkbox.closest('tr').querySelector('#adoptId').textContent;
+					selectedIds.push(Number(adoptId)); // 문자열을 숫자(혹은 long)로 변환하여 추가
 				}
 			});
 
-			console.log(selectedIds);
+			var selectId = selectedIds[0];
+			console.log(selectId);
 
 			$.ajax({
-				url: `/api/product/delete/products`,
-				method: 'DELETE',
-				data: JSON.stringify(selectedIds), // 선택된 상품 ID 리스트를 JSON 문자열로 변환하여 전송
+				url: `/api/adopt/ChangeStatus`,
+				method: 'POST',
+				data: JSON.stringify(selectId), // 선택된 상품 ID 리스트를 JSON 문자열로 변환하여 전송
 				contentType: 'application/json', // 요청의 컨텐츠 타입을 JSON으로 설정
 				success: function (response) {
-					alert("상품이 삭제되었습니다.!");
+					alert("입양진행상태가 변경 되었습니다.!");
 					location.reload();
 				},
 				error: function (error) {
-					alert("상품 삭제 실패. 다시 시도해주세요.");
+					alert("변경 실패. 다시 시도해주세요.");
 					console.error("Error deleting user:", error);
 				},
 			});
+
 		}
 
 	</script>
-
 
 
 	<!-- Bootstrap core JavaScript-->
