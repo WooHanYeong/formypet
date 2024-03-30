@@ -61,29 +61,33 @@
 			<!--<div class="col-lg-8 posts-list">-->
 			<div class="single-post">
 				<input type="hidden" id="userId" th:value="${loginUser.userId}">
-				<div class="comment-form"th:if="${loginUser != null}">
+				<div class="comment-form" th:if="${loginUser != null}">
 					<h4>글쓰기</h4>
 					<form class="form-contact comment_form" action="#" id="commentForm">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="select-box">
 									<select id="mainCategory">
-										<option th:value="${boardCategory.categoryId}" th:text="${boardCategory.categoryName}"></option>
+										<option th:value="${boardCategory.categoryId}"
+											th:text="${boardCategory.categoryName}"></option>
 									</select>
 									<select name="subCategory" id="subCategory">
 										<option value="">선택</option>
-										<option th:each="subCategory : ${subCategories}" th:value="${subCategory.subCategoryId}" th:text="${subCategory.subCategoryName}"></option>
+										<option th:each="subCategory : ${subCategories}"
+											th:value="${subCategory.subCategoryId}"
+											th:text="${subCategory.subCategoryName}"></option>
 									</select>
 								</div>
 								<div class="form-group" style="width: 900px;">
 									<input class="form-control" id="boardTitle" name="boardTitle" type="text"
-										placeholder="제목을 입력해주세요!">
+										placeholder="제목을 입력해주세요!" maxlength="15">
 								</div>
 							</div>
 							<div class="col-12">
 								<div class="form-group" style="width: 1170px; height: 500px;">
 									<textarea class="form-control w-100" id="boardContent" name="boardContent" cols="30"
-										rows="9" placeholder="내용을 입력해주세요!"></textarea>
+										rows="9" maxlength="900" oninput="handleInput(this)"
+										placeholder="내용을 입력해주세요!"></textarea>
 								</div>
 							</div>
 						</div>
@@ -109,7 +113,7 @@
 					<div class="row justify-content-around">
 
 					</div>
-	
+
 				</div>
 				<div class="copyright_part">
 					<div class="container">
