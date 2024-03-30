@@ -96,7 +96,7 @@
 
 <body>
 
-	<div class="product_image_area section_padding">
+	<div class="product_image_area section_padding" th:if="${findAdopt != null}">
 		<div class="container">
 			<div class="row s_product_inner justify-content-between">
 				<div class="col-lg-7 col-xl-7">
@@ -202,6 +202,14 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	
+	
+	<div th:if="${findAdopt == null}">
+		<script th:inline="javascript">
+			alert('입양 정보를 찾을 수 없습니다.');
+			window.close();
+		</script>
 	</div>
 
 

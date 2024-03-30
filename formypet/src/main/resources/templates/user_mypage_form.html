@@ -72,10 +72,11 @@
 										value="" th:placeholder="${'상세주소  :    ' + session.loginUser.userAddressDetail}"
 										readonly>
 								</div>
-								
+
 								<div class="col-md-12 form-group p_star">
-									<input type="hidden" class="form-control" id="userIdpk" name="userIdpk" th:value="${session.loginUser.id}"
-										th:placeholder="${session.loginUser.id}" readonly>
+									<input type="hidden" class="form-control" id="userIdpk" name="userIdpk"
+										th:value="${session.loginUser.id}" th:placeholder="${session.loginUser.id}"
+										readonly>
 								</div>
 
 								<div class="col-md-12 form-group" style="margin-top: 30px;">
@@ -204,17 +205,13 @@
 					<div class="login_part_text text-center">
 						<div class="login_part_text_iner">
 							<h2>회원정보를 확인하셨나요??</h2>
-							<p>
-								혹시 수정이 필요하신가요?!</p>
-							<a href="#" class="btn_3" onclick="openWithdrawalModal2()">회원정보수정</a>
+							<p>	혹시 수정이 필요하신가요?!</p>
+							<a href="#" class="btn_3" onclick="openWithdrawalModal2()">회원정보수정하기</a>
 
-							<a href="">
-								<h2 style="margin-top: 30px;">나의 주문목록 바로가기</h2>
-							</a>
+							<p style="margin-top: 30px;">	아래와 같은 서비스를 찾으시나요?!</p>
+							<a href="#" id="" class="btn_3" onclick="">나의 주문목록 바로가기</a>
 
-							<a id="openWindowBtn" href="#" onclick="openAdoptionWindow()">
-								<h2 style="margin-top: 30px;">나의 입양관련 바로가기</h2>
-							</a>
+							<a href="#" id="openWindowBtn" class="btn_3" onclick="openAdoptionWindow()">나의 입양관련 바로가기</a>
 
 
 
@@ -322,6 +319,7 @@
 			var userId = document.getElementById('modalId').textContent;
 			var userPassword = document.getElementById('modalPassWord').textContent;
 			var enteredPassword2 = document.getElementById("checkpassword2").value;
+			var updateuserPassword = document.getElementById("updateuserPassword").value;
 
 
 			var userData = {
@@ -336,6 +334,10 @@
 
 			if (!enteredPassword2) {
 				alert("현재 비밀번호를 입력하세요.");
+				return;
+			}
+			if (!updateuserPassword) {
+				alert("변경할 비밀번호를 입력하세요.");
 				return;
 			}
 			if (userPassword === enteredPassword2) {
@@ -354,7 +356,7 @@
 			}
 
 		}
-		
+
 		function closeWithdrawalModal2() {
 			$('#withdrawalModal').modal('hide');
 			window.location.href = "user_mypage_form";
@@ -366,7 +368,7 @@
 			var url = "adopt_userinfo_application?userId=" + userIdpk;
 
 			console.log(userIdpk);
-			
+
 			var newWindow = window.open(url, "_blank", "width=1000,height=800");
 
 		}
