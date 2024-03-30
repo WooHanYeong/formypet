@@ -133,10 +133,6 @@ a:visited {
 }
 
 
-
-
-
-
 .select-box,
 .form-group {
 	flex: 1;
@@ -144,3 +140,6 @@ a:visited {
 	margin-right: 10px;
 	/* 요소 사이의 간격 조절 */
 }
+
+
+

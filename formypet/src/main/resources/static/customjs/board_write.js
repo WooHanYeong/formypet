@@ -50,3 +50,14 @@ function clearForm() {
 	var categoryId = mainCategory.value;
 	window.location.href = "/board_list/" + categoryId
 }
+
+function handleInput(element) {
+        var lines = element.value.split('\n');
+        for (var i = 0; i < lines.length; i++) {
+            if (lines[i].length > 30) {
+                var truncatedLine = lines[i].substring(0, 30);
+                lines[i] = truncatedLine + '\n' + lines[i].substring(30);
+            }
+        }
+        element.value = lines.join('\n');
+    }
