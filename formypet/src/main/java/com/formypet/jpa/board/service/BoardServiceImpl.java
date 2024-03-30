@@ -1,6 +1,5 @@
 package com.formypet.jpa.board.service;
 
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -10,8 +9,11 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.convert.DtoInstantiatingConverter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.formypet.jpa.Exception.ExistedUserException;
 import com.formypet.jpa.board.dto.BoardCategoryDto;
 import com.formypet.jpa.board.dto.BoardDto;
 import com.formypet.jpa.board.dto.BoardSubCategoryDto;
@@ -219,6 +221,28 @@ public class BoardServiceImpl implements BoardService {
 	public List<Board> getBoardsByCategoryIdAndSubCategoryIdSortedByCreatedTimeDesc(Long categoryId, Long subCategoryId)
 			throws Exception {
 		return boardRepository.findByBoardCategoryCategoryIdAndBoardSubCategorySubCategoryIdOrderByCreatedTimeDesc(categoryId, subCategoryId);
+	}
+
+    @Override
+    public Page<Board> getAllBoardsSortedByCreatedTimeDescPaged(Pageable pageable) throws Exception {
+        return boardRepository.findAllByOrderByCreatedTimeDesc(pageable);
+    }
+
+    @Override
+    public Page<Board> getBoardByCategoryIdPaged(Long categoryId, Pageable pageable) throws Exception {
+        return boardRepository.findByBoardCategoryCategoryId(categoryId, pageable);
+    }
+
+	@Override
+	public Page<Board> getBoardsByCategoryIdAndSubCategoryIdSortedByCreatedTimeDescPaged(Long categoryId,
+			Long subCategoryId, Pageable pageable) throws Exception {
+		return boardRepository.findByBoardCategoryCategoryIdAndBoardSubCategorySubCategoryIdOrderByCreatedTimeDesc(categoryId, subCategoryId, pageable);
+	}
+
+	@Override
+	public Page<Board> getBoardByCategoryIdAndSubCategoryIdPaged(Long categoryId, Long subCategoryId, Pageable pageable)
+			throws Exception {
+		return boardRepository.findByBoardCategoryCategoryIdAndBoardSubCategorySubCategoryId(categoryId, subCategoryId, pageable);
 	}
 
 }

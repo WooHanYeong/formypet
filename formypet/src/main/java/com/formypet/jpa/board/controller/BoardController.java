@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -53,63 +56,74 @@ public class BoardController {
 
 	@GetMapping("/board_list/{categoryId}")
 	public String boardList(@PathVariable(value = "categoryId") Long categoryId, Model model, HttpSession session,
+			@RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "15") int size,
 			@RequestParam(value = "keyword", required = false) String keyword, @RequestParam(value = "sorting", required = false) String sorting) throws Exception {
-		User loginUser = (User) session.getAttribute("loginUser");
-		if (loginUser != null) {
-			UserDto user = userService.findUser(loginUser.getUserId());
-			model.addAttribute("loginUser", user);
-		} else {
-			model.addAttribute("loginUser", null);
-		}
-		List<Board> searchedBoards = boardService.searchBoardByKeyword(keyword);
-		model.addAttribute("searchedBoards", searchedBoards);
-		List<BoardCategory> categories = boardCategoryRepository.findAll();
-		model.addAttribute("categories", categories);
-		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
-		model.addAttribute("subCategories", subCategories);
-	    List<Board> boards;
-	    if ("createdTimeDesc".equals(sorting)) {
-	        boards = boardService.getAllBoardsSortedByCreatedTimeDesc();
+	    User loginUser = (User) session.getAttribute("loginUser");
+	    if (loginUser != null) {
+	        UserDto user = userService.findUser(loginUser.getUserId());
+	        model.addAttribute("loginUser", user);
 	    } else {
-	        boards = boardService.getBoardByCategoryId(categoryId);
+	        model.addAttribute("loginUser", null);
 	    }
-		model.addAttribute("boards", boards);
-		List<String> subNames = boardService.getSubCategoryByCategoryId(categoryId);
-		model.addAttribute("subNames", subNames);
-		String forwardPath = "board_list";
-		return forwardPath;
+	    List<Board> searchedBoards = boardService.searchBoardByKeyword(keyword);
+	    model.addAttribute("searchedBoards", searchedBoards);
+	    List<BoardCategory> categories = boardCategoryRepository.findAll();
+	    model.addAttribute("categories", categories);
+	    List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
+	    model.addAttribute("subCategories", subCategories);
+	    Pageable pageable = PageRequest.of(page, size); // 페이지 및 사이즈 설정
+	    Page<Board> boardPage;
+	    if ("createdTimeDesc".equals(sorting)) {
+	        boardPage = boardService.getAllBoardsSortedByCreatedTimeDescPaged(pageable); // 정렬하여 페이지 가져오기
+	    } else {
+	        boardPage = boardService.getBoardByCategoryIdPaged(categoryId, pageable); // 카테고리별 페이지 가져오기
+	    }
+	    model.addAttribute("boards", boardPage.getContent()); // 현재 페이지의 게시물 리스트
+	    model.addAttribute("totalPages", boardPage.getTotalPages()); // 전체 페이지 수
+	    model.addAttribute("currentPage", page); // 현재 페이지
+	    List<String> subNames = boardService.getSubCategoryByCategoryId(categoryId);
+	    model.addAttribute("subNames", subNames);
+	    String forwardPath = "board_list";
+	    return forwardPath;
 	}
 
 	@GetMapping("/board_list/{categoryId}/{subCategoryId}")
 	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId,
-			@PathVariable(value = "subCategoryId") Long subCategoryId, Model model, HttpSession session,
-			@RequestParam(value = "keyword", required = false) String keyword, @RequestParam(value = "sorting", required = false) String sorting) throws Exception {
-		User loginUser = (User) session.getAttribute("loginUser");
-		if (loginUser != null) {
-			UserDto user = userService.findUser(loginUser.getUserId());
-			model.addAttribute("loginUser", user);
-		} else {
-			model.addAttribute("loginUser", null);
-		}
-		List<Board> searchedBoards = boardService.searchBoardByKeyword(keyword);
-		model.addAttribute("searchedBoards", searchedBoards);
-		List<BoardCategory> categories = boardCategoryRepository.findAll();
-		model.addAttribute("categories", categories);
-		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
-		model.addAttribute("subCategories", subCategories);
-	    List<Board> subBoards;
-	    if ("createdTimeDesc".equals(sorting)) {
-	        subBoards = boardService.getBoardsByCategoryIdAndSubCategoryIdSortedByCreatedTimeDesc(categoryId, subCategoryId);
+	        @PathVariable(value = "subCategoryId") Long subCategoryId, Model model, HttpSession session,
+	        @RequestParam(value = "page", defaultValue = "0") int page,
+	        @RequestParam(value = "size", defaultValue = "15") int size,
+	        @RequestParam(value = "keyword", required = false) String keyword, 
+	        @RequestParam(value = "sorting", required = false) String sorting) throws Exception {
+	    User loginUser = (User) session.getAttribute("loginUser");
+	    if (loginUser != null) {
+	        UserDto user = userService.findUser(loginUser.getUserId());
+	        model.addAttribute("loginUser", user);
 	    } else {
-	        subBoards = boardService.getBoardByCategoryIdAndSubCategoryId(categoryId, subCategoryId);
+	        model.addAttribute("loginUser", null);
 	    }
-	    model.addAttribute("subBoards", subBoards);
-		List<String> subCategoryNames = boardService.getSubCategoryName(subCategoryId);
-		model.addAttribute("subCategoryNames", subCategoryNames);
-		String subCategoryName = boardService.subCategoryNameBySubCategoryId(subCategoryId);
-		model.addAttribute("subCategoryName", subCategoryName);
-		String forwardPath = "board_list";
-		return forwardPath;
+	    List<Board> searchedBoards = boardService.searchBoardByKeyword(keyword);
+	    model.addAttribute("searchedBoards", searchedBoards);
+	    List<BoardCategory> categories = boardCategoryRepository.findAll();
+	    model.addAttribute("categories", categories);
+	    List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
+	    model.addAttribute("subCategories", subCategories);
+	    Pageable pageable = PageRequest.of(page, size); // 페이지 및 사이즈 설정
+	    Page<Board> subBoardPage;
+	    if ("createdTimeDesc".equals(sorting)) {
+	        subBoardPage = boardService.getBoardsByCategoryIdAndSubCategoryIdSortedByCreatedTimeDescPaged(categoryId, subCategoryId, pageable);
+	    } else {
+	        subBoardPage = boardService.getBoardByCategoryIdAndSubCategoryIdPaged(categoryId, subCategoryId, pageable);
+	    }
+	    model.addAttribute("subBoards", subBoardPage.getContent()); // 현재 페이지의 게시물 리스트
+	    model.addAttribute("totalPages", subBoardPage.getTotalPages()); // 전체 페이지 수
+	    model.addAttribute("currentPage", page); // 현재 페이지
+	    List<String> subCategoryNames = boardService.getSubCategoryName(subCategoryId);
+	    model.addAttribute("subCategoryNames", subCategoryNames);
+	    String subCategoryName = boardService.subCategoryNameBySubCategoryId(subCategoryId);
+	    model.addAttribute("subCategoryName", subCategoryName);
+	    String forwardPath = "board_list";
+	    return forwardPath;
 	}
 
 	@GetMapping("/board_detail")

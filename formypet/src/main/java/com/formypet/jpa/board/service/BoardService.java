@@ -1,9 +1,11 @@
 package com.formypet.jpa.board.service;
 
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.formypet.jpa.board.dto.BoardCategoryDto;
 import com.formypet.jpa.board.dto.BoardDto;
@@ -67,5 +69,16 @@ public interface BoardService {
 	//하위카테고리 시간별 정렬
 	public List<Board> getBoardsByCategoryIdAndSubCategoryIdSortedByCreatedTimeDesc(Long categoryId ,Long subCategoryId) throws Exception;
 	
+    // 모든 게시글을 생성된 시간에 따라 내림차순으로 정렬하여 페이지로 가져오는 메소드
+    Page<Board> getAllBoardsSortedByCreatedTimeDescPaged(Pageable pageable) throws Exception;
+
+    // 카테고리별 게시글을 페이지로 가져오는 메소드
+    Page<Board> getBoardByCategoryIdPaged(Long categoryId, Pageable pageable) throws Exception;
+    
+    // categoryId와 subCategoryId에 따라 생성된 시간 내림차순으로 페이지네이션된 게시물 가져오기
+    public Page<Board> getBoardsByCategoryIdAndSubCategoryIdSortedByCreatedTimeDescPaged(Long categoryId, Long subCategoryId, Pageable pageable) throws Exception;
+    
+    // categoryId와 subCategoryId에 따라 페이지네이션된 게시물 가져오기
+    public Page<Board> getBoardByCategoryIdAndSubCategoryIdPaged(Long categoryId, Long subCategoryId, Pageable pageable) throws Exception;
 	
 }

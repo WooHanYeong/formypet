@@ -63,7 +63,7 @@
 				<ul>
 					<input type="hidden" id="userId" th:if="${loginUser != null}" th:value="${loginUser.userId}">
 					<li th:each="category, iterStat : ${categories}">
-					<input type="hidden" id="categoryId"  th:value="${category.categoryId}">
+						<input type="hidden" id="categoryId" th:value="${category.categoryId}">
 						<a href="#" th:data-category="${category.categoryId}">
 							<span id="test1" th:text="${category.categoryName}"></span>
 						</a>
@@ -183,6 +183,44 @@
 			<button type="button" class="write-bt" onclick="boardWrite()">글쓰기</button>
 		</form>
 	</div>
+	<div class="pagination justify-content-center">
+		<ul class="pagination">
+			<li class="page-item" th:if="${currentPage > 10}">
+				<a class="page-link" href="#" aria-label="Previous"
+					th:href="@{'/board_list/' + ${categoryId} + '?page=' + ${currentPage - 10}}">
+					<span aria-hidden="true">&laquo;</span>
+					<span class="sr-only">Previous</span>
+				</a>
+			</li>
+
+			<li class="page-item"
+				th:each="pageNumber : ${#numbers.sequence((currentPage/10)*10, ((currentPage/10)*10)+9)}"
+				th:if="${pageNumber < totalPages}">
+				<!-- 서브카테고리가 있는 경우에만 링크 생성 -->
+				<a class="page-link" id="page-${pageNumber + 1}" th:if="${subCategoryId != null}"
+					th:href="@{'/board_list/' + ${categoryId} + '/' + ${subCategoryId} + '?page=' + ${pageNumber + 1}}"
+					th:onclick="'goToPage(' + ${pageNumber + 1} + ')'">
+					<span th:class="${pageNumber + 1 == currentPage} ? 'font-weight-bold' : ''"
+						th:text="${pageNumber + 1}"></span>
+				</a>
+				<!-- 서브카테고리가 없는 경우에는 categoryId만 사용하여 링크 생성 -->
+				<a class="page-link" id="page-${pageNumber + 1}" th:if="${subCategoryId == null}"
+					th:href="@{'/board_list/' + ${categoryId} + '?page=' + ${pageNumber + 1}}"
+					th:onclick="'goToPage(' + ${pageNumber + 1} + ')'">
+					<span th:class="${pageNumber + 1 == currentPage} ? 'font-weight-bold' : ''"
+						th:text="${pageNumber + 1}"></span>
+				</a>
+			</li>
+
+			<li class="page-item" th:if="${currentPage + 10 <= totalPages}">
+				<a class="page-link" href="#" aria-label="Next"
+					th:href="@{'/board_list/' + ${categoryId} + '?page=' + ${currentPage + 10}}">
+					<span aria-hidden="true">&raquo;</span>
+					<span class="sr-only">Next</span>
+				</a>
+			</li>
+		</ul>
+	</div>
 	<footer class="footer_part">
 		<div class="container">
 			<div class="row">
@@ -212,11 +250,14 @@
 							<li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
 							<li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
 						</ul>
+
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</footer>
+
 
 	<!--::footer_part end::-->
 
