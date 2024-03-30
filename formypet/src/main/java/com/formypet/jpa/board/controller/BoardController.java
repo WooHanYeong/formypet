@@ -53,7 +53,7 @@ public class BoardController {
 
 	@GetMapping("/board_list/{categoryId}")
 	public String boardList(@PathVariable(value = "categoryId") Long categoryId, Model model, HttpSession session,
-			@RequestParam(value = "keyword", required = false) String keyword) throws Exception {
+			@RequestParam(value = "keyword", required = false) String keyword, @RequestParam(value = "sorting", required = false) String sorting) throws Exception {
 		User loginUser = (User) session.getAttribute("loginUser");
 		if (loginUser != null) {
 			UserDto user = userService.findUser(loginUser.getUserId());
@@ -67,7 +67,12 @@ public class BoardController {
 		model.addAttribute("categories", categories);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
 		model.addAttribute("subCategories", subCategories);
-		List<Board> boards = boardService.getBoardByCategoryId(categoryId);
+	    List<Board> boards;
+	    if ("createdTimeDesc".equals(sorting)) {
+	        boards = boardService.getAllBoardsSortedByCreatedTimeDesc();
+	    } else {
+	        boards = boardService.getBoardByCategoryId(categoryId);
+	    }
 		model.addAttribute("boards", boards);
 		List<String> subNames = boardService.getSubCategoryByCategoryId(categoryId);
 		model.addAttribute("subNames", subNames);
@@ -78,7 +83,7 @@ public class BoardController {
 	@GetMapping("/board_list/{categoryId}/{subCategoryId}")
 	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId,
 			@PathVariable(value = "subCategoryId") Long subCategoryId, Model model, HttpSession session,
-			@RequestParam(value = "keyword", required = false) String keyword) throws Exception {
+			@RequestParam(value = "keyword", required = false) String keyword, @RequestParam(value = "sorting", required = false) String sorting) throws Exception {
 		User loginUser = (User) session.getAttribute("loginUser");
 		if (loginUser != null) {
 			UserDto user = userService.findUser(loginUser.getUserId());
@@ -92,8 +97,13 @@ public class BoardController {
 		model.addAttribute("categories", categories);
 		List<BoardSubCategory> subCategories = boardService.getSubCategoryByCategoryBySubCategoryId(categoryId);
 		model.addAttribute("subCategories", subCategories);
-		List<Board> subBoards = boardService.getBoardByCategoryIdAndSubCategoryId(categoryId, subCategoryId);
-		model.addAttribute("subBoards", subBoards);
+	    List<Board> subBoards;
+	    if ("createdTimeDesc".equals(sorting)) {
+	        subBoards = boardService.getBoardsByCategoryIdAndSubCategoryIdSortedByCreatedTimeDesc(categoryId, subCategoryId);
+	    } else {
+	        subBoards = boardService.getBoardByCategoryIdAndSubCategoryId(categoryId, subCategoryId);
+	    }
+	    model.addAttribute("subBoards", subBoards);
 		List<String> subCategoryNames = boardService.getSubCategoryName(subCategoryId);
 		model.addAttribute("subCategoryNames", subCategoryNames);
 		String subCategoryName = boardService.subCategoryNameBySubCategoryId(subCategoryId);

@@ -61,4 +61,11 @@ public interface BoardService {
 	//키워드별 리스트 검색
 	public List<Board> searchBoardByKeyword(String keyword) throws Exception;
 	
+	//작성시간별 내림차순 정렬
+	public List<Board> getAllBoardsSortedByCreatedTimeDesc() throws Exception;
+	
+	//하위카테고리 시간별 정렬
+	public List<Board> getBoardsByCategoryIdAndSubCategoryIdSortedByCreatedTimeDesc(Long categoryId ,Long subCategoryId) throws Exception;
+	
+	
 }

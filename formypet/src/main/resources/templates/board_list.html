@@ -63,6 +63,7 @@
 				<ul>
 					<input type="hidden" id="userId" th:if="${loginUser != null}" th:value="${loginUser.userId}">
 					<li th:each="category, iterStat : ${categories}">
+					<input type="hidden" id="categoryId"  th:value="${category.categoryId}">
 						<a href="#" th:data-category="${category.categoryId}">
 							<span id="test1" th:text="${category.categoryName}"></span>
 						</a>
@@ -71,9 +72,11 @@
 			</div>
 			<div class="section-top-border">
 				<div>
-					<form class="search-form" th:action="@{/board_list/{categoryId}(categoryId=${categoryId})}" method="get">
-						<input type="text" id="searchInput" name="keyword" class="search-input" placeholder="찾으시는 글이 있으신가요?">
-						<button type="submit"id= "searchButton" class="search-button">검색</button>
+					<form class="search-form" th:action="@{/board_list/{categoryId}(categoryId=${categoryId})}"
+						method="get">
+						<input type="text" id="searchInput" name="keyword" class="search-input"
+							placeholder="찾으시는 글이 있으신가요?">
+						<button type="submit" id="searchButton" class="search-button">검색</button>
 					</form>
 				</div>
 				<div class="sub_category">
@@ -87,6 +90,14 @@
 						</li>
 					</ul>
 				</div>
+				<div class="select-box">
+					<select id="sorting" style="float: right;">
+						<option value="#">선택</option>
+						<option value="createdTimeDesc">최신순</option>
+						<option value="createdTimeAsc">오래된순</option>
+					</select>
+				</div>
+
 				<h3 class="mb-30">자유게시판</h3>
 				<div class="progress-table-wrap">
 					<div class="progress-table">
@@ -128,7 +139,7 @@
 								</div>
 							</th:block>
 						</tr>
-						
+
 						<tr>
 							<th:block th:each="board  : ${subBoards}">
 								<div class="table-row">
@@ -224,7 +235,7 @@
 	<script src="/js/masonry.pkgd.js"></script>
 	<!-- particles js -->
 	<script src="/js/owl.carousel.min.js"></script>
-	<script src="/js/jquery.nice-select.min.js"></script>
+	<!--<script src="/js/jquery.nice-select.min.js"></script>-->
 	<!-- slick js -->
 	<script src="/js/slick.min.js"></script>
 	<script src="/js/jquery.counterup.min.js"></script>

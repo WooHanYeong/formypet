@@ -24,4 +24,30 @@ function boardWrite() {
 	}
 }
 
+document.getElementById("sorting").addEventListener("change", function() {
+	var sortingValue = this.value;
+	var currentUrl = window.location.href; 
+	var baseUrl = currentUrl.split('?')[0]; 
+	var newUrl;
 
+	if (sortingValue === "createdTimeDesc" || sortingValue === "createdTimeAsc") {
+		if (currentUrl.includes("?")) {
+			newUrl = baseUrl + "?sorting=" + sortingValue;
+		} else {
+			newUrl = baseUrl + "?sorting=" + sortingValue;
+		}
+	} else {
+		newUrl = baseUrl;
+	}
+
+	window.location.href = newUrl;
+});
+
+window.addEventListener("DOMContentLoaded", function() {
+	var params = new URLSearchParams(window.location.search);
+	var sortingOption = params.get('sorting');
+	if (sortingOption) {
+		var selectElement = document.getElementById("sorting");
+		selectElement.value = sortingOption;
+	}
+});

@@ -210,4 +210,15 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.findByBoardTitleContaining(keyword);
 	}
 
+	@Override
+	public List<Board> getAllBoardsSortedByCreatedTimeDesc() throws Exception {
+		return boardRepository.findAllByOrderByCreatedTimeDesc();
+	}
+
+	@Override
+	public List<Board> getBoardsByCategoryIdAndSubCategoryIdSortedByCreatedTimeDesc(Long categoryId, Long subCategoryId)
+			throws Exception {
+		return boardRepository.findByBoardCategoryCategoryIdAndBoardSubCategorySubCategoryIdOrderByCreatedTimeDesc(categoryId, subCategoryId);
+	}
+
 }
