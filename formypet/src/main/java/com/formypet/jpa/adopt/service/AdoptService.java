@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.formypet.jpa.adopt.dto.AdoptDto;
 import com.formypet.jpa.adopt.entity.Adopt;
+import com.formypet.jpa.user.entity.User;
 
 public interface AdoptService {
 
@@ -23,6 +24,8 @@ public interface AdoptService {
 	
 	//한개찾기
 	public Optional<Adopt> findById(Long id);
+	
+	public Adopt findByUserId(Long id);
 	
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.formypet.jpa.adopt.dto.AdoptDto;
 import com.formypet.jpa.adopt.entity.Adopt;
 import com.formypet.jpa.adopt.repository.AdoptRepository;
+import com.formypet.jpa.user.entity.User;
 
 import jakarta.transaction.Transactional;
 @Service
@@ -52,6 +53,10 @@ public class AdoptServiceImpl implements AdoptService{
 	public Optional<Adopt> findById(Long id) {
 		return adoptRepository.findById(id);
 	}
-	
+
+	@Override
+	public Adopt findByUserId(Long id) {
+		return adoptRepository.findByUserId(id);
+	}
 
 }

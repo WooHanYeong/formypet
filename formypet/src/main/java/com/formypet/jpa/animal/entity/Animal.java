@@ -67,7 +67,7 @@ public class Animal {
 					 .build();
 	}
 	
-	@OneToOne(mappedBy = "animal", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @ToString.Exclude
     @JoinColumn(name="adopt_id")
 	private Adopt adopt;
