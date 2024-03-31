@@ -23,6 +23,16 @@ public class Controller {
 		String forwardPath ="index";
 	    return forwardPath;
 	}
+	@GetMapping("/index_dogcontent")
+	public String index_dogcontent() throws Exception {
+		String forwardPath ="index_dogcontent";
+		return forwardPath;
+	}
+	@GetMapping("/index_catcontent")
+	public String index_catcontent() throws Exception {
+		String forwardPath ="index_catcontent";
+		return forwardPath;
+	}
 
 	@GetMapping("/confirmation")
 	public String confirmation() {
