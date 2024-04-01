@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>formypet</title>
+	<link rel="icon" href="img/pet_icon.png">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- animate CSS -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- owl carousel CSS -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<!-- font awesome CSS -->
+	<link rel="stylesheet" href="css/all.css">
+	<!-- flaticon CSS -->
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<!-- font awesome CSS -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<!-- swiper CSS -->
+	<link rel="stylesheet" href="css/slick.css">
+	<!-- style CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<style>
+		.blog_area.single-post-area.padding_top {
+			position: absolute;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 80%;
+			/* 원하는 너비로 조정 */
+			max-width: 800px;
+			/* 최대 너비 설정 */
+			text-align: center;
+		}
+
+		.blog_area.single-post-area.padding_top .container {
+			width: 100%;
+		}
+
+		.blog_area.single-post-area.padding_top .row {
+			display: flex;
+			justify-content: center;
+		}
+
+		.blog_area.single-post-area.padding_top .single-post {
+			text-align: center;
+		}
+
+		.back-link {
+			color: rgb(255, 0, 0);
+			text-decoration: none;
+			/* 하이퍼링크에 밑줄 제거 */
+		}
+
+		.back-link:hover {
+			text-decoration: underline;
+			/* 마우스 오버시에는 밑줄 표시 */
+		}
+	</style>
+
+</head>
+
+<body>
+	<!-- Header Start -->
+	<header class="ht-header">
+		<div class="container">
+			<div th:insert="~{header :: headerFragment}"></div>
+		</div>
+	</header>
+
+	<section class="blog_area single-post-area padding_top">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 posts-list">
+					<div class="single-post">
+						<div class="feature-img">
+							<img class="img-fluid" src="icon/강고.png" alt="">
+						</div>
+						<div class="blog_details">
+							<h2>404
+								Page Not Found
+							</h2>
+
+							<div class="quote-wrapper">
+								<div class="quotes">
+									요청하신 페이지를 찾을 수 없습니다.
+								</div>
+							</div>
+							<a href="index" class="back-link">
+								<h2>← Back to HomePage (Click)</h2>
+							</a>
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- END | Header -->
+</body>
+
+</html>

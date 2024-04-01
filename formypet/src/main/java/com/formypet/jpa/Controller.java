@@ -39,13 +39,13 @@ public class Controller {
 		String forwardPath = "confirmation";
 		return forwardPath;
 	}
-
-
-	@GetMapping("/elementss")
-	public String elements() {
-		String forwardPath = "elementss";
+	
+	@GetMapping("/error")
+	public String error() {
+		String forwardPath = "error";
 		return forwardPath;
 	}
+
 	@GetMapping("/header")
 	public String header(HttpSession session, Model model) throws Exception{
 		User loginUser = (User) session.getAttribute("loginUser");
