@@ -57,7 +57,7 @@ public class BoardController {
 	@GetMapping("/board_list/{categoryId}")
 	public String boardList(@PathVariable(value = "categoryId") Long categoryId, Model model, HttpSession session,
 			@RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "15") int size,
+            @RequestParam(value = "size", defaultValue = "5") int size,
 			@RequestParam(value = "keyword", required = false) String keyword, @RequestParam(value = "sorting", required = false) String sorting) throws Exception {
 	    User loginUser = (User) session.getAttribute("loginUser");
 	    if (loginUser != null) {
@@ -92,7 +92,7 @@ public class BoardController {
 	public String subBoardList(@PathVariable(value = "categoryId") Long categoryId,
 	        @PathVariable(value = "subCategoryId") Long subCategoryId, Model model, HttpSession session,
 	        @RequestParam(value = "page", defaultValue = "0") int page,
-	        @RequestParam(value = "size", defaultValue = "15") int size,
+	        @RequestParam(value = "size", defaultValue = "5") int size,
 	        @RequestParam(value = "keyword", required = false) String keyword, 
 	        @RequestParam(value = "sorting", required = false) String sorting) throws Exception {
 	    User loginUser = (User) session.getAttribute("loginUser");

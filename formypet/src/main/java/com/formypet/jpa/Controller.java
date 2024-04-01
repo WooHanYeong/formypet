@@ -34,9 +34,15 @@ public class Controller {
 		return forwardPath;
 	}
 
-	@GetMapping("/confirmation")
-	public String confirmation() {
-		String forwardPath = "confirmation";
+	@GetMapping("/eventpage")
+	public String eventpage() {
+		String forwardPath = "eventpage";
+		return forwardPath;
+	}
+	
+	@GetMapping("/noticepage")
+	public String noticepage() {
+		String forwardPath = "noticepage";
 		return forwardPath;
 	}
 	
