@@ -21,7 +21,7 @@
 <br/><br/><br/>
 
 ## 페이지 & 서비스
-유저,관리자,상품,장바구니,입양,게시판,주문 등의 페이지와 서비스가 있습니다.
+유저, 관리자, 상품, 장바구니, 입양, 게시판, 주문 등의 페이지와 서비스가 있습니다.
 <br/><br/><br/>
 
 #### 메인 페이지
@@ -32,12 +32,17 @@
 
 
 #### 유저
-<br/><br/><br/>
 ![image](https://github.com/WooHanYeong/formypet/assets/133833197/caffa940-70b4-4a87-aaaa-bc9448a53024)
+<br/><br/><br/>
+로그인, 로그아웃, 회원수정, 회원탈퇴, 입양정보 등을 확인할 수 있는 서비스입니다.
 <br/><br/><br/>
 
 #### 관리자
+![image](https://github.com/WooHanYeong/formypet/assets/133833197/db2deeec-679a-4d4b-91f7-127a58c1c616)
+![image](https://github.com/WooHanYeong/formypet/assets/133833197/d6a0f73a-4e24-43c1-bed7-efac25059946)
 <br/><br/><br/>
+유저정보, 상품정보, 등록된 유기동물, 주문 등을 관리하고, 유기동물과 상품을 등록할 수 있는 서비스입니다.
+(주문관리는 구현중)
 <br/><br/><br/>
 
 #### 삼풍
@@ -50,4 +55,14 @@
 
 #### 입양
 <br/><br/><br/>
+<br/><br/><br/>
+
+#### 게시판
+<br/><br/><br/>
+서비스 개발중..ing
+<br/><br/><br/>
+
+#### 주문
+<br/><br/><br/>
+서비스 개발중..ing
 <br/><br/><br/>
