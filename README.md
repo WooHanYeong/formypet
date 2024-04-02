@@ -21,13 +21,15 @@
 <br/><br/><br/>
 
 ## 페이지 & 서비스
-<br/><br/><br/>
 유저,관리자,상품,장바구니,입양,게시판,주문 등의 페이지와 서비스가 있습니다.
 <br/><br/><br/>
 
 #### 메인 페이지
+![image](https://github.com/WooHanYeong/formypet/assets/133833197/1c09fab7-b8db-4b9d-9f8c-d2f2580da826)
 <br/><br/><br/>
+여러가지 페이지를 접근할 수 있는 메인페이지 입니다.
 <br/><br/><br/>
+
 
 #### 유저
 <br/><br/><br/>
