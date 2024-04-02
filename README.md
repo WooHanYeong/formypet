@@ -33,6 +33,7 @@
 
 #### 유저
 <br/><br/><br/>
+![image](https://github.com/WooHanYeong/formypet/assets/133833197/caffa940-70b4-4a87-aaaa-bc9448a53024)
 <br/><br/><br/>
 
 #### 관리자
