@@ -19,3 +19,32 @@
 * JPA, JavaScript,, Oracle SQL, CSS, HTML, SpringBoot 
 * ERD (추가)
 <br/><br/><br/>
+
+## 페이지 & 서비스
+<br/><br/><br/>
+유저,관리자,상품,장바구니,입양,게시판,주문 등의 페이지와 서비스가 있습니다.
+<br/><br/><br/>
+
+#### 메인 페이지
+<br/><br/><br/>
+<br/><br/><br/>
+
+#### 유저
+<br/><br/><br/>
+<br/><br/><br/>
+
+#### 관리자
+<br/><br/><br/>
+<br/><br/><br/>
+
+#### 삼풍
+<br/><br/><br/>
+<br/><br/><br/>
+
+#### 장바구니 
+<br/><br/><br/>
+<br/><br/><br/>
+
+#### 입양
+<br/><br/><br/>
+<br/><br/><br/>
