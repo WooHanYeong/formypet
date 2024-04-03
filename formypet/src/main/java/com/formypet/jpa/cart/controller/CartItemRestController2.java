@@ -13,14 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.formypet.jpa.cart.dto.CartDto;
 import com.formypet.jpa.cart.entity.Cart;
 import com.formypet.jpa.cart.entity.CartItem;
-import com.formypet.jpa.cart.repository.CartItemRepository;
 import com.formypet.jpa.cart.service.CartItemService;
 import com.formypet.jpa.cart.service.CartService;
 import com.formypet.jpa.product.service.ProductService;
 import com.formypet.jpa.user.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import net.bytebuddy.build.Plugin.Engine.Summary;
 
 @RestController
 @RequestMapping("api/cartItem2/")
